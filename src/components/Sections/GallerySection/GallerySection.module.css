@@ -1,0 +1,124 @@
+.section {
+  padding: 7.2vw 0;
+  overflow: hidden;
+}
+
+.titleContainer {
+  max-width: 41.5vw;
+  position: relative;
+
+  h2 {
+    font-family: Futura PT;
+    font-weight: 500;
+    font-size: 3.3vw;
+    line-height: 100%;
+    margin-bottom: 1.7vw;
+
+    span {
+      display: block;
+      width: fit-content;
+      position: relative;
+      font-family: "First Time Writing!";
+      font-weight: 600;
+      font-size: 2.8vw;
+      line-height: 90%;
+      color: var(--primary-pink);
+      margin-top: 0.5vw;
+
+      svg {
+        position: absolute;
+        width: 100%;
+        left: 0;
+      }
+    }
+  }
+
+  p {
+    font-family: Moderustic;
+    font-weight: 400;
+    font-size: 1vw;
+    line-height: 135%;
+    color: rgba(51, 51, 51, 1);
+  }
+
+  img {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4.8vw;
+  }
+}
+
+.topBlock {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  margin-bottom: 3.8vw;
+}
+
+.swiperController {
+  display: flex;
+  gap: 1.2vw;
+  height: max-content;
+  position: relative;
+
+  .hint {
+    position: absolute;
+    top: -5vw;
+    display: flex;
+
+    span {
+      display: block;
+      font-family: "First Time Writing!";
+      font-weight: 600;
+      font-size: 1.4vw;
+      line-height: 90%;
+      color: var(--primary-pink);
+      max-width: 6vw;
+      transform: rotate(-10deg);
+    }
+
+    svg {
+      position: absolute;
+      right: -4vw;
+      bottom: -1.5vw;
+      width: 3vw;
+      height: 3vw;
+    }
+  }
+
+  .swiperPrev {
+    svg {
+      transform: rotate(180deg);
+    }
+  }
+
+  .swiperPrev,
+  .swiperNext {
+    cursor: pointer;
+    background-color: var(--primary-pink);
+    padding: 1.4vw 1.6vw;
+    border-radius: 5.2vw;
+    transition: background-color 0.3s;
+
+    svg {
+      fill: #fff4f1;
+      stroke: #fff4f1;
+    }
+  }
+
+  .swiperPrev:hover,
+  .swiperNext:hover {
+    background-color: var(--primary-pink-hover);
+  }
+
+  svg {
+    width: 2vw;
+    height: 1vw;
+  }
+}
+
+.swiper {
+  overflow: visible !important;
+}

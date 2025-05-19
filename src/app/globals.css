@@ -1,0 +1,63 @@
+@import "tailwindcss";
+
+:root {
+  --background: rgba(255, 244, 241, 1);
+  --foreground: #171717;
+  --desc: rgba(51, 51, 51, 0.6);
+  --primary-pink: rgba(255, 145, 178, 1);
+  --primary-yellow: rgba(255, 249, 193, 1);
+  --primary-blue: rgba(172, 226, 255, 1);
+  --primary-blue-hover: rgba(42, 155, 252, 1);
+  --primary-pink-hover: rgba(255, 84, 136, 1);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+  max-width: 93.7vw;
+  margin: 0 auto;
+}
+
+@font-face {
+  font-family: "Futura PT";
+  src: url("/fonts/Futura PT/FuturaPT-Book.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Futura PT";
+  src: url("/fonts/Futura PT/FuturaPT-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Futura PT";
+  src: url("/fonts/Futura PT/FuturaPT-Demi.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Futura PT";
+  src: url("/fonts/Futura PT/FuturaPT-Heavy.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "First Time Writing!";
+  src: url("/fonts/First Time Writing/FirstTimeWriting.ttf") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}

@@ -1,0 +1,56 @@
+.accordion {
+  background-color: #fff7f8;
+  padding: 2.1vw;
+  overflow: hidden;
+  height: max-content;
+}
+
+.header {
+  border: none;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.title {
+  font-family: "First Time Writing!";
+  font-weight: 600;
+  font-size: 2.2vw;
+  line-height: 120%;
+  letter-spacing: -2%;
+  text-transform: uppercase;
+}
+
+.icon {
+  background-color: var(--primary-blue);
+  width: 2.7vw;
+  height: 2.7vw;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+
+  svg {
+    width: 1.3vw;
+    height: 1.1vw;
+  }
+}
+
+.open {
+  transform: rotate(180deg);
+}
+
+.contentWrapper {
+  overflow: hidden;
+}
+
+.content {
+  font-family: Moderustic;
+  font-weight: 500;
+  font-size: 0.9vw;
+  line-height: 135%;
+  padding-top: 1vw;
+}

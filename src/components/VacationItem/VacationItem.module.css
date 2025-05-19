@@ -1,0 +1,75 @@
+.vacation {
+  background-color: white;
+  padding: 2.1vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 35vw;
+
+  h4 {
+    font-family: Moderustic;
+    font-weight: 600;
+    font-size: 1.6vw;
+    line-height: 135%;
+    margin-bottom: 1.2vw;
+  }
+
+  .price {
+    font-family: Moderustic;
+    font-weight: 500;
+    font-size: 1vw;
+    line-height: 135%;
+    margin-bottom: 1.2vw;
+  }
+
+  .block {
+    div {
+      display: flex;
+      align-items: center;
+      gap: 0.4vw;
+      margin-bottom: 0.6vw;
+
+      svg {
+        width: 1.2vw;
+        height: 1.2vw;
+      }
+
+      span {
+        font-family: Moderustic;
+        font-weight: 500;
+        font-size: 0.8vw;
+        line-height: 135%;
+        color: var(--primary-pink);
+      }
+    }
+
+    p {
+      font-family: Moderustic;
+      font-weight: 400;
+      font-size: 0.9vw;
+      line-height: 135%;
+    }
+  }
+
+  .block:not(:last-child) {
+    margin-bottom: 1vw;
+  }
+
+  button {
+    width: 100%;
+    font-family: Futura PT;
+    font-weight: 500;
+    font-size: 1vw;
+    line-height: 100%;
+    background-color: var(--primary-blue);
+    color: rgba(51, 51, 51, 1);
+    padding: 1.3vw 0;
+    border-radius: 5.2vw;
+    transition: background-color 0.3s;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: var(--primary-blue-hover);
+  }
+}

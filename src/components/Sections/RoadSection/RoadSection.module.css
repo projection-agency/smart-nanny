@@ -1,0 +1,131 @@
+.section {
+  padding: 10.4vw 7.2vw;
+
+  button {
+    display: block;
+    background-color: var(--primary-pink);
+    font-family: Futura PT;
+    font-weight: 500;
+    font-size: 1vw;
+    line-height: 100%;
+    padding: 1.6vw 3.7vw;
+    border-radius: 5.2vw;
+    color: rgba(253, 248, 245, 1);
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin: 0 auto;
+  }
+
+  button:hover {
+    background-color: var(--primary-pink-hover);
+  }
+}
+
+.titleContainer {
+  text-align: center;
+  margin-bottom: 3.8vw;
+
+  h2 {
+    font-family: Futura PT;
+    font-weight: 500;
+    font-size: 3.3vw;
+    line-height: 100%;
+    margin-bottom: 1.6vw;
+
+    span {
+      position: relative;
+      font-family: "First Time Writing!";
+      font-weight: 600;
+      font-size: 2.8vw;
+      line-height: 90%;
+      color: var(--primary-pink);
+      text-align: center;
+
+      svg {
+        position: absolute;
+        bottom: -1.2vw;
+
+        width: 100%;
+        left: 0;
+      }
+    }
+  }
+
+  p {
+    font-family: Moderustic;
+    font-weight: 400;
+    font-size: 1vw;
+    line-height: 135%;
+    text-align: center;
+  }
+}
+
+.stepList {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.8vw;
+  margin-bottom: 3.8vw;
+
+  li {
+    padding: 2.3vw;
+    background-color: white;
+  }
+
+  .step {
+    display: block;
+    position: relative;
+    width: fit-content;
+    font-family: Moderustic;
+    font-weight: 700;
+    font-size: 0.8vw;
+    line-height: 135%;
+    margin-bottom: 1.6vw;
+
+    span {
+      z-index: 1;
+      position: absolute;
+      transform: translateY(-50%) translateX(-50%);
+      top: 50%;
+      left: 50%;
+    }
+
+    svg {
+    }
+  }
+
+  h3 {
+    font-family: "First Time Writing!";
+    font-weight: 600;
+    font-size: 2vw;
+    line-height: 130%;
+    text-transform: uppercase;
+    margin-bottom: 1vw;
+  }
+
+  p {
+    font-family: Moderustic;
+    font-weight: 500;
+    font-size: 0.9vw;
+    line-height: 135%;
+    margin-bottom: 1.2vw;
+  }
+
+  h4 {
+    font-family: Moderustic;
+    font-weight: 600;
+    font-size: 1vw;
+    line-height: 135%;
+    margin-bottom: 1vw;
+  }
+
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 1.2vw;
+    row-gap: 1.6vw;
+
+    li {
+      padding: 0;
+    }
+  }
+}

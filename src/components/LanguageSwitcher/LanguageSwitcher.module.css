@@ -1,0 +1,95 @@
+.container {
+  width: 5vw;
+  background-color: var(--primary-pink);
+  color: white;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  padding: 0.6vw;
+  box-sizing: border-box;
+  transition: 0.3s;
+}
+
+.container:hover {
+  background-color: var(--primary-pink-hover);
+}
+
+.topRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+
+  span {
+    font-family: Futura PT;
+    font-weight: 450;
+    font-size: 0.9vw;
+    line-height: 100%;
+    letter-spacing: 0%;
+  }
+}
+
+.arrow {
+  background-color: white;
+  border-radius: 9999px;
+  width: 1.6vw;
+  height: 1.6vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+}
+
+.arrowIcon {
+  width: 0.8vw;
+  height: 0.7vw;
+  color: #ec5d88;
+  transition: transform 0.2s ease;
+}
+
+.rotate {
+  transform: rotate(180deg);
+}
+
+.dropdownContent {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+}
+
+.divider {
+  width: 75%;
+  height: 1px;
+  background-color: white;
+  margin: 8px 0;
+}
+
+.langList {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.langButton {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 2px 0;
+  transition: opacity 0.2s;
+  font-family: Futura PT;
+  font-weight: 450;
+  font-size: 0.9vw;
+  line-height: 100%;
+  letter-spacing: 0%;
+}
+
+.langButton:hover {
+  opacity: 0.8;
+}

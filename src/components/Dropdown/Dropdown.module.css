@@ -1,0 +1,70 @@
+/* Dropdown.module.css */
+
+/* Wrapper */
+.dropdown {
+  position: relative;
+  width: 12.5vw;
+  font-family: "Futura PT", sans-serif;
+}
+
+/* Toggle Button */
+.toggle {
+  width: 100%;
+  padding: 1.2vw;
+  background: white;
+  border: none;
+  border-radius: 1.2vw;
+  font-family: Futura PT;
+  font-weight: 450;
+  font-size: 0.9vw;
+  line-height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  color: rgba(51, 51, 51, 0.3);
+}
+
+/* Arrow Icon */
+.arrow {
+  transition: transform 0.3s ease;
+
+  svg {
+    width: 0.8vw;
+    height: 0.8vw;
+  }
+}
+
+.up {
+  transform: rotate(180deg);
+}
+
+/* Dropdown Menu */
+.menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  width: 100%;
+  background: white;
+
+  border-radius: 1.2vw;
+  max-height: 10vw;
+  overflow-y: auto;
+  padding: 8px 0;
+  z-index: 10;
+}
+
+.menu li {
+  padding: 0.8vw 1.2vw;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  font-family: Futura PT;
+  font-weight: 450;
+  font-size: 0.9vw;
+  line-height: 100%;
+  letter-spacing: 0%;
+}
+
+.menu li:hover {
+  background-color: rgba(51, 51, 51, 0.05);
+}
