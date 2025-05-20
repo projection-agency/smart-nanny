@@ -4,12 +4,16 @@ import { Container } from "@/components/Container";
 import { BlogItem } from "@/components/BlogItem/BlogItem";
 import { storiesData } from "@/data/storiesData";
 
-export default async function Blog({ params }: { params: { slug: string } }) {
-  const post = storiesData.find((p) => p.slug === params.slug);
+export default async function Blog({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+
+  const post = storiesData.find((p) => p.slug === slug);
 
   if (!post) return <div>Статтю не знайдено</div>;
-
-  console.log(post);
 
   return (
     <main>
