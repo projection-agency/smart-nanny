@@ -2,6 +2,11 @@
   padding: 13.2vw 0 11.3vw;
 }
 
+.sectionSelection {
+  padding-bottom: 4vw;
+  padding-top: 4vw;
+}
+
 .title {
   font-family: Futura PT;
   font-weight: 500;
@@ -28,6 +33,10 @@
     display: inline;
     font-family: "Roboto";
   }
+}
+
+.sectionSelection .title {
+  margin-bottom: 1.6vw;
 }
 
 .list {
@@ -76,4 +85,23 @@
     top: 2.8vw;
     transform: rotate(-10deg);
   }
+}
+
+.desc {
+  font-family: Moderustic;
+  font-weight: 400;
+  font-size: 1vw;
+  line-height: 135%;
+  text-align: center;
+  color: rgba(51, 51, 51, 1);
+  max-width: 52vw;
+  margin: 0 auto;
+  margin-bottom: 3.8vw;
+}
+
+.sectionSelection .list {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  max-width: 75.5vw;
+  margin: 0 auto;
 }

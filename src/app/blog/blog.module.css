@@ -1,0 +1,88 @@
+.section {
+  padding: 3.7vw 0 10.4vw 0;
+}
+
+.titleContainer {
+  margin-bottom: 3.7vw;
+
+  h2 {
+    font-family: Futura PT;
+    font-weight: 450;
+    font-size: 5vw;
+    line-height: 90%;
+    text-align: center;
+    max-width: 30vw;
+    margin: 0 auto;
+    color: rgba(51, 51, 51, 1);
+    margin-bottom: 1.6vw;
+
+    span {
+      position: relative;
+      font-family: "First Time Writing!";
+      font-weight: 600;
+      font-size: 3.6vw;
+      line-height: 90%;
+      color: var(--primary-pink);
+
+      svg {
+        position: absolute;
+        width: 100%;
+        left: 0;
+        bottom: -0.8vw;
+      }
+    }
+  }
+
+  p {
+    font-family: Moderustic;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 135%;
+    letter-spacing: -2%;
+    text-align: center;
+    color: rgba(51, 51, 51, 1);
+    margin-bottom: 1.6vw;
+  }
+}
+
+.tabController {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.8vw;
+
+  .tab {
+    font-family: Futura PT;
+    font-weight: 500;
+    font-size: 0.9vw;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: rgba(51, 51, 51, 0.8);
+    background-color: rgba(254, 251, 250, 1);
+    padding: 0.9vw 1.2vw;
+    border-radius: 8.6vw;
+    cursor: pointer;
+    transition: 0.3s;
+    border: 2px solid transparent;
+  }
+
+  .active {
+    border: 2px solid var(--primary-pink);
+    color: var(--primary-pink);
+  }
+
+  .tab:hover {
+    color: black;
+  }
+
+  .active:hover {
+    color: var(--primary-pink);
+  }
+}
+
+.list {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: 1.2vw;
+  row-gap: 2.5vw;
+}

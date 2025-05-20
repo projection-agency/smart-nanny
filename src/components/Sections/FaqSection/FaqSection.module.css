@@ -1,0 +1,34 @@
+.section {
+  padding: 5.2vw 0 10.4vw 0;
+}
+
+.title {
+  font-family: Futura PT;
+  font-weight: 500;
+  font-size: 3.3vw;
+  line-height: 100%;
+  color: rgba(51, 51, 51, 1);
+  text-align: center;
+  margin-bottom: 3.7vw;
+
+  span {
+    position: relative;
+    font-family: "First Time Writing!";
+    font-weight: 600;
+    font-size: 2.8vw;
+    line-height: 90%;
+    color: var(--primary-pink);
+
+    svg {
+      position: absolute;
+      left: 0;
+      width: 100%;
+    }
+  }
+}
+
+.faqList {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.8vw;
+}

@@ -1,0 +1,171 @@
+.section {
+  padding: 5.2vw 0;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+}
+
+.swiper {
+  max-width: 35vw;
+  margin-bottom: 3.8vw;
+}
+
+.title {
+  font-family: Futura PT;
+  font-weight: 500;
+  font-size: 3.3vw;
+  line-height: 100%;
+  color: rgba(51, 51, 51, 1);
+  margin-bottom: 1.2vw;
+
+  span {
+    position: relative;
+    font-family: "First Time Writing!";
+    font-weight: 600;
+    font-size: 2.8vw;
+    line-height: 90%;
+    color: var(--primary-pink);
+
+    svg {
+      position: absolute;
+      width: 100%;
+      left: 0;
+      bottom: -0.7vw;
+    }
+  }
+}
+
+.desc {
+  font-family: Moderustic;
+  font-weight: 400;
+  font-size: 1vw;
+  line-height: 135%;
+  color: rgba(51, 51, 51, 1);
+  margin-bottom: 3.8vw;
+}
+
+.card {
+  position: relative;
+  padding: 1.6vw;
+  background-color: rgba(254, 251, 250, 1);
+
+  .plus {
+    position: absolute;
+    top: 1.6vw;
+    right: 1.6vw;
+
+    svg {
+      width: 1.8vw;
+      height: 1.6vw;
+    }
+  }
+
+  .header {
+    display: flex;
+    align-items: center;
+    gap: 1vw;
+    margin-bottom: 1.5vw;
+  }
+
+  .avatar {
+    width: 5.2vw;
+  }
+
+  .name {
+    font-family: Moderustic;
+    font-weight: 600;
+    font-size: 1.2vw;
+    line-height: 135%;
+    color: rgba(21, 21, 21, 0.8);
+    max-width: 5vw;
+  }
+
+  .text {
+    font-family: Moderustic;
+    font-weight: 400;
+    font-size: 1vw;
+    line-height: 150%;
+    margin-bottom: 1.5vw;
+    max-width: 75%;
+  }
+
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    font-family: Moderustic;
+    font-weight: 500;
+    font-size: 0.8vw;
+    line-height: 150%;
+    color: rgba(0, 0, 0, 0.4);
+  }
+}
+
+.swiperController {
+  display: flex;
+
+  height: max-content;
+  position: relative;
+  justify-content: space-between;
+
+  .hint {
+    position: absolute;
+    top: -5vw;
+    display: flex;
+
+    span {
+      display: block;
+      font-family: "First Time Writing!";
+      font-weight: 600;
+      font-size: 1.4vw;
+      line-height: 90%;
+      color: var(--primary-pink);
+      max-width: 6vw;
+      transform: rotate(-10deg);
+    }
+
+    svg {
+      position: absolute;
+      right: -4vw;
+      bottom: -1.5vw;
+      width: 3vw;
+      height: 3vw;
+    }
+  }
+
+  .svg {
+    height: 100%;
+    width: auto;
+  }
+
+  .swiperPrev {
+    svg {
+      transform: rotate(180deg);
+    }
+  }
+
+  .swiperPrev,
+  .swiperNext {
+    cursor: pointer;
+    background-color: var(--primary-blue);
+    padding: 1.4vw 1.6vw;
+    border-radius: 5.2vw;
+    transition: background-color 0.3s;
+
+    svg {
+      fill: #fff4f1;
+      stroke: #fff4f1;
+    }
+  }
+
+  .swiperPrev:hover,
+  .swiperNext:hover {
+    background-color: var(--primary-blue-hover);
+  }
+
+  svg {
+    width: 2vw;
+    height: 1vw;
+  }
+}

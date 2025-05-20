@@ -1,22 +1,42 @@
 .section {
   padding: 10.4vw 0 7.2vw 0;
 
-  button {
+  .btn {
     display: block;
-    background-color: var(--primary-pink);
+    position: relative;
     font-family: Futura PT;
     font-weight: 500;
     font-size: 1vw;
     line-height: 100%;
     padding: 1.6vw 3.7vw;
     border-radius: 5.2vw;
+    background-color: var(--primary-pink);
     color: rgba(253, 248, 245, 1);
-    cursor: pointer;
-    transition: background-color 0.3s;
     margin: 0 auto;
+    transition: background-color 0.3s;
+    cursor: pointer;
+
+    div {
+      position: absolute;
+      top: 0;
+    }
+
+    svg {
+      height: 4.3vw;
+      width: auto;
+    }
+
+    .first {
+      left: -3.5vw;
+      transform: rotate(180deg);
+    }
+
+    .second {
+      right: -3.5vw;
+    }
   }
 
-  button:hover {
+  .btn:hover {
     background-color: var(--primary-pink-hover);
   }
 }

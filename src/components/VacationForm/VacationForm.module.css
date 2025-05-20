@@ -1,0 +1,130 @@
+.formBlock {
+  background-color: rgba(254, 251, 250, 1);
+  border-radius: 2.6vw;
+  max-width: 52vw;
+  margin: 0 auto;
+  padding: 3.1vw;
+}
+
+.formTitle {
+  text-align: center;
+  font-family: Moderustic;
+  font-weight: 400;
+  font-size: 1vw;
+  line-height: 135%;
+  margin-bottom: 2.5vw;
+}
+
+.inputLine {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0.8vw;
+  margin-bottom: 1.6vw;
+}
+
+.checkboxGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.8vw;
+  margin-bottom: 2.5vw;
+}
+
+.checkboxItem {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.6vw;
+  background-color: rgba(51, 51, 51, 0.03);
+  border-radius: 0.5vw;
+  padding: 0.8vw 1.2vw;
+  cursor: pointer;
+
+  input {
+    position: absolute;
+    left: 0;
+  }
+}
+
+.hiddenCheckbox {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.customCheckbox {
+  width: 1.2vw;
+  height: 1.2vw;
+  border: 2px solid rgba(51, 51, 51, 1);
+  border-radius: 0.3vw;
+  background-color: white;
+  transition: 0.2s ease;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.hiddenCheckbox:checked + .customCheckbox::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 6px;
+  width: 6px;
+  height: 12px;
+  border: solid black;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.employmentBlock {
+  p {
+    font-family: Moderustic;
+    font-weight: 500;
+    font-size: 0.7vw;
+    line-height: 100%;
+    letter-spacing: 0%;
+    margin-bottom: 1.2vw;
+
+    span {
+      color: red;
+    }
+  }
+}
+
+.submitBtn {
+  font-family: Futura PT;
+  font-weight: 500;
+  font-size: 1vw;
+  line-height: 100%;
+  letter-spacing: 0%;
+  text-align: center;
+  padding: 1.6vw;
+  background-color: var(--primary-pink);
+  width: 100%;
+  color: rgba(253, 248, 245, 1);
+  border-radius: 5.2vw;
+  transition: background-color 0.3s;
+  cursor: pointer;
+  margin-bottom: 0.8vw;
+}
+
+.submitBtn:hover {
+  background-color: var(--primary-pink-hover);
+}
+
+.note {
+  font-family: Moderustic;
+  font-weight: 400;
+  font-size: 0.7vw;
+  line-height: 139%;
+  text-align: center;
+  max-width: 30vw;
+  margin: 0 auto;
+  color: rgba(51, 51, 51, 0.4);
+
+  a {
+    text-decoration: underline;
+  }
+
+  a:hover {
+    color: black;
+  }
+}

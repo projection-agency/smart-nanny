@@ -1,6 +1,7 @@
 .section {
+  overflow: hidden;
   background-color: var(--primary-pink);
-  padding: 8.3vw;
+  padding: 8.3vw 0;
 }
 
 .title {
@@ -208,5 +209,93 @@
 
   li {
     width: calc(50% - 0.9vw); /* мінус половина gap для двох колонок */
+  }
+
+  .tagList {
+    display: flex;
+    gap: 3.5vw;
+    margin-bottom: 2.2vw;
+    padding-left: 1vw;
+
+    p {
+      font-family: Moderustic;
+      font-weight: 700;
+      font-size: 0.8vw;
+      line-height: 135%;
+      letter-spacing: -2%;
+      color: var(--primary-pink);
+    }
+
+    .tag {
+      position: relative;
+
+      span {
+        position: absolute;
+        top: -70%;
+        left: -15%;
+        width: 8.8vw;
+        height: 100%;
+      }
+    }
+  }
+
+  .cardDesc {
+    font-family: Moderustic;
+    font-weight: 400;
+    font-size: 0.9vw;
+    line-height: 135%;
+    margin-bottom: 1.2vw;
+  }
+
+  .priceInfo {
+    display: flex;
+    align-items: center;
+    gap: 0.4vw;
+    margin-bottom: 1.2vw;
+
+    svg {
+      width: 2vw;
+      height: 2vw;
+    }
+  }
+
+  .shortDesc {
+    font-family: Moderustic;
+    font-weight: 500;
+    font-size: 0.8vw;
+    line-height: 135%;
+    color: rgba(51, 51, 51, 0.6);
+  }
+
+  .cardPrice {
+    font-family: Moderustic;
+    font-weight: 600;
+    font-size: 1vw;
+    line-height: 135%;
+    color: rgba(51, 51, 51, 1);
+
+    span {
+      font-family: Moderustic;
+      font-weight: 600;
+      font-size: 1.4vw;
+      line-height: 135%;
+    }
+  }
+
+  .btn {
+    font-family: Futura PT;
+    font-weight: 500;
+    font-size: 1vw;
+    line-height: 100%;
+    width: 100%;
+    padding: 1.6vw 0;
+    background-color: var(--primary-blue);
+    border-radius: 5.2vw;
+    transition: background-color 0.3s;
+    cursor: pointer;
+  }
+
+  .btn:hover {
+    background-color: var(--primary-blue-hover);
   }
 }

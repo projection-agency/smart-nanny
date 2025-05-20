@@ -1,6 +1,7 @@
 import { Container } from "@/components/Container";
 import s from "./RoadSection.module.css";
 import { line } from "../HomeHero/HomeHero";
+import { btnSvg } from "../BlogSection/BlogSection";
 
 export const selectionSteps = [
   {
@@ -88,7 +89,11 @@ export const RoadSection = () => {
           ))}
         </ul>
 
-        <button>Підібрати няню</button>
+        <button className={s.btn}>
+          <div className={s.first}>{btnSvg}</div>
+          Підібрати няню
+          <div className={s.second}>{btnSvg}</div>
+        </button>
       </Container>
     </section>
   );

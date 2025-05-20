@@ -1,0 +1,170 @@
+.footer {
+  position: relative;
+  /* background-color: var(--primary-pink); */
+  padding: 5.2vw 0 3.1vw 0;
+  background: radial-gradient(
+    159.68% 159.68% at 50.03% 73.9%,
+    #ff91b2 46.14%,
+    #fff4f1 46.15%
+  );
+}
+
+.logo {
+  width: 5vw;
+  margin: 0 auto;
+  margin-bottom: 1.8vw;
+}
+
+.title {
+  font-family: Futura PT;
+  font-weight: 600;
+  font-size: 3.3vw;
+  line-height: 100%;
+  text-align: center;
+  color: rgba(255, 244, 241, 1);
+  margin-bottom: 3.1vw;
+
+  span {
+    position: relative;
+    width: fit-content;
+    margin: 0 auto;
+    display: block;
+    font-family: "First Time Writing!";
+    font-weight: 600;
+    font-size: 2.8vw;
+    line-height: 90%;
+    text-align: center;
+    color: var(--primary-yellow);
+
+    svg {
+      position: absolute;
+      width: 100%;
+    }
+  }
+}
+
+.footerNav {
+  margin-bottom: 2.5vw;
+
+  ul {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    a {
+      padding: 0 0.7vw;
+      font-family: Moderustic;
+      font-weight: 600;
+      font-size: 1vw;
+      line-height: 135%;
+      color: rgba(255, 244, 241, 1);
+    }
+  }
+}
+
+.socialLinks {
+  display: flex;
+  align-items: center;
+  gap: 1.2vw;
+  justify-content: center;
+  margin-bottom: 3.7vw;
+
+  li {
+    svg {
+      width: 2.1vw;
+      height: 2.1vw;
+    }
+
+    a {
+      display: flex;
+      align-items: center;
+      gap: 0.8vw;
+      font-family: Moderustic;
+      font-weight: 600;
+      font-size: 0.9vw;
+      line-height: 135%;
+      text-align: center;
+      color: var(--primary-yellow);
+    }
+  }
+}
+
+.footerBottomContainer {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  font-family: Moderustic;
+  font-weight: 400;
+  font-size: 0.9vw;
+  line-height: 135%;
+  color: rgba(255, 244, 241, 0.7);
+  padding: 1.7vw 0;
+  border-top: 2px solid rgba(255, 244, 241, 0.7);
+  border-bottom: 2px solid rgba(255, 244, 241, 0.7);
+
+  a:hover {
+    color: white;
+  }
+
+  .dev {
+    position: relative;
+    opacity: 1;
+    color: white;
+  }
+
+  .dev::after {
+    position: absolute;
+    left: 0;
+    bottom: -0.3vw;
+    content: "";
+    width: 100%;
+    height: 1px;
+    background-color: white;
+  }
+}
+
+@keyframes levitate {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-0.8vw);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.cloud1,
+.cloud2,
+.cloud3,
+.cloud4 {
+  position: absolute;
+  z-index: 9;
+  animation: levitate 6s ease-in-out infinite;
+}
+
+.cloud1 {
+  width: 10vw;
+  top: 8.4vw;
+  left: 8.1vw;
+  animation-delay: 0s;
+}
+.cloud2 {
+  width: 7.9vw;
+  bottom: 6.8vw;
+  left: 17.7vw;
+  animation-delay: 1s;
+}
+.cloud3 {
+  width: 8.3vw;
+  right: 8.7vw;
+  top: 9.2vw;
+  animation-delay: 2s;
+}
+.cloud4 {
+  width: 7.9vw;
+  right: 18vw;
+  bottom: 6.2vw;
+  animation-delay: 3s;
+}

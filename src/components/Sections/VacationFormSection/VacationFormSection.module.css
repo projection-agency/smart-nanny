@@ -1,0 +1,95 @@
+.section {
+  padding: 10.4vw 0 5.2vw 0;
+  position: relative;
+}
+
+.title {
+  position: relative;
+  font-family: Futura PT;
+  font-weight: 500;
+  font-size: 3.3vw;
+  line-height: 100%;
+  text-align: center;
+  max-width: 35vw;
+  margin: 0 auto;
+  color: rgba(51, 51, 51, 1);
+  margin-bottom: 3.1vw;
+
+  .flower {
+    position: absolute;
+    width: 5.2vw;
+    top: -2.5vw;
+    left: -2.5vw;
+  }
+
+  span {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    right: -1vw;
+    font-family: "First Time Writing!";
+    font-weight: 600;
+    font-size: 0.8vw;
+    line-height: 90%;
+    text-align: center;
+    color: var(--primary-pink);
+    max-width: 8vw;
+    transform: rotate(20deg);
+
+    svg {
+      position: absolute;
+      width: 50%;
+      left: 50%;
+      transform: translateX(-50%) rotate(-10deg);
+    }
+  }
+}
+
+@keyframes levitate {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-0.8vw);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.cloud1,
+.cloud2,
+.cloud3,
+.cloud4 {
+  position: absolute;
+  animation: levitate 6s ease-in-out infinite;
+  z-index: -1;
+}
+
+.cloud1 {
+  width: 7.1vw;
+  top: 15vw;
+  right: 15vw;
+  animation-delay: 2.4s;
+}
+
+.cloud2 {
+  width: 8.3vw;
+  animation-delay: 1.2s;
+  bottom: 7vw;
+  right: 2.7vw;
+}
+
+.cloud3 {
+  width: 10vw;
+  animation-delay: 0s;
+  bottom: 21vw;
+  left: 18%;
+}
+
+.cloud4 {
+  width: 7.1vw;
+  animation-delay: 2.4s;
+  top: 18.6vw;
+  left: 6vw;
+}

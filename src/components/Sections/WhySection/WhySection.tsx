@@ -1,8 +1,11 @@
+"use client";
+
 import { Container } from "@/components/Container";
 import s from "./WhySection.module.css";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
-const data = [
+const dataShort = [
   {
     id: 1,
     icon: "/icons/why-icons/prof.png",
@@ -31,14 +34,72 @@ const data = [
   },
 ];
 
+const dataLong = [
+  {
+    id: 1,
+    icon: "/icons/why-icons/Vector.svg",
+    title: "Перевірені родини",
+    desc: "Ми підбираємо лише надійних клієнтів із чіткими умовами, адекватними очікуваннями та безпечною атмосферою в домі",
+  },
+  {
+    id: 2,
+    icon: "/icons/why-icons/Vector-1.svg",
+    title: "Професійний розвиток ",
+    desc: "Надаємо доступ до навчальних матеріалів і методик. Допомагаємо рости в професії  незалежно від того, з чого ви починаєте",
+    span: "Поруч із вами щодня",
+  },
+  {
+    id: 3,
+    icon: "/icons/why-icons/Vector-2.svg",
+    title: "Гнучкий формат",
+    desc: "Знайдіть оптимальний графік для себе: повна, часткова зайнятість, разова допомога або робота з проживанням",
+  },
+  {
+    id: 4,
+    icon: "/icons/why-icons/Vector-3.svg",
+    title: "Справедливі умови й оплата",
+    desc: "Ми не беремося за вакансії з низьким чеком. Кожна ваша година оплачується чесно та згідно з домовленостями",
+    span: "Гідна праця й заробіток",
+  },
+  {
+    id: 5,
+    icon: "/icons/why-icons/Vector-4.svg",
+    title: "Постійна підтримка",
+    desc: "У нас не працює правило «підлаштовуйся сама». Ви завжди можете звернутися за допомогою, порадою чи підтримкою",
+  },
+  {
+    id: 6,
+    icon: "/icons/why-icons/Vector-5.svg",
+    title: "Повага до нянь",
+    desc: "Працюємо лише з родинами, які цінують вашу працю, дотримуються домовленостей і ставляться з турботою",
+  },
+];
+
 export const WhySection = () => {
+  const pathname = usePathname();
+  console.log(pathname);
+
+  const isSelectionPage = pathname === "/nanny-selection" ? true : false;
+
+  const data = isSelectionPage ? dataLong : dataShort;
+
   return (
-    <section className={s.section}>
+    <section
+      className={`${s.section} ${isSelectionPage ? s.sectionSelection : ""} `}
+    >
       <Container>
         <h2 className={s.title}>
           Чому батьки <span>обирають </span>
           сервіс від Smart Nanny <p>?</p>
         </h2>
+
+        {isSelectionPage && (
+          <p className={s.desc}>
+            Ми будуємо співпрацю на довірі, чітких домовленостях і взаємній
+            повазі. Забезпечуємо прозорий процес, чесні умови та завжди
+            лишаємося на зв’язку, щоб ви завжди відчували підтримку
+          </p>
+        )}
 
         <ul className={s.list}>
           {data.map((item, index) => (

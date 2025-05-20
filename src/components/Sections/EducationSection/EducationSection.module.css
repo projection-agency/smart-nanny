@@ -1,0 +1,145 @@
+.section {
+  background-color: var(--primary-pink);
+  padding: 7vw 0;
+}
+
+.contentBlock {
+  position: relative;
+
+  .cornerSvg {
+    position: absolute;
+    width: 6.5vw;
+    bottom: 0;
+    right: 0;
+  }
+
+  h2 {
+    position: relative;
+    font-family: Futura PT;
+    font-weight: 600;
+    font-size: 3.3vw;
+    line-height: 100%;
+    color: rgba(255, 244, 241, 1);
+    max-width: 35vw;
+    margin-bottom: 3.1vw;
+
+    .svg {
+      width: 2vw;
+      position: absolute;
+      right: 2vw;
+      top: -0.5vw;
+    }
+
+    span {
+      position: relative;
+      font-family: "First Time Writing!";
+      font-weight: 600;
+      font-size: 2.8vw;
+      line-height: 90%;
+      color: var(--primary-yellow);
+
+      svg {
+        position: absolute;
+        width: 100%;
+        left: 0;
+      }
+    }
+  }
+
+  button {
+    font-family: Futura PT;
+    font-weight: 500;
+    font-size: 1vw;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: rgba(51, 51, 51, 1);
+    padding: 1.6vw 3.7vw;
+    border-radius: 5.2vw;
+    background-color: var(--primary-yellow);
+    transition: background-color 0.3s;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: var(--primary-yellow-hover);
+  }
+}
+
+.topBlock {
+  display: grid;
+  grid-template-columns: 33.7vw 36.5vw;
+  max-width: 80.3vw;
+  margin: 0 auto;
+  justify-content: space-between;
+  margin-bottom: 5.2vw;
+}
+
+.textBlock {
+  margin-bottom: 3.1vw;
+
+  p {
+    font-family: Moderustic;
+    font-weight: 500;
+    font-size: 0.9vw;
+    line-height: 135%;
+    letter-spacing: -2%;
+    color: rgba(255, 244, 241, 1);
+  }
+
+  p:not(:last-child) {
+    margin-bottom: 1.2vw;
+  }
+}
+
+.imageBlock {
+  position: relative;
+  img {
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .palte {
+    position: absolute;
+    width: 4.3vw;
+    height: auto;
+    top: -1vw;
+    right: -1.3vw;
+  }
+}
+
+.bottomBlock {
+  max-width: 80.3vw;
+  margin: 0 auto;
+
+  ul {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 1.5vw;
+
+    li {
+      background-color: rgba(254, 251, 250, 1);
+      padding: 1.8vw 2.6vw;
+
+      span {
+        display: block;
+        text-align: center;
+        font-family: "First Time Writing!";
+        font-weight: 600;
+        font-size: 2.2vw;
+        line-height: 120%;
+        text-transform: uppercase;
+        color: rgba(51, 51, 51, 1);
+        margin-bottom: 0.6vw;
+      }
+
+      p {
+        font-family: Moderustic;
+        font-weight: 400;
+        font-size: 0.9vw;
+        line-height: 135%;
+        text-align: center;
+        color: rgba(51, 51, 51, 1);
+      }
+    }
+  }
+}

@@ -1,0 +1,138 @@
+.section {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.homeHeroImage {
+  flex-shrink: 0;
+  width: 55%;
+  position: relative;
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+.content {
+  h1 {
+    position: relative;
+    font-family: Futura PT;
+    font-weight: 450;
+    font-size: 5vw;
+    line-height: 90%;
+    letter-spacing: -3px;
+    text-align: center;
+    color: rgba(51, 51, 51, 1);
+    margin-bottom: 1.6vw;
+
+    span {
+      position: relative;
+      font-family: "First Time Writing!";
+      font-weight: 800;
+      font-size: 3.6vw;
+      line-height: 90%;
+      letter-spacing: -1%;
+      text-align: center;
+      color: var(--primary-pink);
+
+      svg {
+        position: absolute;
+        width: 100%;
+        left: 0;
+        bottom: -0.7vw;
+      }
+    }
+  }
+
+  p {
+    font-family: Moderustic;
+    font-weight: 400;
+    font-size: 1vw;
+    line-height: 135%;
+    text-align: center;
+    margin: 0 auto;
+    margin-bottom: 2.5vw;
+    max-width: 30vw;
+  }
+
+  .btn {
+    display: block;
+    position: relative;
+    font-family: Futura PT;
+    font-weight: 500;
+    font-size: 1vw;
+    line-height: 100%;
+    padding: 1.6vw 3.7vw;
+    border-radius: 5.2vw;
+    background-color: var(--primary-pink);
+    color: rgba(253, 248, 245, 1);
+    margin: 0 auto;
+    transition: background-color 0.3s;
+    cursor: pointer;
+
+    div {
+      position: absolute;
+      top: 0;
+    }
+
+    svg {
+      height: 4.3vw;
+      width: auto;
+    }
+
+    .first {
+      left: -3.5vw;
+      transform: rotate(180deg);
+    }
+
+    .second {
+      right: -3.5vw;
+    }
+  }
+
+  .btn:hover {
+    background-color: var(--primary-pink-hover);
+  }
+}
+
+@keyframes levitate {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-0.8vw);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.cloud1,
+.cloud2,
+.cloud3 {
+  position: absolute;
+  animation: levitate 6s ease-in-out infinite;
+}
+
+.cloud1 {
+  width: 10vw;
+  bottom: 1vw;
+  left: 47%;
+  animation-delay: 0s;
+}
+
+.cloud2 {
+  width: 8.3vw;
+  bottom: 3vw;
+  right: 2.7vw;
+  animation-delay: 1.2s;
+}
+
+.cloud3 {
+  width: 7.1vw;
+  top: 2.6vw;
+  right: 3.7vw;
+  animation-delay: 2.4s;
+}

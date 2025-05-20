@@ -1,0 +1,29 @@
+.panel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.6vw;
+
+  a {
+    background-color: var(--primary-pink);
+    height: 100%;
+
+    padding: 1.2vw 1.6vw;
+    border-radius: 5.2vw;
+    font-family: Futura PT;
+    font-weight: 500;
+    font-size: 1vw;
+    line-height: 100%;
+    color: white;
+    transition: background-color 0.3s;
+  }
+
+  a:hover {
+    background-color: var(--primary-pink-hover);
+  }
+}
+
+.controller {
+  display: flex;
+  gap: 0.8vw;
+}

@@ -39,31 +39,47 @@ export const nannyCards = [
     theme: "yellow",
   },
 ];
-
-const accordionData = [
+export const accordionData = [
   {
     id: 1,
     title: "няня-педагог",
-    content:
-      "Кандидати проходять тестування знань з догляду, безпеки та розвитку дітей. Це підтверджує, що вони не лише люблять дітей, а й мають відповідні знання",
+    description:
+      "Послуга для родин, яким потрібна стабільна допомога. Ми ретельно підбираємо няню, враховуючи ваші побажання, потреби та сімейні цінності для довготривалої співпраці.",
+    tags: ["Довготривало", "Плавна адаптація"],
+    price: "від <span>12,000 грн</span> / за підбір",
+    shortDesc: "100% місячної оплати няні",
+    buttonText: "Підібрати няню",
+    theme: "white",
   },
   {
     id: 2,
     title: "нічна няня",
-    content:
-      "Кандидати проходять тестування знань з догляду, безпеки та розвитку дітей. Це підтверджує, що вони не лише люблять дітей, а й мають відповідні знання",
+    description:
+      "Послуга для родин, яким потрібна ситуативна допомога на кілька годин або на короткий період (кілька днів чи тижнів). Підберемо кваліфіковану няню буквально за 1-2 дні, а в деяких випадках — навіть у той самий день.",
+    tags: ["Кілька годин/днів", "Гнучкий графік"],
+    price: "від <span>300 грн</span> / год",
+    buttonText: "Підібрати няню",
+    theme: "white",
   },
   {
     id: 3,
     title: "няня на захід",
-    content:
-      "Кандидати проходять тестування знань з догляду, безпеки та розвитку дітей. Це підтверджує, що вони не лише люблять дітей, а й мають відповідні знання",
+    description:
+      "Онлайн-курс для нянь, які хочуть працювати впевнено та з розумінням потреб дітей. Програма охоплює нейропедагогіку, основи педіатрії, дитячу психологію та кар’єрний розвиток. Після завершення — сертифікат, який визнають наш сервіс і родини.",
+    tags: ["Швидкий старт", "Гнучкий графік"],
+    price: "",
+    buttonText: "Дізнатися детальніше",
+    theme: "yellow",
   },
   {
     id: 4,
     title: "няня вихідного дня",
-    content:
-      "Кандидати проходять тестування знань з догляду, безпеки та розвитку дітей. Це підтверджує, що вони не лише люблять дітей, а й мають відповідні знання",
+    description:
+      "Онлайн-курс для нянь, які хочуть працювати впевнено та з розумінням потреб дітей. Програма охоплює нейропедагогіку, основи педіатрії, дитячу психологію та кар’єрний розвиток. Після завершення — сертифікат, який визнають наш сервіс і родини.",
+    tags: ["Швидкий старт", "Гнучкий графік"],
+    price: "",
+    buttonText: "Дізнатися детальніше",
+    theme: "yellow",
   },
 ];
 
@@ -151,28 +167,6 @@ export const ServicesSection = () => {
                   />
                 </div>
               )}
-
-              {/* <div className={s.plasters}>
-                <div className={s.plaster}>
-                  <Image
-                    width={1920}
-                    height={1080}
-                    src="/images/plaster.png"
-                    alt="Plaster"
-                  />
-                </div>
-
-                {index === 1 && (
-                  <div className={s.plaster}>
-                    <Image
-                      width={1920}
-                      height={1080}
-                      src="/images/plaster.png"
-                      alt="Plaster"
-                    />
-                  </div>
-                )}
-              </div> */}
             </li>
           ))}
         </ul>
@@ -190,7 +184,43 @@ export const ServicesSection = () => {
                 onToggle={toggle}
                 title={accordion.title}
               >
-                <p>{accordion.content}</p>
+                <div>
+                  <div>
+                    <div className={s.tagList}>
+                      {accordion.tags.map((tag, index) => (
+                        <div className={s.tag} key={index}>
+                          <p>{tag}</p>
+                          <span>{index === 1 ? border1 : border2}</span>
+                        </div>
+                      ))}
+                    </div>
+
+                    <p className={s.cardDesc}>{accordion.description}</p>
+                  </div>
+
+                  <div>
+                    {accordion.price && (
+                      <div className={s.priceInfo}>
+                        {priceIcon}
+                        <div>
+                          <p
+                            dangerouslySetInnerHTML={{
+                              __html: accordion.price,
+                            }}
+                            className={s.cardPrice}
+                          ></p>
+                          {accordion.shortDesc && (
+                            <span className={s.shortDesc}>
+                              {accordion.shortDesc}
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                    )}
+
+                    <button className={s.btn}>{accordion.buttonText}</button>
+                  </div>
+                </div>
               </Accordion>
             </li>
           ))}
@@ -222,6 +252,7 @@ const border1 = (
     />
   </svg>
 );
+
 const border2 = (
   <svg viewBox="0 0 183 56" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path

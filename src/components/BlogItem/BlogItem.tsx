@@ -1,3 +1,4 @@
+import Link from "next/link";
 import s from "./BlogItem.module.css";
 import Image from "next/image";
 
@@ -10,10 +11,11 @@ export const BlogItem = ({
     category: string;
     image: string;
     description: string;
+    slug?: string;
   };
 }) => {
   return (
-    <li className={s.item}>
+    <Link href={`/blog/${info.slug}`} className={s.item}>
       <div className={s.imageContainer}>
         <Image width={1920} height={1080} alt="" src={info.image} />
       </div>
@@ -29,6 +31,6 @@ export const BlogItem = ({
 
         <p>{info.description}</p>
       </div>
-    </li>
+    </Link>
   );
 };

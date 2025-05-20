@@ -1,41 +1,7 @@
 import { Container } from "@/components/Container";
 import s from "./BlogSection.module.css";
 import { BlogItem } from "@/components/BlogItem/BlogItem";
-
-export const storiesData = [
-  {
-    date: "03.03.2025",
-    category: "Навчання та поради",
-    title: "Наша няня Катерина організувала творчий вечір",
-    description:
-      "Минулими вихідними наша няня Марія провела яскравий майстер-клас із малювання для дітей від 4 до 6 років.",
-    image: "/images/blog/1.jpg",
-  },
-  {
-    date: "03.03.2025",
-    category: "Навчання та поради",
-    title: "Наша няня Катерина організувала творчий вечір",
-    description:
-      "Минулими вихідними наша няня Марія провела яскравий майстер-клас із малювання для дітей від 4 до 6 років.",
-    image: "/images/blog/2.jpg",
-  },
-  {
-    date: "03.03.2025",
-    category: "Навчання та поради",
-    title: "Наша няня Катерина організувала творчий вечір",
-    description:
-      "Минулими вихідними наша няня Марія провела яскравий майстер-клас із малювання для дітей від 4 до 6 років.",
-    image: "/images/blog/3.jpg",
-  },
-  {
-    date: "03.03.2025",
-    category: "Навчання та поради",
-    title: "Наша няня Катерина організувала творчий вечір",
-    description:
-      "Минулими вихідними наша няня Марія провела яскравий майстер-клас із малювання для дітей від 4 до 6 років.",
-    image: "/images/blog/4.jpg",
-  },
-];
+import { storiesData } from "@/data/storiesData";
 
 export const BlogSection = () => {
   return (
@@ -47,7 +13,7 @@ export const BlogSection = () => {
         </h2>
 
         <ul className={s.list}>
-          {storiesData.map((item, index) => (
+          {storiesData.slice(0, 4).map((item, index) => (
             <BlogItem info={item} key={index} />
           ))}
         </ul>
@@ -156,7 +122,7 @@ const line = (
   </svg>
 );
 
-const btnSvg = (
+export const btnSvg = (
   <svg viewBox="0 0 68 87" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path
       d="M1.50315 1.69727C5.28125 4.7002 9.38305 7.34398 11.6847 11.4336C16.8752 20.6561 19.8871 29.7913 21.4067 40.7604C23.1922 53.6486 22.9689 67.0275 13.6788 76.8015C10.696 79.3778 8.74611 80.975 2.9213 85.4895"

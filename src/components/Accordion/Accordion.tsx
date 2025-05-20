@@ -1,9 +1,10 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import styles from "./Accordion.module.css";
+import s from "./Accordion.module.css";
 
 interface AccordionProps {
+  faq?: boolean;
   id: number;
   title: string;
   isOpen: boolean;
@@ -12,6 +13,7 @@ interface AccordionProps {
 }
 
 export const Accordion = ({
+  faq,
   id,
   title,
   isOpen,
@@ -19,10 +21,13 @@ export const Accordion = ({
   children,
 }: AccordionProps) => {
   return (
-    <div className={styles.accordion}>
-      <button className={styles.header} onClick={() => onToggle(id)}>
-        <span className={styles.title}>{title}</span>
-        <span className={`${styles.icon} ${isOpen ? styles.open : ""}`}>
+    <div
+      className={`${s.accordion} ${faq && s.faqStyle}`}
+      onClick={() => onToggle(id)}
+    >
+      <button className={s.header}>
+        <span className={s.title}>{title}</span>
+        <span className={`${s.icon} ${isOpen ? s.open : ""}`}>
           <svg width="10" height="6" viewBox="0 0 10 6" fill="none">
             <path
               d="M1 1L5 5L9 1"
@@ -43,9 +48,9 @@ export const Accordion = ({
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className={styles.contentWrapper}
+            className={s.contentWrapper}
           >
-            <div className={styles.content}>{children}</div>
+            <div className={s.content}>{children}</div>
           </motion.div>
         )}
       </AnimatePresence>

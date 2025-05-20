@@ -1,8 +1,11 @@
 .accordion {
-  background-color: #fff7f8;
+  background-color: rgba(254, 251, 250, 1);
   padding: 2.1vw;
   overflow: hidden;
   height: max-content;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: border 0.3s;
 }
 
 .header {
@@ -31,7 +34,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.3s ease;
+  transition: 0.3s ease;
 
   svg {
     width: 1.3vw;
@@ -52,5 +55,45 @@
   font-weight: 500;
   font-size: 0.9vw;
   line-height: 135%;
+  padding-top: 4.2vw;
+}
+
+.faqStyle .content {
   padding-top: 1vw;
+}
+
+.accordion:hover {
+  .icon {
+    background-color: var(--primary-blue-hover);
+  }
+}
+
+.faqStyle {
+  .title {
+    font-family: Moderustic;
+    font-weight: 400;
+    font-size: 1.2vw;
+    line-height: 120%;
+    text-transform: capitalize;
+  }
+
+  .icon {
+    background-color: var(--primary-pink);
+  }
+
+  .content {
+    padding-top: 3vw;
+  }
+}
+
+.faqStyle:hover {
+  border: 2px solid var(--primary-pink);
+
+  .icon {
+    background-color: var(--primary-pink);
+  }
+}
+
+.faqStyle:has(.open) {
+  border: 2px solid var(--primary-pink);
 }

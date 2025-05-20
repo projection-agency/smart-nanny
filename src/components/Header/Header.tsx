@@ -4,6 +4,7 @@ import { Container } from "../Container";
 import Image from "next/image";
 import Link from "next/link";
 import { LanguageSwitcher } from "../LanguageSwitcher/LanguageSwitcher";
+
 export const Header = () => {
   return (
     <header className={s.header}>
@@ -22,19 +23,19 @@ export const Header = () => {
           <nav>
             <ul>
               <li>
-                <Link href="/">Підбір няні</Link>
+                <Link href="/nanny-selection">Підбір няні</Link>
               </li>
               <li>
                 <Link href="/">Стати нянею</Link>
               </li>
               <li>
-                <Link href="/">Вакансії</Link>
+                <Link href="/vacation">Вакансії</Link>
               </li>
               <li>
-                <Link href="/">Блог</Link>
+                <Link href="/blog">Блог</Link>
               </li>
               <li>
-                <Link href="/">Блог</Link>
+                <Link href="/">Навчання</Link>
               </li>
             </ul>
           </nav>
