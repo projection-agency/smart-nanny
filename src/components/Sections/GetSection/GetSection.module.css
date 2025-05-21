@@ -1,0 +1,116 @@
+@keyframes levitate {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-0.8vw);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.section {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  gap: 5.7vw;
+  align-items: center;
+  padding: 8.3vw 0 8vw 0;
+
+  .cloud1,
+  .cloud2 {
+    position: absolute;
+    width: 8.3vw;
+    animation: levitate infinite 6s;
+  }
+
+  .cloud1 {
+    bottom: 8vw;
+    left: 6vw;
+  }
+
+  .cloud2 {
+    top: 5vw;
+    right: 5vw;
+    transform: rotate(-30deg);
+  }
+}
+
+.imageContainer {
+  max-width: 31.6vw;
+  position: relative;
+
+  .worm {
+    position: absolute;
+    right: -1.2vw;
+    top: -1.1vw;
+    width: 4.5vw;
+  }
+}
+
+.contentContainer {
+  h2 {
+    position: relative;
+    font-family: Futura PT;
+    font-weight: 500;
+    font-size: 3.3vw;
+    line-height: 100%;
+    color: rgba(51, 51, 51, 1);
+    max-width: 30vw;
+    margin-bottom: 2vw;
+
+    img {
+      position: absolute;
+      width: 9.2vw;
+      top: 3vw;
+      right: 0;
+    }
+  }
+}
+
+.list {
+  margin-bottom: 2vw;
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: 0.8vw;
+
+    svg {
+      width: 1.6vw;
+      height: 1.6vw;
+    }
+
+    p {
+      font-family: Moderustic;
+      font-weight: 600;
+      font-size: 1.2vw;
+      line-height: 135%;
+      color: rgba(51, 51, 51, 1);
+    }
+  }
+
+  li:not(:last-child) {
+    margin-bottom: 1vw;
+  }
+}
+
+.desc {
+  span {
+    position: relative;
+    display: block;
+    font-family: "First Time Writing!";
+    font-weight: 600;
+    font-size: 1.6vw;
+    line-height: 130%;
+    color: var(--primary-pink);
+    width: fit-content;
+
+    svg {
+      position: absolute;
+      width: 100%;
+      left: 0;
+    }
+  }
+}

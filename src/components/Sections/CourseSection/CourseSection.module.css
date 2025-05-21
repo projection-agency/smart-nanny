@@ -1,0 +1,95 @@
+.section {
+  position: relative;
+  background-color: var(--primary-pink);
+  padding: 8.3vw 0;
+
+  .worm {
+    position: absolute;
+    width: 6vw;
+    right: 3.1vw;
+    top: 9.6vw;
+  }
+}
+
+.title {
+  position: relative;
+  font-family: Futura PT;
+  font-weight: 500;
+  font-size: 3.3vw;
+  line-height: 100%;
+  color: rgba(254, 251, 250, 1);
+  max-width: 25vw;
+  text-align: center;
+  margin: 0 auto;
+  margin-bottom: 3.6vw;
+
+  .svg {
+    position: absolute;
+    left: 0;
+    width: 2.5vw;
+    top: -1.5vw;
+  }
+
+  span {
+    position: relative;
+    font-family: "First Time Writing!";
+    font-weight: 600;
+    font-size: 2.8vw;
+    line-height: 100%;
+    letter-spacing: -1%;
+    text-align: center;
+    color: var(--primary-yellow);
+
+    svg {
+      position: absolute;
+      width: 100%;
+      left: 0;
+    }
+  }
+}
+
+.list {
+  display: flex;
+  gap: 1.2vw;
+
+  li {
+    position: relative;
+    background-color: rgba(255, 255, 255, 1);
+    padding: 2.3vw;
+    flex-basis: calc((100% - 3 * 1.2vw) / 4);
+
+    .border {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      transform: scale(1.017);
+    }
+
+    svg {
+      width: 3.6vw;
+      height: 3.6vw;
+      margin-bottom: 1.2vw;
+    }
+
+    h4 {
+      font-family: "First Time Writing!";
+      font-weight: 600;
+      font-size: 1.8vw;
+      line-height: 120%;
+      text-transform: uppercase;
+      color: rgba(51, 51, 51, 1);
+      margin-bottom: 0.8vw;
+    }
+
+    p {
+      font-family: Moderustic;
+      font-weight: 500;
+      font-size: 0.9vw;
+      line-height: 135%;
+      letter-spacing: -2%;
+      color: rgba(51, 51, 51, 1);
+    }
+  }
+}

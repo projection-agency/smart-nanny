@@ -56,7 +56,7 @@ export const faqData = [
   },
 ];
 
-export const FaqSection = () => {
+export const FaqSection = ({ nannys }: { nannys?: boolean }) => {
   const [openId, setOpenId] = useState<number | null>(null);
 
   const toggle = (id: number) => {
@@ -67,7 +67,11 @@ export const FaqSection = () => {
     <section className={s.section}>
       <Container>
         <h2 className={s.title}>
-          Часті питання<span> від батьків{line}</span>
+          Часті питання
+          <span>
+            {" "}
+            {nannys ? "від нянь" : "від батьків"} {line}
+          </span>
         </h2>
 
         <ul className={s.faqList}>

@@ -35,7 +35,7 @@ export const Header = () => {
                 <Link href="/blog">Блог</Link>
               </li>
               <li>
-                <Link href="/">Навчання</Link>
+                <Link href="/education">Навчання</Link>
               </li>
             </ul>
           </nav>
