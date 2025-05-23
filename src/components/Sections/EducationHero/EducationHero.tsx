@@ -1,8 +1,13 @@
+"use client";
+
+import { useModal } from "@/components/ModalContext";
 import { btnSvg } from "../BlogSection/BlogSection";
 import s from "./EducationHero.module.css";
 import Image from "next/image";
 
 export const EducationHero = () => {
+  const { openModal } = useModal();
+
   return (
     <section className={s.section}>
       <div className={s.homeHeroImage}>
@@ -34,7 +39,7 @@ export const EducationHero = () => {
           дітьми, так і з батьками, і будувати успішну карєру професійної няні
         </p>
 
-        <button className={s.btn}>
+        <button onClick={() => openModal("formB")} className={s.btn}>
           <div className={s.first}>{btnSvg}</div>
           Обрати навчання
           <div className={s.second}>{btnSvg}</div>

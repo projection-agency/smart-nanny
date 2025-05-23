@@ -1,8 +1,13 @@
+"use client";
+
+import { useModal } from "@/components/ModalContext";
 import { btnSvg } from "../BlogSection/BlogSection";
 import s from "./NannySelectionHero.module.css";
 import Image from "next/image";
 
 export const NannySelectionHero = () => {
+  const { openModal } = useModal();
+
   return (
     <section className={s.section}>
       <div className={s.homeHeroImage}>
@@ -26,7 +31,7 @@ export const NannySelectionHero = () => {
           стабільний дохід
         </p>
 
-        <button className={s.btn}>
+        <button onClick={() => openModal("formB")} className={s.btn}>
           <div className={s.first}>{btnSvg}</div>
           Подати заявку
           <div className={s.second}>{btnSvg}</div>

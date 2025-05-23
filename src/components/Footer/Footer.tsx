@@ -57,13 +57,13 @@ export const Footer = () => {
               <Link href="/">Стати нянею</Link>
             </li>
             <li>
-              <Link href="/">Вакансії</Link>
+              <Link href="/vacation">Вакансії</Link>
             </li>
             <li>
-              <Link href="/">Блог</Link>
+              <Link href="/blog">Блог</Link>
             </li>
             <li>
-              <Link href="/">Навчання</Link>
+              <Link href="/education">Навчання</Link>
             </li>
           </ul>
         </nav>
@@ -108,8 +108,8 @@ export const Footer = () => {
 
         <div className={s.footerBottomContainer}>
           <div className="flex gap-[1.6vw]">
-            <Link href="">Політика конфіденційності</Link>
-            <Link href="">Договір публічної оферти</Link>
+            <Link href="/policy">Політика конфіденційності</Link>
+            <Link href="/offer">Договір публічної оферти</Link>
           </div>
 
           <div className="absolute left-[50%] -translate-x-[50%]">

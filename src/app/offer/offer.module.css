@@ -1,0 +1,46 @@
+.section {
+  padding-top: 4.5vw;
+  padding-bottom: 10.4vw;
+
+  h1 {
+    position: relative;
+    font-family: Futura PT;
+    font-weight: 450;
+    font-size: 5vw;
+    line-height: 90%;
+    text-align: center;
+    max-width: fit-content;
+    margin: 0 auto;
+    margin-bottom: 5.2vw;
+
+    .svg {
+      position: absolute;
+      width: 3.5vw;
+      left: -2vw;
+      top: -3vw;
+    }
+
+    span {
+      position: relative;
+      font-family: "First Time Writing!";
+      font-weight: 600;
+      font-size: 3.6vw;
+      line-height: 90%;
+      color: var(--primary-pink);
+
+      svg {
+        position: absolute;
+        left: 0;
+        width: 100%;
+      }
+    }
+  }
+}
+
+.list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  max-width: 93.7vw;
+  margin: 0 auto;
+  gap: 0.8vw;
+}

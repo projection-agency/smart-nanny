@@ -9,10 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "clsx": "^2.1.1",
     "framer-motion": "^12.12.1",
     "next": "15.3.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-phone-input-2": "^2.15.1",
     "swiper": "^11.2.6"
   },
   "devDependencies": {

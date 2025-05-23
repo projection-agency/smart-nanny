@@ -51,6 +51,7 @@
 
 .btn {
   display: block;
+  width: max-content;
   position: relative;
   font-family: Futura PT;
   font-weight: 500;

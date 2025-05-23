@@ -6,6 +6,11 @@ import { VacationFormSection } from "@/components/Sections/VacationFormSection/V
 import { VacationSection } from "@/components/Sections/VacationSection/VacationSection";
 import { WhySection } from "@/components/Sections/WhySection/WhySection";
 
+export const metadata = {
+  title: "Стати нянею",
+  description: "Ми підбираємо надійних нянь, яким можна довірити вашу дитину.",
+};
+
 export default function NannySelection() {
   return (
     <main>

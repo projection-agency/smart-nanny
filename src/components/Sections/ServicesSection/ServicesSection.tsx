@@ -5,6 +5,8 @@ import s from "./ServicesSection.module.css";
 import { Accordion } from "@/components/Accordion/Accordion";
 import { useState } from "react";
 import Image from "next/image";
+import { useModal } from "@/components/ModalContext";
+import { useRouter } from "next/navigation";
 
 export const nannyCards = [
   {
@@ -90,6 +92,14 @@ export const ServicesSection = () => {
     setOpenId((prev) => (prev === id ? null : id));
   };
 
+  const { openModal } = useModal();
+
+  const router = useRouter();
+
+  const handleRedirect = () => {
+    router.push("/education");
+  };
+
   return (
     <section className={s.section}>
       <Container>
@@ -134,7 +144,13 @@ export const ServicesSection = () => {
                   </div>
                 )}
 
-                <button>{card.buttonText}</button>
+                <button
+                  onClick={() =>
+                    index === 2 ? handleRedirect() : openModal("formA")
+                  }
+                >
+                  {card.buttonText}
+                </button>
               </div>
 
               {index === 1 ? (

@@ -1,7 +1,10 @@
+"use client";
+
 import { Container } from "@/components/Container";
 import s from "./RoadSection.module.css";
 import { line } from "../HomeHero/HomeHero";
 import { btnSvg } from "../BlogSection/BlogSection";
+import { useModal } from "@/components/ModalContext";
 
 export const selectionSteps = [
   {
@@ -52,6 +55,8 @@ export const selectionSteps = [
 ];
 
 export const RoadSection = () => {
+  const { openModal } = useModal();
+
   return (
     <section className={s.section}>
       <Container>
@@ -89,7 +94,7 @@ export const RoadSection = () => {
           ))}
         </ul>
 
-        <button className={s.btn}>
+        <button onClick={() => openModal("formA")} className={s.btn}>
           <div className={s.first}>{btnSvg}</div>
           Підібрати няню
           <div className={s.second}>{btnSvg}</div>

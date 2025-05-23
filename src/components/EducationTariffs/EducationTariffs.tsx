@@ -1,3 +1,6 @@
+"use client";
+
+import { useModal } from "../ModalContext";
 import s from "./EducationTariffs.module.css";
 
 type TariffOption = {
@@ -56,6 +59,8 @@ const tariffs: Tariff[] = [
 ];
 
 export const EducationTariffs = () => {
+  const { openModal } = useModal();
+
   return (
     <div className={s.tariffs}>
       {tariffs.map((tariff) => (
@@ -72,7 +77,9 @@ export const EducationTariffs = () => {
             <span>Вартість:</span>
             <span>{tariff.price} грн</span>
           </div>
-          <button>{tariff.buttonText}</button>
+          <button onClick={() => openModal("formB")}>
+            {tariff.buttonText}
+          </button>
         </div>
       ))}
     </div>

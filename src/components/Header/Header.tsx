@@ -23,19 +23,19 @@ export const Header = () => {
           <nav>
             <ul>
               <li>
-                <Link href="/nanny-selection">Підбір няні</Link>
+                <Link href="/">Підбір няні</Link>
               </li>
               <li>
-                <Link href="/">Стати нянею</Link>
+                <Link href="/education">Навчання</Link>
+              </li>
+              <li>
+                <Link href="/nanny-selection">Стати нянею</Link>
               </li>
               <li>
                 <Link href="/vacation">Вакансії</Link>
               </li>
               <li>
                 <Link href="/blog">Блог</Link>
-              </li>
-              <li>
-                <Link href="/education">Навчання</Link>
               </li>
             </ul>
           </nav>

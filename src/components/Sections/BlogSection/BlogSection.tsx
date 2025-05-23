@@ -2,6 +2,7 @@ import { Container } from "@/components/Container";
 import s from "./BlogSection.module.css";
 import { BlogItem } from "@/components/BlogItem/BlogItem";
 import { storiesData } from "@/data/storiesData";
+import Link from "next/link";
 
 export const BlogSection = () => {
   return (
@@ -18,11 +19,11 @@ export const BlogSection = () => {
           ))}
         </ul>
 
-        <button className={s.btn}>
+        <Link href="/blog" className={s.btn}>
           <div className={s.first}>{btnSvg}</div>
           Дивитись більше
           <div className={s.second}>{btnSvg}</div>
-        </button>
+        </Link>
       </Container>
     </section>
   );

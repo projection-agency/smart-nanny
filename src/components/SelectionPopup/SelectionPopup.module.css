@@ -1,25 +1,96 @@
-.formBlock {
-  background-color: rgba(254, 251, 250, 1);
-  border-radius: 2.6vw;
-  max-width: 52vw;
-  margin: 0 auto;
-  padding: 3.1vw;
+.popupOverlay {
+  top: 0;
+  left: 0;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99;
+  opacity: 0;
+  background-color: rgba(43, 43, 43, 0.459);
+  width: 100%;
+  height: 100%;
+  transition: opacity 0.3s ease;
 }
 
-.formTitle {
-  text-align: center;
-  font-family: Moderustic;
-  font-weight: 400;
-  font-size: 1vw;
-  line-height: 135%;
-  margin-bottom: 2.5vw;
+.popupOverlay.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.popupContent {
+  position: relative;
+  background-color: rgba(254, 251, 250, 1);
+  padding: 3.1vw;
+  min-width: 41.6vw;
+  border-radius: 2.6vw;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  transform: scale(0.9);
+}
+
+.popupContent.visible {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.closeBtn {
+  position: absolute;
+  width: 3.1vw;
+  height: 3.1vw;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(51, 51, 51, 0.05);
+  top: 3.1vw;
+  right: 3.1vw;
+  transition: background-color 0.3s;
+  cursor: pointer;
+
+  svg {
+    width: 1vw;
+    height: auto;
+    transition: fill 0.3s;
+    fill: rgba(51, 51, 51, 0.4);
+  }
+}
+
+.closeBtn:hover {
+  background-color: var(--primary-pink);
+
+  svg {
+    fill: rgba(254, 251, 250, 1);
+    stroke: rgba(254, 251, 250, 1);
+  }
+}
+
+.popupTitle {
+  margin-bottom: 2.9vw;
+
+  h3 {
+    font-family: Futura PT;
+    font-weight: 500;
+    font-size: 2vw;
+    line-height: 100%;
+    color: rgba(51, 51, 51, 1);
+    margin-bottom: 0.8vw;
+  }
+
+  p {
+    font-family: Moderustic;
+    font-weight: 400;
+    font-size: 0.9vw;
+    line-height: 135%;
+    max-width: 20vw;
+  }
 }
 
 .inputLine {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   gap: 0.8vw;
-  margin-bottom: 1.6vw;
+  margin-bottom: 1.2vw;
+  align-items: end;
 }
 
 .checkboxGrid {

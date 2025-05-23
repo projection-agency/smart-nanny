@@ -5,6 +5,11 @@ import { GetSection } from "@/components/Sections/GetSection/GetSection";
 import { ProgramSection } from "@/components/Sections/ProgramSection/ProgramSection";
 import { TariffSection } from "@/components/Sections/TariffSection/TariffSection";
 
+export const metadata = {
+  title: "Навчання",
+  description: "Ми підбираємо надійних нянь, яким можна довірити вашу дитину.",
+};
+
 export default function Education() {
   return (
     <main>

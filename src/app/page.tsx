@@ -8,6 +8,11 @@ import { ServicesSection } from "@/components/Sections/ServicesSection/ServicesS
 import { VacationSection } from "@/components/Sections/VacationSection/VacationSection";
 import { WhySection } from "@/components/Sections/WhySection/WhySection";
 
+export const metadata = {
+  title: "Smart Nanny",
+  description: "Ми підбираємо надійних нянь, яким можна довірити вашу дитину.",
+};
+
 export default function Home() {
   return (
     <main>

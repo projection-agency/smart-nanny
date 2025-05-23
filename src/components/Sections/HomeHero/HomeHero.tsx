@@ -1,8 +1,13 @@
+"use client";
+
+import { useModal } from "@/components/ModalContext";
 import { btnSvg } from "../BlogSection/BlogSection";
 import s from "./HomeHero.module.css";
 import Image from "next/image";
 
 export const HomeHero = () => {
+  const { openModal } = useModal();
+
   return (
     <section className={s.section}>
       <div className={s.homeHeroImage}>
@@ -23,7 +28,12 @@ export const HomeHero = () => {
 
         <p>Ми знаходимо нянь, яким можна довірити найцінніше – вашу дитину.</p>
 
-        <button className={s.btn}>
+        <button
+          onClick={() => {
+            openModal("formA");
+          }}
+          className={s.btn}
+        >
           <div className={s.first}>{btnSvg}</div>
           Підібрати няню
           <div className={s.second}>{btnSvg}</div>

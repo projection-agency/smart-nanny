@@ -77,7 +77,6 @@ const dataLong = [
 
 export const WhySection = () => {
   const pathname = usePathname();
-  console.log(pathname);
 
   const isSelectionPage = pathname === "/nanny-selection" ? true : false;
 

@@ -4,6 +4,11 @@ import { Container } from "@/components/Container";
 import { nanniesData } from "@/data/nanniesData";
 import { VacationItem } from "@/components/VacationItem/VacationItem";
 
+export const metadata = {
+  title: "Вакансії",
+  description: "Ми підбираємо надійних нянь, яким можна довірити вашу дитину.",
+};
+
 export default function Vacations() {
   return (
     <main>
