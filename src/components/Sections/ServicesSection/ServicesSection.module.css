@@ -103,7 +103,7 @@
 
   .tagList {
     display: flex;
-    gap: 3.5vw;
+    gap: 0.7vw;
     margin-bottom: 2.2vw;
 
     p {
@@ -113,15 +113,18 @@
       line-height: 135%;
       letter-spacing: -2%;
       color: var(--primary-pink);
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-50%);
+      white-space: nowrap;
     }
 
     .tag {
       position: relative;
 
       span {
-        position: absolute;
-        top: -70%;
-        left: -15%;
+        display: block;
         width: 8.8vw;
         height: 100%;
       }
@@ -213,26 +216,28 @@
 
   .tagList {
     display: flex;
-    gap: 3.5vw;
+    gap: 0.7vw;
     margin-bottom: 2.2vw;
-    padding-left: 1vw;
 
     p {
       font-family: Moderustic;
-      font-weight: 700;
+      font-weight: 500;
       font-size: 0.8vw;
       line-height: 135%;
       letter-spacing: -2%;
-      color: var(--primary-pink);
+      color: black;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-50%);
+      white-space: nowrap;
     }
 
     .tag {
       position: relative;
 
       span {
-        position: absolute;
-        top: -70%;
-        left: -15%;
+        display: block;
         width: 8.8vw;
         height: 100%;
       }

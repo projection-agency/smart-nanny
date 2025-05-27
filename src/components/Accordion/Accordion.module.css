@@ -55,7 +55,7 @@
   font-weight: 500;
   font-size: 0.9vw;
   line-height: 135%;
-  padding-top: 4.2vw;
+  padding-top: 3vw;
 }
 
 .faqStyle .content {
@@ -74,7 +74,7 @@
     font-weight: 500;
     font-size: 1.2vw;
     line-height: 120%;
-    text-transform: capitalize;
+    text-transform: initial;
   }
 
   .icon {

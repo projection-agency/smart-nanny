@@ -1,6 +1,7 @@
 .section {
   padding: 7.2vw 0;
   overflow: hidden;
+  user-select: none;
 }
 
 .titleContainer {

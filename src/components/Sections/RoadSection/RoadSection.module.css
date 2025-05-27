@@ -143,9 +143,14 @@
     flex-wrap: wrap;
     column-gap: 1.2vw;
     row-gap: 1.6vw;
+    max-width: 40vw;
 
     li {
       padding: 0;
+      font-family: Moderustic;
+      font-weight: 400;
+      font-size: 0.9vw;
+      line-height: 135%;
     }
   }
 }

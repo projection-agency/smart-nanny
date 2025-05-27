@@ -1,3 +1,4 @@
+import { useModal } from "../ModalContext";
 import s from "./VacationItem.module.css";
 
 export const VacationItem = ({
@@ -11,8 +12,15 @@ export const VacationItem = ({
     price: string;
   };
 }) => {
+  const { openModal } = useModal();
+
   return (
-    <li className={s.vacation}>
+    <li
+      onClick={() => {
+        openModal("formA");
+      }}
+      className={s.vacation}
+    >
       <div>
         <h4>{item.title}</h4>
 

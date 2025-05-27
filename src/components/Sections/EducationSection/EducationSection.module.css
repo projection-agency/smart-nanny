@@ -26,7 +26,7 @@
     .svg {
       width: 2vw;
       position: absolute;
-      right: 2vw;
+      right: 0.5vw;
       top: -0.5vw;
     }
 
@@ -94,6 +94,7 @@
 .imageBlock {
   position: relative;
   img {
+    object-position: 0 -1px;
     height: 100%;
     object-fit: cover;
   }
