@@ -22,7 +22,7 @@
   line-height: 100%;
   text-align: center;
   color: rgba(255, 244, 241, 1);
-  margin-bottom: 3.1vw;
+  margin-bottom: 4vw;
 
   span {
     position: relative;
@@ -44,7 +44,7 @@
 }
 
 .footerNav {
-  margin-bottom: 2.5vw;
+  margin-bottom: 2.7vw;
 
   ul {
     display: flex;

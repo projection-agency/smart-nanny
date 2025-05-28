@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import s from "./VacationForm.module.css";
+import { PhoneNumberInput } from "../PhoneInput/PhoneInput";
 
 export const VacationForm = () => {
   const [employmentTypes, setEmploymentTypes] = useState<string[]>([]);
@@ -45,7 +46,7 @@ export const VacationForm = () => {
           <div className={s.inputContainer}>
             <label>
               Контактний номер телефону<span>*</span>
-              <input type="tel" placeholder="+380..." />
+              <PhoneNumberInput />
             </label>
           </div>
           <div className={s.inputContainer}>

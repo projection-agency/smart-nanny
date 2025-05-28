@@ -5,6 +5,7 @@ import { closeIco } from "../ModalContext";
 import s from "./EducationPopup.module.css";
 import Link from "next/link";
 import clsx from "clsx";
+import { PhoneNumberInput } from "../PhoneInput/PhoneInput";
 
 export const EducationPopup = ({ onClose }: { onClose: () => void }) => {
   const [visible, setVisible] = useState(false);
@@ -63,7 +64,7 @@ export const EducationPopup = ({ onClose }: { onClose: () => void }) => {
             <div className={s.inputContainer}>
               <label>
                 Контактний номер телефону<span>*</span>
-                <input type="tel" placeholder="+380..." />
+                <PhoneNumberInput />
               </label>
             </div>
           </div>

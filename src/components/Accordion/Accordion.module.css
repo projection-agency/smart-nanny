@@ -39,6 +39,7 @@
   svg {
     width: 1.3vw;
     height: 1.1vw;
+    transform: translateY(2px);
   }
 }
 
@@ -52,7 +53,7 @@
 
 .content {
   font-family: Moderustic;
-  font-weight: 500;
+  font-weight: 400;
   font-size: 0.9vw;
   line-height: 135%;
   padding-top: 3vw;

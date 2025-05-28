@@ -56,7 +56,7 @@
   height: 1.2vw;
   border: 2px solid rgba(51, 51, 51, 1);
   border-radius: 0.3vw;
-  background-color: white;
+  background-color: transparent;
   transition: 0.2s ease;
   position: relative;
   flex-shrink: 0;

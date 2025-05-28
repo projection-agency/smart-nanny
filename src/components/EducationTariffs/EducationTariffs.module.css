@@ -6,6 +6,7 @@
 
   .tariff:nth-child(1) {
     background-color: rgba(254, 251, 250, 1);
+    border: 2px solid var(--primary-blue);
 
     button {
       background-color: var(--primary-blue);
@@ -18,6 +19,7 @@
   }
   .tariff:nth-child(2) {
     background-color: var(--primary-yellow);
+    border: 2px solid white;
 
     button {
       background-color: var(--primary-pink);
@@ -52,13 +54,17 @@
 
   li {
     display: flex;
-    align-items: center;
+    /* align-items: center; */
     gap: 0.8vw;
     font-family: Moderustic;
     font-weight: 400;
     font-size: 1vw;
     line-height: 135%;
     /* text-align: center; */
+
+    svg {
+      transform: translateY(0.2vw);
+    }
   }
 
   .grey {

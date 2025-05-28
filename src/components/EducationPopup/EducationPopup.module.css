@@ -56,7 +56,7 @@
 }
 
 .closeBtn:hover {
-  background-color: var(--primary-pink);
+  background-color: var(--primary-pink-hover);
 
   svg {
     fill: rgba(254, 251, 250, 1);

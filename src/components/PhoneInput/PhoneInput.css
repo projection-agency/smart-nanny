@@ -11,10 +11,10 @@
   font-weight: 400 !important;
   font-size: 0.8vw !important;
   line-height: 100% !important;
-  padding: 0.8vw 1.2vw !important;
+  padding: 0.1vw 1.2vw !important;
+  height: 2.6vw !important;
   opacity: 0.6 !important;
   display: flex !important;
-  height: 3vw !important;
   align-items: center !important;
   align-self: stretch !important;
   border-bottom: 1px solid rgba(29, 29, 29, 0.2) !important;

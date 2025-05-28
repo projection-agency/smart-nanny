@@ -13,11 +13,7 @@ export const PhoneNumberInput = () => {
       onlyCountries={["ua", "pl", "de"]}
       placeholder="Введите свой номер телефона"
       onChange={handlePhoneChange}
-      inputStyle={{
-        width: "100%",
-        height: "40px",
-        fontSize: "16px",
-      }}
+      inputStyle={{}}
       buttonStyle={{
         background: "transparent",
         border: "none",
