@@ -17,7 +17,7 @@ export const VacationController = () => {
         />
       </div>
 
-      <Link href="/">Переглянути всі 42 вакансії</Link>
+      <Link href="/vacation">Переглянути всі 42 вакансії</Link>
     </div>
   );
 };

@@ -3,65 +3,54 @@
 import { Container } from "@/components/Container";
 import s from "./FaqSection.module.css";
 import { Accordion } from "@/components/Accordion/Accordion";
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { API_URL } from "@/constants";
 
-export const faqData = [
-  {
-    id: 1,
-    question: "Яка вартість послуг?",
-    answer:
-      "Вартість підбору няні залежить від складності запиту та тривалості співпраці. У середньому – від 2000 до 5000 грн.",
-  },
-  {
-    id: 2,
-    question: "Скільки часу займає підбір няні?",
-    answer:
-      "Перші кандидати зазвичай надсилаються протягом 1-2 днів після заповнення анкети. Повний підбір займає до 5 робочих днів.",
-  },
-  {
-    id: 3,
-    question: "Чи можна замовити няню на конкретний день і час?",
-    answer:
-      "Так, ми можемо підібрати няню під конкретну дату та години, зокрема для разових випадків або вечірок.",
-  },
-  {
-    id: 4,
-    question: "У яких випадках повертається передоплата?",
-    answer:
-      "Передоплата повертається, якщо агентство не змогло запропонувати жодного релевантного кандидата протягом обумовленого терміну.",
-  },
-  {
-    id: 5,
-    question: "Як ви перевіряєте нянь?",
-    answer:
-      "Усі няні проходять співбесіду, перевірку рекомендацій та базову психологічну оцінку. Також ми перевіряємо документи та досвід.",
-  },
-  {
-    id: 6,
-    question: "Як відбувається оплата за підбір няні?",
-    answer:
-      "Після погодження кандидата ви оплачуєте послугу агентства. Оплата можлива онлайн або за реквізитами.",
-  },
-  {
-    id: 7,
-    question: "Що робити, якщо няня нам не підійшла?",
-    answer:
-      "У разі, якщо няня вам не підходить, ми продовжимо підбір і безкоштовно запропонуємо заміну.",
-  },
-  {
-    id: 8,
-    question: "Чи можна обрати кількох кандидатів?",
-    answer:
-      "Так, ми надсилаємо кілька профілів нянь, щоб ви могли порівняти досвід, вартість та обрати найкращу кандидатуру.",
-  },
-];
+type FaqItem = {
+  id: number;
+  Question: string;
+  Answer: string;
+  faq_categories: { slug: string }[];
+};
 
 export const FaqSection = ({ nannys }: { nannys?: boolean }) => {
   const [openId, setOpenId] = useState<number | null>(null);
+  const [faqs, setFaqs] = useState<FaqItem[]>([]);
 
   const toggle = (id: number) => {
     setOpenId((prev) => (prev === id ? null : id));
   };
+
+  useEffect(() => {
+    const fetchFaqs = async () => {
+      try {
+        const response = await fetch(`${API_URL}v2/faq`);
+        const data = await response.json();
+        setFaqs(data);
+      } catch (error) {
+        console.error("Помилка при отриманні FAQ:", error);
+      }
+    };
+
+    fetchFaqs();
+  }, []);
+
+  const { parentsFaqs, nannysFaqs } = useMemo(() => {
+    const parents: FaqItem[] = [];
+    const nannys: FaqItem[] = [];
+
+    faqs?.forEach((faq) => {
+      if (faq.faq_categories?.[0]?.slug === "about-course") {
+        parents.push(faq);
+      } else {
+        nannys.push(faq);
+      }
+    });
+
+    return { parentsFaqs: parents, nannysFaqs: nannys };
+  }, [faqs]);
+
+  const currentFaqs = nannys ? nannysFaqs : parentsFaqs;
 
   return (
     <section className={s.section}>
@@ -75,16 +64,16 @@ export const FaqSection = ({ nannys }: { nannys?: boolean }) => {
         </h2>
 
         <ul className={s.faqList}>
-          {faqData.map((item) => (
+          {currentFaqs.map((item) => (
             <li key={item.id}>
               <Accordion
                 id={item.id}
                 isOpen={openId === item.id}
                 onToggle={toggle}
-                title={item.question}
+                title={item.Question}
                 faq={true}
               >
-                <p>{item.answer}</p>
+                <p>{item.Answer}</p>
               </Accordion>
             </li>
           ))}

@@ -24,6 +24,7 @@
   line-height: 120%;
   letter-spacing: -2%;
   text-transform: uppercase;
+  text-align: left;
 }
 
 .icon {
@@ -35,6 +36,7 @@
   align-items: center;
   justify-content: center;
   transition: 0.3s ease;
+  flex-shrink: 0;
 
   svg {
     width: 1.3vw;

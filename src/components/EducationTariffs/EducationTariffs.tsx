@@ -1,7 +1,9 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { useModal } from "../ModalContext";
 import s from "./EducationTariffs.module.css";
+import { API_URL } from "@/constants";
 
 type TariffOption = {
   label: string;
@@ -9,62 +11,61 @@ type TariffOption = {
 };
 
 type Tariff = {
+  id: number;
   title: string;
-  price: number;
-  buttonText: string;
+  price: string;
   options: TariffOption[];
+  buttonText: string;
 };
 
-const tariffs: Tariff[] = [
-  {
-    title: "Базовий",
-    price: 2500,
-    buttonText: "Обрати навчання",
-    options: [
-      { label: "Повний доступ до всіх відеоуроків", included: true },
-      { label: "Теоретичні матеріали", included: true },
-      { label: "Додаткові матеріали після кожного уроку", included: true },
-      { label: "Тестування після кожного модуля", included: true },
-      { label: "Сертифікат після проходження курсу", included: true },
-      { label: "Доступ назавжди", included: false },
-      { label: "Зворотний зв'язок від експертів", included: false },
-      { label: "Підтримка куратора в Telegram", included: false },
-      { label: "Персональні коментарі до тем курсу", included: false },
-      {
-        label: "Відповіді на запитання під час проходження курсу",
-        included: false,
-      },
-    ],
-  },
-  {
-    title: "Розширений",
-    price: 3500,
-    buttonText: "Обрати навчання",
-    options: [
-      { label: "Повний доступ до всіх відеоуроків", included: true },
-      { label: "Теоретичні матеріали", included: true },
-      { label: "Додаткові матеріали після кожного уроку", included: true },
-      { label: "Тестування після кожного модуля", included: true },
-      { label: "Сертифікат після проходження курсу", included: true },
-      { label: "Доступ назавжди", included: true },
-      { label: "Зворотний зв'язок від експертів", included: true },
-      { label: "Підтримка куратора в Telegram", included: true },
-      { label: "Персональні коментарі до тем курсу", included: true },
-      {
-        label: "Відповіді на запитання під час проходження курсу",
-        included: true,
-      },
-    ],
-  },
-];
+type ApiTariff = {
+  id: number;
+  title: { rendered: string };
+  Price: string;
+  Tariff: { Status: string; Text: string }[];
+};
 
 export const EducationTariffs = () => {
   const { openModal } = useModal();
+  const [tariffs, setTariffs] = useState<Tariff[]>([]);
+  useEffect(() => {
+    const fetchTariffs = async () => {
+      try {
+        const response = await fetch(`${API_URL}v2/course_tariff`);
+        const data: ApiTariff[] = await response.json();
+
+        const parsedTariffs: Tariff[] = data.map((item) => ({
+          id: item.id,
+          title: item.title?.rendered || "",
+          price: item.Price,
+          buttonText: "Обрати навчання",
+          options:
+            item.Tariff?.map((opt) => ({
+              label: opt.Text,
+              included: opt.Status === "+",
+            })) || [],
+        }));
+
+        // Сортування — "Базовий" першим
+        parsedTariffs.sort((a, b) => {
+          if (a.title === "Базовий") return -1;
+          if (b.title === "Базовий") return 1;
+          return 0;
+        });
+
+        setTariffs(parsedTariffs);
+      } catch (error) {
+        console.error("Помилка при отриманні тарифів:", error);
+      }
+    };
+
+    fetchTariffs();
+  }, []);
 
   return (
     <div className={s.tariffs}>
       {tariffs.map((tariff) => (
-        <div className={s.tariff} key={tariff.title}>
+        <div className={s.tariff} key={tariff.id}>
           <h3>{tariff.title}</h3>
           <ul>
             {tariff.options.map((opt, i) => (
@@ -75,7 +76,7 @@ export const EducationTariffs = () => {
           </ul>
           <div className={s.price}>
             <span>Вартість:</span>
-            <span>{tariff.price} грн</span>
+            <span>{tariff.price}</span>
           </div>
           <button onClick={() => openModal("formB")}>
             {tariff.buttonText}
