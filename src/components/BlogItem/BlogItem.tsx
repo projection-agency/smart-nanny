@@ -17,7 +17,12 @@ export const BlogItem = ({
   return (
     <Link href={`/blog/${info.slug}`} className={s.item}>
       <div className={s.imageContainer}>
-        <Image width={1920} height={1080} alt="" src={info.image} />
+        <Image
+          width={1920}
+          height={1080}
+          alt={info.category}
+          src={info.image}
+        />
       </div>
 
       <div className={s.content}>

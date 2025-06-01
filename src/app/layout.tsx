@@ -6,6 +6,7 @@ import { Header } from "@/components/Header/Header";
 import { Footer } from "@/components/Footer/Footer";
 import { Moderustic } from "next/font/google";
 import { ModalProvider } from "@/components/ModalContext";
+import StoreProvider from "@/providers/StoreProviders";
 
 const moderustic = Moderustic({
   subsets: ["latin", "cyrillic"],
@@ -26,11 +27,13 @@ export default function RootLayout({
   return (
     <html className={moderustic.className} lang="en">
       <body>
-        <ModalProvider>
-          <Header />
-          {children}
-          <Footer />
-        </ModalProvider>
+        <StoreProvider>
+          <ModalProvider>
+            <Header />
+            {children}
+            <Footer />
+          </ModalProvider>
+        </StoreProvider>
       </body>
     </html>
   );

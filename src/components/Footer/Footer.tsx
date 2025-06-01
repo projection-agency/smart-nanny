@@ -38,14 +38,14 @@ export const Footer = () => {
           />
         </div>
 
-        <div className={s.logo}>
+        <Link href="/" className={s.logo}>
           <Image
             width={1920}
             height={1080}
             src="/icons/footer-logo.svg"
             alt="Logotype"
           />
-        </div>
+        </Link>
 
         <h2 className={s.title}>
           Ваш простір турботи <span>та підтримки {line}</span>

@@ -6,14 +6,63 @@ import s from "./SelectionPopup.module.css";
 import Link from "next/link";
 import clsx from "clsx";
 import { PhoneNumberInput } from "../PhoneInput/PhoneInput";
+import { PASS } from "@/constants";
 
 export const SelectionPopup = ({ onClose }: { onClose: () => void }) => {
   const [employmentTypes, setEmploymentTypes] = useState<string[]>([]);
   const [visible, setVisible] = useState(false);
   const popupRef = useRef<HTMLDivElement>(null);
 
+  const [fullName, setFullName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [location, setLocation] = useState("");
+
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const isValid =
+    fullName.trim() &&
+    phone.trim() &&
+    email.trim() &&
+    location.trim() &&
+    employmentTypes.length > 0;
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitted(true);
+
+    if (!isValid) return;
+
+    const payload = {
+      full_name: fullName,
+      phone,
+      email,
+      location,
+      format: employmentTypes,
+    };
+
+    try {
+      const response = await fetch(
+        "https://www.apismart.projection-learn.website/wp-json/applications/v1/nanny_match",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Basic " + btoa(PASS),
+          },
+          body: JSON.stringify(payload),
+        }
+      );
+
+      if (response.ok) {
+        handleClose();
+      }
+    } catch (error) {
+      console.error("Send error:", error);
+    }
+  };
+
   useEffect(() => {
-    // запуск анімації після маунта
     setTimeout(() => setVisible(true), 10);
 
     const handleClickOutside = (event: MouseEvent) => {
@@ -31,7 +80,7 @@ export const SelectionPopup = ({ onClose }: { onClose: () => void }) => {
 
   const toggleType = (type: string) => {
     setEmploymentTypes((prev) =>
-      prev.includes(type) ? prev.filter((t) => t !== type) : [...prev, type]
+      prev.includes(type) ? prev.filter((t) => t !== type) : [type]
     );
   };
 
@@ -58,19 +107,33 @@ export const SelectionPopup = ({ onClose }: { onClose: () => void }) => {
           </p>
         </div>
 
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className={s.inputLine}>
             <div className={s.inputContainer}>
               <label>
                 Ім’я та прізвище<span>*</span>
-                <input placeholder="Імʼя Прізвище" type="text" />
+                <input
+                  className={clsx({
+                    [s.error]: isSubmitted && !fullName.trim(),
+                  })}
+                  value={fullName}
+                  onChange={(e) => setFullName(e.target.value)}
+                  placeholder="Імʼя Прізвище"
+                  type="text"
+                />
               </label>
             </div>
 
             <div className={s.inputContainer}>
               <label>
                 Контактний номер телефону<span>*</span>
-                <PhoneNumberInput />
+                <PhoneNumberInput
+                  className={clsx({
+                    ["error"]: isSubmitted && !phone.trim(),
+                  })}
+                  value={phone}
+                  onChange={(val) => setPhone(val)}
+                />
               </label>
             </div>
           </div>
@@ -79,14 +142,30 @@ export const SelectionPopup = ({ onClose }: { onClose: () => void }) => {
             <div className={s.inputContainer}>
               <label>
                 Email<span>*</span>
-                <input type="email" placeholder="youremail@domain.com" />
+                <input
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  type="email"
+                  placeholder="youremail@domain.com"
+                  className={clsx({
+                    [s.error]: isSubmitted && !email.trim(),
+                  })}
+                />
               </label>
             </div>
 
             <div className={s.inputContainer}>
               <label>
                 Країна та місто проживання<span>*</span>
-                <input placeholder="Київ, Україна" type="text" />
+                <input
+                  value={location}
+                  onChange={(e) => setLocation(e.target.value)}
+                  placeholder="Київ, Україна"
+                  type="text"
+                  className={clsx({
+                    [s.error]: isSubmitted && !location.trim(),
+                  })}
+                />
               </label>
             </div>
           </div>
@@ -95,7 +174,11 @@ export const SelectionPopup = ({ onClose }: { onClose: () => void }) => {
             <p>
               Формат зайнятості, який вас цікавить<span>*</span>
             </p>
-            <div className={s.checkboxGrid}>
+            <div
+              className={clsx(s.checkboxGrid, {
+                [s.error]: isSubmitted && employmentTypes.length === 0,
+              })}
+            >
               {[
                 "Няня на повну зайнятість",
                 "Няня з частковою зайнятістю",
@@ -120,7 +203,11 @@ export const SelectionPopup = ({ onClose }: { onClose: () => void }) => {
             </div>
           </div>
 
-          <button typeof="submit" className={s.submitBtn}>
+          <button
+            // disabled={!isValid}
+            typeof="submit"
+            className={`${s.submitBtn} ${!isValid && s.disabled}`}
+          >
             Залишити заявку
           </button>
 

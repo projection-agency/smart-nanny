@@ -7,15 +7,17 @@ interface DropdownProps {
   options: string[];
   placeholder?: string;
   onSelect?: (value: string) => void;
+  value?: string | null;
 }
 
 export const Dropdown = ({
   options,
   placeholder = "Оберіть",
   onSelect,
+  value = null,
 }: DropdownProps) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selected, setSelected] = useState<string | null>(null);
+  const [selected, setSelected] = useState<string | null>(value);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const handleSelect = (value: string) => {
@@ -39,6 +41,10 @@ export const Dropdown = ({
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+
+  useEffect(() => {
+    setSelected(value);
+  }, [value]);
 
   return (
     <div className={styles.dropdown} ref={dropdownRef}>

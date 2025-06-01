@@ -181,6 +181,11 @@
   background-color: var(--primary-pink-hover);
 }
 
+.disabled {
+  /* pointer-events: none; */
+  /* opacity: 0.5; */
+}
+
 .note {
   font-family: Moderustic;
   font-weight: 400;
@@ -198,4 +203,8 @@
   a:hover {
     color: black;
   }
+}
+
+.error {
+  border: 1px solid red !important;
 }

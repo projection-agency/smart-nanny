@@ -1,4 +1,7 @@
 .container {
+  position: absolute;
+  top: 0.6vw;
+  right: 13.3vw;
   width: 5vw;
   background-color: var(--primary-pink);
   color: white;

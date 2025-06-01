@@ -2,6 +2,7 @@
   border: 2px solid transparent;
   cursor: pointer;
   transition: border 0.3s;
+  overflow: hidden;
 
   .imageContainer {
     img {
@@ -17,6 +18,7 @@
 
   .content {
     background-color: white;
+    height: 100%;
 
     span {
       color: rgba(0, 0, 0, 0.4);

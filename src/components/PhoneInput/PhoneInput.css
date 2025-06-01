@@ -24,6 +24,10 @@
   border-radius: 0.5vw !important;
 }
 
+.form-control:has(.error) {
+  border: 1px solid red;
+}
+
 .form-control.open .arrow {
   transform: rotate(180deg) !important;
 }

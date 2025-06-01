@@ -112,7 +112,15 @@ export const WhySection = () => {
               />
               <h3>{item.title}</h3>
               <p>{item.desc}</p>
-              <span>{item.span}</span>
+              <span
+                style={
+                  index == 3
+                    ? { transform: "rotate(25deg)" }
+                    : { transform: "rotate(-10deg)" }
+                }
+              >
+                {item.span}
+              </span>
             </li>
           ))}
         </ul>

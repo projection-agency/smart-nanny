@@ -83,7 +83,7 @@
     color: var(--primary-pink);
     width: 5vw;
     top: 2.8vw;
-    transform: rotate(-10deg);
+    /* transform: rotate(-10deg); */
   }
 }
 

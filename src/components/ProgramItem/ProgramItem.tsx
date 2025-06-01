@@ -3,14 +3,14 @@ import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import s from "./ProgramItem.module.css";
 
-type ProgramItemProps = {
+export type ProgramItemProps = {
   module: number;
   title: string;
   duration: string;
-  lessons: number;
+  lessons: string;
   lectures: string[];
   result: string;
-  previewImage: string;
+  previewImage?: string;
 };
 
 export const ProgramItem = ({
@@ -55,7 +55,7 @@ export const ProgramItem = ({
                 src="/icons/lessons-icon.svg"
                 alt="lesson"
               />
-              {lessons} уроки
+              {lessons}
             </span>
           </div>
         </div>
@@ -88,7 +88,11 @@ export const ProgramItem = ({
             </div>
           </div>
           <div className={s.preview}>
-            <img src={previewImage} alt="Превʼю" />
+            <img
+              src={previewImage || "/images/program-item-video.jpg"}
+              alt="Превʼю"
+            />
+
             <div className={s.playButton}>▶</div>
           </div>
         </div>

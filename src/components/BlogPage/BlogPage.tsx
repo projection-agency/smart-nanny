@@ -1,11 +1,12 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import { Container } from "../Container";
 import { useState } from "react";
 import { BlogItem } from "@/components/BlogItem/BlogItem";
-import { storiesData } from "@/data/storiesData";
 import s from "./BlogPage.module.css";
+import { BlogPost } from "../Sections/BlogSection/BlogSection";
+import { API_URL } from "@/constants";
 
 const categories = [
   {
@@ -29,6 +30,23 @@ const categories = [
 export const BlogPage = () => {
   const [activeId, setActiveId] = useState<number | null>(null);
 
+  const [posts, setPosts] = useState<BlogPost[]>();
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const response = await fetch(`${API_URL}v2/posts`);
+
+        const data = await response.json();
+        setPosts(data);
+      } catch (error) {
+        console.error("Помилка при отриманні FAQ:", error);
+      }
+    };
+
+    fetchPosts();
+  }, []);
+
   const handleClick = (id: number) => {
     if (id === activeId) {
       setActiveId(null);
@@ -37,6 +55,12 @@ export const BlogPage = () => {
 
     setActiveId(id);
   };
+
+  console.log(posts);
+
+  // const categories = [];
+  // posts.forEach((post) => {});
+
   return (
     <section className={s.section}>
       <Container>
@@ -64,8 +88,18 @@ export const BlogPage = () => {
         </div>
 
         <ul className={s.list}>
-          {storiesData.map((item, index) => (
-            <BlogItem key={index} info={item} />
+          {posts?.map((post) => (
+            <BlogItem
+              key={post.id}
+              info={{
+                title: post.title?.rendered,
+                date: new Date(post.date).toLocaleDateString("uk-UA"),
+                category: "Новини",
+                image: post.featured_image_url || "/images/blog/1.jpg",
+                description: post.excerpt?.rendered.replace(/<[^>]+>/g, ""),
+                slug: post.slug,
+              }}
+            />
           ))}
         </ul>
       </Container>

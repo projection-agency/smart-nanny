@@ -12,7 +12,10 @@ import { Navigation } from "swiper/modules";
 import { arrow } from "../GallerySection/GallerySection";
 import { useEffect, useRef } from "react";
 import { VacationController } from "@/components/VacationController/VacationController";
-import { nanniesData } from "@/data/nanniesData";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch } from "@/store/store";
+import { fetchVacations } from "@/store/vacationSlice";
+import { selectFilteredVacations } from "@/store/selectors";
 
 export const VacationSection = () => {
   const prevRef = useRef<HTMLDivElement>(null);
@@ -20,6 +23,14 @@ export const VacationSection = () => {
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const swiperRef = useRef<any>(null);
+
+  const dispatch = useDispatch<AppDispatch>();
+
+  useEffect(() => {
+    dispatch(fetchVacations());
+  }, []);
+
+  const filtered = useSelector(selectFilteredVacations);
 
   useEffect(() => {
     if (
@@ -30,7 +41,7 @@ export const VacationSection = () => {
     ) {
       swiperRef.current.params.navigation.prevEl = prevRef.current;
       swiperRef.current.params.navigation.nextEl = nextRef.current;
-      swiperRef.current.navigation.destroy(); // важливо
+      swiperRef.current.navigation.destroy();
       swiperRef.current.navigation.init();
       swiperRef.current.navigation.update();
     }
@@ -69,7 +80,7 @@ export const VacationSection = () => {
           onSwiper={(swiper) => (swiperRef.current = swiper)}
           className={`${s.swiper} swiper`}
         >
-          {nanniesData.map((item, index) => (
+          {filtered.map((item, index) => (
             <SwiperSlide key={index}>
               <VacationItem item={item} />
             </SwiperSlide>

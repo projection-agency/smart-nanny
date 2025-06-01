@@ -1,30 +1,16 @@
+import { Vacation } from "@/store/vacationSlice";
 import { useModal } from "../ModalContext";
 import s from "./VacationItem.module.css";
 
-export const VacationItem = ({
-  item,
-}: {
-  item: {
-    title: string;
-    location: string;
-    schedule: string;
-    description: string;
-    price: string;
-  };
-}) => {
+export const VacationItem = ({ item }: { item: Vacation }) => {
   const { openModal } = useModal();
 
   return (
-    <li
-      onClick={() => {
-        openModal("formA");
-      }}
-      className={s.vacation}
-    >
+    <li className={s.vacation}>
       <div>
-        <h4>{item.title}</h4>
+        <h4>{item.Title}</h4>
 
-        <p className={s.price}>{item.price}</p>
+        <p className={s.price}>{item.Price}</p>
 
         <div className={s.blocks}>
           <div className={s.block}>
@@ -32,7 +18,9 @@ export const VacationItem = ({
               {location}
               <span>Локація</span>
             </div>
-            <p>{item.location}</p>
+            <p>
+              {item.Loc_country}, {item.Loc_city}, {item.Loc_district}
+            </p>
           </div>
 
           <div className={s.block}>
@@ -40,7 +28,12 @@ export const VacationItem = ({
               {schedule}
               <span>Графік роботи</span>
             </div>
-            <p>{item.schedule}</p>
+            <p>
+              {item.Work_time},
+              {item.Employment_type == "full"
+                ? "повна зайнятість"
+                : "неповна зайнятість"}
+            </p>
           </div>
 
           <div className={s.block}>
@@ -49,15 +42,21 @@ export const VacationItem = ({
               <span>Опис</span>
             </div>
             <p>
-              {item.description.length > 300
-                ? item.description.slice(0, 300) + "..."
-                : item.description}
+              {item.Description.length > 300
+                ? item.Description.slice(0, 300) + "..."
+                : item.Description}
             </p>
           </div>
         </div>
       </div>
 
-      <button>Відгукнутись</button>
+      <button
+        onClick={() => {
+          openModal("formA");
+        }}
+      >
+        Відгукнутись
+      </button>
     </li>
   );
 };

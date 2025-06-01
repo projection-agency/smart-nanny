@@ -6,10 +6,56 @@ import s from "./EducationPopup.module.css";
 import Link from "next/link";
 import clsx from "clsx";
 import { PhoneNumberInput } from "../PhoneInput/PhoneInput";
+import { PASS } from "@/constants";
 
 export const EducationPopup = ({ onClose }: { onClose: () => void }) => {
   const [visible, setVisible] = useState(false);
   const popupRef = useRef<HTMLDivElement>(null);
+
+  const [fullName, setFullName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const isValid = fullName.trim() && phone.trim() && email.trim();
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitted(true);
+
+    if (!isValid) return;
+
+    const payload = {
+      full_name: fullName,
+      phone,
+      email,
+    };
+
+    try {
+      const response = await fetch(
+        "https://www.apismart.projection-learn.website/wp-json/applications/v1/training",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Basic " + btoa(PASS),
+          },
+          body: JSON.stringify(payload),
+        }
+      );
+
+      if (!response.ok) throw new Error("Помилка при надсиланні форми");
+
+      handleClose();
+    } catch (error) {
+      console.error("Send error:", error);
+    }
+  };
+
+  const handleClose = () => {
+    setVisible(false);
+    setTimeout(onClose, 300);
+  };
 
   useEffect(() => {
     setTimeout(() => setVisible(true), 10);
@@ -26,11 +72,6 @@ export const EducationPopup = ({ onClose }: { onClose: () => void }) => {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
-
-  const handleClose = () => {
-    setVisible(false);
-    setTimeout(onClose, 300);
-  };
 
   return (
     <div className={clsx(s.popupOverlay, visible && s.visible)}>
@@ -50,12 +91,20 @@ export const EducationPopup = ({ onClose }: { onClose: () => void }) => {
           </p>
         </div>
 
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className={s.inputLine}>
             <div className={s.inputContainer}>
               <label>
                 Ім’я та прізвище<span>*</span>
-                <input placeholder="Імʼя Прізвище" type="text" />
+                <input
+                  type="text"
+                  placeholder="Імʼя Прізвище"
+                  value={fullName}
+                  onChange={(e) => setFullName(e.target.value)}
+                  className={clsx({
+                    [s.error]: isSubmitted && !fullName.trim(),
+                  })}
+                />
               </label>
             </div>
           </div>
@@ -64,7 +113,13 @@ export const EducationPopup = ({ onClose }: { onClose: () => void }) => {
             <div className={s.inputContainer}>
               <label>
                 Контактний номер телефону<span>*</span>
-                <PhoneNumberInput />
+                <PhoneNumberInput
+                  className={clsx({
+                    ["error"]: isSubmitted && !phone.trim(),
+                  })}
+                  value={phone}
+                  onChange={(val) => setPhone(val)}
+                />
               </label>
             </div>
           </div>
@@ -73,12 +128,21 @@ export const EducationPopup = ({ onClose }: { onClose: () => void }) => {
             <div className={s.inputContainer}>
               <label>
                 Email<span>*</span>
-                <input type="email" placeholder="youremail@domain.com" />
+                <input
+                  type="email"
+                  placeholder="youremail@domain.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className={clsx({ [s.error]: isSubmitted && !email.trim() })}
+                />
               </label>
             </div>
           </div>
 
-          <button typeof="submit" className={s.submitBtn}>
+          <button
+            type="submit"
+            className={clsx(s.submitBtn, { [s.disabled]: !isValid })}
+          >
             Залишити заявку
           </button>
 

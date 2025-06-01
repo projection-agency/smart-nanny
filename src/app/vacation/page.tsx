@@ -3,8 +3,12 @@
 import { VacationController } from "@/components/VacationController/VacationController";
 import s from "./vacation.module.css";
 import { Container } from "@/components/Container";
-import { nanniesData } from "@/data/nanniesData";
 import { VacationItem } from "@/components/VacationItem/VacationItem";
+import { useDispatch, useSelector } from "react-redux";
+import { selectFilteredVacations } from "@/store/selectors";
+import { AppDispatch } from "@/store/store";
+import { fetchVacations } from "@/store/vacationSlice";
+import { useEffect } from "react";
 
 // export const metadata = {
 //   title: "Вакансії",
@@ -12,6 +16,14 @@ import { VacationItem } from "@/components/VacationItem/VacationItem";
 // };
 
 export default function Vacations() {
+  const dispatch = useDispatch<AppDispatch>();
+
+  useEffect(() => {
+    dispatch(fetchVacations());
+  }, []);
+
+  const filtered = useSelector(selectFilteredVacations);
+
   return (
     <main>
       <section className={s.section}>
@@ -32,7 +44,7 @@ export default function Vacations() {
 
         <Container>
           <ul className={s.vacationsList}>
-            {nanniesData.map((item, index) => (
+            {filtered.map((item, index) => (
               <VacationItem key={index} item={item} />
             ))}
           </ul>

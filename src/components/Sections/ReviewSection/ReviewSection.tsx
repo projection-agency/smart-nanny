@@ -9,41 +9,39 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { useEffect, useRef, useState } from "react";
+import { API_URL } from "@/constants";
 
-const reviews = [
-  {
-    id: 1,
-    name: "Олена Паламаренюк",
-    city: "Україна, Львів",
-    date: "03.03.2025",
-    text: `Ми дуже хвилювалися перед тим,
-як вперше скористатися агентством.
-Але все пройшло настільки просто
-і професійно, що зараз навіть не уявляємо життя
-без нашої няні Марії.`,
-    image: "/images/tempReviewImage.png",
-  },
-  {
-    id: 2,
-    name: "Олена Паламаренюк",
-    city: "Україна, Львів",
-    date: "03.03.2025",
-    text: `Ми дуже хвилювалися перед тим,
-як вперше скористатися агентством.
-Але все пройшло настільки просто
-і професійно, що зараз навіть не уявляємо життя
-без нашої няні Марії.`,
-    image: "/images/tempReviewImage.png",
-  },
-];
+type APISmartReview = {
+  id: number;
+  Full_name: string;
+  Location: string;
+  Date: string;
+  Photo: string;
+  Review: string;
+};
 
 export const ReviewSection = () => {
   const paginationRef = useRef<HTMLDivElement>(null);
+  const [reviews, setReviews] = useState<APISmartReview[]>([]);
 
   const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
     setIsReady(true);
+  }, []);
+
+  useEffect(() => {
+    const fetchReviews = async () => {
+      try {
+        const response = await fetch(`${API_URL}v2/review`);
+        const data = await response.json();
+        setReviews(data);
+      } catch (error) {
+        console.error("Помилка при отриманні FAQ:", error);
+      }
+    };
+
+    fetchReviews();
   }, []);
 
   return (
@@ -84,16 +82,16 @@ export const ReviewSection = () => {
                       <Image
                         width={1920}
                         height={1080}
-                        src={review.image}
-                        alt={review.name}
+                        src={review.Photo}
+                        alt={review.Full_name}
                         className={s.avatar}
                       />
-                      <div className={s.name}>{review.name}</div>
+                      <div className={s.name}>{review.Full_name}</div>
                     </div>
-                    <p className={s.text}>{review.text}</p>
+                    <p className={s.text}>{review.Review}</p>
                     <div className={s.footer}>
-                      <span>{review.date}</span>
-                      <span>{review.city}</span>
+                      <span>{review.Date}</span>
+                      <span>{review.Location}</span>
                     </div>
                   </div>
                 </SwiperSlide>

@@ -1,19 +1,33 @@
 import s from "./article.module.css";
 import Image from "next/image";
-import { Container } from "@/components/Container";
-import { BlogItem } from "@/components/BlogItem/BlogItem";
-import { storiesData } from "@/data/storiesData";
+import { API_URL } from "@/constants";
 
-export default async function Blog({
+export type BlogPost = {
+  id: number;
+  slug: string;
+  title: { rendered: string };
+  date: string;
+  excerpt: { rendered: string };
+  content: { rendered: string };
+  _embedded?: {
+    "wp:featuredmedia": { source_url: string }[];
+  };
+};
+
+export default async function BlogPage({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: { slug: string };
 }) {
-  const { slug } = await params;
-
-  const post = storiesData.find((p) => p.slug === slug);
+  const res = await fetch(`${API_URL}v2/posts?slug=${params.slug}&_embed=1`);
+  const data: BlogPost[] = await res.json();
+  const post = data[0];
 
   if (!post) return <div>Статтю не знайдено</div>;
+
+  const image =
+    post._embedded?.["wp:featuredmedia"]?.[0]?.source_url ||
+    "/images/default-blog.jpg";
 
   return (
     <main>
@@ -21,65 +35,42 @@ export default async function Blog({
         <div className={s.container}>
           <div className={s.titleContainer}>
             <div>
-              <span>03.03.2025</span>
+              <span>
+                {new Date(post.date).toLocaleDateString("uk-UA", {
+                  day: "2-digit",
+                  month: "2-digit",
+                  year: "numeric",
+                })}
+              </span>
               <div></div>
               <span>Навчання та поради</span>
             </div>
 
-            <h1>
-              Як Катерина влаштувала дітям творчий вечір, який вони запам’ятають
-              надовго
-            </h1>
-
-            <p>
-              Фарби, сміх, солодощі та море натхнення — як одна няня може
-              перетворити звичайний день на маленьке свято
-            </p>
+            <h1 dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
+            <p
+              dangerouslySetInnerHTML={{
+                __html: post.excerpt.rendered,
+              }}
+            />
           </div>
 
           <div className={s.imageContainer}>
             <Image
               width={1920}
               height={1080}
-              src="/images/blog/1.jpg"
-              alt="Image"
+              src={image}
+              alt={post.title.rendered}
             />
           </div>
 
-          <div className={s.textContainer}>
-            <p>
-              Щасливе дитинство — це не лише про безпеку та режим. Це про ті
-              моменти, які залишаються в пам’яті на все життя. І саме такі
-              моменти створює наша чудова няня Катерина.
-            </p>
-            <p>
-              На днях вона організувала для діток справжній творчий вечір, який
-              став і святом, і майстер-класом, і живим прикладом турботи з
-              душею.
-            </p>
-            <p>
-              У кімнаті панувала атмосфера натхнення: фарби, аплікації,
-              кольоровий папір, ігри на уяву та командну роботу — усе для того,
-              щоб кожна дитина могла вільно творити, вигадувати, пробувати нове.
-              Діти створювали свої маленькі шедеври, обмінювалися ідеями,
-              вчилися слухати одне одного й ділитися матеріалами — хтось клеїв,
-              хтось малював, хтось допомагав іншому.
-            </p>
-          </div>
+          <div
+            className={s.textContainer}
+            dangerouslySetInnerHTML={{ __html: post.content.rendered }}
+          />
         </div>
       </section>
 
-      <section className={s.otherArticles}>
-        <Container>
-          <h2>Читати далі</h2>
-
-          <ul className={s.list}>
-            {storiesData.slice(0, 4).map((item, index) => (
-              <BlogItem key={index} info={item} />
-            ))}
-          </ul>
-        </Container>
-      </section>
+      {/* Читати далі можна динамічно підвантажити окремо */}
     </main>
   );
 }

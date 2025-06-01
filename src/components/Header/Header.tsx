@@ -4,8 +4,11 @@ import { Container } from "../Container";
 import Image from "next/image";
 import Link from "next/link";
 import { LanguageSwitcher } from "../LanguageSwitcher/LanguageSwitcher";
+import { useModal } from "../ModalContext";
 
 export const Header = () => {
+  const { openModal } = useModal();
+
   return (
     <header className={s.header}>
       <Container className="flex justify-between">
@@ -44,7 +47,7 @@ export const Header = () => {
         <div className={s.headerRightBlock}>
           <LanguageSwitcher />
 
-          <div className={s.call}>
+          <div onClick={() => openModal("formA")} className={s.call}>
             <span>Замовити дзвінок</span>
 
             <div className={s.icon}>

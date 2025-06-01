@@ -10,6 +10,7 @@
 }
 
 .logo {
+  display: block;
   width: 5vw;
   margin: 0 auto;
   margin-bottom: 1.8vw;

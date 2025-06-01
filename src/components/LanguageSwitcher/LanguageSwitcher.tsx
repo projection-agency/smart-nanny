@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import styles from "./LanguageSwitcher.module.css";
+import s from "./LanguageSwitcher.module.css";
 
 const languages = ["EN", "DE"];
 
@@ -21,16 +21,17 @@ export const LanguageSwitcher = () => {
     <motion.div
       layout
       transition={{ duration: 0.3, ease: "easeInOut" }}
-      className={styles.container}
+      className={s.container}
       style={{
         borderRadius: open ? "1.5vw" : "86vw",
+        // transform: open ? "translateY(2vw)" : "",
       }}
     >
-      <div className={styles.topRow} onClick={toggle}>
+      <div className={s.topRow} onClick={toggle}>
         <span>{currentLang}</span>
-        <span className={styles.arrow}>
+        <span className={s.arrow}>
           <svg
-            className={`${styles.arrowIcon} ${open ? styles.rotate : ""}`}
+            className={`${s.arrowIcon} ${open ? s.rotate : ""}`}
             viewBox="0 0 16 14"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -50,18 +51,21 @@ export const LanguageSwitcher = () => {
           <motion.div
             key="dropdown"
             initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
+            animate={{
+              opacity: 1,
+              height: "auto",
+            }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-            className={styles.dropdownContent}
+            className={s.dropdownContent}
           >
-            <div className={styles.divider} />
-            <div className={styles.langList}>
+            <div className={s.divider} />
+            <div className={s.langList}>
               {languages.map((lang) => (
                 <button
                   key={lang}
                   onClick={() => selectLang(lang)}
-                  className={styles.langButton}
+                  className={s.langButton}
                 >
                   {lang}
                 </button>

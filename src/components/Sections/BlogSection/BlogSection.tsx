@@ -1,10 +1,40 @@
+"use client";
+
 import { Container } from "@/components/Container";
 import s from "./BlogSection.module.css";
 import { BlogItem } from "@/components/BlogItem/BlogItem";
-import { storiesData } from "@/data/storiesData";
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import { API_URL } from "@/constants";
+
+export type BlogPost = {
+  id: number;
+  date: string;
+  slug: string;
+  title: { rendered: string };
+  excerpt: { rendered: string };
+  featured_image_url?: string;
+  // або _embedded?: { "wp:featuredmedia": [{ source_url: string }] };
+};
 
 export const BlogSection = () => {
+  const [posts, setPosts] = useState<BlogPost[]>();
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const response = await fetch(`${API_URL}v2/posts`);
+
+        const data = await response.json();
+        setPosts(data);
+      } catch (error) {
+        console.error("Помилка при отриманні FAQ:", error);
+      }
+    };
+
+    fetchPosts();
+  }, []);
+
   return (
     <section className={s.section}>
       <Container>
@@ -14,8 +44,18 @@ export const BlogSection = () => {
         </h2>
 
         <ul className={s.list}>
-          {storiesData.slice(0, 4).map((item, index) => (
-            <BlogItem info={item} key={index} />
+          {posts?.slice(0, 4).map((post) => (
+            <BlogItem
+              key={post.id}
+              info={{
+                title: post.title?.rendered,
+                date: new Date(post.date).toLocaleDateString("uk-UA"),
+                category: "Новини",
+                image: post.featured_image_url || "/images/blog/1.jpg",
+                description: post.excerpt?.rendered.replace(/<[^>]+>/g, ""),
+                slug: post.slug,
+              }}
+            />
           ))}
         </ul>
 

@@ -1,9 +1,40 @@
-import { courseModules } from "@/data/courseModules";
+"use client";
+
 import s from "./ProgramSection.module.css";
 import { ProgramItem } from "@/components/ProgramItem/ProgramItem";
 import Image from "next/image";
+import { useEffect, useState } from "react";
+import { API_URL } from "@/constants";
+
+type APIModule = {
+  id: number;
+  Title: string;
+  Time: string;
+  Lessons: string;
+  Lectures: string[];
+  Result: string;
+  previewImage?: string;
+};
 
 export const ProgramSection = () => {
+  const [modules, setModules] = useState<APIModule[]>([]);
+
+  useEffect(() => {
+    const fetchFaqs = async () => {
+      try {
+        const response = await fetch(
+          `${API_URL}v2/course_module?order_by_title_number=true`
+        );
+        const data = await response.json();
+        setModules(data);
+      } catch (error) {
+        console.error("Помилка при отриманні FAQ:", error);
+      }
+    };
+
+    fetchFaqs();
+  }, []);
+
   return (
     <section className={s.section}>
       <div className={s.titleContainer}>
@@ -20,16 +51,16 @@ export const ProgramSection = () => {
       </div>
 
       <ul className={s.list}>
-        {courseModules.map((module) => (
+        {modules.map((mod, index) => (
           <ProgramItem
-            key={module.module}
-            module={module.module}
-            title={module.title}
-            duration={module.duration}
-            lessons={module.lessons}
-            lectures={module.lectures}
-            result={module.result}
-            previewImage={module.previewImage}
+            key={mod.id}
+            module={index + 1}
+            title={mod.Title || `Модуль ${index + 1}`}
+            duration={mod.Time || ""}
+            lessons={mod.Lessons || ""}
+            lectures={mod.Lectures || []}
+            result={mod.Result || ""}
+            previewImage={mod.previewImage}
           />
         ))}
       </ul>
