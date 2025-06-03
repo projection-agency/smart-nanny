@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import { closeIco } from "../ModalContext";
 import s from "./EducationPopup.module.css";
 import Link from "next/link";
@@ -52,10 +52,10 @@ export const EducationPopup = ({ onClose }: { onClose: () => void }) => {
     }
   };
 
-  const handleClose = () => {
+  const handleClose = useCallback(() => {
     setVisible(false);
     setTimeout(onClose, 300);
-  };
+  }, [onClose]);
 
   useEffect(() => {
     setTimeout(() => setVisible(true), 10);

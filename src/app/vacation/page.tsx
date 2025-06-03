@@ -20,7 +20,7 @@ export default function Vacations() {
 
   useEffect(() => {
     dispatch(fetchVacations());
-  }, [dispatch]);
+  }, []);
 
   const filtered = useSelector(selectFilteredVacations);
 

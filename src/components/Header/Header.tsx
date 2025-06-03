@@ -8,15 +8,6 @@ import { useModal } from "../ModalContext";
 
 export const Header = () => {
   const { openModal } = useModal();
-  // const [sidePanelIsOpen, setSidePanelIsOpen] = useState(false);
-
-  // const closeSidePanel = () => {
-  //   setSidePanelIsOpen(false);
-  // };
-
-  // const openSidePanel = () => {
-  //   setSidePanelIsOpen(true);
-  // };
 
   return (
     <header className={s.header}>
