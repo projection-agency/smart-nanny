@@ -134,11 +134,13 @@ export const ServicesSection = () => {
                 {card.price && (
                   <div className={s.priceInfo}>
                     {priceIcon}
+
                     <div>
                       <p
                         dangerouslySetInnerHTML={{ __html: card.price }}
                         className={s.cardPrice}
                       ></p>
+
                       {card.shortDesc && (
                         <span className={s.shortDesc}>{card.shortDesc}</span>
                       )}

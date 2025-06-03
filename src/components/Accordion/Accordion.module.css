@@ -100,3 +100,26 @@
 .faqStyle:has(.open) {
   border: 2px solid var(--primary-pink);
 }
+
+@media screen and (max-width: 1024px) {
+  .accordion {
+    padding: 6.4vw;
+  }
+
+  .title {
+    font-size: 6.4vw;
+  }
+
+  .icon {
+    width: 10.7vw;
+    height: 10.7vw;
+    svg {
+      width: 2.4vw;
+      height: 3.7vw;
+    }
+  }
+
+  .content {
+    padding-top: 6.4vw;
+  }
+}

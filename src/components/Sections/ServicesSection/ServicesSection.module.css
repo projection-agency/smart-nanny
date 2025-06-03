@@ -307,7 +307,10 @@
 
 @media screen and (max-width: 1024px) {
   .section {
-    padding: 21.3vw 0;
+    padding: 21.3vw 4.5vw;
+    div {
+      max-width: 100vw;
+    }
   }
 
   .title {
@@ -316,6 +319,134 @@
     margin-bottom: 10.7vw;
     span {
       font-size: 9.6vw;
+    }
+  }
+
+  /* SERVICES LIST */
+
+  .servicesList {
+    grid-template-columns: 1fr;
+    gap: 6.4vw;
+    margin-bottom: 12.3vw;
+
+    li {
+      padding: 6.4vw;
+
+      .tagList {
+        gap: 1.6vw;
+        margin-bottom: 6.4vw;
+
+        .tag {
+          span {
+            width: 35.2vw;
+          }
+        }
+
+        p {
+          font-size: 3.2vw;
+        }
+      }
+
+      .cardTitle {
+        font-size: 6.5vw;
+        margin-bottom: 3.2vw;
+      }
+
+      .cardDesc {
+        font-size: 3.7vw;
+        margin-bottom: 6.4vw;
+      }
+
+      .priceInfo {
+        gap: 2.7vw;
+        margin-bottom: 4.3vw;
+
+        svg {
+          width: 5.3vw;
+          height: 5.3vw;
+        }
+
+        .shortDesc {
+          font-size: 3.7vw;
+        }
+
+        .cardPrice {
+          font-size: 4.3vw;
+
+          span {
+            font-size: 4.3vw;
+          }
+        }
+      }
+
+      button {
+        font-size: 4.3vw;
+        padding: 6.4vw 0;
+        border-radius: 26.7vw;
+      }
+    }
+
+    .plaster {
+      display: none;
+    }
+  }
+
+  /* ACCORDION LIST */
+
+  .accordionList {
+    flex-direction: column;
+    gap: 3.2vw;
+
+    li {
+      width: 100%;
+
+      .tagList {
+        gap: 2.1vw;
+        margin-bottom: 10.1vw;
+
+        .tag {
+          span {
+            width: 35.2vw;
+          }
+        }
+
+        p {
+          font-size: 3.2vw;
+        }
+      }
+
+      .cardDesc {
+        font-size: 3.7vw;
+        margin-bottom: 9.9vw;
+      }
+
+      .priceInfo {
+        gap: 2.7vw;
+        margin-bottom: 4.3vw;
+
+        svg {
+          width: 5.3vw;
+          height: 5.3vw;
+        }
+
+        .shortDesc {
+          font-size: 3.7vw;
+        }
+
+        .cardPrice {
+          font-size: 4.3vw;
+
+          span {
+            font-size: 4.3vw;
+          }
+        }
+      }
+
+      .btn {
+        font-size: 4.3vw;
+        padding: 6.4vw 0;
+        border-radius: 26.7vw;
+      }
     }
   }
 }

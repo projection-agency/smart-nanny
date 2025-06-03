@@ -44,10 +44,16 @@
   justify-content: space-between;
   gap: 3.1vw;
 
-  li {
+  div {
+    /* width: 22.5vw; */
+    /* margin-right: 1.6vw; */
     position: relative;
   }
 
+  /* div:last-child {
+    margin-right: 0;
+  }
+ */
   img {
     width: max-content;
     height: 2.8vw;
