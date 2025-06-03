@@ -103,7 +103,7 @@ export const WhySection = () => {
           </p>
         )}
 
-        {/* <Swiper
+        <Swiper
           className={s.list}
           breakpoints={{ 1024: { slidesPerView: 4 } }}
           modules={[Pagination]}
@@ -141,7 +141,7 @@ export const WhySection = () => {
             </SwiperSlide>
           ))}
         </Swiper>
-        <div className={s.paginationCont}></div> */}
+        <div className={s.paginationCont}></div>
         <ul className={s.list}>
           {data.map((item, index) => (
             <li key={item.id + index}>

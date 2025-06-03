@@ -124,7 +124,7 @@
     }
   }
 
-  /* .list {
+  .list {
     margin-bottom: 10.7vw;
     padding-left: 4.5vw;
     .swiperSlide {
@@ -151,5 +151,5 @@
     p {
       background-color: black;
     }
-  } */
+  }
 }
