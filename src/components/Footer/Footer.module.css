@@ -172,6 +172,7 @@
 
 @media screen and (max-width: 1024px) {
   .footer {
+    overflow: hidden;
     padding-top: 26.7vw;
     padding-bottom: 21.3vw;
 
