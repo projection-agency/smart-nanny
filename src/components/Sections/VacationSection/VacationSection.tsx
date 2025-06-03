@@ -28,7 +28,7 @@ export const VacationSection = () => {
 
   useEffect(() => {
     dispatch(fetchVacations());
-  }, []);
+  }, [dispatch]);
 
   const filtered = useSelector(selectFilteredVacations);
 
