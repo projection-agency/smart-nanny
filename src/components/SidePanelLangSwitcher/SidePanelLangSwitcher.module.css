@@ -1,0 +1,15 @@
+.languages {
+  display: flex;
+  gap: 4.3vw;
+  margin-bottom: 10.7vw;
+
+  font-family: Moderustic;
+  font-size: 4.8vw;
+  font-weight: 500;
+  line-height: 135%;
+  letter-spacing: -2%;
+  text-align: left;
+}
+
+.activeLanguage {
+}

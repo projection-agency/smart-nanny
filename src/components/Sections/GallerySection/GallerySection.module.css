@@ -52,6 +52,10 @@
   }
 }
 
+.wormMobile {
+  display: none;
+}
+
 .topBlock {
   display: flex;
   justify-content: space-between;
@@ -133,6 +137,20 @@
   .section {
     padding-top: 13.3vw;
 
+    .container {
+      position: relative;
+
+      img.wormMobile {
+        display: block;
+        position: absolute;
+        z-index: 10;
+        width: 16.3vw;
+        right: 4.3vw;
+        bottom: 3.7vw;
+        transform: rotateZ(-11deg);
+      }
+    }
+
     .swiperController {
       display: none;
     }
@@ -163,6 +181,10 @@
               bottom: -4.2vw;
             }
           }
+        }
+
+        img {
+          display: none;
         }
 
         p {

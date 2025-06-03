@@ -28,16 +28,14 @@ export const HomeHero = () => {
           priority
         />
 
-              <Image
-        alt="Sun"
-        width={1920}
-        height={1080}
-        priority
-        src="/icons/sun.svg"
-        className={s.sun}
-      />
-
-
+        <Image
+          alt="Sun"
+          width={1920}
+          height={1080}
+          priority
+          src="/icons/sun.svg"
+          className={s.sun}
+        />
       </div>
       <div className={s.content}>
         <h1>

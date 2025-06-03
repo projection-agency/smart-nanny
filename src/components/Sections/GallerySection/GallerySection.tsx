@@ -27,7 +27,7 @@ export const GallerySection = () => {
 
   return (
     <section className={s.section}>
-      <Container>
+      <Container className={s.container}>
         <div className={s.topBlock}>
           <div className={s.titleContainer}>
             <h2>
@@ -166,6 +166,15 @@ export const GallerySection = () => {
           </Swiper>
           <div className={s.paginationCont}></div>
         </div>
+
+        <Image
+          alt="Worm"
+          width={1920}
+          height={1080}
+          priority
+          src="/icons/worm.svg"
+          className={s.wormMobile}
+        />
       </Container>
     </section>
   );

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import s from "./Header.module.css";
 import { Container } from "../Container";
 import Image from "next/image";
@@ -8,11 +8,22 @@ import { useModal } from "../ModalContext";
 
 export const Header = () => {
   const { openModal } = useModal();
+  // const [sidePanelIsOpen, setSidePanelIsOpen] = useState(false);
+
+  // const closeSidePanel = () => {
+  //   setSidePanelIsOpen(false);
+  // };
+
+  // const openSidePanel = () => {
+  //   setSidePanelIsOpen(true);
+  // };
 
   return (
     <header className={s.header}>
       <Container className="flex justify-between">
-        <button className={s.mobileMenuBtn}>
+        <button
+          className={s.mobileMenuBtn}
+        >
           <Image
             src="/icons/mobile-menu-icon.svg"
             className={s.mobileMenuIcon}
