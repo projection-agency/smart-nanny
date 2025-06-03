@@ -23,12 +23,22 @@ export const HomeHero = () => {
         <Image
           src="/images/home-hero-kids-mobile.png"
           alt="Hero image"
-          width={750}
-          height={722}
+          width={1225}
+          height={1083}
           priority
         />
-      </div>
 
+              <Image
+        alt="Sun"
+        width={1920}
+        height={1080}
+        priority
+        src="/icons/sun.svg"
+        className={s.sun}
+      />
+
+
+      </div>
       <div className={s.content}>
         <h1>
           {svg}

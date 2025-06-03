@@ -190,9 +190,11 @@
     .stepListMobile {
       display: block;
       padding-left: 4.3vw;
+      margin-bottom: 10.7vw;
 
       div.slideCont {
         background-color: #fff;
+        min-height: 145.3vw;
         padding: 6.4vw;
 
         .step {

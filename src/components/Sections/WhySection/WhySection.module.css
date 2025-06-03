@@ -160,6 +160,12 @@
           p {
             font-size: 3.7vw;
           }
+
+          span{
+            font-size: 4.3vw;
+            width: 45vw;
+            right: -4vw;
+          }
         }
       }
     }

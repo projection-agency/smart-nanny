@@ -14,11 +14,7 @@
   }
 
   .sun {
-    position: absolute;
-    width: 9vw;
-    height: 7.8vw;
-    bottom: -2.1vw;
-    right: 10.8vw;
+    display: none;
   }
 }
 
@@ -144,6 +140,16 @@
     display: block;
     width: 100vw;
     margin-bottom: 12.8vw;
+    position: relative;
+
+    .sun {
+      display: block;
+      position: absolute;
+      width: 18.1vw;
+      height: 16vw;
+      bottom: -9.1vw;
+      right: 4.5vw;
+    }
   }
 
   .content {

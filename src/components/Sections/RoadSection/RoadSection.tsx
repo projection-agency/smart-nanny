@@ -82,7 +82,6 @@ export const RoadSection = () => {
           modules={[Pagination]}
           slidesPerView={1.1}
           spaceBetween={20}
-          autoHeight={true}
           pagination={{
             enabled: true,
             type: "bullets",
