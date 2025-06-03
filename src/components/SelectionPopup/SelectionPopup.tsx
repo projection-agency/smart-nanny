@@ -102,7 +102,7 @@ export const SelectionPopup = ({ onClose }: { onClose: () => void }) => {
         <div className={s.popupTitle}>
           <h3>Залиште заявку на підбір няні</h3>
           <p>
-            Ми зв'яжемося з вами найближчим часом щодо підбору няні для вашої
+            Ми зв&apos;яжемося з вами найближчим часом щодо підбору няні для вашої
             дитини
           </p>
         </div>
@@ -111,14 +111,14 @@ export const SelectionPopup = ({ onClose }: { onClose: () => void }) => {
           <div className={s.inputLine}>
             <div className={s.inputContainer}>
               <label>
-                Ім'я та прізвище<span>*</span>
+                Ім&apos;я та прізвище<span>*</span>
                 <input
                   className={clsx({
                     [s.error]: isSubmitted && !fullName.trim(),
                   })}
                   value={fullName}
                   onChange={(e) => setFullName(e.target.value)}
-                  placeholder="Імʼя Прізвище"
+                  placeholder="Ім&apos;я Прізвище"
                   type="text"
                 />
               </label>

@@ -86,8 +86,7 @@ export const EducationPopup = ({ onClose }: { onClose: () => void }) => {
         <div className={s.popupTitle}>
           <h3>Залиште заявку на навчання</h3>
           <p>
-            Ми зв'яжемося з вами найближчим часом і надамо всі деталі щодо
-            проходження курсу
+            Ми зв&apos;яжемося з вами найближчим часом і надамо всі деталі щодо проходження курсу
           </p>
         </div>
 
@@ -95,10 +94,10 @@ export const EducationPopup = ({ onClose }: { onClose: () => void }) => {
           <div className={s.inputLine}>
             <div className={s.inputContainer}>
               <label>
-                Ім'я та прізвище<span>*</span>
+                Ім&apos;я та прізвище<span>*</span>
                 <input
                   type="text"
-                  placeholder="Імʼя Прізвище"
+                  placeholder="Ім&apos;я Прізвище"
                   value={fullName}
                   onChange={(e) => setFullName(e.target.value)}
                   className={clsx({
