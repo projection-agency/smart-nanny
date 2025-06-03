@@ -71,7 +71,7 @@ export const EducationPopup = ({ onClose }: { onClose: () => void }) => {
 
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
+  }, [handleClose]);
 
   return (
     <div className={clsx(s.popupOverlay, visible && s.visible)}>
@@ -86,7 +86,7 @@ export const EducationPopup = ({ onClose }: { onClose: () => void }) => {
         <div className={s.popupTitle}>
           <h3>Залиште заявку на навчання</h3>
           <p>
-            Ми зв’яжемося з вами найближчим часом і надамо всі деталі щодо
+            Ми зв'яжемося з вами найближчим часом і надамо всі деталі щодо
             проходження курсу
           </p>
         </div>
@@ -95,7 +95,7 @@ export const EducationPopup = ({ onClose }: { onClose: () => void }) => {
           <div className={s.inputLine}>
             <div className={s.inputContainer}>
               <label>
-                Ім’я та прізвище<span>*</span>
+                Ім'я та прізвище<span>*</span>
                 <input
                   type="text"
                   placeholder="Імʼя Прізвище"

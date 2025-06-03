@@ -88,9 +88,11 @@ export const ProgramItem = ({
             </div>
           </div>
           <div className={s.preview}>
-            <img
+            <Image
               src={previewImage || "/images/program-item-video.jpg"}
               alt="Превʼю"
+              width={1920}
+              height={1080}
             />
 
             <div className={s.playButton}>▶</div>

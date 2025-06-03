@@ -62,6 +62,11 @@ export const SelectionPopup = ({ onClose }: { onClose: () => void }) => {
     }
   };
 
+  const handleClose = () => {
+    setVisible(false);
+    setTimeout(onClose, 300); // синхронізовано з анімацією
+  };
+
   useEffect(() => {
     setTimeout(() => setVisible(true), 10);
 
@@ -76,17 +81,12 @@ export const SelectionPopup = ({ onClose }: { onClose: () => void }) => {
 
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
+  }, [handleClose]);
 
   const toggleType = (type: string) => {
     setEmploymentTypes((prev) =>
       prev.includes(type) ? prev.filter((t) => t !== type) : [type]
     );
-  };
-
-  const handleClose = () => {
-    setVisible(false);
-    setTimeout(onClose, 300); // синхронізовано з анімацією
   };
 
   return (
@@ -102,7 +102,7 @@ export const SelectionPopup = ({ onClose }: { onClose: () => void }) => {
         <div className={s.popupTitle}>
           <h3>Залиште заявку на підбір няні</h3>
           <p>
-            Ми зв’яжемося з вами найближчим часом щодо підбору няні для вашої
+            Ми зв'яжемося з вами найближчим часом щодо підбору няні для вашої
             дитини
           </p>
         </div>
@@ -111,7 +111,7 @@ export const SelectionPopup = ({ onClose }: { onClose: () => void }) => {
           <div className={s.inputLine}>
             <div className={s.inputContainer}>
               <label>
-                Ім’я та прізвище<span>*</span>
+                Ім'я та прізвище<span>*</span>
                 <input
                   className={clsx({
                     [s.error]: isSubmitted && !fullName.trim(),

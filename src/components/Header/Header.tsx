@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import s from "./Header.module.css";
 import { Container } from "../Container";
 import Image from "next/image";

@@ -28,7 +28,7 @@ export const VacationSection = () => {
 
   useEffect(() => {
     dispatch(fetchVacations());
-  }, []);
+  }, [dispatch]);
 
   const filtered = useSelector(selectFilteredVacations);
 
@@ -45,7 +45,7 @@ export const VacationSection = () => {
       swiperRef.current.navigation.init();
       swiperRef.current.navigation.update();
     }
-  }, []);
+  }, [dispatch]);
 
   return (
     <section className={s.section}>
