@@ -12,18 +12,31 @@ export const Header = () => {
   return (
     <header className={s.header}>
       <Container className="flex justify-between">
+        <button className={s.mobileMenuBtn}>
+          <Image
+            src="/icons/mobile-menu-icon.svg"
+            className={s.mobileMenuIcon}
+            alt="Mobile menu icon"
+            width={0}
+            height={0}
+            style={{ width: "4.8vw", height: "4.8vw" }}
+            priority
+          />
+        </button>
+
         <div className={s.headerLeftBlock}>
           <Link href="/">
             <Image
               src="/icons/header-logo.svg"
+              className={s.headerLogo}
               alt="Heder logo"
               width={0}
               height={0}
-              style={{ width: "5vw", height: "auto" }}
+              // style={{ width: "5vw", height: "auto" }}
               priority
             />
           </Link>
-          <nav>
+          <nav className={s.hiddenOnMobile}>
             <ul>
               <li>
                 <Link href="/">Підбір няні</Link>
@@ -48,7 +61,19 @@ export const Header = () => {
           <LanguageSwitcher />
 
           <div onClick={() => openModal("formA")} className={s.call}>
-            <span>Замовити дзвінок</span>
+            <span className={s.hiddenOnMobile}>Замовити дзвінок</span>
+
+            <div className={s.callIconMobileCont}>
+              <Image
+                src="/icons/icon-call.svg"
+                className={s.callIconMobile}
+                alt="Icon Calll"
+                width={0}
+                height={0}
+                // style={{ width: "5vw", height: "auto" }}
+                priority
+              />
+            </div>
 
             <div className={s.icon}>
               <svg

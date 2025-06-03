@@ -19,6 +19,15 @@ export const HomeHero = () => {
           priority
         />
       </div>
+      <div className={s.homeHeroImageMobile}>
+        <Image
+          src="/images/home-hero-kids-mobile.png"
+          alt="Hero image"
+          width={750}
+          height={722}
+          priority
+        />
+      </div>
 
       <div className={s.content}>
         <h1>

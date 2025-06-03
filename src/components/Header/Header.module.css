@@ -33,6 +33,11 @@
   }
 }
 
+.headerLogo {
+  width: 5vw;
+  height: auto;
+}
+
 .headerRightBlock {
   display: flex;
   align-items: center;
@@ -76,4 +81,74 @@
 
 .call:hover {
   background-color: var(--primary-pink-hover);
+}
+
+.mobileMenuBtn {
+  display: none;
+}
+
+.callIconMobileCont {
+  display: none;
+}
+
+@media screen and (max-width: 1024px) {
+  .header {
+    padding: 3.2vw 4.3vw;
+  }
+
+  .mobileMenuBtn {
+    display: block;
+    width: 13.9vw;
+    height: 13.9vw;
+    padding: 4.8vw 4.5vw;
+    background-color: var(--primary-pink);
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border-radius: 15.2vw;
+  }
+
+  .mobileMenuBtn:hover {
+    background-color: var(--primary-pink-hover);
+  }
+
+  .headerLeftBlock {
+    justify-content: center;
+  }
+
+  .headerLogo {
+    width: 24.5vw;
+    height: 10.7vw;
+  }
+
+  .hiddenOnMobile {
+    display: none;
+  }
+
+  .call {
+    padding: 0;
+    .icon {
+      display: none;
+    }
+  }
+
+  .callIconMobileCont {
+    display: block;
+    width: 13.9vw;
+    height: 13.9vw;
+
+    padding: 4.8vw 4.5vw;
+    background-color: var(--primary-pink);
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border-radius: 15.2vw;
+  }
+
+  .callIconMobileCont:hover {
+    background-color: var(--primary-pink-hover);
+  }
+
+  .callIconMobile {
+    width: 4.8vw;
+    height: 4.8vw;
+  }
 }

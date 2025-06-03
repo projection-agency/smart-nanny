@@ -121,3 +121,9 @@ input::placeholder {
   font-style: normal;
   font-display: swap;
 }
+
+@media screen and (max-width: 1024px) {
+  body {
+    padding-top: 20.3vw;
+  }
+}

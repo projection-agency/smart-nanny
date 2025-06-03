@@ -4,6 +4,9 @@ import { Container } from "@/components/Container";
 import s from "./WhySection.module.css";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination } from "swiper/modules";
+import "swiper/css/pagination";
 
 const dataShort = [
   {
@@ -86,10 +89,10 @@ export const WhySection = () => {
     <section
       className={`${s.section} ${isSelectionPage ? s.sectionSelection : ""} `}
     >
-      <Container>
+      <Container className={s.content}>
         <h2 className={s.title}>
           Чому батьки <span>обирають </span>
-          сервіс від Smart Nanny <p>?</p>
+          сервіс від Smart Nanny?
         </h2>
 
         {isSelectionPage && (
@@ -100,6 +103,45 @@ export const WhySection = () => {
           </p>
         )}
 
+        {/* <Swiper
+          className={s.list}
+          breakpoints={{ 1024: { slidesPerView: 4 } }}
+          modules={[Pagination]}
+          slidesPerView={1.2}
+          pagination={{
+            enabled: true,
+            type: "bullets",
+            el: `.${s.paginationCont}`,
+            bulletElement: "p",
+          }}
+          onSwiper={(swiper) => console.log(swiper)}
+        >
+          {data.map((item, index) => (
+            <SwiperSlide key={item.id + index}>
+              <div className={s.swiperSlide}>
+                <Image
+                  alt={item.title}
+                  width={1920}
+                  height={1080}
+                  src={item.icon}
+                  quality={100}
+                />
+                <h3>{item.title}</h3>
+                <p>{item.desc}</p>
+                <span
+                  style={
+                    index == 3
+                      ? { transform: "rotate(25deg)" }
+                      : { transform: "rotate(-10deg)" }
+                  }
+                >
+                  {item.span}
+                </span>
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+        <div className={s.paginationCont}></div> */}
         <ul className={s.list}>
           {data.map((item, index) => (
             <li key={item.id + index}>
