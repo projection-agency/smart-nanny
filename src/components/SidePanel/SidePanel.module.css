@@ -9,7 +9,10 @@
   transition: transform ease-in-out 250ms;
   /* transform: translateX(100%); */
   z-index: 999999;
+  
 
+
+  
   background-color: #fff;
 
   .sidePanelCont {
