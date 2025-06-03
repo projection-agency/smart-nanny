@@ -8,7 +8,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { Navigation } from "swiper/modules";
+import { Navigation, Pagination } from "swiper/modules";
 import { arrow } from "../GallerySection/GallerySection";
 import { useEffect, useRef } from "react";
 import { VacationController } from "@/components/VacationController/VacationController";
@@ -49,7 +49,7 @@ export const VacationSection = () => {
 
   return (
     <section className={s.section}>
-      <Container>
+      <Container className={s.container}>
         <div className={s.topBlock}>
           <h2>
             Актуальні<span> вакансії {line}</span>
@@ -70,9 +70,22 @@ export const VacationSection = () => {
         </div>
 
         <Swiper
-          modules={[Navigation]}
+          modules={[Navigation, Pagination]}
           spaceBetween={24}
           slidesPerView={3}
+          breakpoints={{
+            0: {
+              slidesPerView: 1,
+              navigation: { enabled: false },
+              pagination: { enabled: true },
+            },
+            1024: {
+              slidesPerView: 3,
+              spaceBetween: 24,
+              pagination: { enabled: false },
+              navigation: { enabled: true },
+            },
+          }}
           navigation={{
             prevEl: prevRef.current,
             nextEl: nextRef.current,

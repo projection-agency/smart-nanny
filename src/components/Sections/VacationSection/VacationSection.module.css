@@ -118,3 +118,36 @@
     height: 1vw;
   }
 }
+
+@media screen and (max-width: 1024px) {
+  .section {
+    padding-top: 13.3vw;
+
+    .container {
+      .topBlock {
+        margin-bottom: 14.9vw;
+
+        h2 {
+          font-size: 9.6vw;
+          margin: 0 auto;
+
+          span {
+            font-size: 8.5vw;
+
+            svg {
+              bottom: -4.2vw;
+            }
+          }
+        }
+
+        .svg {
+          display: none;
+        }
+
+        .plate {
+          display: none;
+        }
+      }
+    }
+  }
+}

@@ -88,3 +88,36 @@
 .btn:hover {
   background-color: var(--primary-pink-hover);
 }
+
+@media screen and (max-width: 1024px) {
+  .section {
+    padding-top: 13.3vw;
+    padding-bottom: 13.3vw;
+
+    .title {
+      font-size: 9.6vw;
+
+      span {
+        max-width: 38.6vw;
+        font-size: 4.3vw;
+        top: -3vw;
+        right: 19vw;
+        transform: rotate(0deg);
+
+        svg {
+          display: none;
+        }
+      }
+
+      .stars {
+        width: 15.2vw;
+        top: -11.5vw;
+        left: -9.5vw;
+      }
+    }
+
+    .btn {
+      display: none;
+    }
+  }
+}

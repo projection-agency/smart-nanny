@@ -6,7 +6,7 @@ import s from "./GallerySection.module.css";
 import { line } from "../HomeHero/HomeHero";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
+import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
 import "./SwiperButton.css";
 
@@ -115,9 +115,27 @@ export const GallerySection = () => {
 
         <div className={s.swiperWrapper}>
           <Swiper
-            modules={[Navigation]}
-            spaceBetween={36}
-            slidesPerView={4.2}
+            modules={[Navigation, Pagination]}
+            breakpoints={{
+              0: {
+                slidesPerView: 1.1,
+                spaceBetween: 12,
+                navigation: { enabled: false },
+                pagination: { enabled: true },
+              },
+              1024: {
+                spaceBetween: 36,
+                slidesPerView: 4.2,
+                navigation: { enabled: true },
+                pagination: { enabled: false },
+              },
+            }}
+            pagination={{
+              enabled: true,
+              type: "bullets",
+              el: `.${s.paginationCont}`,
+              bulletElement: "p",
+            }}
             navigation={{
               prevEl: prevRef.current,
               nextEl: nextRef.current,
@@ -146,6 +164,7 @@ export const GallerySection = () => {
               </SwiperSlide>
             ))}
           </Swiper>
+          <div className={s.paginationCont}></div>
         </div>
       </Container>
     </section>

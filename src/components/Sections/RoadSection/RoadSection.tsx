@@ -5,6 +5,9 @@ import s from "./RoadSection.module.css";
 import { line } from "../HomeHero/HomeHero";
 import { btnSvg } from "../BlogSection/BlogSection";
 import { useModal } from "@/components/ModalContext";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination } from "swiper/modules";
+import "swiper/css/pagination";
 
 export const selectionSteps = [
   {
@@ -63,7 +66,7 @@ export const RoadSection = () => {
 
   return (
     <section className={s.section}>
-      <Container>
+      <Container className={s.container}>
         <div className={s.titleContainer}>
           <h2>
             Як ми відбираємо та <span>готуємо спеціалістів {line}</span>
@@ -73,6 +76,44 @@ export const RoadSection = () => {
             Ми знаходимо нянь, яким можна довірити найцінніше – вашу дитину.
           </p>
         </div>
+
+        <Swiper
+          className={s.stepListMobile}
+          modules={[Pagination]}
+          slidesPerView={1.1}
+          spaceBetween={20}
+          autoHeight={true}
+          pagination={{
+            enabled: true,
+            type: "bullets",
+            el: `.${s.paginationCont}`,
+            bulletElement: "p",
+          }}
+          onSwiper={(swiper) => console.log(swiper)}
+        >
+          {selectionSteps.map((step, index) => (
+            <SwiperSlide key={index} className={s.slideCont}>
+              <span className={s.step}>
+                <span>{step.step}: </span> {stepBg}
+              </span>
+
+              <h3>{step.title}</h3>
+              <p>{step.description}</p>
+
+              <h4>Що потрібно:</h4>
+
+              <ul className={s.requirementsMobile}>
+                {step.needed.map((item, index) => (
+                  <li key={index}>
+                    {item}
+                    {underline}
+                  </li>
+                ))}
+              </ul>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+        <div className={s.paginationCont}></div>
 
         <ul className={s.stepList}>
           {selectionSteps.map((step, index) => (

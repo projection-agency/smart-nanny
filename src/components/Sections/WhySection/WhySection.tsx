@@ -117,7 +117,7 @@ export const WhySection = () => {
           onSwiper={(swiper) => console.log(swiper)}
         >
           {data.map((item, index) => (
-            <SwiperSlide key={item.id + index}>
+            <SwiperSlide key={item.id + index} className={s.slideCont}>
               <div className={s.swiperSlide}>
                 <Image
                   alt={item.title}
@@ -142,30 +142,6 @@ export const WhySection = () => {
           ))}
         </Swiper>
         <div className={s.paginationCont}></div>
-        <ul className={s.list}>
-          {data.map((item, index) => (
-            <li key={item.id + index}>
-              <Image
-                alt={item.title}
-                width={1920}
-                height={1080}
-                src={item.icon}
-                quality={100}
-              />
-              <h3>{item.title}</h3>
-              <p>{item.desc}</p>
-              <span
-                style={
-                  index == 3
-                    ? { transform: "rotate(25deg)" }
-                    : { transform: "rotate(-10deg)" }
-                }
-              >
-                {item.span}
-              </span>
-            </li>
-          ))}
-        </ul>
       </Container>
     </section>
   );

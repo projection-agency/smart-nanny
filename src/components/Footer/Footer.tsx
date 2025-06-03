@@ -107,12 +107,12 @@ export const Footer = () => {
         </ul>
 
         <div className={s.footerBottomContainer}>
-          <div className="flex gap-[1.6vw]">
+          <div className={`flex gap-[1.6vw] ${s.privacyPolicy}`}>
             <Link href="/policy">Політика конфіденційності</Link>
             <Link href="/offer">Договір публічної оферти</Link>
           </div>
 
-          <div className="absolute left-[50%] -translate-x-[50%]">
+          <div className={`absolute left-[50%] -translate-x-[50%] ${s.rights}`}>
             ©2025 Smart Nanny. All Rights Reserved.
           </div>
 

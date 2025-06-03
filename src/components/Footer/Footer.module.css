@@ -169,3 +169,104 @@
   bottom: 6.2vw;
   animation-delay: 3s;
 }
+
+@media screen and (max-width: 1024px) {
+  .footer {
+    padding-top: 26.7vw;
+    padding-bottom: 21.3vw;
+
+    background: radial-gradient(
+      126% 54.01% at 52% 54%,
+      rgb(255, 145, 178) 99.99%,
+      rgb(255, 244, 241) 100%
+    );
+  }
+
+  .logo {
+    width: 25.6vw;
+    margin-bottom: 12.8vw;
+  }
+
+  .title {
+    font-size: 9.6vw;
+    margin-bottom: 16vw;
+    span {
+      font-size: 8.5vw;
+    }
+  }
+
+  .footerNav {
+    margin-bottom: 8.5vw;
+    ul {
+      flex-direction: column;
+      gap: 6.4vw;
+
+      li {
+        a {
+          font-size: 4.3vw;
+        }
+      }
+    }
+  }
+
+  .socialLinks {
+    padding-right: 7.2vw;
+    padding-left: 7.2vw;
+    margin-bottom: 12.8vw;
+    flex-wrap: wrap;
+    gap: 6.4vw;
+    li {
+      width: 35.5vw;
+      a {
+        font-size: 4.3vw;
+        svg {
+          width: 10.7vw;
+          height: 10.7vw;
+        }
+      }
+    }
+  }
+
+  .cloud1 {
+    width: 50vw;
+    left: -23vw;
+  }
+
+  .cloud2 {
+    width: 50vw;
+    bottom: -0.2vw;
+    left: -7.3vw;
+  }
+
+  .cloud3 {
+    width: 50vw;
+    right: -20.3vw;
+  }
+
+  .cloud4 {
+    width: 50vw;
+    bottom: 35.2vw;
+    right: -27vw;
+  }
+
+  .footerBottomContainer {
+    padding-top: 4.8vw;
+    padding-bottom: 4.8vw;
+    flex-direction: column;
+    gap: 3.2vw;
+
+    font-size: 4.3vw;
+
+    .privacyPolicy {
+      flex-direction: column;
+      gap: 3.2vw;
+      a {
+        font-size: 4.3vw;
+      }
+    }
+
+    .rights {
+      display: none;
+    }
+  }
+}

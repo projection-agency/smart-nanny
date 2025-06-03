@@ -32,3 +32,21 @@
   grid-template-columns: 1fr 1fr;
   gap: 0.8vw;
 }
+
+@media screen and (max-width: 1024px) {
+  .section {
+    .title {
+      width: 55vw;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: 9.6vw;
+      span {
+        font-size: 8.5vw;
+        svg {
+          width: 37.6vw;
+          left: -46vw;
+        }
+      }
+    }
+  }
+}

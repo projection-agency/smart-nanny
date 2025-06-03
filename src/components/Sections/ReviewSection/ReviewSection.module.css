@@ -46,6 +46,10 @@
   margin-bottom: 3.8vw;
 }
 
+.imageContainerMobile {
+  display: none;
+}
+
 .card {
   position: relative;
   padding: 1.6vw;
@@ -167,5 +171,42 @@
   svg {
     width: 2vw;
     height: 1vw;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .section {
+    .container {
+      flex-direction: column;
+
+      .wrapper {
+        .title {
+          font-size: 9.6vw;
+          text-align: center;
+          margin-bottom: 3.2vw;
+
+          span {
+            font-size: 8.5vw;
+
+            svg {
+              bottom: -3.2vw;
+            }
+          }
+        }
+
+        .desc {
+          font-size: 3.7vw;
+          text-align: center;
+          margin-bottom: 10.7vw;
+        }
+
+        .imageContainerMobile {
+          display: block;
+        }
+      }
+      .imageContainer {
+        display: none;
+      }
+    }
   }
 }

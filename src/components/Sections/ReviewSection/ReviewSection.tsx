@@ -57,6 +57,15 @@ export const ReviewSection = () => {
             Історії родин, які вже знайшли свою ідеальну няню через Smart Nanny
           </p>
 
+          <div className={s.imageContainerMobile}>
+            <Image
+              src="/images/reviewImageMob.png"
+              alt="Family"
+              width={1920}
+              height={1080}
+            />
+          </div>
+
           {isReady && (
             <Swiper
               modules={[Navigation, Pagination]}

@@ -108,9 +108,6 @@
       top: 50%;
       left: 50%;
     }
-
-    svg {
-    }
   }
 
   h3 {
@@ -151,6 +148,141 @@
       font-weight: 400;
       font-size: 0.9vw;
       line-height: 135%;
+    }
+  }
+}
+
+.stepListMobile {
+  display: none;
+}
+
+@media screen and (max-width: 1024px) {
+  .section {
+    padding-bottom: 13.3vw;
+    .container {
+      max-width: 100vw;
+    }
+
+    .titleContainer {
+      margin-bottom: 10.7vw;
+
+      h2 {
+        font-size: 9.6vw;
+        margin-bottom: 7.5vw;
+
+        span {
+          font-size: 9.6vw;
+
+          svg {
+            bottom: -4.2vw;
+          }
+        }
+      }
+      p {
+        font-size: 3.7vw;
+      }
+    }
+
+    .stepList {
+      display: none;
+    }
+
+    .stepListMobile {
+      display: block;
+      padding-left: 4.3vw;
+
+      div.slideCont {
+        background-color: #fff;
+        padding: 6.4vw;
+
+        .step {
+          display: block;
+          position: relative;
+          width: fit-content;
+          font-family: Moderustic;
+          font-weight: 700;
+          font-size: 3.7vw;
+          line-height: 135%;
+          margin-bottom: 6.4vw;
+
+          span {
+            z-index: 1;
+            position: absolute;
+            transform: translateY(-50%) translateX(-50%);
+            top: 50%;
+            left: 50%;
+          }
+        }
+
+        h3 {
+          font-family: "First Time Writing!";
+          font-weight: 600;
+          font-size: 6.4vw;
+          line-height: 130%;
+          text-transform: uppercase;
+          margin-bottom: 3.2vw;
+        }
+
+        p {
+          font-family: Moderustic;
+          font-weight: 500;
+          font-size: 3.7vw;
+          line-height: 135%;
+          margin-bottom: 6.4vw;
+        }
+
+        h4 {
+          font-family: Moderustic;
+          font-weight: 600;
+          font-size: 4.3vw;
+          line-height: 135%;
+          margin-bottom: 4.8vw;
+        }
+
+        ul {
+          display: flex;
+          flex-wrap: wrap;
+          column-gap: 1.6vw;
+          row-gap: 6.1vw;
+          max-width: 72.5vw;
+
+          li {
+            padding: 0;
+            font-family: Moderustic;
+            font-weight: 400;
+            font-size: 3.7vw;
+            line-height: 135%;
+          }
+        }
+      }
+    }
+
+    .paginationCont {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 10.7vw;
+
+      p {
+        background-color: black;
+      }
+    }
+
+    .btn {
+      width: 67.7vw;
+      height: 16vw;
+      border-radius: 26.7vw;
+      font-size: 4.3vw;
+
+      svg {
+        height: 16vw;
+      }
+
+      .first {
+        left: -12vw;
+      }
+      .second {
+        right: -12vw;
+      }
     }
   }
 }
