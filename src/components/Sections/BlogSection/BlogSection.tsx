@@ -6,6 +6,9 @@ import { BlogItem } from "@/components/BlogItem/BlogItem";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { API_URL } from "@/constants";
+import data from "./data";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination } from "swiper/modules";
 
 export type BlogPost = {
   id: number;
@@ -44,7 +47,7 @@ export const BlogSection = () => {
         </h2>
 
         <ul className={s.list}>
-          {posts?.slice(0, 4).map((post) => (
+          {data?.slice(0, 4).map((post) => (
             <BlogItem
               key={post.id}
               info={{
@@ -58,6 +61,35 @@ export const BlogSection = () => {
             />
           ))}
         </ul>
+
+        <Swiper
+          modules={[Pagination]}
+          spaceBetween={20}
+          pagination={{
+            type: "bullets",
+            el: `.${s.paginationCont}`,
+            bulletElement: "p",
+          }}
+          className={`${s.swiper} swiper`}
+        >
+          {data?.slice(0, 4).map((post) => (
+            <SwiperSlide>
+              <BlogItem
+                key={post.id}
+                info={{
+                  title: post.title?.rendered,
+                  date: new Date(post.date).toLocaleDateString("uk-UA"),
+                  category: "Новини",
+                  image: post.featured_image_url || "/images/blog/1.jpg",
+                  description: post.excerpt?.rendered.replace(/<[^>]+>/g, ""),
+                  slug: post.slug,
+                }}
+              />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+
+        <div className={s.paginationCont}></div>
 
         <Link href="/blog" className={s.btn}>
           <div className={s.first}>{btnSvg}</div>

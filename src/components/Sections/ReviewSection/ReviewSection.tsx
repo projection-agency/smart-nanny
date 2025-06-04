@@ -10,6 +10,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { useEffect, useRef, useState } from "react";
 import { API_URL } from "@/constants";
+import data from "./data";
 
 type APISmartReview = {
   id: number;
@@ -22,7 +23,7 @@ type APISmartReview = {
 
 export const ReviewSection = () => {
   const paginationRef = useRef<HTMLDivElement>(null);
-  const [reviews, setReviews] = useState<APISmartReview[]>([]);
+  // const [reviews, setReviews] = useState<APISmartReview[]>([]);
 
   const [isReady, setIsReady] = useState(false);
 
@@ -35,7 +36,7 @@ export const ReviewSection = () => {
       try {
         const response = await fetch(`${API_URL}v2/review`);
         const data = await response.json();
-        setReviews(data);
+        // setReviews(data);
       } catch (error) {
         console.error("Помилка при отриманні FAQ:", error);
       }
@@ -69,6 +70,10 @@ export const ReviewSection = () => {
           {isReady && (
             <Swiper
               modules={[Navigation, Pagination]}
+              breakpoints={{
+                0: { navigation: { enabled: false } },
+                1024: { navigation: { enabled: true } },
+              }}
               navigation={{
                 nextEl: `.${s.swiperNext}`,
                 prevEl: `.${s.swiperPrev}`,
@@ -82,7 +87,7 @@ export const ReviewSection = () => {
               slidesPerView={1}
               className={s.swiper}
             >
-              {reviews.map((review) => (
+              {data.map((review) => (
                 <SwiperSlide key={review.id}>
                   <div className={s.card}>
                     <div className={s.plus}>{plus}</div>

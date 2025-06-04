@@ -203,9 +203,65 @@
         .imageContainerMobile {
           display: block;
         }
+
+        .swiper {
+          max-width: 92.5vw;
+
+          .card {
+            padding: 6.4vw;
+            min-height: 84.5vw;
+
+            .header {
+              gap: 5.3vw;
+              margin-bottom: 6.4vw;
+
+              .avatar {
+                width: 21.3vw;
+                height: 21.3vw;
+                border-radius: 10.7vw;
+              }
+
+              .name {
+                font-size: 4.8vw;
+              }
+            }
+
+            .plus {
+              top: 6.4vw;
+              right: 6.4vw;
+
+              svg {
+                width: 7.5vw;
+                height: 6.7vw;
+              }
+            }
+
+            .text {
+              font-size: 4.3vw;
+              margin-bottom: 6.4vw;
+            }
+
+            .footer {
+              span {
+                font-size: 3.7vw;
+              }
+            }
+          }
+        }
       }
+
       .imageContainer {
         display: none;
+      }
+
+      .swiperController {
+        .swiperNext {
+          display: none;
+        }
+
+        .swiperPrev {
+          display: none;
+        }
       }
     }
   }

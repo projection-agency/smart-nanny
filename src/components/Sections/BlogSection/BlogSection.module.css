@@ -2,6 +2,14 @@
   padding: 7vw 0 5.2vw 0;
 }
 
+.paginationCont {
+  display: none;
+}
+
+div.swiper {
+  display: none;
+}
+
 .title {
   position: relative;
   text-align: center;
@@ -96,6 +104,7 @@
 
     .title {
       font-size: 9.6vw;
+      margin-bottom: 10.7vw;
 
       span {
         max-width: 38.6vw;
@@ -117,6 +126,23 @@
     }
 
     .btn {
+      display: none;
+    }
+
+    div.swiper {
+      display: block;
+    }
+
+    .paginationCont {
+      display: flex;
+      justify-content: center;
+
+      p {
+        background-color: black;
+      }
+    }
+
+    .list {
       display: none;
     }
   }
