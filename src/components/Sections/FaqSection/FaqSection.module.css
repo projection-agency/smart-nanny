@@ -35,16 +35,39 @@
 
 @media screen and (max-width: 1024px) {
   .section {
+    padding-bottom: 26.7vw;
+    
+    .container {
+      max-width: 91.5vw;
+    }
     .title {
       width: 55vw;
       margin-left: auto;
       margin-right: auto;
+      margin-bottom: 10.7vw;
       font-size: 9.6vw;
       span {
         font-size: 8.5vw;
         svg {
           width: 37.6vw;
           left: -46vw;
+        }
+      }
+    }
+
+    .faqList {
+      grid-template-columns: 1fr;
+
+      li {
+
+        div {          
+          span{
+            font-size: 4.8vw;
+          }
+
+          p{
+            font-size: 4.8vw;
+          }
         }
       }
     }

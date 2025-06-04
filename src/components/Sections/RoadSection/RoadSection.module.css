@@ -156,6 +156,10 @@
   display: none;
 }
 
+.plate {
+  display: none;
+}
+
 @media screen and (max-width: 1024px) {
   .section {
     padding-bottom: 13.3vw;
@@ -164,6 +168,7 @@
     }
 
     .titleContainer {
+      position: relative;
       margin-bottom: 10.7vw;
 
       h2 {
@@ -178,8 +183,21 @@
           }
         }
       }
+
       p {
+        margin-left: auto;
+        margin-right: auto;
+        width: 80vw;
         font-size: 3.7vw;
+      }
+
+      .plate {
+        display: block;
+        position: absolute;
+        z-index: 100;
+        right: 0vw;
+        bottom: -15.5vw;
+        width: 14.7vw;
       }
     }
 

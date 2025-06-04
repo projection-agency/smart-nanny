@@ -54,7 +54,7 @@ export const FaqSection = ({ nannys }: { nannys?: boolean }) => {
 
   return (
     <section className={s.section}>
-      <Container>
+      <Container className={s.container}>
         <h2 className={s.title}>
           Часті питання
           <span>
@@ -64,7 +64,7 @@ export const FaqSection = ({ nannys }: { nannys?: boolean }) => {
         </h2>
 
         <ul className={s.faqList}>
-          {currentFaqs.map((item) => (
+          {faqs.map((item) => (
             <li key={item.id}>
               <Accordion
                 id={item.id}

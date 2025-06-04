@@ -176,6 +176,8 @@
 
 @media screen and (max-width: 1024px) {
   .section {
+    padding-bottom: 2.7vw;
+
     .container {
       flex-direction: column;
 
@@ -195,9 +197,13 @@
         }
 
         .desc {
-          font-size: 3.7vw;
+          width: 84.8vw;
           text-align: center;
           margin-bottom: 10.7vw;
+          margin-left: auto;
+          margin-right: auto;
+          
+          font-size: 3.7vw;
         }
 
         .imageContainerMobile {
@@ -205,11 +211,17 @@
         }
 
         .swiper {
-          max-width: 92.5vw;
+          position: relative;
+          bottom: 10.7vw;
+          max-width: none;
+          width: 93.6vw;
+          margin-bottom: 6.4vw;
 
           .card {
             padding: 6.4vw;
             min-height: 84.5vw;
+            border-top-right-radius: 2.7vw;
+            border-top-left-radius: 2.7vw;
 
             .header {
               gap: 5.3vw;
@@ -255,6 +267,16 @@
       }
 
       .swiperController {
+        div {
+          position: relative;
+          bottom: 10.7vw;
+
+          span {
+            width: 2.1vw;
+            height: 2.1vw;
+          }
+        }
+
         .swiperNext {
           display: none;
         }

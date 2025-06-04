@@ -8,6 +8,7 @@ import { useModal } from "@/components/ModalContext";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import "swiper/css/pagination";
+import Image from "next/image";
 
 export const selectionSteps = [
   {
@@ -75,6 +76,14 @@ export const RoadSection = () => {
           <p>
             Ми знаходимо нянь, яким можна довірити найцінніше – вашу дитину.
           </p>
+          <Image
+            alt="Plate"
+            width={1920}
+            height={1080}
+            priority
+            src="/icons/plate.svg"
+            className={s.plate}
+          />
         </div>
 
         <Swiper

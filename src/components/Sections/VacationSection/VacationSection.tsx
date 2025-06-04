@@ -16,8 +16,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "@/store/store";
 import { fetchVacations } from "@/store/vacationSlice";
 import Link from "next/link";
-// import { selectFilteredVacations } from "@/store/selectors";
-import data from "./vacationsData";
+import { selectFilteredVacations } from "@/store/selectors";
 
 export const VacationSection = () => {
   const prevRef = useRef<HTMLDivElement>(null);
@@ -32,7 +31,7 @@ export const VacationSection = () => {
     dispatch(fetchVacations());
   }, [dispatch]);
 
-  // const filtered = useSelector(selectFilteredVacations);
+  const filtered = useSelector(selectFilteredVacations);
 
   useEffect(() => {
     if (
@@ -98,7 +97,7 @@ export const VacationSection = () => {
           onSwiper={(swiper) => (swiperRef.current = swiper)}
           className={`${s.swiper} swiper`}
         >
-          {data.map((item, index) => (
+          {filtered.map((item, index) => (
             <SwiperSlide key={index}>
               <VacationItem item={item} />
             </SwiperSlide>

@@ -10,7 +10,6 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { useEffect, useRef, useState } from "react";
 import { API_URL } from "@/constants";
-import data from "./data";
 
 type APISmartReview = {
   id: number;
@@ -23,7 +22,7 @@ type APISmartReview = {
 
 export const ReviewSection = () => {
   const paginationRef = useRef<HTMLDivElement>(null);
-  // const [reviews, setReviews] = useState<APISmartReview[]>([]);
+  const [reviews, setReviews] = useState<APISmartReview[]>([]);
 
   const [isReady, setIsReady] = useState(false);
 
@@ -36,7 +35,7 @@ export const ReviewSection = () => {
       try {
         const response = await fetch(`${API_URL}v2/review`);
         const data = await response.json();
-        // setReviews(data);
+        setReviews(data);
       } catch (error) {
         console.error("Помилка при отриманні FAQ:", error);
       }
@@ -87,7 +86,7 @@ export const ReviewSection = () => {
               slidesPerView={1}
               className={s.swiper}
             >
-              {data.map((review) => (
+              {reviews.map((review) => (
                 <SwiperSlide key={review.id}>
                   <div className={s.card}>
                     <div className={s.plus}>{plus}</div>
@@ -102,7 +101,12 @@ export const ReviewSection = () => {
                       />
                       <div className={s.name}>{review.Full_name}</div>
                     </div>
-                    <p className={s.text}>{review.Review}</p>
+                    <p className={s.text}>
+                      {" "}
+                      {review.Review.length > 100
+                        ? review.Review.slice(0, 100) + "..."
+                        : review.Review}
+                    </p>
                     <div className={s.footer}>
                       <span>{review.Date}</span>
                       <span>{review.Location}</span>

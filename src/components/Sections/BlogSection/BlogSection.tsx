@@ -6,7 +6,6 @@ import { BlogItem } from "@/components/BlogItem/BlogItem";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { API_URL } from "@/constants";
-import data from "./data";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 
@@ -47,7 +46,7 @@ export const BlogSection = () => {
         </h2>
 
         <ul className={s.list}>
-          {data?.slice(0, 4).map((post) => (
+          {posts?.slice(0, 4).map((post) => (
             <BlogItem
               key={post.id}
               info={{
@@ -72,7 +71,7 @@ export const BlogSection = () => {
           }}
           className={`${s.swiper} swiper`}
         >
-          {data?.slice(0, 4).map((post) => (
+          {posts?.slice(0, 4).map((post) => (
             <SwiperSlide>
               <BlogItem
                 key={post.id}
