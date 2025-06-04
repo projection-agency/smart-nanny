@@ -42,8 +42,8 @@ export const VacationItem = ({ item }: { item: Vacation }) => {
               <span>Опис</span>
             </div>
             <p>
-              {item.Description.length > 300
-                ? item.Description.slice(0, 300) + "..."
+              {item.Description.length > 280
+                ? item.Description.slice(0, 280) + "..."
                 : item.Description}
             </p>
           </div>

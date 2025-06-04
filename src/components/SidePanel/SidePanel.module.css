@@ -98,11 +98,14 @@
       gap: 6.4vw;
       li {
         svg {
-          use {
-            stroke: rgb(255, 145, 178);
-          }
           width: 13.9vw;
           height: 13.9vw;
+
+          path {
+            display: block;
+            fill: transparent;
+            stroke: rgb(255, 145, 178);
+          }
         }
       }
     }

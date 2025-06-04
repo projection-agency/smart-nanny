@@ -16,6 +16,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "@/store/store";
 import { fetchVacations } from "@/store/vacationSlice";
 import { selectFilteredVacations } from "@/store/selectors";
+import data from "./vacationsData";
 
 export const VacationSection = () => {
   const prevRef = useRef<HTMLDivElement>(null);
@@ -71,8 +72,6 @@ export const VacationSection = () => {
 
         <Swiper
           modules={[Navigation, Pagination]}
-          spaceBetween={24}
-          slidesPerView={3}
           breakpoints={{
             0: {
               slidesPerView: 1,
@@ -86,6 +85,11 @@ export const VacationSection = () => {
               navigation: { enabled: true },
             },
           }}
+          pagination={{
+            type: "bullets",
+            el: `.${s.paginationCont}`,
+            bulletElement: "p",
+          }}
           navigation={{
             prevEl: prevRef.current,
             nextEl: nextRef.current,
@@ -93,12 +97,13 @@ export const VacationSection = () => {
           onSwiper={(swiper) => (swiperRef.current = swiper)}
           className={`${s.swiper} swiper`}
         >
-          {filtered.map((item, index) => (
+          {data.map((item, index) => (
             <SwiperSlide key={index}>
               <VacationItem item={item} />
             </SwiperSlide>
           ))}
         </Swiper>
+        <div className={s.paginationCont}></div>
 
         <div className={s.swiperController}>
           <div style={{ transform: "rotate(180deg)" }}>{buttonSvg}</div>
@@ -111,6 +116,10 @@ export const VacationSection = () => {
           </div>
           <div>{buttonSvg}</div>
         </div>
+
+        <a href="/" className={s.moreVacations}>
+          Переглянути всі вакансії
+        </a>
       </Container>
     </section>
   );

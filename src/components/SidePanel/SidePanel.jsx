@@ -39,7 +39,7 @@ const SidePanel = ({ isOpen, onClose }) => {
           <ul className={s.sidePanelNavList}>
             {navLinks.map((item, index) => {
               return (
-                <li key={index} onClick={()=>onClose()}>
+                <li key={index} onClick={() => onClose()}>
                   <Link href={`/${item.link}`}>{item.title}</Link>
                 </li>
               );
@@ -60,9 +60,9 @@ const SidePanel = ({ isOpen, onClose }) => {
           <ul className={s.socialLinks}>
             <li>
               <a href="">
-                <svg>
-                  <use xlinkHref="/icons/social-icons.svg#icon-inst"></use>
-                </svg>
+                  <svg>
+                    <use href="/icons/social-icons.svg#icon-inst"/>
+                  </svg>
               </a>
             </li>
 

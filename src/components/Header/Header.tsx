@@ -24,7 +24,7 @@ export const Header = () => {
       <Container className="flex justify-between">
         <button
           className={s.mobileMenuBtn}
-          onClick={()=>{openSidePanel();console.log(sidePanelIsOpen)}}
+          onClick={()=>{openSidePanel()}}
         >
           <Image
             src="/icons/mobile-menu-icon.svg"
@@ -45,7 +45,6 @@ export const Header = () => {
               alt="Heder logo"
               width={0}
               height={0}
-              // style={{ width: "5vw", height: "auto" }}
               priority
             />
           </Link>
