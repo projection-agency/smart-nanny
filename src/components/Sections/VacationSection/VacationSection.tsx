@@ -15,7 +15,8 @@ import { VacationController } from "@/components/VacationController/VacationCont
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "@/store/store";
 import { fetchVacations } from "@/store/vacationSlice";
-import { selectFilteredVacations } from "@/store/selectors";
+import Link from "next/link";
+// import { selectFilteredVacations } from "@/store/selectors";
 import data from "./vacationsData";
 
 export const VacationSection = () => {
@@ -31,7 +32,7 @@ export const VacationSection = () => {
     dispatch(fetchVacations());
   }, [dispatch]);
 
-  const filtered = useSelector(selectFilteredVacations);
+  // const filtered = useSelector(selectFilteredVacations);
 
   useEffect(() => {
     if (
@@ -117,9 +118,9 @@ export const VacationSection = () => {
           <div>{buttonSvg}</div>
         </div>
 
-        <a href="/" className={s.moreVacations}>
+        <Link href="/" className={s.moreVacations}>
           Переглянути всі вакансії
-        </a>
+        </Link>
       </Container>
     </section>
   );
