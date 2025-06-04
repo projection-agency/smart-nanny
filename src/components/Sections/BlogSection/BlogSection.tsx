@@ -72,9 +72,8 @@ export const BlogSection = () => {
           className={`${s.swiper} swiper`}
         >
           {posts?.slice(0, 4).map((post) => (
-            <SwiperSlide>
+            <SwiperSlide key={post.id}>
               <BlogItem
-                key={post.id}
                 info={{
                   title: post.title?.rendered,
                   date: new Date(post.date).toLocaleDateString("uk-UA"),

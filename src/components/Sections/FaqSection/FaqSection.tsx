@@ -64,7 +64,7 @@ export const FaqSection = ({ nannys }: { nannys?: boolean }) => {
         </h2>
 
         <ul className={s.faqList}>
-          {faqs.map((item) => (
+          {currentFaqs.map((item) => (
             <li key={item.id}>
               <Accordion
                 id={item.id}
