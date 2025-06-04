@@ -9,6 +9,7 @@
   transform: translateX(-100%);
   z-index: 999999;
   background-color: #fff;
+  overflow-y: scroll;
 
   .sidePanelCont {
     header {
@@ -38,7 +39,7 @@
 
   nav {
     font-family: Moderustic;
-    font-size: 14px;
+    font-size: 5.9vw;
     font-weight: 500;
     line-height: 100%;
     letter-spacing: -2%;
@@ -97,11 +98,14 @@
       gap: 6.4vw;
       li {
         svg {
-          use{
-            stroke: rgb(255, 145, 178);
-          }
           width: 13.9vw;
           height: 13.9vw;
+
+          path {
+            display: block;
+            fill: transparent;
+            stroke: rgb(255, 145, 178);
+          }
         }
       }
     }

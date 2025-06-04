@@ -230,24 +230,23 @@
 
   .cloud1 {
     width: 50vw;
-    left: -23vw;
+    left: -39vw;
   }
 
   .cloud2 {
     width: 50vw;
-    bottom: -0.2vw;
-    left: -7.3vw;
+    bottom: 47.8vw;
+    left: -29.3vw;
   }
 
   .cloud3 {
     width: 50vw;
-    right: -20.3vw;
+    top: -6.8vw;
+    right: -17.3vw;
   }
 
   .cloud4 {
-    width: 50vw;
-    bottom: 35.2vw;
-    right: -27vw;
+    display: none;
   }
 
   .footerBottomContainer {

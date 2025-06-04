@@ -119,9 +119,18 @@
   }
 }
 
+.paginationCont {
+  display: none;
+}
+
+.moreVacations {
+  display: none;
+}
+
 @media screen and (max-width: 1024px) {
   .section {
     padding-top: 13.3vw;
+    padding-bottom: 13.3vw;
 
     .container {
       .topBlock {
@@ -147,6 +156,46 @@
         .plate {
           display: none;
         }
+      }
+
+      .swiper {
+        margin-bottom: 6.4vw;
+      }
+
+      .paginationCont {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 10.7vw;
+
+        p {
+          background-color: black;
+        }
+      }
+
+      .swiperController {
+        display: none;
+      }
+
+      .moreVacations {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        padding-top: 6.4vw;
+        padding-bottom: 6.4vw;
+        border-radius: 26.7vw;
+
+        font-family: Futura PT;
+        font-size: 5.3vw;
+        font-weight: 500;
+        line-height: 100%;
+        letter-spacing: 0%;
+        text-align: left;
+        background-color: var(--primary-pink);
+        color: rgb(253, 248, 245);
+      }
+
+      .moreVacations:hover {
+        background-color: var(--primary-pink-hover);
       }
     }
   }
