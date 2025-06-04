@@ -7,7 +7,6 @@ import { RoadSection } from "@/components/Sections/RoadSection/RoadSection";
 import { ServicesSection } from "@/components/Sections/ServicesSection/ServicesSection";
 import { VacationSection } from "@/components/Sections/VacationSection/VacationSection";
 import { WhySection } from "@/components/Sections/WhySection/WhySection";
-import SidePanel from "../components/SidePanel/SidePanel";
 export const metadata = {
   title: "Smart Nanny",
   description: "Ми підбираємо надійних нянь, яким можна довірити вашу дитину.",
@@ -25,7 +24,6 @@ export default function Home() {
       <BlogSection />
       <ReviewSection />
       <FaqSection />
-      <SidePanel />
     </main>
   );
 }

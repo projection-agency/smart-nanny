@@ -1,19 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import s from "./Header.module.css";
 import { Container } from "../Container";
 import Image from "next/image";
 import Link from "next/link";
 import { LanguageSwitcher } from "../LanguageSwitcher/LanguageSwitcher";
 import { useModal } from "../ModalContext";
+import SidePanel from "../SidePanel/SidePanel";
 
 export const Header = () => {
+  const [sidePanelIsOpen, setSidePanelIsOpen] = useState(false);
   const { openModal } = useModal();
+
+  const openSidePanel = () => {
+    setSidePanelIsOpen(true)
+  };
+
+    const closeSidePanel = () => {
+    setSidePanelIsOpen(false)
+  };
 
   return (
     <header className={s.header}>
       <Container className="flex justify-between">
         <button
           className={s.mobileMenuBtn}
+          onClick={()=>{openSidePanel();console.log(sidePanelIsOpen)}}
         >
           <Image
             src="/icons/mobile-menu-icon.svg"
@@ -102,7 +113,9 @@ export const Header = () => {
             </div>
           </div>
         </div>
+        <SidePanel isOpen={sidePanelIsOpen} onClose={closeSidePanel}/>
       </Container>
+
     </header>
   );
 };
