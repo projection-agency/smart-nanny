@@ -59,35 +59,47 @@ const SidePanel = ({ isOpen, onClose }) => {
 
           <ul className={s.socialLinks}>
             <li>
-              <a href="">
-                  <svg>
-                    <use href="/icons/social-icons.svg#icon-inst"/>
-                  </svg>
-              </a>
+              <Link href="">
+                <Image
+                  width={32}
+                  height={32}
+                  src="/icons/sidebar/icon-inst.svg"
+                  alt="Logotype"
+                />
+              </Link>
             </li>
 
             <li>
-              <a href="">
-                <svg>
-                  <use xlinkHref="/icons/social-icons.svg#icon-viber"></use>
-                </svg>
-              </a>
+              <Link href="">
+                <Image
+                  width={32}
+                  height={32}
+                  src="/icons/sidebar/icon-viber.svg"
+                  alt="Logotype"
+                />
+              </Link>
             </li>
 
             <li>
-              <a href="">
-                <svg>
-                  <use xlinkHref="/icons/social-icons.svg#icon-tg"></use>
-                </svg>
-              </a>
+              <Link href="">
+                <Image
+                  width={32}
+                  height={32}
+                  src="/icons/sidebar/icon-tg.svg"
+                  alt="Logotype"
+                />
+              </Link>
             </li>
 
             <li>
-              <a href="">
-                <svg>
-                  <use xlinkHref="/icons/social-icons.svg#icon-whatsapp"></use>
-                </svg>
-              </a>
+              <Link href="">
+                <Image
+                  width={32}
+                  height={32}
+                  src="/icons/sidebar/icon-whatsapp.svg"
+                  alt="Logotype"
+                />
+              </Link>
             </li>
           </ul>
         </div>
