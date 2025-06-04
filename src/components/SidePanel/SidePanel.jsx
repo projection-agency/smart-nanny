@@ -1,15 +1,22 @@
 import s from "./SidePanel.module.css";
 import Image from "next/image";
 import SidePanelLangSwitcher from "../SidePanelLangSwitcher/SidePanelLangSwitcher";
+import Link from "next/link";
 
-const navLinks = ["Підбір няні", "Навчання", "Стати нянею", "Вакансії", "Блог"];
+const navLinks = [
+  { title: "Підбір няні", link: "" },
+  { title: "Навчання", link: "education" },
+  { title: "Стати нянею", link: "nanny-selection" },
+  { title: "Вакансії", link: "vacation" },
+  { title: "Блог", link: "blog" },
+];
 
-const SidePanel = () => {
+const SidePanel = ({ isOpen, onClose }) => {
   return (
-    <aside className={s.sidePanel}>
+    <aside className={`${s.sidePanel} ${isOpen ? s.isOpen : " "}`}>
       <div className={s.sidePanelCont}>
         <header>
-          <button>
+          <button onClick={() => onClose()}>
             <Image
               width={1920}
               height={1080}
@@ -31,7 +38,11 @@ const SidePanel = () => {
           <h2>Меню</h2>
           <ul className={s.sidePanelNavList}>
             {navLinks.map((item, index) => {
-              return <li key={index}>{item}</li>;
+              return (
+                <li key={index} onClick={()=>onClose()}>
+                  <Link href={`/${item.link}`}>{item.title}</Link>
+                </li>
+              );
             })}
           </ul>
         </nav>
@@ -46,39 +57,39 @@ const SidePanel = () => {
             <a href="">+38 (098) 308 58 47</a>
           </div>
 
-        <ul className={s.socialLinks}>
-          <li>
-            <a href="">
-              <svg>
-                <use xlinkHref="/icons/social-icons.svg#icon-inst"></use>
-              </svg>
-            </a>
-          </li>
+          <ul className={s.socialLinks}>
+            <li>
+              <a href="">
+                <svg>
+                  <use xlinkHref="/icons/social-icons.svg#icon-inst"></use>
+                </svg>
+              </a>
+            </li>
 
-          <li>
-            <a href="">
-              <svg>
-                <use xlinkHref="/icons/social-icons.svg#icon-viber"></use>
-              </svg>
-            </a>
-          </li>
+            <li>
+              <a href="">
+                <svg>
+                  <use xlinkHref="/icons/social-icons.svg#icon-viber"></use>
+                </svg>
+              </a>
+            </li>
 
-          <li>
-            <a href="">
-              <svg>
-                <use xlinkHref="/icons/social-icons.svg#icon-tg"></use>
-              </svg>
-            </a>
-          </li>
+            <li>
+              <a href="">
+                <svg>
+                  <use xlinkHref="/icons/social-icons.svg#icon-tg"></use>
+                </svg>
+              </a>
+            </li>
 
-          <li>
-            <a href="">
-              <svg>
-                <use xlinkHref="/icons/social-icons.svg#icon-whatsapp"></use>
-              </svg>
-            </a>
-          </li>
-        </ul>
+            <li>
+              <a href="">
+                <svg>
+                  <use xlinkHref="/icons/social-icons.svg#icon-whatsapp"></use>
+                </svg>
+              </a>
+            </li>
+          </ul>
         </div>
       </div>
     </aside>
