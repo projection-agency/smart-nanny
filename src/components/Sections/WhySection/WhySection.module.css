@@ -138,12 +138,10 @@
 
   .list {
     margin-bottom: 10.7vw;
-    /* padding-left: 3.2vw;
-    padding-right: 13.2vw; */
+    padding-left: 3.2vw;
+    padding-right: 13.2vw;
 
     div {
-      padding-left: 3.2vw;
-      padding-right: 13.2vw;
       .slideCont {
         background-color: #fff;
         min-height: 60.8vw;
