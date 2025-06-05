@@ -85,11 +85,11 @@ export const VacationForm = () => {
                 "Робота з проживанням",
                 "Погодинна допомога",
                 "Повна зайнятість",
-              ].map((label) => {
+              ].map((label,idx) => {
                 const checked = employmentTypes.includes(label);
 
                 return (
-                  <SwiperSlide className={s.swiperSlide}>
+                  <SwiperSlide className={s.swiperSlide} key={idx}>
                     <label key={label} className={s.checkboxItem}>
                       <input
                         type="checkbox"
