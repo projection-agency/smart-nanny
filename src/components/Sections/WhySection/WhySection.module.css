@@ -118,6 +118,10 @@
   margin: 0 auto;
 }
 
+.paginationCont{
+  display: none;
+}
+
 @media screen and (max-width: 1024px) {
   .section {
     padding: 26.7vw 0;

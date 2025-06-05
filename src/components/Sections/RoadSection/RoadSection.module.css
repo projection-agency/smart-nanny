@@ -36,6 +36,18 @@
     }
   }
 
+  .plate {
+    display: none;
+  }
+
+  .stepListMobile {
+    display: none;
+  }
+
+  .paginationCont{
+    display: none;
+  }
+
   .btn:hover {
     background-color: var(--primary-pink-hover);
   }
@@ -150,14 +162,6 @@
       line-height: 135%;
     }
   }
-}
-
-.stepListMobile {
-  display: none;
-}
-
-.plate {
-  display: none;
 }
 
 @media screen and (max-width: 1024px) {

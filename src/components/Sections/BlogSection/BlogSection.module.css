@@ -99,7 +99,7 @@ div.swiper {
 
 @media screen and (max-width: 1024px) {
   .section {
-    padding-top: 13.3vw;
+    padding-top: 18.7vw;
     padding-bottom: 13.3vw;
 
     .title {
@@ -131,6 +131,10 @@ div.swiper {
 
     div.swiper {
       display: block;
+
+      div.swiperSlide {
+        min-height: 121.9vw;
+      }
     }
 
     .paginationCont {

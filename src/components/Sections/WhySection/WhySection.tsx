@@ -105,7 +105,7 @@ export const WhySection = () => {
 
         <Swiper
           className={s.list}
-          breakpoints={{ 1024: { slidesPerView: 4 } }}
+          breakpoints={{ 1025: { slidesPerView: 4 } }}
           modules={[Pagination]}
           slidesPerView={1.2}
           pagination={{

@@ -104,6 +104,11 @@
 @media screen and (max-width: 1024px) {
   .accordion {
     padding: 6.4vw;
+
+    .content {
+      padding-top: 6.4vw;
+      font-size: 4.3vw;
+    }
   }
 
   .title {
@@ -114,13 +119,8 @@
     width: 10.7vw;
     height: 10.7vw;
     svg {
-      width: 2.4vw;
+      width: 3.4vw;
       height: 3.7vw;
     }
-  }
-
-  .content {
-    padding-top: 6.4vw;
-    font-size: 4.3vw;
   }
 }
