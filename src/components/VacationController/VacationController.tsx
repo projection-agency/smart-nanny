@@ -11,8 +11,10 @@ import {
 } from "@/store/vacationSlice";
 import { selectCitiesByCountry, selectCountries } from "@/store/selectors";
 import { RootState } from "@/store/store";
+import { usePathname } from "next/navigation";
 
 export const VacationController = () => {
+  const pathname = usePathname()
   const dispatch = useDispatch();
   const cities = useSelector(selectCitiesByCountry);
   const countries = useSelector(selectCountries);
@@ -25,7 +27,7 @@ export const VacationController = () => {
   );
 
   return (
-    <div className={s.panel}>
+    <div className={`${s.panel} ${pathname.includes("vacation") ? " " : s.unactive}`}>
       <div className={s.controller}>
         <Dropdown
           placeholder="Країна"
