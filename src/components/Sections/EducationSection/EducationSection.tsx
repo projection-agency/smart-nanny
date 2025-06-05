@@ -26,6 +26,22 @@ export const EducationSection = () => {
     <section className={s.section}>
       <Container>
         <div className={s.topBlock}>
+          <div className={s.imageBlockMobile}>
+            <Image
+              width={1920}
+              height={1080}
+              src="/images/education.jpg"
+              alt="Image"
+            />
+            <Image
+              width={1920}
+              height={1080}
+              src="/icons/yellow-palte.svg"
+              alt="Image"
+              className={s.palte}
+            />
+          </div>
+
           <div className={s.contentBlock}>
             {cornerSvg}
 

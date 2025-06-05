@@ -19,10 +19,19 @@ export const NannySelectionHero = () => {
           priority
         />
       </div>
+      <div className={s.homeHeroImageMobile}>
+        <Image
+          src="/images/nanny-hero-mobile.png"
+          alt="Hero image"
+          width={1920}
+          height={1080}
+          priority
+        />
+      </div>
 
       <div className={s.content}>
         <h1>
-          <span>Разом {line} </span>до нових можливостей
+          <span>Разом {line} </span>{" "} до нових можливостей
         </h1>
 
         <p>

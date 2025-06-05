@@ -118,13 +118,13 @@
   margin: 0 auto;
 }
 
-.paginationCont{
+.paginationCont {
   display: none;
 }
 
 @media screen and (max-width: 1024px) {
   .section {
-    padding: 26.7vw 0;
+    padding: 26.7vw 0 13.3vw;
   }
 
   .content {
@@ -140,12 +140,24 @@
     }
   }
 
-  div.list {
+  .desc{
+    font-size: 3.7vw;
+    max-width: 91.5vw;
+  }
+
+  .sectionSelection .list {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    max-width: none;
+    margin-bottom: 10.7vw;
+  }
+
+  div.list, .sectionSelection div.list {
     margin-bottom: 10.7vw;
     padding-left: 3.2vw;
     padding-right: 13.2vw;
 
-    div {
+    >div {
       .slideCont {
         background-color: #fff;
         min-height: 60.8vw;
