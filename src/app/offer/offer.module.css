@@ -75,3 +75,68 @@
   margin: 0 auto;
   gap: 0.8vw;
 }
+
+@media screen and (max-width: 1024px) {
+  .section {
+    padding-top: 21.3vw;
+    padding-bottom: 26.4vw;
+  
+    .titleContainer {
+      h1 {
+        margin-bottom: 4.26vw;
+      }
+      .span {
+        font-size: 4.26vw;
+        margin-bottom: 4.26vw;
+      }
+  
+      .text {
+        text-align: center;
+        font-family: Moderustic;
+        font-weight: 400;
+        font-size: 3.73vw;
+        max-width: 91vw;
+        margin: 0 auto;
+        margin-bottom: 10.7vw;
+      }
+    }
+  
+    h1 {
+      position: relative;
+      font-family: Futura PT;
+      font-weight: 450;
+      font-size: 10.6vw;
+      line-height: 90%;
+      text-align: center;
+      max-width: 80%;
+      margin: 0 auto;
+      margin-bottom: 5.2vw;
+  
+      .svg {
+        position: absolute;
+        width: 8vw;
+        left: 0vw;
+        top: -7vw;
+      }
+  
+      span {
+        font-size: 8.5vw;
+  
+        svg {
+          position: absolute;
+          left: 0;
+          width: 100%;
+        }
+      }
+    }
+  }
+  
+  .list {
+    display: grid;
+    grid-template-columns: 1fr;
+    max-width: 91.4vw;
+    margin: 0 auto;
+    gap: 3.2vw;
+    margin-top: 10.6vw;
+  }
+}

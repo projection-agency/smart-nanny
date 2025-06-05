@@ -3,6 +3,7 @@
 import { Accordion } from "@/components/Accordion/Accordion";
 import s from "../offer/offer.module.css";
 import { useState } from "react";
+import { Breadcrumbs, BreadcrumbItem } from "@/components/Breadcrumbs/Breadcrumbs";
 
 const privacyPolicySections = [
   {
@@ -68,8 +69,14 @@ export default function Policy() {
     setOpenId((prev) => (prev === id ? null : id));
   };
 
+  const breadcrumbs: BreadcrumbItem[] = [
+    { label: "Головна", href: "/" },
+    { label: "Політика", active: true },
+  ];
+
   return (
     <main>
+      <Breadcrumbs items={breadcrumbs} colorScheme="dark" />
       <section className={s.section}>
         <div className={s.titleContainer}>
           <h1>
