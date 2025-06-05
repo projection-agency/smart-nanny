@@ -40,7 +40,8 @@ export const ProgramSection = () => {
       <div className={s.titleContainer}>
         <h2>
           {stars}
-          Програма курсу<span>Програма вашого навчання{line}</span>
+          <span>Програма вашого навчання{line}</span>
+          Програма курсу
         </h2>
         <p>
           Цей курс побудований так, щоб ви не просто прослухали лекції, а

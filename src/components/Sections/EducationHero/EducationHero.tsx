@@ -27,6 +27,24 @@ export const EducationHero = () => {
           className={s.sun}
         />
       </div>
+      <div className={s.homeHeroImageMobile}>
+        <Image
+          src="/images/education-hero-kids-mobile.png"
+          alt="Hero image"
+          width={1225}
+          height={1083}
+          priority
+        />
+
+        <Image
+          alt="Sun"
+          width={1920}
+          height={1080}
+          priority
+          src="/icons/sun.svg"
+          className={s.sun}
+        />
+      </div>
 
       <div className={s.content}>
         <h1>

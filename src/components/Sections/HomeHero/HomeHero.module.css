@@ -24,6 +24,7 @@
 
 .content {
   position: relative;
+  padding-right: 3.125vw;
   h1 {
     position: relative;
     font-family: Futura PT;
@@ -37,7 +38,7 @@
 
     .svg {
       position: absolute;
-      right: 4vw;
+      right: 3vw;
       top: 0;
       width: 3.4vw;
       height: auto;

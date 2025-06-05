@@ -54,7 +54,8 @@ export const GetSection = () => {
 
         <div className={s.desc}>
           <span>І це тільки початок!</span>
-          <span>Ми відкриваємо нові можливості та горизонти.{line}</span>
+          <span>Ми відкриваємо нові можливості та горизонти.</span>
+          {line}
         </div>
       </div>
       <Image

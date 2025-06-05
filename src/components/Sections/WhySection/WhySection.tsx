@@ -99,13 +99,13 @@ export const WhySection = () => {
           <p className={s.desc}>
             Ми будуємо співпрацю на довірі, чітких домовленостях і взаємній
             повазі. Забезпечуємо прозорий процес, чесні умови та завжди
-            лишаємося на зв’язку, щоб ви завжди відчували підтримку
+            лишаємося на зв&apos;язку, щоб ви завжди відчували підтримку
           </p>
         )}
 
         <Swiper
           className={s.list}
-          breakpoints={{ 1025: { slidesPerView: 4 } }}
+          breakpoints={{ 1025: { slidesPerView: 4, spaceBetween: 60 } }}
           modules={[Pagination]}
           slidesPerView={1.2}
           pagination={{
