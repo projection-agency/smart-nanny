@@ -1,79 +1,100 @@
-// import s from "./article.module.css";
-// import Image from "next/image";
-// import { API_URL } from "@/constants";
-// import { notFound } from "next/navigation";
+"use client";
 
-// export type BlogPost = {
-//   id: number;
-//   slug: string;
-//   title: { rendered: string };
-//   date: string;
-//   excerpt: { rendered: string };
-//   content: { rendered: string };
-//   _embedded?: {
-//     "wp:featuredmedia": { source_url: string }[];
-//   };
-// };
+import { useEffect, useState } from "react";
+import { useParams } from "next/navigation";
+import s from "./article.module.css";
+import Image from "next/image";
+import { API_URL } from "@/constants";
 
-// export default async function BlogPage(props: { params: { slug: string } }) {
-//   const slug = decodeURIComponent(props.params.slug);
-//   const res = await fetch(`${API_URL}v2/posts?slug=${slug}&_embed=1`, {
-//     next: { revalidate: 60 },
-//   });
+export type BlogPost = {
+  id: number;
+  slug: string;
+  title: { rendered: string };
+  date: string;
+  excerpt: { rendered: string };
+  content: { rendered: string };
+  _embedded?: {
+    "wp:featuredmedia": { source_url: string }[];
+  };
+};
 
-//   const data: BlogPost[] = await res.json();
-//   const post = data[0];
+export default function BlogPage() {
+  const { slug } = useParams<{ slug: string }>();
+  const [post, setPost] = useState<BlogPost | null>(null);
+  const [loading, setLoading] = useState(true);
 
-//   if (!post) return notFound();
+  useEffect(() => {
+    if (!slug) return;
 
-//   const image =
-//     post._embedded?.["wp:featuredmedia"]?.[0]?.source_url ||
-//     "/images/program-item-video.jpg";
+    const fetchPost = async () => {
+      try {
+        const res = await fetch(`${API_URL}v2/posts?slug=${slug}&_embed=1`);
+        const data: BlogPost[] = await res.json();
 
-//   const formattedDate = new Date(post.date).toLocaleDateString("uk-UA", {
-//     day: "2-digit",
-//     month: "2-digit",
-//     year: "numeric",
-//   });
+        if (data[0]) {
+          setPost(data[0]);
+        } else {
+          setPost(null);
+        }
+      } catch (error) {
+        console.error("Помилка при завантаженні поста:", error);
+        setPost(null);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-//   return (
-//     <main>
-//       <section className={s.section}>
-//         <div className={s.container}>
-//           <div className={s.titleContainer}>
-//             <div>
-//               <span>{formattedDate}</span>
-//               <div></div>
-//               <span>Навчання та поради</span>
-//             </div>
+    fetchPost();
+  }, [slug]);
 
-//             <h1 dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
-//             <p dangerouslySetInnerHTML={{ __html: post.excerpt.rendered }} />
-//           </div>
+  if (loading) {
+    return <div className={s.loading}>Завантаження…</div>;
+  }
 
-//           <div className={s.imageContainer}>
-//             <Image
-//               width={1920}
-//               height={1080}
-//               src={image}
-//               alt={post.title.rendered}
-//             />
-//           </div>
+  if (!post) {
+    return <div className={s.notFound}>Пост не знайдено</div>;
+  }
 
-//           <div
-//             className={s.textContainer}
-//             dangerouslySetInnerHTML={{ __html: post.content.rendered }}
-//           />
-//         </div>
-//       </section>
-//     </main>
-//   );
-// }
+  const image =
+    post._embedded?.["wp:featuredmedia"]?.[0]?.source_url ||
+    "/images/program-item-video.jpg";
 
-export default function Article() {
+  const formattedDate = new Date(post.date).toLocaleDateString("uk-UA", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+  });
+
   return (
     <main>
-      <p>S</p>
+      <section className={s.section}>
+        <div className={s.container}>
+          <div className={s.titleContainer}>
+            <div>
+              <span>{formattedDate}</span>
+              <div></div>
+              <span>Навчання та поради</span>
+            </div>
+
+            <h1 dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
+            <p dangerouslySetInnerHTML={{ __html: post.excerpt.rendered }} />
+          </div>
+
+          <div className={s.imageContainer}>
+            <Image
+              width={1920}
+              height={1080}
+              src={image}
+              alt={post.title.rendered}
+            />
+          </div>
+
+          <div
+            className={s.textContainer}
+            dangerouslySetInnerHTML={{ __html: post.content.rendered }}
+          />
+        </div>
+      </section>
     </main>
   );
 }
