@@ -183,8 +183,7 @@
       }
 
       .contentBlock {
-        
-        .cornerSvg{
+        .cornerSvg {
           display: none;
         }
 
@@ -245,6 +244,8 @@
 
           p {
             font-size: 3.7vw;
+            max-width: 55.2vw;
+            margin: 0 auto;
           }
         }
       }

@@ -11,6 +11,8 @@ export const VacationFormSection = () => {
         <span>Залишай заявку в агенцію {line}</span>
       </h2>
 
+      <p className={s.subtitle}>Заповни коротку анкету — ми переглянемо твою заявку і зв’яжемося найближчим часом</p>
+
       <VacationForm />
 
       <Image

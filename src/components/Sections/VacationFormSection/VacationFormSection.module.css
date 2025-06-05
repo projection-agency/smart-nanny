@@ -93,3 +93,51 @@
   top: 18.6vw;
   left: 6vw;
 }
+
+.subtitle {
+  display: none;
+}
+
+@media screen and (max-width: 1024px) {
+  .section {
+    padding: 26.7vw 0 13.3vw 0;
+
+    .title {
+      font-size: 9.6vw;
+      max-width: 91.5vw;
+      margin-bottom: 3.2vw;
+
+      span {
+        display: none;
+      }
+
+      svg {
+        width: 20.5vw;
+        top: -6.5vw;
+        left: -11.5vw;
+      }
+    }
+
+    .subtitle {
+      display: block;
+      max-width: 91.5vw;
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 10.7vw;
+
+      font-family: Moderustic;
+      font-size: 3.7vw;
+      font-weight: 400;
+      line-height: 135%;
+      letter-spacing: -2%;
+      text-align: center;
+    }
+  }
+
+  .cloud1,
+  .cloud2,
+  .cloud3,
+  .cloud4 {
+    display: none;
+  }
+}

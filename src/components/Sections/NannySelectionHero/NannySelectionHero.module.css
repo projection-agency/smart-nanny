@@ -144,6 +144,22 @@
 @media screen and (max-width: 1024px) {
   .section {
     flex-direction: column;
+    padding-bottom: 13.3vw;
+
+    .cloud1 {
+      display: none;
+    }
+
+    .cloud2 {
+      width: 29.9vw;
+      bottom: 92.3vw;
+    }
+
+    .cloud3 {
+      width: 29.9vw;
+      right: 88vw;
+      top: 21vw;
+    }
 
     .homeHeroImage {
       display: none;
@@ -151,6 +167,7 @@
 
     .homeHeroImageMobile {
       display: block;
+      margin-bottom: 9.3vw;
     }
 
     .content {

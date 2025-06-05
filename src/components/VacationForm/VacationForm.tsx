@@ -3,6 +3,8 @@
 import { useState } from "react";
 import s from "./VacationForm.module.css";
 import { PhoneNumberInput } from "../PhoneInput/PhoneInput";
+import { Pagination } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 export const VacationForm = () => {
   const [employmentTypes, setEmploymentTypes] = useState<string[]>([]);
@@ -67,29 +69,42 @@ export const VacationForm = () => {
           <p>
             Формат зайнятості, який вас цікавить<span>*</span>
           </p>
-          <div className={s.checkboxGrid}>
-            {[
-              "Часткова зайнятість",
-              "Робота з проживанням",
-              "Погодинна допомога",
-              "Повна зайнятість",
-            ].map((label) => {
-              const checked = employmentTypes.includes(label);
+            <Swiper
+              modules={[Pagination]}
+              slidesPerView={1.2}
+              spaceBetween={20}
+              pagination={{
+                type: "bullets",
+                el: `.${s.paginationCont}`,
+                bulletElement: "p",
+              }}
+              className={`${s.swiper} swiper`}
+            >
+              {[
+                "Часткова зайнятість",
+                "Робота з проживанням",
+                "Погодинна допомога",
+                "Повна зайнятість",
+              ].map((label) => {
+                const checked = employmentTypes.includes(label);
 
-              return (
-                <label key={label} className={s.checkboxItem}>
-                  <input
-                    type="checkbox"
-                    checked={checked}
-                    onChange={() => toggleType(label)}
-                    className={s.hiddenCheckbox}
-                  />
-                  <span className={s.customCheckbox}></span>
-                  {label}
-                </label>
-              );
-            })}
-          </div>
+                return (
+                  <SwiperSlide className={s.swiperSlide}>
+                    <label key={label} className={s.checkboxItem}>
+                      <input
+                        type="checkbox"
+                        checked={checked}
+                        onChange={() => toggleType(label)}
+                        className={s.hiddenCheckbox}
+                      />
+                      <span className={s.customCheckbox}></span>
+                      {label}
+                    </label>
+                  </SwiperSlide>
+                );
+              })}
+            </Swiper>
+            <div className={s.paginationCont}></div>
         </div>
 
         <button className={s.submitBtn} type="button">

@@ -35,6 +35,7 @@
 
 @media screen and (max-width: 1024px) {
   .section {
+    padding-top: 13.3vw;
     padding-bottom: 26.7vw;
     
     .container {

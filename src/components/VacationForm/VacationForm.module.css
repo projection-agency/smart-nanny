@@ -128,3 +128,91 @@
     color: black;
   }
 }
+
+@media screen and (max-width: 1024px) {
+  .formBlock {
+    padding: 6.4vw;
+    max-width: 89.9vw;
+
+    .formTitle{
+      display: none;
+    }
+    
+    .form {
+      .inputLine {
+        grid-template-columns: 1fr;
+        gap: 5.9vw;
+        margin-bottom: 5.9vw;
+
+        .inputContainer {
+          label {
+            font-size: 3.7vw;
+
+            input {
+              padding: 5.3vw 6.4vw;
+              margin-top: 3.2vw;
+              border-radius: 2.7vw;
+
+              font-size: 3.7vw;
+            }
+
+            input::placeholder {
+              font-size: 3.7vw;
+            }
+          }
+        }
+      }
+
+      .employmentBlock {
+        margin-bottom: 9.6vw;
+        
+        p {
+          font-size: 3.7vw;
+          margin-bottom: 3.2vw;
+        }
+
+        .swiper {
+          margin-bottom: 4.3vw;
+
+          .swiperSlide {
+            max-width: 67.2vw;
+          }
+
+          .checkboxItem {
+            padding: 5.3vw 6.4vw;
+            gap: 3.2vw;
+            border-radius: 2.7vw;
+            font-size: 3.7vw;
+          }
+
+          .customCheckbox {
+            width: 5.3vw;
+            height: 5.3vw;
+            border-radius: 1.6vw;
+          }
+        }
+
+        .paginationCont {
+          display: flex;
+          justify-content: center;
+          p {
+            background-color: black;
+          }
+        }
+      }
+
+      .submitBtn {
+        padding: 4.3vw;
+        margin-bottom: 3.2vw;
+        border-radius: 26.7vw;
+
+        font-size: 4.3vw;
+      }
+
+      .note {
+        font-size: 3.2vw;
+        max-width: none;
+      }
+    }
+  }
+}
