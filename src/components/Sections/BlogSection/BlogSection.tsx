@@ -72,7 +72,7 @@ export const BlogSection = () => {
           className={`${s.swiper} swiper`}
         >
           {posts?.slice(0, 4).map((post) => (
-            <SwiperSlide key={post.id}>
+            <SwiperSlide key={post.id} className={s.swiperSlide}>
               <BlogItem
                 info={{
                   title: post.title?.rendered,

@@ -57,6 +57,7 @@
 
     .faqList {
       grid-template-columns: 1fr;
+      gap: 3.2vw;
 
       li {
 
@@ -66,7 +67,7 @@
           }
 
           p{
-            font-size: 4.8vw;
+            font-size: 4.3vw;
           }
         }
       }

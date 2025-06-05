@@ -89,6 +89,9 @@
     height: 13.8vw !important;
     font-size: 4.2vw !important;
     padding-left: 10vw !important;
+    padding: 5.3vw 6.4vw !important;
+
+    border-radius: 2.7vw !important;
   }
 
   .react-tel-input .flag-dropdown {

@@ -9,7 +9,21 @@
   line-height: 135%;
   letter-spacing: -2%;
   text-align: left;
-}
 
-.activeLanguage {
+  li {
+    opacity: 0.3;
+
+    img {
+      position: absolute;
+    }
+  }
+
+  li.active {
+    opacity: 1;
+    color: rgb(255, 145, 178);
+
+    img {
+      display: block;
+    }
+  }
 }
