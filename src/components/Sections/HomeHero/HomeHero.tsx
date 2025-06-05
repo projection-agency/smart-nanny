@@ -4,6 +4,21 @@ import { useModal } from "@/components/ModalContext";
 import { btnSvg } from "../BlogSection/BlogSection";
 import s from "./HomeHero.module.css";
 import Image from "next/image";
+import { motion } from "framer-motion";
+
+const containerVariants = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.18,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 30 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } },
+};
 
 export const HomeHero = () => {
   const { openModal } = useModal();
@@ -37,15 +52,23 @@ export const HomeHero = () => {
           className={s.sun}
         />
       </div>
-      <div className={s.content}>
-        <h1>
+      <motion.div
+        className={s.content}
+        variants={containerVariants}
+        initial="hidden"
+        animate="show"
+      >
+        <motion.h1 variants={itemVariants}>
           {svg}
           Надійний підбір <span>професійних {line} </span> нянь для вашої родини
-        </h1>
+        </motion.h1>
 
-        <p>Ми знаходимо нянь, яким можна довірити найцінніше – вашу дитину.</p>
+        <motion.p variants={itemVariants}>
+          Ми знаходимо нянь, яким можна довірити найцінніше – вашу дитину.
+        </motion.p>
 
-        <button
+        <motion.button
+          variants={itemVariants}
           onClick={() => {
             openModal("formA");
           }}
@@ -54,7 +77,7 @@ export const HomeHero = () => {
           <div className={s.first}>{btnSvg}</div>
           Підібрати няню
           <div className={s.second}>{btnSvg}</div>
-        </button>
+        </motion.button>
         <Image
           alt="Plate"
           width={1920}
@@ -71,7 +94,7 @@ export const HomeHero = () => {
           src="/icons/worm.svg"
           className={s.worm}
         />
-      </div>
+      </motion.div>
     </section>
   );
 };

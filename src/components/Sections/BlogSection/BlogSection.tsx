@@ -16,17 +16,23 @@ export type BlogPost = {
   title: { rendered: string };
   excerpt: { rendered: string };
   featured_image_url?: string;
+  categories: number[];
   // або _embedded?: { "wp:featuredmedia": [{ source_url: string }] };
+};
+
+type Category = {
+  id: number;
+  name: string;
 };
 
 export const BlogSection = () => {
   const [posts, setPosts] = useState<BlogPost[]>();
+  const [categories, setCategories] = useState<Category[]>([]);
 
   useEffect(() => {
     const fetchPosts = async () => {
       try {
         const response = await fetch(`${API_URL}v2/posts`);
-
         const data = await response.json();
         setPosts(data);
       } catch (error) {
@@ -34,8 +40,24 @@ export const BlogSection = () => {
       }
     };
 
+    const fetchCategories = async () => {
+      try {
+        const response = await fetch(`${API_URL}v2/categories`);
+        const data = await response.json();
+        setCategories(data.filter((cat: Category) => cat.name !== "Без категорії"));
+      } catch (error) {
+        console.error("Помилка при отриманні категорій:", error);
+      }
+    };
+
     fetchPosts();
+    fetchCategories();
   }, []);
+
+  const getCategoryNames = (post: BlogPost) => {
+    if (!post.categories || !categories.length) return [];
+    return categories.filter(cat => post.categories.includes(cat.id)).map(cat => cat.name);
+  };
 
   return (
     <section className={s.section}>
@@ -52,7 +74,7 @@ export const BlogSection = () => {
               info={{
                 title: post.title?.rendered,
                 date: new Date(post.date).toLocaleDateString("uk-UA"),
-                category: "Новини",
+                categories: getCategoryNames(post),
                 image: post.featured_image_url || "/images/blog/1.jpg",
                 description: post.excerpt?.rendered.replace(/<[^>]+>/g, ""),
                 slug: post.slug,
@@ -77,7 +99,7 @@ export const BlogSection = () => {
                 info={{
                   title: post.title?.rendered,
                   date: new Date(post.date).toLocaleDateString("uk-UA"),
-                  category: "Новини",
+                  categories: getCategoryNames(post),
                   image: post.featured_image_url || "/images/blog/1.jpg",
                   description: post.excerpt?.rendered.replace(/<[^>]+>/g, ""),
                   slug: post.slug,

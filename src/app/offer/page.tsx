@@ -3,6 +3,7 @@
 import { Accordion } from "@/components/Accordion/Accordion";
 import s from "./offer.module.css";
 import { useState } from "react";
+import { Breadcrumbs, BreadcrumbItem } from "@/components/Breadcrumbs/Breadcrumbs";
 
 const contractSections = [
   {
@@ -74,8 +75,14 @@ export default function Offer() {
     setOpenId((prev) => (prev === id ? null : id));
   };
 
+  const breadcrumbs: BreadcrumbItem[] = [
+    { label: "Головна", href: "/" },
+    { label: "Оферта", active: true },
+  ];
+
   return (
     <main>
+      <Breadcrumbs items={breadcrumbs} colorScheme="dark" />
       <section className={s.section}>
         <h1>
           {svg}

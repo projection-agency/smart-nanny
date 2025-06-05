@@ -5,6 +5,7 @@ import { RoadSection } from "@/components/Sections/RoadSection/RoadSection";
 import { VacationFormSection } from "@/components/Sections/VacationFormSection/VacationFormSection";
 import { VacationSection } from "@/components/Sections/VacationSection/VacationSection";
 import { WhySection } from "@/components/Sections/WhySection/WhySection";
+import { Breadcrumbs, BreadcrumbItem } from "@/components/Breadcrumbs/Breadcrumbs";
 
 export const metadata = {
   title: "Стати нянею",
@@ -12,8 +13,14 @@ export const metadata = {
 };
 
 export default function NannySelection() {
+  const breadcrumbs: BreadcrumbItem[] = [
+    { label: "Головна", href: "/" },
+    { label: "Стати нянею", active: true },
+  ];
+
   return (
     <main>
+      <Breadcrumbs items={breadcrumbs} colorScheme="light" />
       <NannySelectionHero />
       <RoadSection />
       <WhySection />

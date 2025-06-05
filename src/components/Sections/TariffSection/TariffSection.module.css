@@ -49,3 +49,42 @@
     }
   }
 }
+
+@media screen and (max-width: 1024px) {
+  .section {
+    padding: 21.33vw 0;
+  
+    .sun {
+      display: none;
+    }
+  
+    .flower {
+      display: none;
+    }
+  
+    .svg {
+      position: absolute;
+      width: 8.5vw;
+      top: 16vw;
+      bottom: auto;
+      right: auto;
+      left: 8.26vw;
+      transform: rotate(180deg);
+    }
+  }
+  
+  .title {
+    font-size: 8.5vw;
+    margin-bottom: 10.6vw;
+  
+    span {
+      font-size: 8.5vw;
+  
+      svg {
+        position: absolute;
+        width: 100%;
+        left: 0;
+      }
+    }
+  }
+}

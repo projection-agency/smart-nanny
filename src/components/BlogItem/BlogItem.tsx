@@ -1,6 +1,7 @@
 import Link from "next/link";
 import s from "./BlogItem.module.css";
 import Image from "next/image";
+import React from "react";
 
 export const BlogItem = ({
   info,
@@ -8,7 +9,7 @@ export const BlogItem = ({
   info: {
     title: string;
     date: string;
-    category: string;
+    categories: string[];
     image: string;
     description: string;
     slug?: string;
@@ -20,7 +21,7 @@ export const BlogItem = ({
         <Image
           width={1920}
           height={1080}
-          alt={info.category}
+          alt={info.categories?.join(", ") || "Категорія"}
           src={info.image}
         />
       </div>
@@ -28,8 +29,17 @@ export const BlogItem = ({
       <div className={s.content}>
         <div>
           <span>{info.date}</span>
-          <div></div>
-          <span>{info.category}</span>
+          {info.categories && info.categories.length > 0 && (
+            <>
+              <div></div>
+              {info.categories.map((cat, idx) => (
+                <React.Fragment key={cat}>
+                  <span>{cat}</span>
+                  {idx < info.categories.length - 1 && <div></div>}
+                </React.Fragment>
+              ))}
+            </>
+          )}
         </div>
 
         <h4>{info.title}</h4>

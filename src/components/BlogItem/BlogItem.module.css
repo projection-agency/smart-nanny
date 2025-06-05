@@ -31,7 +31,9 @@
 
   .content > div {
     display: flex;
-    gap: 0.6vw;
+    flex-wrap: wrap;
+    column-gap: 0.6vw;
+    row-gap: 0.2vw;
     align-items: center;
     margin-bottom: 1vw;
 
@@ -68,11 +70,21 @@
   .item {
     min-height: 121.9vw;
 
+    .content > div {
+      column-gap: 3.2vw;
+      row-gap: 0.6vw;
+      flex-wrap: wrap;
+      margin-bottom: 3.2vw;
+      div {
+        width: 1.2vw;
+        height: 1.2vw;
+        margin-bottom: 0px;
+      }
+    }
     div.content {
       padding: 4.3vw;
 
       div {
-        margin-bottom: 3.2vw;
 
         span {
           font-size: 3.7vw;

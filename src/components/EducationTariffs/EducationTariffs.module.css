@@ -114,3 +114,77 @@
     margin: 0 auto;
   }
 }
+
+@media screen and (max-width: 1024px) {
+  .tariffs {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 4.26vw;
+  }
+  
+  .tariff {
+    padding: 6.4vw;
+    width: 91.4vw;
+  
+    ul {
+      margin-bottom: 6.4vw;
+    }
+  
+    h3 {
+      font-size: 6.4vw;
+      margin-bottom: 6.4vw;
+    }
+  
+    li {
+      display: flex;
+      gap: 4.26vw;
+      font-family: Moderustic;
+      font-weight: 400;
+      font-size: 4.26vw;
+      line-height: 135%;
+  
+      svg {
+        transform: translateY(1.2vw);
+        width: 2.66vw;
+        min-width: 2.66vw;
+      }
+    }
+  
+    .grey {
+      opacity: 0.4;
+    }
+  
+    li:not(:last-child) {
+      margin-bottom: 3.2vw;
+    }
+  
+    .price {
+      margin-bottom: 6.4vw;
+  
+      span:nth-child(1) {
+        font-family: Moderustic;
+        font-weight: 400;
+        font-size: 4.8vw;
+        line-height: 135%;
+        text-transform: uppercase;
+        margin-bottom: 2.13vw;
+      }
+  
+      span:nth-child(2) {
+        font-size: 8.5vw;
+      }
+    }
+  
+    button {
+      display: block;
+      font-family: Futura PT;
+      font-weight: 500;
+      font-size: 4.26vw;
+      padding: 5.8vw;
+      border-radius: 15.2vw;
+      width: 100%;
+    }
+  }
+}

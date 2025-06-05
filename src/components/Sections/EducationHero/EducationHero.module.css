@@ -4,7 +4,9 @@
   gap: 8vw;
   padding-bottom: 8.3vw;
 }
-
+.homeHeroImageMobile{
+  display: none;
+}
 .homeHeroImage {
   flex-shrink: 0;
   width: 55%;
