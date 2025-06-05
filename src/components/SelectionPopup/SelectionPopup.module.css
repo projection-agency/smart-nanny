@@ -208,3 +208,97 @@
 .error {
   border: 1px solid red !important;
 }
+
+@media screen and (max-width: 1024px) {
+  .popupContent {
+    width: 100%;
+    height: 100%;
+    padding: 4.3vw;
+    overflow-y: scroll;
+
+    .closeBtn {
+      width: 12.8vw;
+      height: 12.8vw;
+
+      svg {
+        width: 3.5vw;
+        height: 4.3vw;
+      }
+    }
+
+    .popupTitle {
+      margin-bottom: 9.1vw;
+
+      h3 {
+        width: 66.7vw;
+        font-size: 6.4vw;
+      }
+      p {
+        display: none;
+      }
+    }
+
+    .inputLine {
+      grid-template-columns: 1fr;
+      gap: 5.9vw;
+      margin-bottom: 5.9vw;
+
+      .inputContainer {
+        label {
+          font-size: 3.7vw;
+
+          input {
+            padding: 5.3vw 6.4vw;
+            margin-top: 3.2vw;
+            border-radius: 2.7vw;
+
+            font-size: 3.7vw;
+          }
+
+          input::placeholder {
+            font-size: 3.7vw;
+          }
+        }
+      }
+    }
+
+    .employmentBlock {
+      p {
+        font-size: 3.7vw;
+        margin-bottom: 3.2vw;
+      }
+
+      .checkboxGrid {
+        grid-template-columns: 1fr;
+        gap: 2.7vw;
+        margin-bottom: 9.1vw;
+
+        .checkboxItem {
+          padding: 5.3vw 6.4vw;
+          gap: 3.2vw;
+          border-radius: 2.7vw;
+          font-size: 3.7vw;
+        }
+
+        .customCheckbox {
+          width: 5.3vw;
+          height: 5.3vw;
+          border-radius: 1.6vw;
+        }
+      }
+    }
+
+    .submitBtn {
+      padding: 4.3vw;
+      margin-bottom: 3.2vw;
+      border-radius: 26.7vw;
+
+      font-size: 4.3vw;
+    }
+
+    .note {
+      font-size: 3.2vw;
+      max-width: none;
+    }
+  }
+}

@@ -102,8 +102,8 @@ export const SelectionPopup = ({ onClose }: { onClose: () => void }) => {
         <div className={s.popupTitle}>
           <h3>Залиште заявку на підбір няні</h3>
           <p>
-            Ми зв&apos;яжемося з вами найближчим часом щодо підбору няні для вашої
-            дитини
+            Ми зв&apos;яжемося з вами найближчим часом щодо підбору няні для
+            вашої дитини
           </p>
         </div>
 
@@ -118,7 +118,7 @@ export const SelectionPopup = ({ onClose }: { onClose: () => void }) => {
                   })}
                   value={fullName}
                   onChange={(e) => setFullName(e.target.value)}
-                  placeholder="Ім&apos;я Прізвище"
+                  placeholder="Ім'я Прізвище"
                   type="text"
                 />
               </label>
