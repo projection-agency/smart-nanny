@@ -1,4 +1,4 @@
-// import { BlogPage } from "@/components/BlogPage/BlogPage";
+import { BlogPage } from "@/components/BlogPage/BlogPage";
 
 export const metadata = {
   title: "Блог",
@@ -8,8 +8,7 @@ export const metadata = {
 export default function Blog() {
   return (
     <main>
-      {/* <BlogPage /> */}
-      Блог
+      <BlogPage />
     </main>
   );
 }

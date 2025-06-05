@@ -47,6 +47,8 @@ export const BlogPage = () => {
     fetchPosts();
   }, []);
 
+  console.log(posts);
+
   const handleClick = (id: number) => {
     if (id === activeId) {
       setActiveId(null);
