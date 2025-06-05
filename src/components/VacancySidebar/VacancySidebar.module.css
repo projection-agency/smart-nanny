@@ -1,0 +1,52 @@
+@media screen and (max-width: 1024px) {
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 89.9vw;
+    padding: 4.3vw;
+    transition: transform ease-in-out 250ms;
+    transform: translateX(-100%);
+    z-index: 999999;
+    background-color: rgb(255, 244, 241);
+    overflow-y: scroll;
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6.4vw;
+      
+      h2 {
+        font-family: Futura PT;
+        font-size: 6.4vw;
+        font-weight: 500;
+        line-height: 100%;
+        letter-spacing: 0%;
+        text-align: left;
+      }
+      button {
+        width: 12.8vw;
+        height: 12.8vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(51, 51, 51, 0.05);
+        border-radius: 10.9vw;
+
+        img {
+          width: 3.5vw;
+        }
+      }
+    }
+
+    div{
+      height: 100%;
+    }
+  }
+
+  .isOpen {
+    transform: translateX(0%);
+  }
+}

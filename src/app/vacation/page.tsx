@@ -8,7 +8,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectFilteredVacations } from "@/store/selectors";
 import { AppDispatch } from "@/store/store";
 import { fetchVacations } from "@/store/vacationSlice";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import Image from "next/image";
+import VacancySidebar from "../../components/VacancySidebar/VacancySidebar";
 
 // export const metadata = {
 //   title: "Вакансії",
@@ -16,6 +18,7 @@ import { useEffect } from "react";
 // };
 
 export default function Vacations() {
+  const [modalIsOpen, setModalIsOpen] = useState(false);
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
@@ -23,6 +26,14 @@ export default function Vacations() {
   }, [dispatch]);
 
   const filtered = useSelector(selectFilteredVacations);
+
+  const openModal = () => {
+    setModalIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+  };
 
   return (
     <main>
@@ -38,11 +49,21 @@ export default function Vacations() {
           </p>
         </div>
 
-        <div className="lg:mb-[3.7vw]">
+        <div className={`lg:mb-[3.7vw] ${s.vacationControllerDesktop}`}>
           <VacationController />
         </div>
 
-        <Container>
+        <button className={s.openSidebarBtn} onClick={()=>openModal()}>
+          <Image
+            width={17}
+            height={16}
+            src="/icons/icon-filter.svg"
+            alt="filter"
+          />
+          Фільтри
+        </button>
+
+        <Container className={s.container}>
           <ul className={s.vacationsList}>
             {filtered.map((item, index) => (
               <VacationItem key={index} item={item} />
@@ -50,6 +71,8 @@ export default function Vacations() {
           </ul>
         </Container>
       </section>
+
+      <VacancySidebar isOpen={modalIsOpen} onClose={closeModal}/>
     </main>
   );
 }
