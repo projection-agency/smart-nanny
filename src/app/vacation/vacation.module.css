@@ -56,3 +56,38 @@
   grid-template-columns: 1fr 1fr 1fr;
   gap: 1.2vw;
 }
+
+@media screen and (max-width: 1024px) {
+  .section {
+    padding-top: 21.3vw;
+
+    .titleCOntainer {
+      margin-bottom: 10.7vw;
+
+      h2 {
+        max-width: 75.7vw;
+        font-size: 10.7vw;
+        margin-bottom: 7.5vw;
+
+        span {
+          font-size: 8.5vw;
+
+          svg{
+            width: 35.2vw;
+            top: 9vw;
+          }
+        }
+
+        svg {
+          width: 8vw;
+          top: -2vw;
+          right: -5vw;
+        }
+      }
+
+      p {
+        font-size: 3.7vw;
+      }
+    }
+  }
+}
