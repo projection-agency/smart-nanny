@@ -139,12 +139,14 @@
         h2 {
           font-size: 9.6vw;
           margin: 0 auto;
+          letter-spacing: -1px;
 
           span {
+            -webkit-text-stroke-width: 0.2vw;
             font-size: 8.5vw;
 
             svg {
-              bottom: -4.2vw;
+              bottom: -2.2vw;
             }
           }
         }

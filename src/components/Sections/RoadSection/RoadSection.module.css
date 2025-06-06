@@ -44,7 +44,7 @@
     display: none;
   }
 
-  .paginationCont{
+  .paginationCont {
     display: none;
   }
 
@@ -178,9 +178,10 @@
       h2 {
         font-size: 9.6vw;
         margin-bottom: 7.5vw;
+        letter-spacing: -0.3vw;
 
         span {
-          font-size: 9.6vw;
+          font-size: 8.5vw;
 
           svg {
             bottom: -4.2vw;
@@ -198,10 +199,10 @@
       .plate {
         display: block;
         position: absolute;
-        z-index: 100;
-        right: 0vw;
+        z-index: 50;
+        right: 4.3vw;
         bottom: -15.5vw;
-        width: 14.7vw;
+        width: 17.3vw;
       }
     }
 
@@ -245,6 +246,7 @@
           line-height: 130%;
           text-transform: uppercase;
           margin-bottom: 3.2vw;
+          -webkit-text-stroke-width: 0.2vw;
         }
 
         p {

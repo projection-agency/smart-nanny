@@ -8,7 +8,6 @@ import { useEffect, useState } from "react";
 import { API_URL } from "@/constants";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
-
 export type BlogPost = {
   id: number;
   date: string;

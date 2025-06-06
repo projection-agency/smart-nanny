@@ -98,12 +98,13 @@
     margin-bottom: 6.4vw;
   
     h2 {
-      font-size: 10.6vw;
-      line-height: 90%;
       max-width: 70vw;
       margin: 0 auto;
-      color: rgba(51, 51, 51, 1);
       margin-bottom: 6.9vw;
+      font-size: 10.6vw;
+      line-height: 110%;
+      letter-spacing: -0.3vw;
+      color: rgba(51, 51, 51, 1);
   
       span {
         font-size: 8.5vw;
@@ -112,7 +113,7 @@
           position: absolute;
           width: 100%;
           left: 0;
-          bottom: -0.5vw;
+          bottom: -1.5vw;
         }
       }
     }

@@ -151,6 +151,7 @@
   left: 8.1vw;
   animation-delay: 0s;
 }
+
 .cloud2 {
   width: 7.9vw;
   bottom: 6.8vw;
@@ -193,6 +194,9 @@
     margin-bottom: 16vw;
     span {
       font-size: 8.5vw;
+      svg{
+        bottom: -4.5vw;
+      }
     }
   }
 
@@ -234,8 +238,8 @@
   }
 
   .cloud2 {
-    width: 50vw;
-    bottom: 47.8vw;
+    width: 45.3vw;
+    bottom: 51.8vw;
     left: -29.3vw;
   }
 

@@ -128,13 +128,14 @@
       span {
         display: block;
         text-align: center;
+        margin-bottom: 0.6vw;
         font-family: "First Time Writing!";
         font-weight: 600;
         font-size: 2.2vw;
         line-height: 120%;
         text-transform: uppercase;
         color: rgba(51, 51, 51, 1);
-        margin-bottom: 0.6vw;
+        -webkit-text-stroke-width: 0.2vw;
       }
 
       p {
@@ -152,6 +153,8 @@
 @media screen and (max-width: 1024px) {
   .section {
     padding: 21.3vw 0;
+    position: relative;
+    overflow: hidden;
 
     .topBlock {
       grid-template-columns: 1fr;
@@ -169,16 +172,37 @@
 
         img {
           object-position: 0 -1px;
-          height: 100%;
+          height: 83.2vw;
           object-fit: cover;
         }
 
         .palte {
           position: absolute;
-          width: 11.5vw;
+          width: 13.3vw;
           height: auto;
-          top: -1vw;
-          right: -1.3vw;
+          top: -5vw;
+          right: -3.5vw;
+        }
+      }
+
+      .clouds {
+        .cloud1,
+        .cloud2 {
+          position: absolute;
+          z-index: 9;
+          animation: levitate 6s ease-in-out infinite;
+        }
+
+        .cloud1 {
+          width: 29.9vw;
+          top: -9vw;
+          left: -15vw;
+        }
+
+        .cloud2 {
+          width: 29.9vw;
+          top: 125vw;
+          right: -15vw;
         }
       }
 
@@ -191,9 +215,10 @@
           font-size: 9.6vw;
           max-width: none;
           margin-bottom: 9.6vw;
+          letter-spacing: -0.3vw;
 
           svg {
-            width: 6.7vw;
+            width: 8.7vw;
             top: -5.5vw;
             right: -2.5vw;
           }

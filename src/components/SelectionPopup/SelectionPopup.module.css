@@ -288,6 +288,13 @@
       }
     }
 
+    .hiddenCheckbox:checked + .customCheckbox::after {
+      width: 2.7vw;
+      height: 2.7vw;
+      top: 0.5vw;
+      left: 0.5vw;
+    }
+
     .submitBtn {
       padding: 4.3vw;
       margin-bottom: 3.2vw;

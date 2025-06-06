@@ -132,10 +132,6 @@ div.swiper {
 
     div.swiper {
       display: block;
-
-      div.swiperSlide {
-        min-height: 121.9vw;
-      }
     }
 
     .paginationCont {
