@@ -34,13 +34,13 @@
   }
 
   .panel {
+    flex-grow: 1;
     flex-direction: column;
     justify-content: space-between;
     gap: 0;
 
     .controller {
       width: 100%;
-      height: 52.3vw;
       flex-direction: column;
       gap: 2.1vw;
 
