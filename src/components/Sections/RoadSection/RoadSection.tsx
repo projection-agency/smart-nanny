@@ -9,6 +9,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import "swiper/css/pagination";
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 export const selectionSteps = [
   {
@@ -41,7 +42,7 @@ export const selectionSteps = [
     step: "Етап 3",
     title: "Навчання та підготовка",
     description:
-      "Кандидати проходять тренінг з домедичної допомоги та професійний курс “Професійна няня”, де отримують практичні знання для роботи з дітьми.",
+      "Кандидати проходять тренінг з домедичної допомоги та професійний курс 'Професійна няня', де отримують практичні знання для роботи з дітьми.",
     needed: [
       "Тест із безпеки та догляду",
       "Тренінг з домедичної допомоги",
@@ -62,6 +63,20 @@ export const selectionSteps = [
   },
 ];
 
+const containerVariants = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.18,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 30 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.3, ease: "easeOut" } },
+};
+
 export const RoadSection = () => {
   const { openModal } = useModal();
 
@@ -69,13 +84,23 @@ export const RoadSection = () => {
     <section className={s.section}>
       <Container className={s.container}>
         <div className={s.titleContainer}>
-          <h2>
+          <motion.h2
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: false, amount: 0.5 }}
+            variants={itemVariants}
+          >
             Як ми відбираємо та <span>готуємо спеціалістів {line}</span>
-          </h2>
+          </motion.h2>
 
-          <p>
+          <motion.p
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: false, amount: 0.5 }}
+            variants={itemVariants}
+          >
             Ми знаходимо нянь, яким можна довірити найцінніше – вашу дитину.
-          </p>
+          </motion.p>
           <Image
             alt="Plate"
             width={1920}
@@ -101,31 +126,50 @@ export const RoadSection = () => {
         >
           {selectionSteps.map((step, index) => (
             <SwiperSlide key={index} className={s.slideCont}>
-              <span className={s.step}>
-                <span>{step.step}: </span> {stepBg}
-              </span>
+              <motion.div
+                variants={itemVariants}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: false, amount: 0.3 }}
+              >
+                <span className={s.step}>
+                  <span>{step.step}: </span> {stepBg}
+                </span>
 
-              <h3>{step.title}</h3>
-              <p>{step.description}</p>
+                <h3>{step.title}</h3>
+                <p>{step.description}</p>
 
-              <h4>Що потрібно:</h4>
+                <h4>Що потрібно:</h4>
 
-              <ul className={s.requirementsMobile}>
-                {step.needed.map((item, index) => (
-                  <li key={index}>
-                    {item}
-                    {underline}
-                  </li>
-                ))}
-              </ul>
+                <ul className={s.requirementsMobile}>
+                  {step.needed.map((item, index) => (
+                    <li key={index}>
+                      {item}
+                      {underline}
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
             </SwiperSlide>
           ))}
         </Swiper>
         <div className={s.paginationCont}></div>
 
-        <ul className={s.stepList}>
+        <motion.ul
+          className={s.stepList}
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: false, amount: 0.3 }}
+        >
           {selectionSteps.map((step, index) => (
-            <li key={index}>
+            <motion.li
+              key={index}
+              variants={itemVariants}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: false, amount: 0.3 }}
+            >
               <span className={s.step}>
                 <span>{step.step}: </span> {stepBg}
               </span>
@@ -143,15 +187,22 @@ export const RoadSection = () => {
                   </li>
                 ))}
               </ul>
-            </li>
+            </motion.li>
           ))}
-        </ul>
+        </motion.ul>
 
-        <button onClick={() => openModal("formA")} className={s.btn}>
+        <motion.button
+          onClick={() => openModal("formA")}
+          className={s.btn}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: false, amount: 0.3 }}
+          variants={itemVariants}
+        >
           <div className={s.first}>{btnSvg}</div>
           Підібрати няню
           <div className={s.second}>{btnSvg}</div>
-        </button>
+        </motion.button>
       </Container>
     </section>
   );

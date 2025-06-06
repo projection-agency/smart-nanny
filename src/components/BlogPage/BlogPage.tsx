@@ -1,42 +1,27 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Container } from "../Container";
-import { useState } from "react";
 import { BlogItem } from "@/components/BlogItem/BlogItem";
 import s from "./BlogPage.module.css";
 import { BlogPost } from "../Sections/BlogSection/BlogSection";
 import { API_URL } from "@/constants";
+import { motion } from "framer-motion";
 
-const categories = [
-  {
-    id: 1,
-    title: "Життя сервісу",
-  },
-  {
-    id: 2,
-    title: "Навчання та поради",
-  },
-  {
-    id: 3,
-    title: "Новини для батьків",
-  },
-  {
-    id: 4,
-    title: "Оголошення",
-  },
-];
+export interface Category {
+  id: number;
+  name: string;
+}
 
 export const BlogPage = () => {
   const [activeId, setActiveId] = useState<number | null>(null);
-
   const [posts, setPosts] = useState<BlogPost[]>();
+  const [categories, setCategories] = useState<Category[]>([]);
 
   useEffect(() => {
     const fetchPosts = async () => {
       try {
         const response = await fetch(`${API_URL}v2/posts`);
-
         const data = await response.json();
         setPosts(data);
       } catch (error) {
@@ -44,7 +29,19 @@ export const BlogPage = () => {
       }
     };
 
+    const fetchCategories = async () => {
+      try {
+        const response = await fetch(`${API_URL}v2/categories`);
+        const data = await response.json();
+        const filtered = data.filter((cat: Category) => cat.name !== "Без категорії");
+        setCategories(filtered);
+      } catch (error) {
+        console.error("Помилка при отриманні категорій:", error);
+      }
+    };
+
     fetchPosts();
+    fetchCategories();
   }, []);
 
   console.log(posts);
@@ -64,7 +61,12 @@ export const BlogPage = () => {
   // posts.forEach((post) => {});
 
   return (
-    <section className={s.section}>
+    <motion.section
+      className={s.section}
+      initial={{ opacity: 0, y: 40 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.7, ease: "easeOut" }}
+    >
       <Container>
         <div className={s.titleContainer}>
           <h2>
@@ -83,29 +85,33 @@ export const BlogPage = () => {
                 className={`${s.tab} ${activeId === item.id && s.active} `}
                 key={item.id}
               >
-                {item.title}
+                {item.name}
               </div>
             ))}
           </div>
         </div>
 
         <ul className={s.list}>
-          {posts?.map((post) => (
-            <BlogItem
-              key={post.id}
-              info={{
-                title: post.title?.rendered,
-                date: new Date(post.date).toLocaleDateString("uk-UA"),
-                category: "Новини",
-                image: post.featured_image_url || "/images/blog/1.jpg",
-                description: post.excerpt?.rendered.replace(/<[^>]+>/g, ""),
-                slug: post.slug,
-              }}
-            />
-          ))}
+          {posts
+            ?.filter((post) =>
+              activeId ? post.categories?.includes(activeId) : true
+            )
+            .map((post) => (
+              <BlogItem
+                key={post.id}
+                info={{
+                  title: post.title?.rendered,
+                  date: new Date(post.date).toLocaleDateString("uk-UA"),
+                  categories: categories.filter(cat => post.categories?.includes(cat.id)).map(cat => cat.name),
+                  image: post.featured_image_url || "/images/blog/1.jpg",
+                  description: post.excerpt?.rendered.replace(/<[^>]+>/g, ""),
+                  slug: post.slug,
+                }}
+              />
+            ))}
         </ul>
       </Container>
-    </section>
+    </motion.section>
   );
 };
 

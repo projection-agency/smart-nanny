@@ -60,7 +60,7 @@ export const ProgramItem = ({
           </div>
         </div>
         <button onClick={() => setIsOpen(!isOpen)} className={s.toggleBtn}>
-          {isOpen ? "Згорнути" : "Показати"}{" "}
+          <span className={s.toggleText}>{isOpen ? "Згорнути" : "Показати"}{" "}</span>
           <span className={isOpen ? s.opened : ""}>{arrow}</span>
         </button>
       </div>

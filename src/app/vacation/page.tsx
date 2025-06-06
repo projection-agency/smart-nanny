@@ -11,6 +11,7 @@ import { fetchVacations } from "@/store/vacationSlice";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import VacancySidebar from "../../components/VacancySidebar/VacancySidebar";
+import { Breadcrumbs, BreadcrumbItem } from "@/components/Breadcrumbs/Breadcrumbs";
 
 // export const metadata = {
 //   title: "Вакансії",
@@ -35,8 +36,14 @@ export default function Vacations() {
     setModalIsOpen(false);
   };
 
+  const breadcrumbs: BreadcrumbItem[] = [
+    { label: "Головна", href: "/" },
+    { label: "Вакансії", active: true },
+  ];
+
   return (
     <main>
+      <Breadcrumbs items={breadcrumbs} colorScheme="dark" />
       <section className={s.section}>
         <div className={s.titleCOntainer}>
           <h2>
