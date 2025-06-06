@@ -108,10 +108,10 @@ div.swiper {
       margin-bottom: 10.7vw;
 
       span {
-        max-width: 38.6vw;
+        max-width: 41.6vw;
+        right: 16vw;
         font-size: 4.3vw;
         top: -3vw;
-        right: 19vw;
         transform: rotate(0deg);
 
         svg {
@@ -145,6 +145,17 @@ div.swiper {
 
     .list {
       display: none;
+    }
+  }
+
+  @supports (-webkit-touch-callout: none) {
+    .section {
+      background-color: rebeccapurple;
+
+      .title {
+        span {
+        }
+      }
     }
   }
 }
