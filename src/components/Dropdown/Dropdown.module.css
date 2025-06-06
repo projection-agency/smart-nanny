@@ -68,3 +68,19 @@
 .menu li:hover {
   background-color: rgba(51, 51, 51, 0.05);
 }
+
+@media screen and (max-width: 1024px) {
+  .menu {
+    position: static;
+    max-height: 26.7vw;
+    padding: 0;
+    margin-top: 2.1vw;
+    border-radius: 6.4vw;
+  }
+
+  .menu li {
+    height: auto;
+    padding: 4.3vw 6.4vw;
+    font-size: 4.8vw;
+  }
+}
