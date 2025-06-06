@@ -35,15 +35,6 @@ export const EducationHero = () => {
           height={1083}
           priority
         />
-
-        <Image
-          alt="Sun"
-          width={1920}
-          height={1080}
-          priority
-          src="/icons/sun.svg"
-          className={s.sun}
-        />
       </div>
 
       <div className={s.content}>
@@ -77,6 +68,14 @@ export const EducationHero = () => {
           priority
           src="/images/pinkCloud3.png"
           className={s.cloud}
+        />
+        <Image
+          alt="Cloud"
+          width={1920}
+          height={1080}
+          priority
+          src="/images/pinkCloud3.png"
+          className={s.cloud1}
         />
       </div>
     </section>

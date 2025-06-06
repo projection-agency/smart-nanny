@@ -57,7 +57,7 @@
   gap: 1.2vw;
 }
 
-.openSidebarBtn{
+.openSidebarBtn {
   display: none;
 }
 
@@ -84,8 +84,8 @@
 
         svg {
           width: 8vw;
-          top: -2vw;
-          right: -5vw;
+          top: -3vw;
+          right: -2vw;
         }
       }
 
