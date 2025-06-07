@@ -8,13 +8,14 @@ import {
   setCityFilter,
   setEmploymentFilter,
   resetFilters,
+  Vacation,
 } from "@/store/vacationSlice";
 import { selectCitiesByCountry, selectCountries } from "@/store/selectors";
 import { RootState } from "@/store/store";
 import { usePathname } from "next/navigation";
 
 export const VacationController = () => {
-  const pathname = usePathname()
+  const pathname = usePathname();
   const dispatch = useDispatch();
   const cities = useSelector(selectCitiesByCountry);
   const countries = useSelector(selectCountries);
@@ -26,8 +27,21 @@ export const VacationController = () => {
     (state: RootState) => state.vacations.vacations
   );
 
+  const employmentMap: Record<string, Vacation["Employment_type"]> = {
+    "Повна зайнятість": "full",
+    "Неповна зайнятість": "part",
+    "Погодинна допомога": "hourly_assistance",
+    "З проживанням": "with_accommodation",
+  };
+
+  const employmentOptions = Object.keys(employmentMap);
+
   return (
-    <div className={`${s.panel} ${pathname.includes("vacation") ? " " : s.unactive}`}>
+    <div
+      className={`${s.panel} ${
+        pathname.includes("vacation") ? " " : s.unactive
+      }`}
+    >
       <div className={s.controller}>
         <Dropdown
           placeholder="Країна"
@@ -47,14 +61,10 @@ export const VacationController = () => {
 
         <Dropdown
           placeholder="Тип зайнятості"
-          options={["Повна зайнятість", "Нe повна зайнятість"]}
-          onSelect={(value) =>
-            dispatch(
-              setEmploymentFilter(
-                value === "Повна зайнятість" ? "full" : "part"
-              )
-            )
-          }
+          options={employmentOptions}
+          onSelect={(value) => {
+            dispatch(setEmploymentFilter(employmentMap[value]));
+          }}
         />
       </div>
 

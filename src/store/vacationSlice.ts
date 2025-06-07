@@ -2,7 +2,7 @@ import { API_URL } from "@/constants";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export interface Vacation {
-  Employment_type: "full" | "part";
+  Employment_type: "full" | "part" | "hourly_assistance" | "with_accommodation";
   Title: string;
   Loc_country: string;
   Loc_city: string;
@@ -29,7 +29,7 @@ export interface VacationState {
   filters: {
     country: string | null;
     city: string | null;
-    employment: "full" | "part" | null;
+    employment: Vacation["Employment_type"] | null;
   };
 }
 
