@@ -1,5 +1,5 @@
 .item {
-  display: block;
+  display: flex;
   border: 2px solid transparent;
   cursor: pointer;
   transition: border 0.3s;
@@ -69,15 +69,7 @@
 
 @media screen and (max-width: 1024px) {
   .item {
-    display: flex;
     flex-direction: column;
-    height: 100%;
-    /* height: 121.9vw; */
-    /* min-height: 155.2vw; */
-    
-    .content{
-      flex-basis: 1;
-    }
 
     .content > div {
       column-gap: 3.2vw;

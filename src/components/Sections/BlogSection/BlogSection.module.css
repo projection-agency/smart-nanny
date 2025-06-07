@@ -130,8 +130,14 @@ div.swiper {
       display: none;
     }
 
-    div.swiper {
+    .swiper {
       display: block;
+      margin-bottom: 5.3vw;
+
+      .swiperSlide {
+        display: flex;
+        height: auto;
+      }
     }
 
     .paginationCont {
@@ -145,17 +151,6 @@ div.swiper {
 
     .list {
       display: none;
-    }
-  }
-
-  @supports (-webkit-touch-callout: none) {
-    .section {
-      background-color: rebeccapurple;
-
-      .title {
-        span {
-        }
-      }
     }
   }
 }
