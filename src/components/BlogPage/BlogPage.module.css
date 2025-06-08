@@ -4,6 +4,7 @@
 
 .titleContainer {
   margin-bottom: 3.7vw;
+  position: relative;
 
   h2 {
     font-family: Futura PT;
@@ -31,6 +32,13 @@
         bottom: -0.5vw;
       }
     }
+  }
+
+  h2 > svg {
+    position: absolute;
+    width: 3.5vw;
+    top: 0vw;
+    right: 32vw;
   }
 
   p {
@@ -87,36 +95,42 @@
   row-gap: 2.5vw;
 }
 
-
-
 @media screen and (max-width: 1024px) {
   .section {
-    padding: 7.4vw 0 26.6vw 0;
+    padding: 21.33vw 0 26.6vw 0;
   }
-  
+
   .titleContainer {
     margin-bottom: 6.4vw;
-  
+
     h2 {
-      font-size: 10.6vw;
-      line-height: 90%;
       max-width: 70vw;
       margin: 0 auto;
-      color: rgba(51, 51, 51, 1);
       margin-bottom: 6.9vw;
-  
+      font-size: 10.6vw;
+      line-height: 110%;
+      letter-spacing: -0.3vw;
+      color: rgba(51, 51, 51, 1);
+
       span {
         font-size: 8.5vw;
-  
+
         svg {
           position: absolute;
           width: 100%;
           left: 0;
-          bottom: -0.5vw;
+          bottom: -1.5vw;
         }
       }
     }
-  
+
+    h2 > svg {
+      width: 8vw;
+      position: absolute;
+      top: 0vw;
+      right: 15vw;
+    }
+
     p {
       font-size: 3.73vw;
       width: 80vw;
@@ -124,7 +138,7 @@
       margin-bottom: 6.4vw;
     }
   }
-  
+
   .tabController {
     display: flex;
     justify-content: flex-start;
@@ -132,28 +146,28 @@
     gap: 3.2vw;
     width: 100%;
     overflow: auto;
-  
+
     .tab {
       font-size: 3.7vw;
       padding: 4.6vw 4.8vw;
       border-radius: 18.6vw;
       text-wrap: nowrap;
     }
-  
+
     .active {
       border: 2px solid var(--primary-pink);
       color: var(--primary-pink);
     }
-  
+
     .tab:hover {
       color: black;
     }
-  
+
     .active:hover {
       color: var(--primary-pink);
     }
   }
-  
+
   .list {
     display: grid;
     grid-template-columns: 1fr;

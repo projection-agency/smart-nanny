@@ -53,16 +53,17 @@
 @media screen and (max-width: 1024px) {
   .section {
     padding: 21.33vw 0;
-  
+
     .sun {
       display: none;
     }
-  
+
     .flower {
       display: none;
     }
-  
+
     .svg {
+      display: none;
       position: absolute;
       width: 8.5vw;
       top: 16vw;
@@ -72,14 +73,24 @@
       transform: rotate(180deg);
     }
   }
-  
+
   .title {
     font-size: 8.5vw;
     margin-bottom: 10.6vw;
-  
+
+    .svgMobile {
+      position: absolute;
+      width: 8.5vw;
+      top: 16vw;
+      left: 9.5vw;
+      bottom: auto;
+      right: auto;
+    }
+
     span {
       font-size: 8.5vw;
-  
+      letter-spacing: -1px;
+
       svg {
         position: absolute;
         width: 100%;

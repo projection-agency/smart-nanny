@@ -106,6 +106,8 @@
       font-size: 9.6vw;
       max-width: 91.5vw;
       margin-bottom: 3.2vw;
+      letter-spacing: -1px;
+      font-weight: 450;
 
       span {
         display: none;

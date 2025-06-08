@@ -49,6 +49,7 @@
       font-size: 9.6vw;
       span {
         font-size: 8.5vw;
+        letter-spacing: -1px;
         svg {
           width: 37.6vw;
           left: -46vw;

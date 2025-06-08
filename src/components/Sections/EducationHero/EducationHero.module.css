@@ -3,8 +3,9 @@
   align-items: center;
   gap: 8vw;
   padding-bottom: 8.3vw;
+  overflow: hidden;
 }
-.homeHeroImageMobile{
+.homeHeroImageMobile {
   display: none;
 }
 .homeHeroImage {
@@ -144,6 +145,9 @@
   }
 }
 
+.cloud1{
+  display: none;
+}
 
 @media screen and (max-width: 1024px) {
   .section {
@@ -188,7 +192,7 @@
       span {
         font-size: 8.5vw;
         svg {
-          bottom: -1.1vw;
+          bottom: -2.1vw;
           display: block;
         }
       }
@@ -226,6 +230,13 @@
       width: 29.8vw;
       top: -33vw;
       left: -4vw;
+    }
+
+    .cloud1 {
+      position: absolute;
+      width: 29.8vw;
+      top: -36vw;
+      right: -13vw;
     }
   }
 }

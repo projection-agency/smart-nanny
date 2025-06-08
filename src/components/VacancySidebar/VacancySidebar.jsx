@@ -17,9 +17,7 @@ const VacancySidebar = ({ isOpen, onClose }) => {
           />
         </button>
       </header>
-      <div >
         <VacationController></VacationController>
-      </div>
     </aside>
   );
 };

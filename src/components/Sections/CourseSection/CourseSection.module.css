@@ -156,14 +156,15 @@
       }
   
       h4 {
+        max-width: 78.4vw;
         font-size: 6.93vw;
         margin-bottom: 3.2vw;
-        -webkit-text-stroke-width: 0.1px;
+        -webkit-text-stroke-width: 0.2vw;
         -webkit-text-stroke-color: #333;
       }
   
       p {
-        font-weight: 500;
+        font-weight: 400;
         font-size: 3.73vw;
       }
     }

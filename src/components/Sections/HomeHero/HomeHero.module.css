@@ -168,9 +168,12 @@
       }
 
       span {
+        position: relative;
+        bottom: 1vw;
         font-size: 8.5vw;
+        -webkit-text-stroke-width: 0.2vw;
         svg {
-          bottom: -1.1vw;
+          bottom: -2.1vw;
           display: block;
         }
       }

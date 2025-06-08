@@ -137,20 +137,6 @@
   .section {
     padding-top: 13.3vw;
 
-    .container {
-      position: relative;
-
-      img.wormMobile {
-        display: block;
-        position: absolute;
-        z-index: 10;
-        width: 16.3vw;
-        right: 4.3vw;
-        bottom: 3.7vw;
-        transform: rotateZ(-11deg);
-      }
-    }
-
     .swiperController {
       display: none;
     }
@@ -168,17 +154,19 @@
         max-width: 100vw;
 
         h2 {
-          width: max-content;
+          width: 93.3vw;
           margin-bottom: 7.5vw;
           font-size: 9.6vw;
-          line-height: 100%;
+          font-weight: 450;
+          line-height: 110%;
+          letter-spacing:-1px ;
 
           span {
             font-size: 8.5vw;
             margin: 0 auto;
 
             svg {
-              bottom: -4.2vw;
+              bottom: -4.9vw;
             }
           }
         }

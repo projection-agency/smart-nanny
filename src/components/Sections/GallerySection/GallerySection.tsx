@@ -166,15 +166,6 @@ export const GallerySection = () => {
           </Swiper>
           <div className={s.paginationCont}></div>
         </div>
-
-        <Image
-          alt="Worm"
-          width={1920}
-          height={1080}
-          priority
-          src="/icons/worm.svg"
-          className={s.wormMobile}
-        />
       </Container>
     </section>
   );

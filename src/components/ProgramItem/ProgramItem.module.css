@@ -223,6 +223,7 @@
   .meta h3 {
     font-size: 4.26vw;
     margin-bottom: 4.26vw;
+    letter-spacing: -1px;
   }
   
   .module {

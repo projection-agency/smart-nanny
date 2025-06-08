@@ -57,6 +57,10 @@
   gap: 1.2vw;
 }
 
+.openSidebarBtn {
+  display: none;
+}
+
 @media screen and (max-width: 1024px) {
   .section {
     padding-top: 21.3vw;
@@ -80,8 +84,8 @@
 
         svg {
           width: 8vw;
-          top: -2vw;
-          right: -5vw;
+          top: -3vw;
+          right: -2vw;
         }
       }
 

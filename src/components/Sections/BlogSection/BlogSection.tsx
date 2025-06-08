@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import { API_URL } from "@/constants";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
-
+import { tr } from "framer-motion/client";
 export type BlogPost = {
   id: number;
   date: string;
@@ -85,7 +85,6 @@ export const BlogSection = () => {
 
         <Swiper
           modules={[Pagination]}
-          spaceBetween={20}
           pagination={{
             type: "bullets",
             el: `.${s.paginationCont}`,

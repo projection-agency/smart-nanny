@@ -100,7 +100,7 @@ div.swiper {
 
 @media screen and (max-width: 1024px) {
   .section {
-    padding-top: 18.7vw;
+    padding-top: 13.3vw;
     padding-bottom: 13.3vw;
 
     .title {
@@ -108,10 +108,10 @@ div.swiper {
       margin-bottom: 10.7vw;
 
       span {
-        max-width: 38.6vw;
+        max-width: 41.6vw;
+        right: 16vw;
         font-size: 4.3vw;
         top: -3vw;
-        right: 19vw;
         transform: rotate(0deg);
 
         svg {
@@ -130,11 +130,13 @@ div.swiper {
       display: none;
     }
 
-    div.swiper {
+    .swiper {
       display: block;
+      margin-bottom: 5.3vw;
 
-      div.swiperSlide {
-        min-height: 121.9vw;
+      .swiperSlide {
+        display: flex;
+        height: auto;
       }
     }
 

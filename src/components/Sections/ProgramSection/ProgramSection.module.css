@@ -59,7 +59,7 @@
       font-weight: 600;
       font-size: 0.8vw;
       line-height: 90%;
-      letter-spacing: -1%;
+      letter-spacing: 0px;
       text-align: center;
       color: var(--primary-pink);
       max-width: 7vw;
@@ -105,11 +105,7 @@
   }
 }
 
-
-
-
 @media screen and (max-width: 1024px) {
-
   .section {
     position: relative;
     overflow: visible;
@@ -130,6 +126,7 @@
       max-width: 70vw;
       margin: 0 auto;
       margin-bottom: 6.4vw;
+      font-weight: 450;
 
       span {
         font-size: 4.26vw;
@@ -140,6 +137,7 @@
         transform: translateX(0%);
         top: 0vw;
         transform: rotate(0deg);
+        -webkit-text-stroke-width: 0.2vw;
 
         svg {
           display: none;
@@ -150,7 +148,7 @@
         position: absolute;
         width: 15vw;
         top: -4vw;
-        left: -8vw;
+        left: -11vw;
       }
     }
 
@@ -172,5 +170,4 @@
       margin-bottom: 4.26vw;
     }
   }
-
 }

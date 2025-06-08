@@ -4,20 +4,20 @@ import Image from "next/image";
 
 export const statsData = [
   {
-    value: "100+",
-    description: "Випускниць курсу, що успішно працюють нянями",
-  },
-  {
     value: "200+",
-    description: "Нянь уже працюють з нами в Україні та Європі",
+    description: "Випускниць курсу",
   },
   {
     value: "70%",
     description: "Наших нянь отримують роботу після першого інтерв’ю",
   },
   {
+    value: "300+",
+    description: "Нянь уже працюють з нами",
+  },
+  {
     value: "80%",
-    description: "Випускниці підвищили рівень оплати після навчання",
+    description: "Випускниць підвищили рівень оплати після навчання",
   },
 ];
 
@@ -30,7 +30,7 @@ export const EducationSection = () => {
             <Image
               width={1920}
               height={1080}
-              src="/images/education.jpg"
+              src="/images/get-kid.jpg"
               alt="Image"
             />
             <Image
@@ -65,6 +65,23 @@ export const EducationSection = () => {
             </div>
 
             <button>Обрати навчання</button>
+          </div>
+
+          <div className={s.clouds}>
+            <Image
+              width={1920}
+              height={1080}
+              src="/images/cloud1.png"
+              alt="Cloud"
+              className={s.cloud1}
+            />
+            <Image
+              width={1920}
+              height={1080}
+              src="/images/cloud2.png"
+              alt="Cloud"
+              className={s.cloud2}
+            />
           </div>
 
           <div className={s.imageBlock}>
