@@ -78,7 +78,7 @@
     transform: rotate(180deg);
   }
 
-  span {
+  .icon {
     background-color: var(--primary-pink);
     border-radius: 50%;
     display: flex;
@@ -265,7 +265,7 @@
       transform: rotate(180deg);
     }
   
-    span {
+    .icon {
       width: 8.5vw;
       height: 8.5vw;
       flex-shrink: 0;
