@@ -8,7 +8,6 @@ import { useEffect, useState } from "react";
 import { API_URL } from "@/constants";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
-import { tr } from "framer-motion/client";
 export type BlogPost = {
   id: number;
   date: string;
@@ -44,7 +43,9 @@ export const BlogSection = () => {
       try {
         const response = await fetch(`${API_URL}v2/categories`);
         const data = await response.json();
-        setCategories(data.filter((cat: Category) => cat.name !== "Без категорії"));
+        setCategories(
+          data.filter((cat: Category) => cat.name !== "Без категорії")
+        );
       } catch (error) {
         console.error("Помилка при отриманні категорій:", error);
       }
@@ -56,7 +57,9 @@ export const BlogSection = () => {
 
   const getCategoryNames = (post: BlogPost) => {
     if (!post.categories || !categories.length) return [];
-    return categories.filter(cat => post.categories.includes(cat.id)).map(cat => cat.name);
+    return categories
+      .filter((cat) => post.categories.includes(cat.id))
+      .map((cat) => cat.name);
   };
 
   return (
