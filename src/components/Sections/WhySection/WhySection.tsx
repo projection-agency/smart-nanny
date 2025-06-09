@@ -97,9 +97,14 @@ const itemVariants = {
 export const WhySection = () => {
   const [windowWidth, setWindowWidth] = useState(0);
   useEffect(() => {
-    const windowWidth = window.window.innerWidth;
-    setWindowWidth(windowWidth);
-  }, [window.innerWidth]);
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
   const pathname = usePathname();
 
   const isSelectionPage = pathname === "/nanny-selection" ? true : false;
