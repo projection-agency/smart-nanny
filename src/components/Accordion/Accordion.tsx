@@ -21,9 +21,13 @@ export const Accordion = ({
   children,
 }: AccordionProps) => {
   return (
-    <div
+    <motion.div
       className={`${s.accordion} ${faq && s.faqStyle}`}
       onClick={() => onToggle(id)}
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.7 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
     >
       <button className={s.header}>
         <span className={s.title}>{title}</span>
@@ -54,6 +58,6 @@ export const Accordion = ({
           </motion.div>
         )}
       </AnimatePresence>
-    </div>
+    </motion.div>
   );
 };

@@ -28,7 +28,6 @@
     letter-spacing: -1%;
     text-align: center;
     color: var(--primary-pink);
-    -webkit-text-stroke-width: 0.2vw;
 
     svg {
       position: absolute;
@@ -102,7 +101,7 @@
     text-align: center;
     color: var(--primary-pink);
     width: 5vw;
-    top: 2.8vw;
+    top: 1.2vw;
     /* transform: rotate(-10deg); */
   }
 }
@@ -145,6 +144,7 @@
     font-size: 8.5vw;
     span {
       font-size: 8.5vw;
+      -webkit-text-stroke-width: 0.2vw;
     }
   }
 

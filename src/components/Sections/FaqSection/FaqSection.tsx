@@ -5,6 +5,7 @@ import s from "./FaqSection.module.css";
 import { Accordion } from "@/components/Accordion/Accordion";
 import { useEffect, useMemo, useState } from "react";
 import { API_URL } from "@/constants";
+import { motion } from "framer-motion";
 
 type FaqItem = {
   id: number;
@@ -55,13 +56,19 @@ export const FaqSection = ({ nannys }: { nannys?: boolean }) => {
   return (
     <section className={s.section}>
       <Container className={s.container}>
-        <h2 className={s.title}>
+        <motion.h2
+          className={s.title}
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.7 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+        >
           Часті питання
           <span>
             {" "}
             {nannys ? "від нянь" : "від батьків"} {line}
           </span>
-        </h2>
+        </motion.h2>
 
         <ul className={s.faqList}>
           {currentFaqs.map((item) => (

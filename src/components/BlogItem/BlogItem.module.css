@@ -1,9 +1,14 @@
+.itemBlock{
+  height: 100%;
+}
 .item {
   display: flex;
+  flex-direction: column;
   border: 2px solid transparent;
   cursor: pointer;
   transition: border 0.3s;
   overflow: hidden;
+  height: 100%;
 
   .imageContainer {
     img {

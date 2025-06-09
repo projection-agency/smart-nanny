@@ -1,21 +1,26 @@
+.mainNotFound{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 2vw;
+}
 .section {
   display: flex;
   align-items: center;
 }
-
-.homeHeroImage {
-  flex-shrink: 0;
-  width: 55%;
-  position: relative;
-
-  img {
-    width: 100%;
-    height: auto;
-  }
-
-  .sun {
-    display: none;
-  }
+.blueBlob{
+  bottom: 0px;
+  right: 2rem;
+  position: absolute;
+  width: 15rem;
+}
+.pinkBlob{
+  top: 30%;
+  left: 2rem;
+  position: absolute;
+  width: 15rem;
 }
 
 .homeHeroImageMobile {
@@ -25,21 +30,29 @@
 .content {
   position: relative;
   padding-right: 3.125vw;
+  width: 100%;
   h1 {
     position: relative;
     font-family: Futura PT;
-    font-weight: 450;
-    font-size: 5vw;
+    font-weight: 500;
+    font-size: 10.4vw;
     line-height: 90%;
     letter-spacing: -3px;
     text-align: center;
     color: rgba(51, 51, 51, 1);
+    margin: 0 auto;
     margin-bottom: 1.6vw;
+    width: max-content;
+    text-align: center;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: #333;
+    font-family: "Futura PT";
+    align-self: stretch;
 
     .svg {
       position: absolute;
-      right: 3vw;
-      top: 0;
+      right: -3vw;
+      top: -2vw;
       width: 3.4vw;
       height: auto;
     }
@@ -69,7 +82,9 @@
     font-size: 1vw;
     line-height: 135%;
     text-align: center;
+    margin: 0 auto;
     margin-bottom: 2.5vw;
+    max-width: 470px;
   }
 
   .btn {
@@ -86,6 +101,7 @@
     margin: 0 auto;
     transition: background-color 0.3s;
     cursor: pointer;
+    width: max-content;
 
     div {
       position: absolute;
@@ -209,4 +225,15 @@
 
     
   }
+}
+
+
+.main {
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 6vw 2vw;
+  position: relative;
 }

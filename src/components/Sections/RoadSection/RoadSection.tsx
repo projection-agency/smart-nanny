@@ -2,7 +2,6 @@
 
 import { Container } from "@/components/Container";
 import s from "./RoadSection.module.css";
-import { line } from "../HomeHero/HomeHero";
 import { btnSvg } from "../BlogSection/BlogSection";
 import { useModal } from "@/components/ModalContext";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -77,6 +76,15 @@ const itemVariants = {
   show: { opacity: 1, y: 0, transition: { duration: 0.3, ease: "easeOut" } },
 };
 
+const lineVariants = {
+  hidden: { pathLength: 0, opacity: 0 },
+  show: {
+    pathLength: 1,
+    opacity: 1,
+    transition: { duration: 1.2, ease: "easeInOut" }
+  }
+};
+
 export const RoadSection = () => {
   const { openModal } = useModal();
 
@@ -87,10 +95,30 @@ export const RoadSection = () => {
           <motion.h2
             initial="hidden"
             whileInView="show"
-            viewport={{ once: false, amount: 0.5 }}
+            viewport={{ once: false, amount: 0.9 }}
             variants={itemVariants}
           >
-            Як ми відбираємо та <span>готуємо спеціалістів {line}</span>
+            Як ми відбираємо та <span>готуємо спеціалістів {
+              <motion.svg
+                width="457"
+                height="23"
+                viewBox="0 0 457 23"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                style={{ display: 'inline', verticalAlign: 'middle' }}
+              >
+                <motion.path
+                  d="M1.5 15.7765C1.9592 12.5562 9.8956 10.4106 12.7427 9.57868C19.0625 7.73202 23.8729 4.8033 30.7079 4.8033C34.8603 4.8033 52.397 1.5448 43.4574 7.85368C41.1539 9.47934 41.1516 8.57104 39.9619 10.396C38.3324 12.8959 41.2884 11.0572 43.1493 10.8533C52.3334 9.8469 60.2403 10.1699 69.5359 9.47935C84.5821 8.36157 101.412 10.5819 116.251 8.15653C127.37 6.33934 139.011 6.48211 150.077 4.80322C157.409 3.69081 164.804 2.26312 172.273 2.26312C174.74 2.26312 180.769 0.976907 180.56 4.09199C180.446 5.79049 174.381 8.02334 172.736 8.66416C170.923 9.3707 161.419 12.3219 164.913 12.3219C180.602 12.3219 195.212 9.44706 210.579 6.83529C223.75 4.59673 237.069 6.43425 250.45 6.43425C266.135 6.43425 281.09 7.60538 296.87 7.60538C302.873 7.60538 311.146 6.70396 307.823 11.7203C303 19 318 14.8597 321.384 13.8032C329.335 11.3205 338.511 9.69399 346.883 8.51982C354.649 7.43046 362.5 5.77651 370.411 5.77651L385.645 6.12067C386.791 6.12067 392.719 5.57579 392.719 6.77322C392.719 8.55798 390.895 10.5258 389.624 11.7761C386.725 14.6291 383.039 16.9845 379.48 18.9542C378.329 19.5911 377.29 20.1129 379.357 19.5101C383.876 18.1926 389.025 18.2599 393.702 17.4316C399.38 16.4258 404.693 15.1935 410.06 13.0329C414.483 11.2524 419.092 9.54799 423.766 8.51336C430.275 7.07219 437.456 7.42577 444.103 7.42577C447.826 7.42577 451.863 7.8855 455.5 6.99074"
+                  stroke="#FF91B2"
+                  strokeWidth="3"
+                  strokeLinecap="round"
+                  variants={lineVariants}
+                  initial="hidden"
+                  animate="show"
+                />
+              </motion.svg>
+            }</span>
+
           </motion.h2>
 
           <motion.p
