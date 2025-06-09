@@ -94,6 +94,7 @@ const itemVariants = {
 };
 
 export const WhySection = () => {
+  const windowWidth = window.window.innerWidth;
   const pathname = usePathname();
 
   const isSelectionPage = pathname === "/nanny-selection" ? true : false;
@@ -124,50 +125,85 @@ export const WhySection = () => {
           )}
 
           <motion.div variants={itemVariants}>
-            <Swiper
-              className={s.list}
-              breakpoints={{ 1025: { slidesPerView: 4, spaceBetween: 60 } }}
-              modules={[Pagination]}
-              slidesPerView={1.2}
-              pagination={{
-                enabled: true,
-                type: "bullets",
-                el: `.${s.paginationCont}`,
-                bulletElement: "p",
-              }}
-              onSwiper={(swiper) => console.log(swiper)}
-            >
-              {data.map((item, index) => (
-                <SwiperSlide key={item.id + index} className={s.slideCont}>
-                  <motion.div
-                    className={s.swiperSlide}
-                    variants={itemVariants}
-                    initial="hidden"
-                    whileInView="show"
-                    viewport={{ once: true, amount: 0.3 }}
-                  >
-                    <Image
-                      alt={item.title}
-                      width={1920}
-                      height={1080}
-                      src={item.icon}
-                      quality={100}
-                    />
-                    <h3>{item.title}</h3>
-                    <p>{item.desc}</p>
-                    <span
-                      style={
-                        index == 3
-                          ? { transform: "rotate(25deg)" }
-                          : { transform: "rotate(-10deg)" }
-                      }
+            {windowWidth <= 1024 ? (
+              <Swiper
+                className={s.list}
+                breakpoints={{ 1025: { slidesPerView: 4, spaceBetween: 60 } }}
+                modules={[Pagination]}
+                slidesPerView={1.2}
+                pagination={{
+                  enabled: true,
+                  type: "bullets",
+                  el: `.${s.paginationCont}`,
+                  bulletElement: "p",
+                }}
+                onSwiper={(swiper) => console.log(swiper)}
+              >
+                {data.map((item, index) => (
+                  <SwiperSlide key={item.id + index} className={s.slideCont}>
+                    <motion.div
+                      className={s.swiperSlide}
+                      variants={itemVariants}
+                      initial="hidden"
+                      whileInView="show"
+                      viewport={{ once: true, amount: 0.3 }}
                     >
-                      {item.span}
-                    </span>
-                  </motion.div>
-                </SwiperSlide>
-              ))}
-            </Swiper>
+                      <Image
+                        alt={item.title}
+                        width={1920}
+                        height={1080}
+                        src={item.icon}
+                        quality={100}
+                      />
+                      <h3>{item.title}</h3>
+                      <p>{item.desc}</p>
+                      <span
+                        style={
+                          index == 3
+                            ? { transform: "rotate(25deg)" }
+                            : { transform: "rotate(-10deg)" }
+                        }
+                      >
+                        {item.span}
+                      </span>
+                    </motion.div>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            ) : (
+              <ul className={s.list}>
+                {data.map((item, index) => (
+                  <li key={item.id + index} className={s.slideCont}>
+                    <motion.div
+                      className={s.swiperSlide}
+                      variants={itemVariants}
+                      initial="hidden"
+                      whileInView="show"
+                      viewport={{ once: true, amount: 0.3 }}
+                    >
+                      <Image
+                        alt={item.title}
+                        width={1920}
+                        height={1080}
+                        src={item.icon}
+                        quality={100}
+                      />
+                      <h3>{item.title}</h3>
+                      <p>{item.desc}</p>
+                      <span
+                        style={
+                          index == 3
+                            ? { transform: "rotate(25deg)" }
+                            : { transform: "rotate(-10deg)" }
+                        }
+                      >
+                        {item.span}
+                      </span>
+                    </motion.div>
+                  </li>
+                ))}
+              </ul>
+            )}
           </motion.div>
         </motion.div>
         <div className={s.paginationCont}></div>

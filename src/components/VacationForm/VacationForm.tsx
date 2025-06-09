@@ -69,42 +69,49 @@ export const VacationForm = () => {
           <p>
             Формат зайнятості, який вас цікавить<span>*</span>
           </p>
-            <Swiper
-              modules={[Pagination]}
-              slidesPerView={1.2}
-              spaceBetween={20}
-              pagination={{
-                type: "bullets",
-                el: `.${s.paginationCont}`,
-                bulletElement: "p",
-              }}
-              className={`${s.swiper} swiper`}
-            >
-              {[
-                "Часткова зайнятість",
-                "Робота з проживанням",
-                "Погодинна допомога",
-                "Повна зайнятість",
-              ].map((label,idx) => {
-                const checked = employmentTypes.includes(label);
+          <Swiper
+            modules={[Pagination]}
+            breakpoints={{
+              0: { enabled: true, spaceBetween: 20, slidesPerView: 1.2 },
+              1025: {
+                spaceBetween: 0,
+                enabled: false,
+                slidesPerView: "auto",
+              },
+            }}
+            spaceBetween={20}
+            pagination={{
+              type: "bullets",
+              el: `.${s.paginationCont}`,
+              bulletElement: "p",
+            }}
+            className={`${s.swiper} swiper`}
+          >
+            {[
+              "Часткова зайнятість",
+              "Робота з проживанням",
+              "Погодинна допомога",
+              "Повна зайнятість",
+            ].map((label, idx) => {
+              const checked = employmentTypes.includes(label);
 
-                return (
-                  <SwiperSlide className={s.swiperSlide} key={idx}>
-                    <label key={label} className={s.checkboxItem}>
-                      <input
-                        type="checkbox"
-                        checked={checked}
-                        onChange={() => toggleType(label)}
-                        className={s.hiddenCheckbox}
-                      />
-                      <span className={s.customCheckbox}></span>
-                      {label}
-                    </label>
-                  </SwiperSlide>
-                );
-              })}
-            </Swiper>
-            <div className={s.paginationCont}></div>
+              return (
+                <SwiperSlide className={s.swiperSlide} key={idx}>
+                  <label key={label} className={s.checkboxItem}>
+                    <input
+                      type="checkbox"
+                      checked={checked}
+                      onChange={() => toggleType(label)}
+                      className={s.hiddenCheckbox}
+                    />
+                    <span className={s.customCheckbox}></span>
+                    {label}
+                  </label>
+                </SwiperSlide>
+              );
+            })}
+          </Swiper>
+          <div className={s.paginationCont}></div>
         </div>
 
         <button className={s.submitBtn} type="button">
