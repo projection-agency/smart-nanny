@@ -8,6 +8,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import "swiper/css/pagination";
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
 const dataShort = [
   {
@@ -94,7 +95,11 @@ const itemVariants = {
 };
 
 export const WhySection = () => {
-  const windowWidth = window.window.innerWidth;
+  const [windowWidth, setWindowWidth] = useState(0);
+  useEffect(() => {
+    const windowWidth = window.window.innerWidth;
+    setWindowWidth(windowWidth);
+  }, [window.innerWidth]);
   const pathname = usePathname();
 
   const isSelectionPage = pathname === "/nanny-selection" ? true : false;
