@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import s from "./LanguageSwitcher.module.css";
 
@@ -10,10 +10,20 @@ export const LanguageSwitcher = () => {
   const [open, setOpen] = useState(false);
   const [currentLang, setCurrentLang] = useState("UA");
 
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const savedLang = localStorage.getItem("lang");
+      if (savedLang) setCurrentLang(savedLang);
+    }
+  }, []);
+
   const toggle = () => setOpen((prev) => !prev);
 
   const selectLang = (lang: string) => {
     setCurrentLang(lang);
+    if (typeof window !== "undefined") {
+      localStorage.setItem("lang", lang);
+    }
     setOpen(false);
   };
 

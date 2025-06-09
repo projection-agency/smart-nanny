@@ -99,14 +99,14 @@ const containerVariants = {
 
 const cardVariants = {
   hidden: { opacity: 0, y: 30 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.3, ease: "easeOut" } },
+  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
 };
 
 const plasterVariants = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
-    transition: { duration: 0.5, ease: "easeOut", delay: 0.5 },
+    transition: { duration: 0.3, ease: "easeOut", delay: 0.5 },
   },
 };
 
@@ -160,7 +160,8 @@ export const ServicesSection = () => {
               variants={cardVariants}
               initial="hidden"
               whileInView="show"
-              viewport={{ once: false, amount: 0.5 }}
+              viewport={{ once: true, amount: 0.5 }}
+              transition={{ duration: 0.7, ease: "easeOut" }}
             >
               <div>
                 <div className={s.tagList}>
@@ -209,9 +210,10 @@ export const ServicesSection = () => {
                   <motion.div
                     className={s.plaster}
                     variants={plasterVariants}
-                    initial="hidden"
-                    whileInView="show"
-                    viewport={{ once: false, amount: 0.5 }}
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true, amount: 0.5 }}
+                    transition={{ duration: 0.7, ease: "easeOut" }}
                   >
                     <Image
                       width={1920}
@@ -224,9 +226,10 @@ export const ServicesSection = () => {
                   <motion.div
                     className={s.plaster}
                     variants={plasterVariants}
-                    initial="hidden"
-                    whileInView="show"
-                    viewport={{ once: false, amount: 0.5 }}
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true, amount: 0.5 }}
+                    transition={{ duration: 0.7, ease: "easeOut" }}
                   >
                     <Image
                       width={1920}
@@ -240,9 +243,10 @@ export const ServicesSection = () => {
                 <motion.div
                   className={s.plaster}
                   variants={plasterVariants}
-                  initial="hidden"
-                  whileInView="show"
-                  viewport={{ once: false, amount: 0.5 }}
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true, amount: 0.5 }}
+                  transition={{ duration: 0.7, ease: "easeOut" }}
                 >
                   <Image
                     width={1920}
@@ -271,15 +275,16 @@ export const ServicesSection = () => {
           variants={accordionListContainerVariants}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: false, amount: 0.3 }}
+          viewport={{ once: true, amount: 0.3 }}
         >
           {accordionData.map((accordion) => (
             <motion.li
               key={accordion.id}
               variants={accordionListItemVariants}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: false, amount: 0.3 }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.7, ease: "easeOut" }}
             >
               <Accordion
                 id={accordion.id}

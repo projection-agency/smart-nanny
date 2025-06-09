@@ -20,7 +20,18 @@ import { Breadcrumbs, BreadcrumbItem } from "@/components/Breadcrumbs/Breadcrumb
 
 export default function Vacations() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(true);
+
   const dispatch = useDispatch<AppDispatch>();
+
+  useEffect(() => {
+    const checkScreen = () => {
+      setIsDesktop(window.innerWidth >= 1024);
+    };
+    checkScreen();
+    window.addEventListener("resize", checkScreen);
+    return () => window.removeEventListener("resize", checkScreen);
+  }, []);
 
   useEffect(() => {
     dispatch(fetchVacations());
@@ -79,7 +90,7 @@ export default function Vacations() {
         </Container>
       </section>
 
-      <VacancySidebar isOpen={modalIsOpen} onClose={closeModal}/>
+      {!isDesktop && <VacancySidebar isOpen={modalIsOpen} onClose={closeModal} />}
     </main>
   );
 }

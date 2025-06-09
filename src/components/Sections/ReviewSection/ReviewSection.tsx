@@ -10,6 +10,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { useEffect, useRef, useState } from "react";
 import { API_URL } from "@/constants";
+import { motion } from "framer-motion";
 
 type APISmartReview = {
   id: number;
@@ -44,77 +45,133 @@ export const ReviewSection = () => {
     fetchReviews();
   }, []);
 
+  const lineVariants = {
+    hidden: { pathLength: 0, opacity: 0 },
+    show: {
+      pathLength: 1,
+      opacity: 1,
+      transition: { duration: 1, ease: "easeInOut" }
+    }
+  };
+
   return (
     <section className={s.section}>
       <Container className={s.container}>
-        <div className={s.wrapper}>
-          <h2 className={s.title}>
+        <motion.div
+          className={s.wrapper}
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+        >
+          <motion.h2
+            className={s.title}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.7 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
+          >
             Що кажуть родини після співпраці
-            <span> з нами{underline}</span>
-          </h2>
+            <span> з нами
+              <motion.svg
+                viewBox="0 0 195 18"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <motion.path
+                  d="M2 15.5949C2.45184 12.3746 10.2611 10.229 13.0626 9.39704C19.2811 7.55038 24.0144 4.62166 30.7399 4.62166C34.8258 4.62166 52.0814 1.36315 43.2851 7.67204C41.0185 9.29771 41.0162 8.3894 39.8456 10.2144C38.2422 12.7142 41.1508 10.8755 42.9819 10.6716C52.0189 9.66526 59.7991 9.98828 68.9458 9.29771C83.7508 8.17993 100.311 10.4003 114.913 7.97489C125.853 6.1577 137.308 6.30047 148.196 4.62157C155.411 3.50917 162.687 2.08148 170.036 2.08148C172.464 2.08148 178.396 0.795266 178.191 3.91035C178.078 5.60885 172.111 7.8417 170.492 8.48252C168.708 9.18906 159.357 12.1403 162.794 12.1403C178.232 12.1403 178.379 10.0355 193.5 7.42374"
+                  stroke="#FF91B2"
+                  strokeWidth="3"
+                  strokeLinecap="round"
+                  variants={lineVariants}
+                  initial="hidden"
+                  animate="show"
+                />
+              </motion.svg>
+              </span>
+          </motion.h2>
 
-          <p className={s.desc}>
+          <motion.p
+            className={s.desc}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.7 }}
+            transition={{ duration: 0.7, ease: "easeOut", delay: 0.15 }}
+          >
             Історії родин, які вже знайшли свою ідеальну няню через Smart Nanny
-          </p>
+          </motion.p>
 
-          <div className={s.imageContainerMobile}>
+          <motion.div
+            className={s.imageContainerMobile}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.7 }}
+            transition={{ duration: 0.7, ease: "easeOut", delay: 0.25 }}
+          >
             <Image
               src="/images/reviewImageMob.png"
               alt="Family"
               width={1920}
               height={1080}
             />
-          </div>
+          </motion.div>
 
           {isReady && (
-            <Swiper
-              modules={[Navigation, Pagination]}
-              breakpoints={{
-                0: { navigation: { enabled: false } },
-                1024: { navigation: { enabled: true } },
-              }}
-              navigation={{
-                nextEl: `.${s.swiperNext}`,
-                prevEl: `.${s.swiperPrev}`,
-              }}
-              pagination={{
-                el: paginationRef.current,
-                clickable: true,
-                renderBullet: (_, className) =>
-                  `<span class="${className}"></span>`,
-              }}
-              slidesPerView={1}
-              className={s.swiper}
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.7 }}
+              transition={{ duration: 0.7, ease: "easeOut", delay: 0.35 }}
             >
-              {reviews.map((review) => (
-                <SwiperSlide key={review.id}>
-                  <div className={s.card}>
-                    <div className={s.plus}>{plus}</div>
+              <Swiper
+                modules={[Navigation, Pagination]}
+                breakpoints={{
+                  0: { navigation: { enabled: false } },
+                  1024: { navigation: { enabled: true } },
+                }}
+                navigation={{
+                  nextEl: `.${s.swiperNext}`,
+                  prevEl: `.${s.swiperPrev}`,
+                }}
+                pagination={{
+                  el: paginationRef.current,
+                  clickable: true,
+                  renderBullet: (_, className) =>
+                    `<span class="${className}"></span>`,
+                }}
+                slidesPerView={1}
+                className={s.swiper}
+              >
+                {reviews.map((review) => (
+                  <SwiperSlide key={review.id}>
+                    <div className={s.card}>
+                      <div className={s.plus}>{plus}</div>
 
-                    <div className={s.header}>
-                      <Image
-                        width={1920}
-                        height={1080}
-                        src={review.Photo}
-                        alt={review.Full_name}
-                        className={s.avatar}
-                      />
-                      <div className={s.name}>{review.Full_name}</div>
+                      <div className={s.header}>
+                        <Image
+                          width={1920}
+                          height={1080}
+                          src={review.Photo}
+                          alt={review.Full_name}
+                          className={s.avatar}
+                        />
+                        <div className={s.name}>{review.Full_name}</div>
+                      </div>
+                      <p className={s.text}>
+                        {" "}
+                        {review.Review.length > 100
+                          ? review.Review.slice(0, 100) + "..."
+                          : review.Review}
+                      </p>
+                      <div className={s.footer}>
+                        <span>{review.Date}</span>
+                        <span>{review.Location}</span>
+                      </div>
                     </div>
-                    <p className={s.text}>
-                      {" "}
-                      {review.Review.length > 100
-                        ? review.Review.slice(0, 100) + "..."
-                        : review.Review}
-                    </p>
-                    <div className={s.footer}>
-                      <span>{review.Date}</span>
-                      <span>{review.Location}</span>
-                    </div>
-                  </div>
-                </SwiperSlide>
-              ))}
-            </Swiper>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            </motion.div>
           )}
 
           <div className={s.swiperController}>
@@ -122,31 +179,26 @@ export const ReviewSection = () => {
             <div ref={paginationRef} className="dots"></div>
             <button className={s.swiperNext}>{arrow}</button>
           </div>
-        </div>
+        </motion.div>
 
-        <div className={s.imageContainer}>
+        <motion.div
+          className={s.imageContainer}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true, amount: 0.7 }}
+          transition={{ duration: 0.3, ease: "easeOut", delay: 0.15 }}
+        >
           <Image
             src="/images/reviewImage.png"
             alt="Family"
             width={1920}
             height={1080}
           />
-        </div>
+        </motion.div>
       </Container>
     </section>
   );
 };
-
-const underline = (
-  <svg viewBox="0 0 165 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path
-      d="M2 16.0937C2.37987 12.8212 8.94534 10.6408 11.3007 9.79537C16.5287 7.91876 20.5082 4.94253 26.1625 4.94253C29.5977 4.94253 44.105 1.63116 36.7097 8.04239C34.8041 9.69443 34.8021 8.77138 33.818 10.626C32.47 13.1664 34.9153 11.2979 36.4548 11.0906C44.0524 10.0679 50.5935 10.3962 58.2834 9.69443C70.7305 8.55852 84.6528 10.8149 96.9291 8.35015C106.127 6.50349 115.758 6.64857 124.912 4.94244C130.977 3.81199 137.094 2.36114 143.273 2.36114C145.314 2.36114 150.302 1.05406 150.129 4.21968C150.035 5.94573 145.017 8.2148 143.657 8.86602C142.157 9.58402 134.295 12.5831 137.185 12.5831C150.164 12.5831 150.287 10.4442 163 7.79006"
-      stroke="#FF91B2"
-      strokeWidth="3"
-      strokeLinecap="round"
-    />
-  </svg>
-);
 
 const arrow = (
   <svg viewBox="0 0 42 23" fill="none" xmlns="http://www.w3.org/2000/svg">

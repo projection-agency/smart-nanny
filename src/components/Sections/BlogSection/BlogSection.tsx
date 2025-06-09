@@ -8,6 +8,8 @@ import { useEffect, useState } from "react";
 import { API_URL } from "@/constants";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
+import { motion } from "framer-motion";
+
 export type BlogPost = {
   id: number;
   date: string;
@@ -65,10 +67,16 @@ export const BlogSection = () => {
   return (
     <section className={s.section}>
       <Container>
-        <h2 className={s.title}>
+        <motion.h2
+          className={s.title}
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.7 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+        >
           {stars}
           Щоденник сервісу <span>Новини нашої агенції{line}</span>
-        </h2>
+        </motion.h2>
 
         <ul className={s.list}>
           {posts?.slice(0, 4).map((post) => (
@@ -113,11 +121,18 @@ export const BlogSection = () => {
 
         <div className={s.paginationCont}></div>
 
-        <Link href="/blog" className={s.btn}>
-          <div className={s.first}>{btnSvg}</div>
-          Дивитись більше
-          <div className={s.second}>{btnSvg}</div>
-        </Link>
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.7 }}
+          transition={{ duration: 0.7, ease: "easeOut", delay: 0.3 }}
+        >
+          <Link href="/blog" className={s.btn}>
+            <div className={s.first}>{btnSvg}</div>
+            Дивитись більше
+            <div className={s.second}>{btnSvg}</div>
+          </Link>
+        </motion.div>
       </Container>
     </section>
   );
