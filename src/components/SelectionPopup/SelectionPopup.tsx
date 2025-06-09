@@ -114,9 +114,6 @@ export const SelectionPopup = ({ onClose }: { onClose: () => void }) => {
               <h3>Дякуємо за заявку!</h3>
               <p>Менеджер зв&apos;яжеться з вами для уточнення деталей :)</p>
             </div>
-            <button onClick={() => handleClose()} className={s.submitBtn}>
-              Залишити заявку
-            </button>
           </div>
         </div>
       ) : (

@@ -10,7 +10,7 @@ const SidePanelLangSwitcher = () => {
         return (
           <li className={s.active} key={index}>
             {item}
-            <Image src="/icons/sidebar/lang-active.svg" width={28} height={4} />
+            <Image src="/icons/sidebar/lang-active.svg" alt="language" width={28} height={4} />
           </li>
         );
       })}

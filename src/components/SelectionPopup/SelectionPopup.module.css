@@ -66,6 +66,7 @@
 
 .confirmation {
   padding-top: 3.1vw;
+  padding-bottom: 2.1vw;
   display: flex;
   flex-direction: column;
   justify-content: center;

@@ -28,6 +28,12 @@
   gap: 0.8vw;
 }
 
+.unactive {
+  .controller {
+    visibility: hidden;
+  }
+}
+
 @media screen and (max-width: 1024px) {
   .panel.unactive {
     display: none;
