@@ -149,6 +149,9 @@
     }
   }
 }
+.clouds {
+  display: none;
+}
 
 @media screen and (max-width: 1024px) {
   .section {
@@ -186,6 +189,7 @@
       }
 
       .clouds {
+        display: block;
         .cloud1,
         .cloud2 {
           position: absolute;
