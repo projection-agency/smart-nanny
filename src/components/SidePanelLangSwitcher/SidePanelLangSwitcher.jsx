@@ -6,7 +6,6 @@ const SidePanelLangSwitcher = () => {
   return (
     <ul className={s.languages}>
       {languages.map((item, index) => {
-        console.log(item);
         return (
           <li className={s.active} key={index}>
             {item}
