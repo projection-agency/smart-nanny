@@ -6,17 +6,20 @@ import { Accordion } from "@/components/Accordion/Accordion";
 import { useEffect, useMemo, useState } from "react";
 import { API_URL } from "@/constants";
 import { motion } from "framer-motion";
+import { usePathname } from "next/navigation";
 
 type FaqItem = {
   id: number;
   Question: string;
   Answer: string;
   faq_categories: { slug: string }[];
+  faq_category: number[];
 };
 
 export const FaqSection = ({ nannys }: { nannys?: boolean }) => {
   const [openId, setOpenId] = useState<number | null>(null);
   const [faqs, setFaqs] = useState<FaqItem[]>([]);
+  const pathname: string = usePathname();
 
   const toggle = (id: number) => {
     setOpenId((prev) => (prev === id ? null : id));
@@ -25,7 +28,7 @@ export const FaqSection = ({ nannys }: { nannys?: boolean }) => {
   useEffect(() => {
     const fetchFaqs = async () => {
       try {
-        const response = await fetch(`${API_URL}v2/faq`);
+        const response = await fetch(`${API_URL}v2/faq?per_page=100`);
         const data = await response.json();
         setFaqs(data);
       } catch (error) {
@@ -36,22 +39,33 @@ export const FaqSection = ({ nannys }: { nannys?: boolean }) => {
     fetchFaqs();
   }, []);
 
-  const { parentsFaqs, nannysFaqs } = useMemo(() => {
+  const { parentsFaqs, nannysFaqs, courseFaqs } = useMemo(() => {
     const parents: FaqItem[] = [];
     const nannys: FaqItem[] = [];
+    const course: FaqItem[] = [];
+
+    // faqs?.forEach((faq) => {
+    //   if (faq.faq_categories?.[0]?.slug === "about-course") {
+    //     parents.push(faq);
+    //   } else {
+    //     nannys.push(faq);
+    //   }
+    // });
 
     faqs?.forEach((faq) => {
-      if (faq.faq_categories?.[0]?.slug === "about-course") {
+      if (faq.faq_category?.[0] === 2) {
         parents.push(faq);
-      } else {
+      } else if (faq.faq_category?.[0] === 4) {
+        course.push(faq);
+      } else if (faq.faq_category?.[0] === 3) {
         nannys.push(faq);
       }
     });
 
-    return { parentsFaqs: parents, nannysFaqs: nannys };
+    return { parentsFaqs: parents, nannysFaqs: nannys, courseFaqs:course };
   }, [faqs]);
 
-  const currentFaqs = nannys ? nannysFaqs : parentsFaqs;
+  const currentFaqs = (pathname.includes("education") && courseFaqs) || (pathname.includes("/") && parentsFaqs) || (pathname.includes("nanny-selection") && nannysFaqs) || [];
 
   return (
     <section className={s.section}>

@@ -10,6 +10,9 @@ import { WhySection } from "@/components/Sections/WhySection/WhySection";
 export const metadata = {
   title: "Smart Nanny",
   description: "Ми підбираємо надійних нянь, яким можна довірити вашу дитину.",
+  icons:{
+    icon:"/icons/favicon.svg"
+  }
 };
 
 export default function Home() {

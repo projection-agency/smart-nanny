@@ -150,7 +150,6 @@ export const RoadSection = () => {
             el: `.${s.paginationCont}`,
             bulletElement: "p",
           }}
-          onSwiper={(swiper) => console.log(swiper)}
         >
           {selectionSteps.map((step, index) => (
             <SwiperSlide key={index} className={s.slideCont}>

@@ -147,7 +147,6 @@ export const WhySection = () => {
                   el: `.${s.paginationCont}`,
                   bulletElement: "p",
                 }}
-                onSwiper={(swiper) => console.log(swiper)}
               >
                 {data.map((item, index) => (
                   <SwiperSlide key={item.id + index} className={s.slideCont}>
