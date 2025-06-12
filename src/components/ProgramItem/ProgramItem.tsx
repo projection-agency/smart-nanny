@@ -2,6 +2,7 @@
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import s from "./ProgramItem.module.css";
+import { motion } from "framer-motion";
 
 export type ProgramItemProps = {
   module: number;
@@ -33,7 +34,13 @@ export const ProgramItem = ({
   }, [isOpen]);
 
   return (
-    <li className={`${s.item} ${isOpen && s.active} `}>
+    <motion.li
+      className={`${s.item} ${isOpen && s.active} `}
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: false, amount: 0.6 }}
+      transition={{ duration: 0.7, ease: "easeOut" }}
+    >
       <div className={s.header}>
         <div className={s.meta}>
           <span className={s.module}>Модуль {module}</span>
@@ -60,7 +67,9 @@ export const ProgramItem = ({
           </div>
         </div>
         <button onClick={() => setIsOpen(!isOpen)} className={s.toggleBtn}>
-          <span className={s.toggleText}>{isOpen ? "Згорнути" : "Показати"}{" "}</span>
+          <span className={s.toggleText}>
+            {isOpen ? "Згорнути" : "Показати"}{" "}
+          </span>
           <span className={`${isOpen ? s.opened : ""} ${s.icon}`}>{arrow}</span>
         </button>
       </div>
@@ -99,7 +108,7 @@ export const ProgramItem = ({
           </div>
         </div>
       </div>
-    </li>
+    </motion.li>
   );
 };
 

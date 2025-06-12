@@ -53,6 +53,79 @@ const line = (
   </svg>
 );
 
+// export const noName = (
+//   <motion.svg className={s.svg} viewBox="0 0 130 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+//     <motion.path
+//       d="M125.322 84.5919C122.199 84.0242 119.911 80.145 117.318 78.474C114.823 76.8658 112.353 74.3433 110.425 72.1047C102.962 63.4372 94.1776 56.0462 86.3935 47.6331C82.8291 43.7806 79.5364 40.9166 77.2376 36.3191C76.2897 34.4233 75.1599 32.1672 73.6549 30.6622C73.0146 30.0219 72.2058 28.973 72.1464 28.0222C72.1251 27.6823 72.1464 29.3387 72.1464 29.7193C72.1464 31.1527 73.104 32.5798 73.2777 34.0563C73.4688 35.6804 74.0486 37.808 74.4301 39.5247C74.8915 41.6013 74.7863 43.758 74.7863 45.936C74.7863 54.8765 75.2821 63.9752 74.7863 72.9008C74.6178 75.9342 72.8821 79.6366 71.6854 82.3291C70.3043 85.4366 67.8642 88.4969 65.5256 90.8355C62.6044 93.7567 60.296 96.6201 56.4745 98.3572C53.1121 99.8855 48.9123 101.94 45.1815 101.94C41.6083 101.94 38.4065 101.411 34.978 100.788C33.0188 100.431 31.4505 99.2167 29.9077 98.2524C28.6475 97.4648 29.1534 94.9417 29.1534 93.643C29.1534 92.0727 30.3778 91.3802 31.7933 91.3802C33.4216 91.3802 34.7292 94.0667 34.8104 95.5287C35.0549 99.9294 32.1582 101.726 29.7191 104.978C27.8721 107.441 25.6406 109.476 23.8736 112.039C22.0651 114.661 20.1568 115.728 17.2738 116.837C12.6946 118.598 6.83346 117.779 2 117.779"
+//       stroke="#FFF9C1"
+//       stroke-width="3"
+//       stroke-linecap="round"
+//       pathLength={1}
+//       initial={{ pathLength: 0 }}
+//       whileInView={{ pathLength: 1 }}
+//       transition={{
+//         duration: 1.2,
+//         ease: "easeOut",
+//         repeat: Infinity,
+//         repeatType: "reverse",
+//         repeatDelay: 2,
+//       }}
+//       viewport={{ once: false, amount: 0.5 }}
+//     />
+//     <motion.path
+//       d="M91.7578 75.541C91.7578 77.1199 93.0161 78.3078 94.1044 79.3961C95.7558 81.0475 97.6631 82.5854 99.489 84.0055C100.517 84.8052 101.545 85.7824 102.883 86.0797C104.711 86.4859 106.609 87.0941 107.597 88.7406"
+//       stroke="#FFF9C1"
+//       stroke-width="3"
+//       stroke-linecap="round"
+//       pathLength={1}
+//       initial={{ pathLength: 0 }}
+//       whileInView={{ pathLength: 1 }}
+//       transition={{
+//         duration: 1.2,
+//         ease: "easeOut",
+//         repeat: Infinity,
+//         repeatType: "reverse",
+//         repeatDelay: 2,
+//       }}
+//       viewport={{ once: false, amount: 0.5 }}
+//     />
+//     <motion.path
+//       d="M94.0195 31.416C99.4114 31.416 104.173 34.8102 109.482 34.8102"
+//       stroke="#FFF9C1"
+//       stroke-width="3"
+//       stroke-linecap="round"
+//       pathLength={1}
+//       initial={{ pathLength: 0 }}
+//       whileInView={{ pathLength: 1 }}
+//       transition={{
+//         duration: 1.2,
+//         ease: "easeOut",
+//         repeat: Infinity,
+//         repeatType: "reverse",
+//         repeatDelay: 2,
+//       }}
+//       viewport={{ once: false, amount: 0.5 }}
+//     />
+//     <motion.path
+//       d="M91.3789 13.3139C99.3447 13.3139 106.622 11.8954 113.839 8.41123C116.628 7.06484 119.566 5.9247 122.283 4.4304C123.897 3.5423 126.057 2 127.961 2"
+//       stroke="#FFF9C1"
+//       stroke-width="3"
+//       stroke-linecap="round"
+//       pathLength={1}
+//       initial={{ pathLength: 0 }}
+//       whileInView={{ pathLength: 1 }}
+//       transition={{
+//         duration: 1.2,
+//         ease: "easeOut",
+//         repeat: Infinity,
+//         repeatType: "reverse",
+//         repeatDelay: 2,
+//       }}
+//       viewport={{ once: false, amount: 0.5 }}
+//     />
+//   </motion.svg>
+// );
+
 const svg = (
   <svg
     className={s.svgMobile}

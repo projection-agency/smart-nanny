@@ -1,3 +1,15 @@
+@keyframes rotate {
+  0% {
+    transform: rotateZ(10deg);
+  }
+  50%{
+    transform: rotateZ(-10deg);
+  }
+  100% {
+    transform: rotateZ(10deg);
+  }
+}
+
 .section {
   padding: 8vw 0;
   background-color: var(--primary-pink);
@@ -8,6 +20,7 @@
     width: 8vw;
     top: 8.4vw;
     right: 10.6vw;
+    animation: rotate 3s ease-in-out infinite;
   }
 
   .flower {
@@ -90,6 +103,7 @@
       bottom: auto;
       right: auto;
       display: block;
+      animation: rotate 3s ease-in-out infinite;
     }
 
     span {

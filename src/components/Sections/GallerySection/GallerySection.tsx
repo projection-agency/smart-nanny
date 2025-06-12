@@ -92,18 +92,27 @@ export const GallerySection = () => {
           <div className={s.swiperController}>
             <div className={s.hint}>
               <span>Гортай праворуч</span>
-              <svg
+              <motion.svg
                 viewBox="0 0 54 53"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
+                style={{
+                  verticalAlign: "middle",
+                }}
+                preserveAspectRatio="xMidYMid meet"
               >
                 <g filter="url(#filter0_g_878_5632)">
-                  <path
+                  <motion.path
                     d="M3.29464 2.87082C4.00076 2.79837 7.09918 2.89935 7.8047 3.02392C9.41295 3.30787 10.9823 3.21888 12.3469 3.24754C13.7057 3.27608 15.2847 3.91983 16.6283 3.98836C17.4742 4.0315 17.9783 4.12334 18.8188 4.15574C19.1818 4.16974 19.8507 4.28134 20.2168 4.40858C23.2103 5.44896 25.4662 6.15293 27.5776 7.86699C28.7645 8.83052 29.9514 9.79406 31.1382 10.7576C32.1168 11.552 32.6452 12.3537 33.3309 13.3982C34.0253 14.456 34.817 15.6226 35.2874 16.7936C35.7161 17.8612 36.4931 18.7636 36.8652 19.8602C37.5383 21.8442 38.2165 23.8121 39.0313 25.7279C40.3873 28.9163 41.4982 32.0993 42.4385 35.4214C42.9779 37.3273 43.5395 39.4982 43.3405 41.4677C43.1397 43.4552 43.047 45.5594 43.0331 47.5325C43.0285 48.1958 42.6543 49.2086 42.7925 49.8436M36.2954 41.9567C36.8193 42.382 37.9531 44.5378 38.3524 45.1203C38.8146 45.7945 42.159 49.1949 42.7737 49.7315C43.8674 48.922 45.7157 47.7499 46.7908 46.8934C48.0689 45.875 49.0156 44.4444 50.0391 43.1837C50.3389 42.8143 50.88 41.8246 51.4306 41.9468"
                     stroke="#FF91B2"
                     strokeWidth="3"
                     strokeLinecap="round"
                     strokeLinejoin="round"
+                    pathLength={1}
+                    initial={{ pathLength: 0 }}
+                    whileInView={{ pathLength: 1 }}
+                    transition={{ duration: 1.2, ease: "easeOut",repeat:Infinity,repeatDelay:2, repeatType:"reverse" }}
+                    viewport={{ once: false, amount: 0.5 }}
                   />
                 </g>
                 <defs>
@@ -139,7 +148,7 @@ export const GallerySection = () => {
                     </feMerge>
                   </filter>
                 </defs>
-              </svg>
+              </motion.svg>
             </div>
 
             <div ref={prevRef} className={s.swiperPrev}>
