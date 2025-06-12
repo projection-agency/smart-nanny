@@ -164,6 +164,18 @@
   }
 }
 
+@keyframes levitate {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-0.8vw);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
 @media screen and (max-width: 1024px) {
   .section {
     padding-bottom: 13.3vw;
@@ -203,6 +215,7 @@
         right: 4.3vw;
         bottom: -15.5vw;
         width: 17.3vw;
+        animation: levitate 6s ease-in-out infinite;
       }
     }
 
