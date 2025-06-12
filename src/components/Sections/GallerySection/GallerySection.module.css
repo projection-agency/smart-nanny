@@ -4,6 +4,18 @@
   user-select: none;
 }
 
+@keyframes rotate {
+  0% {
+    transform: rotateZ(10deg);
+  }
+  50% {
+    transform: rotateZ(-10deg);
+  }
+  100% {
+    transform: rotateZ(10deg);
+  }
+}
+
 .titleContainer {
   max-width: 41.5vw;
   position: relative;
@@ -46,9 +58,10 @@
   img {
     position: absolute;
     right: 0;
-    top: 50%;
+    top: 40%;
     transform: translateY(-50%);
     width: 4.8vw;
+    animation: rotate 2s ease-in-out infinite;
   }
 }
 
@@ -91,6 +104,7 @@
       bottom: -1.5vw;
       width: 3vw;
       height: 3vw;
+      animation: rotate 3s ease-out infinite;
     }
   }
 
@@ -159,7 +173,7 @@
           font-size: 9.6vw;
           font-weight: 450;
           line-height: 110%;
-          letter-spacing:-1px ;
+          letter-spacing: -1px;
 
           span {
             font-size: 8.5vw;

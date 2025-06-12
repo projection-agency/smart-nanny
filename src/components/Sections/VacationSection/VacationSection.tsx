@@ -173,63 +173,95 @@ export const VacationSection = () => {
 };
 
 const svg = (
-  <svg
+  <motion.svg
     className={s.svg}
     viewBox="0 0 41 46"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <path
+    <motion.path
       d="M16.7042 22.5332C16.7042 20.7201 15.7945 18.8687 14.9222 17.311C13.5712 14.8985 12.5268 12.4073 11.0612 10.0344C9.21849 7.05102 6.9824 4.37331 4.89844 1.59469"
       stroke="#FF91B2"
       strokeWidth="3"
       strokeLinecap="round"
     />
-    <path
+    <motion.path
       d="M21.383 18.9707C21.383 16.5906 21.383 14.2105 21.383 11.8303C21.383 10.1397 21.3692 8.52649 21.1726 6.85557C21.0892 6.14669 21.2449 5.55215 20.9375 4.93745"
       stroke="#FF91B2"
       strokeWidth="3"
       strokeLinecap="round"
     />
-    <path
+    <motion.path
       d="M9.13672 43.9707C11.0382 39.9949 11.9889 37.3155 14.5796 33.4465C19.2779 28.1251 23.4486 25.0541 29.2812 23.596C33.9793 22.4214 34.8066 22.1037 39.2434 22.1037"
       stroke="#FF91B2"
       strokeWidth="3"
       strokeLinecap="round"
     />
-    <path
+    <motion.path
       d="M11.3555 24.7637C10.7488 24.6963 10.0886 23.7195 9.6725 23.3034C8.87905 22.51 8.00374 21.8574 7.20988 21.0635C6.03324 19.8869 4.55768 18.8968 3.21275 17.9079C2.77105 17.5831 2.24135 17.2274 2 16.7447"
       stroke="#FF91B2"
       strokeWidth="3"
       strokeLinecap="round"
     />
-  </svg>
+  </motion.svg>
 );
 
 const buttonSvg = (
-  <svg
+  <motion.svg
     className={s.svg}
     viewBox="0 0 42 61"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
+    style={{ verticalAlign: "middle" }}
+    preserveAspectRatio="xMidYMid meet"
   >
-    <path
+    <motion.path
       d="M39.582 32.7969L4.58203 32.7969"
       stroke="#FF91B2"
       strokeWidth="3"
       strokeLinecap="round"
+      pathLength={1}
+      initial={{ pathLength: 0 }}
+      whileInView={{ pathLength: 1 }}
+      transition={{
+        duration: 1.2,
+        ease: "easeOut",
+        repeat: Infinity,
+        repeatDelay: 2,
+      }}
+      viewport={{ once: false, amount: 0.5 }}
     />
-    <path
+    <motion.path
       d="M1.99929 52.7969C4.83361 52.7969 7.38321 54.5937 9.997 55.5442C13.2341 56.7213 16.5236 57.8612 19.582 59.3904"
       stroke="#FF91B2"
       strokeWidth="3"
       strokeLinecap="round"
+      pathLength={1}
+      initial={{ pathLength: 0 }}
+      whileInView={{ pathLength: 1 }}
+      transition={{
+        duration: 1.2,
+        ease: "easeOut",
+        repeat: Infinity,
+        repeatDelay: 2,
+      }}
+      viewport={{ once: false, amount: 0.5 }}
     />
-    <path
+    <motion.path
       d="M1.99929 8.39062C4.83361 8.39062 7.38321 6.59379 9.997 5.64332C13.2341 4.46621 16.5236 3.32629 19.582 1.7971"
       stroke="#FF91B2"
       strokeWidth="3"
       strokeLinecap="round"
+      pathLength={1}
+      initial={{ pathLength: 0 }}
+      whileInView={{ pathLength: 1 }}
+      transition={{
+        duration: 1.2,
+        ease: "easeOut",
+        repeat: Infinity,
+        repeatDelay: 2,
+      }}
+      viewport={{ once: false, amount: 0.5 }}
     />
-  </svg>
+  </motion.svg>
 );

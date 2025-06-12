@@ -36,16 +36,13 @@
 
 @keyframes rotate {
   0% {
-    transform: rotateZ(0deg);
-  }
-  25% {
     transform: rotateZ(10deg);
   }
-  75% {
+  50%{
     transform: rotateZ(-10deg);
   }
   100% {
-    transform: rotateZ(0deg);
+    transform: rotateZ(10deg);
   }
 }
 
@@ -162,20 +159,6 @@
 }
 
 @media screen and (max-width: 1024px) {
-  @keyframes rotate {
-    0% {
-      transform: rotateZ(0deg);
-    }
-    25% {
-      transform: rotateZ(10deg);
-    }
-    75% {
-      transform: rotateZ(-10deg);
-    }
-    100% {
-      transform: rotateZ(0deg);
-    }
-  }
 
   .section {
     flex-direction: column;
