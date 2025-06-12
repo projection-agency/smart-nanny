@@ -22,6 +22,37 @@
   display: none;
 }
 
+@keyframes levitate {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-0.8vw);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotateZ(0deg);
+  }
+  25% {
+    transform: rotateZ(10deg);
+  }
+  75% {
+    transform: rotateZ(-10deg);
+  }
+  100% {
+    transform: rotateZ(0deg);
+  }
+}
+
+.plate {
+  animation: levitate 6s ease-in-out infinite;
+}
+
 .content {
   position: relative;
   padding-right: 3.125vw;
@@ -42,6 +73,7 @@
       top: 0;
       width: 3.4vw;
       height: auto;
+      animation: rotate 6s ease-in-out infinite;
     }
 
     span {
@@ -130,6 +162,21 @@
 }
 
 @media screen and (max-width: 1024px) {
+  @keyframes rotate {
+    0% {
+      transform: rotateZ(0deg);
+    }
+    25% {
+      transform: rotateZ(10deg);
+    }
+    75% {
+      transform: rotateZ(-10deg);
+    }
+    100% {
+      transform: rotateZ(0deg);
+    }
+  }
+
   .section {
     flex-direction: column;
   }
@@ -151,6 +198,7 @@
       height: 16vw;
       bottom: -9.1vw;
       right: 4.5vw;
+      animation: rotate 3s ease 0s infinite;
     }
   }
 
@@ -206,7 +254,5 @@
     .plate {
       display: none;
     }
-
-    
   }
 }

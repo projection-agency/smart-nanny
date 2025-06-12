@@ -50,37 +50,50 @@ export const VacationSection = () => {
   }, []);
 
   return (
-
-    
     <motion.section
       className={s.section}
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.3 }}
-      transition={{ duration: 0.7, ease: "easeOut" }}
+      // initial={{ opacity: 0, y: 40 }}
+      // whileInView={{ opacity: 1, y: 0 }}
+      // viewport={{ once: false, amount: 0.6 }}
+      // transition={{ duration: 0.7, ease: "easeOut" }}
     >
       <Container className={s.container}>
         <motion.div
           className={s.topBlock}
           initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.6 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
         >
           <h2>
-            Актуальні<span> вакансії 
+            Актуальні
+            <span>
+              {" "}
+              вакансії
               <motion.svg
                 viewBox="0 0 195 18"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
+                style={{
+                  width: "100%",
+                  height: "auto",
+                  verticalAlign: "middle",
+                }}
+                preserveAspectRatio="xMidYMid meet"
               >
                 <motion.path
                   d="M2 15.5949C2.45184 12.3746 10.2611 10.229 13.0626 9.39704C19.2811 7.55038 24.0144 4.62166 30.7399 4.62166C34.8258 4.62166 52.0814 1.36315 43.2851 7.67204C41.0185 9.29771 41.0162 8.3894 39.8456 10.2144C38.2422 12.7142 41.1508 10.8755 42.9819 10.6716C52.0189 9.66526 59.7991 9.98828 68.9458 9.29771C83.7508 8.17993 100.311 10.4003 114.913 7.97489C125.853 6.1577 137.308 6.30047 148.196 4.62157C155.411 3.50917 162.687 2.08148 170.036 2.08148C172.464 2.08148 178.396 0.795266 178.191 3.91035C178.078 5.60885 172.111 7.8417 170.492 8.48252C168.708 9.18906 159.357 12.1403 162.794 12.1403C178.232 12.1403 178.379 10.0355 193.5 7.42374"
                   stroke="#FF91B2"
                   strokeWidth="3"
                   strokeLinecap="round"
+                  pathLength={1}
+                  initial={{ pathLength: 0 }}
+                  whileInView={{ pathLength: 1 }}
+                  transition={{ duration: 1.2, ease: "easeOut" }}
+                  viewport={{ once: false, amount: 0.5 }}
                 />
               </motion.svg>
-              </span>
+            </span>
           </h2>
           <VacationController />
           {svg}
@@ -124,12 +137,12 @@ export const VacationSection = () => {
         >
           <AnimatePresence initial={false}>
             {filtered.map((item, index) => (
-              <SwiperSlide key={item.Title + '-' + index}>
+              <SwiperSlide key={item.Title + "-" + index}>
                 <motion.div
                   initial={{ opacity: 0, y: 40 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 40 }}
-                  transition={{ duration: 0.5, delay: index * 0.07 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: false, amount: 0.6 }}
+                  transition={{ duration: 0.7, ease: "easeOut" }}
                 >
                   <VacationItem item={item} />
                 </motion.div>
