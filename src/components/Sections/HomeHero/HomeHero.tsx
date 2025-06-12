@@ -5,6 +5,7 @@ import { btnSvg } from "../BlogSection/BlogSection";
 import s from "./HomeHero.module.css";
 import Image from "next/image";
 import { motion } from "framer-motion";
+
 const containerVariants = {
   hidden: {},
   show: {

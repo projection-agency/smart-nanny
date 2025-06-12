@@ -76,12 +76,13 @@
       }
     }
 
-    .svg {
-      position: absolute;
-      width: 3.3vw;
-      top: -1vw;
-      left: 2vw;
-    }
+  .stars {
+    position: absolute;
+    left: -8.5vw;
+    top: -2.5vw;
+    width: 3.4vw;
+    height: auto;
+  }
   }
 
   p {
