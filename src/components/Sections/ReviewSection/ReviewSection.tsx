@@ -45,14 +45,14 @@ export const ReviewSection = () => {
     fetchReviews();
   }, []);
 
-  const lineVariants = {
-    hidden: { pathLength: 0, opacity: 0 },
-    show: {
-      pathLength: 1,
-      opacity: 1,
-      transition: { duration: 1, ease: "easeInOut" },
-    },
-  };
+  // const lineVariants = {
+  //   hidden: { pathLength: 0, opacity: 0 },
+  //   show: {
+  //     pathLength: 1,
+  //     opacity: 1,
+  //     transition: { duration: 1, ease: "easeInOut" },
+  //   },
+  // };
 
   return (
     <section className={s.section}>

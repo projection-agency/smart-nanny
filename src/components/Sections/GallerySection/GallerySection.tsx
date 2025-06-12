@@ -25,14 +25,14 @@ export const GallerySection = () => {
   const prevRef = useRef<HTMLDivElement>(null);
   const nextRef = useRef<HTMLDivElement>(null);
 
-  const lineVariants = {
-    hidden: { pathLength: 0, opacity: 0 },
-    show: {
-      pathLength: 1,
-      opacity: 1,
-      transition: { duration: 1.6, ease: "easeInOut" },
-    },
-  };
+  // const lineVariants = {
+  //   hidden: { pathLength: 0, opacity: 0 },
+  //   show: {
+  //     pathLength: 1,
+  //     opacity: 1,
+  //     transition: { duration: 1.6, ease: "easeInOut" },
+  //   },
+  // };
 
   return (
     <section className={s.section}>
