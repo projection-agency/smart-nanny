@@ -23,16 +23,17 @@ export const statsData = [
   },
 ];
 
-const itemVariants = {
-  hidden: { opacity: 0, y: 30 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } },
-};
-
 export const EducationSection = () => {
   return (
     <section className={s.section}>
       <Container>
-        <motion.div className={s.topBlock} variants={itemVariants}>
+        <motion.div
+          className={s.topBlock}
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.6 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+        >
           <div className={s.imageBlockMobile}>
             <Image
               width={1920}
@@ -49,29 +50,61 @@ export const EducationSection = () => {
             />
           </div>
 
-          <motion.div className={s.contentBlock} variants={itemVariants}>
+          <motion.div
+            className={s.contentBlock}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, amount: 0.6 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
+          >
             {cornerSvg}
 
-            <motion.h2 variants={itemVariants}>
+            <motion.h2
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false, amount: 0.6 }}
+              transition={{ duration: 0.7, ease: "easeOut" }}
+            >
               {svg}
               Професійне навчання <span>для нянь {line}</span>
             </motion.h2>
 
-            <motion.div className={s.textBlock} variants={itemVariants}>
-              <motion.p variants={itemVariants}>
+            <motion.div
+              className={s.textBlock}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false, amount: 0.6 }}
+              transition={{ duration: 0.7, ease: "easeOut" }}
+            >
+              <motion.p
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: false, amount: 0.6 }}
+                transition={{ duration: 0.7, ease: "easeOut" }}
+              >
                 Наш курс — це сучасний підхід до розвитку та догляду за дітьми.
                 Ви отримаєте знання, які справді важливі: основи педіатрії,
                 дитяча психологія, методики раннього розвитку, ігри та заняття
                 для стимуляції росту.
               </motion.p>
-              <motion.p variants={itemVariants}>
+              <motion.p
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: false, amount: 0.6 }}
+                transition={{ duration: 0.7, ease: "easeOut" }}
+              >
                 Також навчитесь гармонійно працювати в родині та розвивати свої
                 професійні навички. Курс створений для тих, хто прагне зростати
                 через практику й розуміння дитини.
               </motion.p>
             </motion.div>
 
-            <motion.button variants={itemVariants}>
+            <motion.button
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false, amount: 0.6 }}
+              transition={{ duration: 0.7, ease: "easeOut" }}
+            >
               Обрати навчання
             </motion.button>
           </motion.div>
@@ -110,10 +143,22 @@ export const EducationSection = () => {
           </div>
         </motion.div>
 
-        <motion.div className={s.bottomBlock} variants={itemVariants}>
+        <motion.div
+          className={s.bottomBlock}
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.6 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+        >
           <ul>
             {statsData.map((item, index) => (
-              <motion.li key={index} variants={itemVariants}>
+              <motion.li
+                key={index}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: false, amount: 0.6 }}
+                transition={{ duration: 0.7, ease: "easeOut" }}
+              >
                 <span>{item.value}</span>
                 <p>{item.description}</p>
               </motion.li>
