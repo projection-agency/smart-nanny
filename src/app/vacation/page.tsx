@@ -115,17 +115,11 @@ export default function Vacations() {
         </motion.button>
 
         <Container className={s.container}>
-          <motion.ul
-            className={s.vacationsList}
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.6 }}
-            transition={{ duration: 0.7, ease: "easeOut" }}
-          >
+          <ul className={s.vacationsList}>
             {filtered.map((item, index) => (
               <VacationItem key={index} item={item} />
             ))}
-          </motion.ul>
+          </ul>
         </Container>
       </section>
 

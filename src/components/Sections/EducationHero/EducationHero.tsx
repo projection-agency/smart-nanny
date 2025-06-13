@@ -38,22 +38,45 @@ export const EducationHero = () => {
         />
       </div>
 
-      <div className={s.content}>
-        <h1>
+      <motion.div
+        className={s.content}
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: false, amount: 0.6 }}
+        transition={{ duration: 0.7, ease: "easeOut" }}
+      >
+        <motion.h1
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.6 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+        >
           {svg}
           <span>Професійна {line} </span> няня
-        </h1>
+        </motion.h1>
 
-        <p>
+        <motion.p
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.6 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+        >
           Практичний онлайн-курс, який допомагає впевнено взаємодіяти як з
           дітьми, так і з батьками, і будувати успішну карєру професійної няні
-        </p>
+        </motion.p>
 
-        <button onClick={() => openModal("formB")} className={s.btn}>
+        <motion.button
+          onClick={() => openModal("formB")}
+          className={s.btn}
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.6 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+        >
           <div className={s.first}>{btnSvg}</div>
           Обрати навчання
           <div className={s.second}>{btnSvg}</div>
-        </button>
+        </motion.button>
         <Image
           alt="Plate"
           width={1920}
@@ -78,7 +101,7 @@ export const EducationHero = () => {
           src="/images/pinkCloud3.png"
           className={s.cloud1}
         />
-      </div>
+      </motion.div>
     </section>
   );
 };
