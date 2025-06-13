@@ -1,3 +1,27 @@
+@keyframes rotate {
+  0% {
+    transform: rotateZ(10deg);
+  }
+  50% {
+    transform: rotateZ(-10deg);
+  }
+  100% {
+    transform: rotateZ(10deg);
+  }
+}
+
+@keyframes levitate {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-0.8vw);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
 .section {
   background-color: var(--primary-pink);
   padding: 7vw 0;
@@ -28,6 +52,7 @@
       position: absolute;
       right: 0.5vw;
       top: -0.5vw;
+      animation: rotate 3s ease-in-out infinite;
     }
 
     span {
@@ -109,6 +134,7 @@
     height: auto;
     top: -1vw;
     right: -1.3vw;
+    animation: levitate 4s ease-in-out infinite;
   }
 }
 
@@ -185,6 +211,7 @@
           height: auto;
           top: -5vw;
           right: -3.5vw;
+          animation: levitate 4s ease-in-out infinite;
         }
       }
 
