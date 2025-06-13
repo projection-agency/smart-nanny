@@ -2,7 +2,6 @@ import Link from "next/link";
 import s from "./BlogItem.module.css";
 import Image from "next/image";
 import React from "react";
-import { motion } from "framer-motion";
 
 export const BlogItem = ({
   info,
