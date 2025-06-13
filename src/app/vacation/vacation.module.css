@@ -1,3 +1,15 @@
+@keyframes rotate {
+  0% {
+    transform: rotateZ(10deg);
+  }
+  50% {
+    transform: rotateZ(-10deg);
+  }
+  100% {
+    transform: rotateZ(10deg);
+  }
+}
+
 .section {
   padding: 4.5vw 0 10.4vw 0;
 }
@@ -21,6 +33,7 @@
       width: 3.5vw;
       top: -1vw;
       right: 0;
+      animation: rotate 4s ease-in-out infinite;
     }
 
     span {

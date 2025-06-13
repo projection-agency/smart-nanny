@@ -2,7 +2,6 @@ import Link from "next/link";
 import s from "./BlogItem.module.css";
 import Image from "next/image";
 import React from "react";
-import { motion } from "framer-motion";
 
 export const BlogItem = ({
   info,
@@ -17,12 +16,8 @@ export const BlogItem = ({
   };
 }) => {
   return (
-    <motion.div
+    <div
       className={s.itemBlock}
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.7 }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
     >
       <Link href={`/blog/${info.slug}`} className={s.item}>
         <div className={s.imageContainer}>
@@ -55,6 +50,6 @@ export const BlogItem = ({
           <p>{info.description}</p>
         </div>
       </Link>
-    </motion.div>
+    </div>
   );
 };

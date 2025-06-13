@@ -83,7 +83,7 @@ export const EducationHero = () => {
   );
 };
 
-export const line = (
+const line = (
   <motion.svg
     viewBox="0 0 367 23"
     fill="none"
