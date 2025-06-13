@@ -12,6 +12,7 @@
 
 .section {
   padding: 3.7vw 0 10.4vw 0;
+  min-height: 100vh;
 }
 
 .titleContainer {
@@ -139,8 +140,6 @@
 
     h2 > svg {
       width: 8vw;
-      position: absolute;
-      top: 0vw;
       right: 15vw;
     }
 
