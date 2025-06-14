@@ -35,18 +35,34 @@ export const NannySelectionHero = () => {
         />
       </div>
 
-      <motion.div className={s.content} variants={itemVariants}>
-        <motion.h1 variants={itemVariants}>
+      <motion.div
+        className={s.content} variants={itemVariants}
+      >
+        <motion.h1
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+        >
           <span>Разом {line} </span> до нових можливостей
         </motion.h1>
 
-        <motion.p variants={itemVariants}>
+        <motion.p
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+        >
           Ми команда, що об’єднує нянь для професійного зростання. Ми працюємо з
           перевіреними родинами, створюємо дружню спільноту та підтримуємо
           стабільний дохід
         </motion.p>
 
-        <motion.button variants={itemVariants} onClick={() => openModal("formB")} className={s.btn}>
+        <motion.button
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+          onClick={() => openModal("formB")}
+          className={s.btn}
+        >
           <div className={s.first}>{btnSvg}</div>
           Подати заявку
           <div className={s.second}>{btnSvg}</div>
