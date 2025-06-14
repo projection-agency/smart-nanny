@@ -8,6 +8,11 @@ import { BlogPost } from "../Sections/BlogSection/BlogSection";
 import { API_URL } from "@/constants";
 import { motion } from "framer-motion";
 
+const itemVariants = {
+  hidden: { opacity: 0, y: 30 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } },
+};
+
 export interface Category {
   id: number;
   name: string;
@@ -55,8 +60,6 @@ export const BlogPage = () => {
     setActiveId(id);
   };
 
-  console.log(posts);
-
   // const categories = [];
   // posts.forEach((post) => {});
 
@@ -75,12 +78,7 @@ export const BlogPage = () => {
           viewport={{ once: false, amount: 0.6 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
         >
-          <motion.h2
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, amount: 0.6 }}
-            transition={{ duration: 0.7, ease: "easeOut" }}
-          >
+          <motion.h2 variants={itemVariants}>
             <span>Щоденник {line}</span>
             від Smart Nanny
             {svg}
@@ -95,9 +93,7 @@ export const BlogPage = () => {
             Ми знаходимо нянь, яким можна довірити найцінніше – вашу дитину.
           </motion.p>
 
-          <div
-            className={s.tabController}
-          >
+          <div className={s.tabController}>
             {categories.map((item) => (
               <motion.div
                 onClick={() => handleClick(item.id)}
