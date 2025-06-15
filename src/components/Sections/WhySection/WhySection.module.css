@@ -20,6 +20,7 @@
   color: rgba(51, 51, 51, 1);
 
   span {
+    position: relative;
     font-family: "First Time Writing!";
     font-weight: 600;
     font-size: 2.8vw;
@@ -27,6 +28,13 @@
     letter-spacing: -1%;
     text-align: center;
     color: var(--primary-pink);
+
+    svg {
+      position: absolute;
+      width: 100%;
+      left: 0;
+      bottom: -0.5vw;
+    }
   }
 
   p {
@@ -46,7 +54,6 @@
 
   .slideCont {
     width: 22.5vw;
-    margin-right: 1.6vw;
     .swiperSlide {
       position: relative;
     }
@@ -63,13 +70,13 @@
   img {
     width: max-content;
     height: 2.8vw;
-    margin-bottom: 0.6vw;
+    margin-bottom: 0.8vw;
   }
 
   h3 {
     font-family: Moderustic;
     font-weight: 500;
-    font-size: 1.2vw;
+    font-size: 1.3vw;
     line-height: 135%;
     letter-spacing: -2%;
     margin-bottom: 0.6vw;
@@ -94,7 +101,7 @@
     text-align: center;
     color: var(--primary-pink);
     width: 5vw;
-    top: 2.8vw;
+    top: 1.2vw;
     /* transform: rotate(-10deg); */
   }
 }
@@ -124,7 +131,7 @@
 
 @media screen and (max-width: 1024px) {
   .section {
-    padding: 26.7vw 0 13.3vw;
+    padding: 26.7vw 0 ;
   }
 
   .content {
@@ -137,10 +144,11 @@
     font-size: 8.5vw;
     span {
       font-size: 8.5vw;
+      -webkit-text-stroke-width: 0.2vw;
     }
   }
 
-  .desc{
+  .desc {
     font-size: 3.7vw;
     max-width: 91.5vw;
   }
@@ -152,12 +160,13 @@
     margin-bottom: 10.7vw;
   }
 
-  div.list, .sectionSelection div.list {
+  div.list,
+  .sectionSelection div.list {
     margin-bottom: 10.7vw;
     padding-left: 3.2vw;
     padding-right: 13.2vw;
 
-    >div {
+    > div {
       .slideCont {
         background-color: #fff;
         min-height: 60.8vw;

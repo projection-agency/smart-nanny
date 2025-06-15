@@ -2,7 +2,7 @@ import { API_URL } from "@/constants";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export interface Vacation {
-  Employment_type: "full" | "part";
+  Employment_type: "full" | "part" | "hourly_assistance" | "with_accommodation";
   Title: string;
   Loc_country: string;
   Loc_city: string;
@@ -12,10 +12,11 @@ export interface Vacation {
   Price: string;
 }
 
-export const fetchVacations = createAsyncThunk<Vacation[]>(
+export const fetchVacations = createAsyncThunk<Vacation[], string>(
   "vacations/fetchVacations",
-  async () => {
-    const res = await fetch(`${API_URL}v2/vacancy`);
+  async (locale) => {
+    const lang = locale === "ua" ? "uk" : "en";
+    const res = await fetch(`${API_URL}v2/vacancy?lang=${lang}`);
     if (!res.ok) throw new Error("Failed to fetch");
     const data = await res.json();
     return data;
@@ -29,7 +30,7 @@ export interface VacationState {
   filters: {
     country: string | null;
     city: string | null;
-    employment: "full" | "part" | null;
+    employment: Vacation["Employment_type"] | null;
   };
 }
 

@@ -3,8 +3,11 @@
   align-items: center;
   gap: 8vw;
   padding-bottom: 8.3vw;
+  overflow: hidden;
 }
-
+.homeHeroImageMobile {
+  display: none;
+}
 .homeHeroImage {
   flex-shrink: 0;
   width: 55%;
@@ -36,6 +39,19 @@
   }
 }
 
+@keyframes rotate {
+  0% {
+    transform: rotateZ(10deg);
+  }
+  50%{
+    transform: rotateZ(-10deg);
+  }
+  100% {
+    transform: rotateZ(10deg);
+  }
+}
+
+
 .content {
   position: relative;
   h1 {
@@ -55,6 +71,7 @@
       top: 0;
       width: 3.4vw;
       height: auto;
+      animation: rotate 3s ease-in-out infinite;
     }
 
     span {
@@ -72,6 +89,7 @@
         width: 100%;
         left: 0;
         bottom: -0.7vw;
+        
       }
     }
   }
@@ -139,6 +157,102 @@
     right: 5vw;
     width: 4.3vw;
     height: 3.8vw;
+    animation: levitate 3s ease-in-out infinite;
   }
 }
 
+.cloud1{
+  display: none;
+}
+
+@media screen and (max-width: 1024px) {
+  .section {
+    flex-direction: column;
+    padding-bottom: 26vw;
+  }
+
+  .homeHeroImage {
+    display: none;
+  }
+
+  .homeHeroImageMobile {
+    display: block;
+    width: 100vw;
+    margin-bottom: 12.8vw;
+    position: relative;
+
+    .sun {
+      display: block;
+      position: absolute;
+      width: 18.1vw;
+      height: 16vw;
+      bottom: -9.1vw;
+      right: 4.5vw;
+    }
+  }
+
+  .content {
+    padding-left: 4.3vw;
+    padding-right: 4.3vw;
+    h1 {
+      font-size: 10.7vw;
+      margin-bottom: 6.9vw;
+      letter-spacing: -1px;
+      line-height: 0.9;
+      font-weight: 500;
+
+      svg {
+        display: none;
+      }
+
+      span {
+        font-size: 8.5vw;
+        svg {
+          bottom: -2.1vw;
+          display: block;
+        }
+      }
+    }
+
+    p {
+      font-size: 3.7vw;
+      margin-bottom: 10.1vw;
+      max-width: none;
+    }
+
+    .btn {
+      width: 67.7vw;
+      height: 16vw;
+      border-radius: 26.7vw;
+      font-size: 4.3vw;
+
+      svg {
+        height: 16vw;
+      }
+
+      .first {
+        left: -12vw;
+      }
+      .second {
+        right: -12vw;
+      }
+    }
+
+    .plate {
+      display: none;
+    }
+
+    .cloud {
+      width: 29.8vw;
+      top: -33vw;
+      left: -4vw;
+    }
+
+    .cloud1 {
+      position: absolute;
+      width: 29.8vw;
+      top: -36vw;
+      right: -13vw;
+    }
+  }
+}

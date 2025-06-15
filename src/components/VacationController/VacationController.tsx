@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 import { Dropdown } from "../Dropdown/Dropdown";
 import s from "./VacationController.module.css";
@@ -8,27 +9,69 @@ import {
   setCityFilter,
   setEmploymentFilter,
   resetFilters,
+  Vacation,
 } from "@/store/vacationSlice";
 import { selectCitiesByCountry, selectCountries } from "@/store/selectors";
 import { RootState } from "@/store/store";
+import { usePathname } from "next/navigation";
+import { useTranslation } from 'react-i18next';
+import { useEffect, useState } from "react";
+import i18n from '@/i18n/client';
 
-export const VacationController = () => {
+export const VacationController = ({ translation, locale }: { translation: Record<string, unknown>, locale: string }) => {
+  const pathname = usePathname();
   const dispatch = useDispatch();
   const cities = useSelector(selectCitiesByCountry);
   const countries = useSelector(selectCountries);
   const selectedCity = useSelector(
     (state: RootState) => state.vacations.filters.city
   );
-
   const vacations = useSelector(
     (state: RootState) => state.vacations.vacations
   );
+  const { t } = useTranslation('common');
+  const [isReady, setIsReady] = useState(false);
+
+  useEffect(() => {
+    if (translation && locale) {
+      i18n.addResourceBundle(locale, 'common', translation, true, true);
+      i18n.changeLanguage(locale).then(() => setIsReady(true));
+    }
+  }, [translation, locale]);
+
+  // SSR-safe for all text fields
+  const employmentFull = !isReady ? (translation && translation['employment_full'] as string) || '' : t('employment_full');
+  const employmentPart = !isReady ? (translation && translation['employment_part'] as string) || '' : t('employment_part');
+  const employmentHourly = !isReady ? (translation && translation['employment_hourly'] as string) || '' : t('employment_hourly');
+  const employmentAccommodation = !isReady ? (translation && translation['employment_accommodation'] as string) || '' : t('employment_accommodation');
+  const vacationCountry = !isReady ? (translation && translation['vacation_country'] as string) || '' : t('vacation_country');
+  const vacationCity = !isReady ? (translation && translation['vacation_city'] as string) || '' : t('vacation_city');
+  const vacationEmployment = !isReady ? (translation && translation['vacation_employment'] as string) || '' : t('vacation_employment');
+  const vacationAllCount = !isReady ? ((translation && translation['vacation_all_count'] as string) || '').replace('{{count}}', vacations.length.toString()) : t('vacation_all_count', { count: vacations.length });
+
+  const employmentMap: Record<string, Vacation["Employment_type"]> = {
+    [employmentFull]: "full",
+    [employmentPart]: "part",
+    [employmentHourly]: "hourly_assistance",
+    [employmentAccommodation]: "with_accommodation",
+  };
+
+  const employmentOptions = [
+    employmentFull,
+    employmentPart,
+    employmentHourly,
+    employmentAccommodation,
+  ];
 
   return (
-    <div className={s.panel}>
+    <div
+      className={`${s.panel} ${
+        pathname.includes("vacation") ? " " : s.unactive
+      }`}
+    >
       <div className={s.controller}>
         <Dropdown
-          placeholder="Країна"
+          placeholder={vacationCountry}
           options={countries}
           onSelect={(value) => {
             dispatch(setCountryFilter(value));
@@ -37,22 +80,18 @@ export const VacationController = () => {
         />
 
         <Dropdown
-          placeholder="Місто"
+          placeholder={vacationCity}
           options={cities}
           value={selectedCity}
           onSelect={(value) => dispatch(setCityFilter(value))}
         />
 
         <Dropdown
-          placeholder="Тип зайнятості"
-          options={["Повна зайнятість", "Нe повна зайнятість"]}
-          onSelect={(value) =>
-            dispatch(
-              setEmploymentFilter(
-                value === "Повна зайнятість" ? "full" : "part"
-              )
-            )
-          }
+          placeholder={vacationEmployment}
+          options={employmentOptions}
+          onSelect={(value) => {
+            dispatch(setEmploymentFilter(employmentMap[value]));
+          }}
         />
       </div>
 
@@ -60,9 +99,9 @@ export const VacationController = () => {
         onClick={() => {
           dispatch(resetFilters());
         }}
-        href="/vacation"
+        href={`/${locale}/vacation`}
       >
-        Переглянути всі {vacations.length} вакансії
+        {vacationAllCount}
       </Link>
     </div>
   );

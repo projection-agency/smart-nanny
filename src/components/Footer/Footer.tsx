@@ -1,9 +1,72 @@
+"use client";
+
 import { Container } from "../Container";
 import Image from "next/image";
 import s from "./Footer.module.css";
 import Link from "next/link";
+import { useTranslation } from 'react-i18next';
+import { useEffect, useState } from "react";
 
-export const Footer = () => {
+export const Footer = ({ translation, locale }: { translation: Record<string, unknown>, locale: string }) => {
+  const { t, i18n } = useTranslation('common');
+  const [isReady, setIsReady] = useState(false);
+
+  useEffect(() => {
+    if (translation && locale) {
+      i18n.addResourceBundle(locale, 'common', translation, true, true);
+      i18n.changeLanguage(locale).then(() => setIsReady(true));
+    }
+  }, [translation, locale, i18n]);
+
+  const navLinks = !isReady
+    ? (translation && translation['footer_nav'] as string[]) || []
+    : t('footer_nav', { returnObjects: true });
+  const socialLinks = !isReady
+    ? (translation && translation['footer_social'] as string[]) || []
+    : t('footer_social', { returnObjects: true });
+
+  const footerTitleMain = !isReady
+    ? (translation && translation['footer_title_main'] as string) || ''
+    : t('footer_title_main');
+  const footerTitleSpan = !isReady
+    ? (translation && translation['footer_title_span'] as string) || ''
+    : t('footer_title_span');
+  const footerPolicy = !isReady
+    ? (translation && translation['footer_policy'] as string) || ''
+    : t('footer_policy');
+  const footerOffer = !isReady
+    ? (translation && translation['footer_offer'] as string) || ''
+    : t('footer_offer');
+  const footerRights = !isReady
+    ? (translation && translation['footer_rights'] as string) || ''
+    : t('footer_rights');
+  const footerDev = !isReady
+    ? (translation && translation['footer_dev'] as string) || ''
+    : t('footer_dev');
+  const footerDevName = !isReady
+    ? (translation && translation['footer_dev_name'] as string) || ''
+    : t('footer_dev_name');
+
+  const navUrls = [
+    `/${locale}`,
+    `/${locale}/vacation`,
+    `/${locale}/blog`,
+    `/${locale}/education`
+  ];
+  const socialUrls = [
+    'https://www.instagram.com/smartnanny.service/', // Instagram
+    'https://viber.com/smartnanny_service', // Viber
+    'https://t.me/smartnanny_service', // Telegram
+    'https://wa.me/380671234567'  // WhatsApp
+  ];
+
+  const navLinksArr = Array.isArray(navLinks) && typeof navLinks[0] === 'string'
+    ? (navLinks as string[]).map((label, idx) => ({ href: navUrls[idx] || '#', label }))
+    : (navLinks as { href: string; label: string }[]);
+  const socialLinksArr = Array.isArray(socialLinks) && typeof socialLinks[0] === 'string'
+    ? (socialLinks as string[]).map((label, idx) => ({ href: socialUrls[idx] || '#', label }))
+    : (socialLinks as { href: string; label: string }[]);
+
   return (
     <footer className={s.footer}>
       <Container>
@@ -48,78 +111,55 @@ export const Footer = () => {
         </Link>
 
         <h2 className={s.title}>
-          Ваш простір турботи <span>та підтримки {line}</span>
+          {footerTitleMain}
+          <span>
+            {footerTitleSpan}
+            {line}
+          </span>
         </h2>
 
         <nav className={s.footerNav}>
           <ul>
-            <li>
-              <Link href="/">Стати нянею</Link>
-            </li>
-            <li>
-              <Link href="/vacation">Вакансії</Link>
-            </li>
-            <li>
-              <Link href="/blog">Блог</Link>
-            </li>
-            <li>
-              <Link href="/education">Навчання</Link>
-            </li>
+            {navLinksArr.map((item: { href: string; label: string }) => (
+              <li key={item.label}>
+                <Link href={item.href}>{item.label}</Link>
+              </li>
+            ))}
           </ul>
         </nav>
 
         <ul className={s.socialLinks}>
-          <li>
-            <a href="">
-              <svg>
-                <use xlinkHref="/icons/social-icons.svg#icon-inst"></use>
-              </svg>
-              Instagram
-            </a>
-          </li>
-
-          <li>
-            <a href="">
-              <svg>
-                <use xlinkHref="/icons/social-icons.svg#icon-viber"></use>
-              </svg>
-              Viber
-            </a>
-          </li>
-
-          <li>
-            <a href="">
-              <svg>
-                <use xlinkHref="/icons/social-icons.svg#icon-tg"></use>
-              </svg>
-              Telegram
-            </a>
-          </li>
-
-          <li>
-            <a href="">
-              <svg>
-                <use xlinkHref="/icons/social-icons.svg#icon-whatsapp"></use>
-              </svg>
-              WhatsApp
-            </a>
-          </li>
+          {socialLinksArr.map((item: { href: string; label: string }) => {
+            let iconName = item.label.toLowerCase();
+            if (iconName === 'instagram') iconName = 'inst';
+            if (iconName === 'telegram') iconName = 'tg';
+            return (
+              <li key={item.label}>
+                <a href={item.href}>
+                  <svg>
+                    <use xlinkHref={`/icons/social-icons.svg#icon-${iconName}`}></use>
+                  </svg>
+                  {item.label}
+                </a>
+              </li>
+            );
+          })}
         </ul>
 
         <div className={s.footerBottomContainer}>
           <div className={`flex gap-[1.6vw] ${s.privacyPolicy}`}>
-            <Link href="/policy">Політика конфіденційності</Link>
-            <Link href="/offer">Договір публічної оферти</Link>
+            <Link href={`/${locale}/policy`}>{footerPolicy}</Link>
+            <Link href={`/${locale}/offer`}>{footerOffer}</Link>
           </div>
 
           <div className={`absolute left-[50%] -translate-x-[50%] ${s.rights}`}>
-            ©2025 Smart Nanny. All Rights Reserved.
+            {footerRights}
           </div>
 
           <div>
-            Сайт розроблено агенством:{" "}
+            {footerDev}{' '}
             <a className={s.dev} href="">
-              Before/After
+              {footerDevName}
             </a>
           </div>
         </div>

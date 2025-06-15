@@ -1,3 +1,15 @@
+@keyframes rotate {
+  0% {
+    transform: rotateZ(10deg);
+  }
+  50%{
+    transform: rotateZ(-10deg);
+  }
+  100% {
+    transform: rotateZ(10deg);
+  }
+}
+
 .section {
   padding: 10.4vw 0 5.2vw 0;
   position: relative;
@@ -20,6 +32,7 @@
     width: 5.2vw;
     top: -2.5vw;
     left: -2.5vw;
+    animation: rotate 4s ease-in-out infinite;
   }
 
   span {
@@ -92,4 +105,54 @@
   animation-delay: 2.4s;
   top: 18.6vw;
   left: 6vw;
+}
+
+.subtitle {
+  display: none;
+}
+
+@media screen and (max-width: 1024px) {
+  .section {
+    padding: 26.7vw 0 13.3vw 0;
+
+    .title {
+      font-size: 9.6vw;
+      max-width: 91.5vw;
+      margin-bottom: 3.2vw;
+      letter-spacing: -1px;
+      font-weight: 450;
+
+      span {
+        display: none;
+      }
+
+      svg {
+        width: 20.5vw;
+        top: -6.5vw;
+        left: -11.5vw;
+      }
+    }
+
+    .subtitle {
+      display: block;
+      max-width: 91.5vw;
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 10.7vw;
+
+      font-family: Moderustic;
+      font-size: 3.7vw;
+      font-weight: 400;
+      line-height: 135%;
+      letter-spacing: -2%;
+      text-align: center;
+    }
+  }
+
+  .cloud1,
+  .cloud2,
+  .cloud3,
+  .cloud4 {
+    display: none;
+  }
 }

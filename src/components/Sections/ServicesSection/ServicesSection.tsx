@@ -3,124 +3,78 @@
 import { Container } from "@/components/Container";
 import s from "./ServicesSection.module.css";
 import { Accordion } from "@/components/Accordion/Accordion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { useModal } from "@/components/ModalContext";
 import { useRouter } from "next/navigation";
+import { motion } from "framer-motion";
+import { useTranslation, Trans } from 'react-i18next';
+import i18n from '@/i18n/client';
+import type { Variants } from 'framer-motion';
 
-export const nannyCards = [
-  {
-    id: "permanent",
-    title: "ПОСТІЙНА НЯНЯ",
-    description:
-      "Послуга для родин, яким потрібна стабільна допомога. Ми ретельно підбираємо няню, враховуючи ваші побажання, потреби та сімейні цінності для довготривалої співпраці.",
-    tags: ["Довготривало", "Плавна адаптація"],
-    price: "від <span>12,000 грн</span> / за підбір",
-    shortDesc: "100% місячної оплати няні",
-    buttonText: "Підібрати няню",
-    theme: "white",
-  },
-  {
-    id: "hourly",
-    title: "ПОГОДИННА НЯНЯ",
-    description:
-      "Послуга для родин, яким потрібна ситуативна допомога на кілька годин або на короткий період (кілька днів чи тижнів). Підберемо кваліфіковану няню буквально за 1-2 дні, а в деяких випадках — навіть у той самий день.",
-    tags: ["Кілька годин/днів", "Гнучкий графік"],
-    price: "від <span>300 грн</span> / год",
-    buttonText: "Підібрати няню",
-    theme: "white",
-  },
-  {
-    id: "training",
-    title: "НАВЧАННЯ ДЛЯ НЯНЬ",
-    description:
-      "Онлайн-курс для нянь, які хочуть працювати впевнено та з розумінням потреб дітей. Програма охоплює нейропедагогіку, основи педіатрії, дитячу психологію та кар’єрний розвиток. Після завершення — сертифікат, який визнають наш сервіс і родини.",
-    tags: ["Швидкий старт", "Гнучкий графік"],
-    price: "",
-    buttonText: "Дізнатися детальніше",
-    theme: "yellow",
-  },
-];
-export const accordionData = [
-  {
-    id: 1,
-    title: "няня-педагог",
-    description:
-      "Послуга для родин, яким потрібна стабільна допомога. Ми ретельно підбираємо няню, враховуючи ваші побажання, потреби та сімейні цінності для довготривалої співпраці.",
-    tags: ["Довготривало", "Плавна адаптація"],
-    price: "від <span>12,000 грн</span> / за підбір",
-    shortDesc: "100% місячної оплати няні",
-    buttonText: "Підібрати няню",
-    theme: "white",
-  },
-  {
-    id: 2,
-    title: "нічна няня",
-    description:
-      "Послуга для родин, яким потрібна ситуативна допомога на кілька годин або на короткий період (кілька днів чи тижнів). Підберемо кваліфіковану няню буквально за 1-2 дні, а в деяких випадках — навіть у той самий день.",
-    tags: ["Кілька годин/днів", "Гнучкий графік"],
-    price: "від <span>300 грн</span> / год",
-    buttonText: "Підібрати няню",
-    theme: "white",
-  },
-  {
-    id: 3,
-    title: "няня на захід",
-    description:
-      "Онлайн-курс для нянь, які хочуть працювати впевнено та з розумінням потреб дітей. Програма охоплює нейропедагогіку, основи педіатрії, дитячу психологію та кар’єрний розвиток. Після завершення — сертифікат, який визнають наш сервіс і родини.",
-    tags: ["Швидкий старт", "Гнучкий графік"],
-    price: "від <span>20,000 грн</span> / місяць",
-
-    buttonText: "Дізнатися детальніше",
-    theme: "yellow",
-  },
-  {
-    id: 4,
-    title: "няня вихідного дня",
-    description:
-      "Онлайн-курс для нянь, які хочуть працювати впевнено та з розумінням потреб дітей. Програма охоплює нейропедагогіку, основи педіатрії, дитячу психологію та кар’єрний розвиток. Після завершення — сертифікат, який визнають наш сервіс і родини.",
-    tags: ["Швидкий старт", "Гнучкий графік"],
-    price: "від <span>20,000 грн</span> / місяць",
-
-    buttonText: "Дізнатися детальніше",
-    theme: "yellow",
-  },
-];
-
-export const ServicesSection = () => {
+export const ServicesSection = ({ translation, locale }: { translation: Record<string, unknown>, locale: string }) => {
   const [openId, setOpenId] = useState<number | null>(null);
+  const { t } = useTranslation('common');
+  const [isReady, setIsReady] = useState(false);
 
   const toggle = (id: number) => {
     setOpenId((prev) => (prev === id ? null : id));
   };
 
   const { openModal } = useModal();
-
   const router = useRouter();
-
   const handleRedirect = () => {
-    router.push("/education");
+    router.push(`/${locale}/education`);
   };
+
+  const rawCards = t('services_cards', { returnObjects: true });
+  const cards = Array.isArray(rawCards) ? rawCards : [];
+
+  const rawAccordionData = t('services_accordion', { returnObjects: true });
+  const accordionData = Array.isArray(rawAccordionData) ? rawAccordionData : [];
+
+  useEffect(() => {
+    if (translation && locale) {
+      i18n.addResourceBundle(locale, 'common', translation, true, true);
+      i18n.changeLanguage(locale).then(() => setIsReady(true));
+    }
+  }, [translation, locale]);
 
   return (
     <section className={s.section}>
       <Container>
-        <h3 className={s.title}>
-          Наші основні <span>послуги {line}</span>
-        </h3>
+        <motion.h3
+          className={s.title}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.5 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+        >
+          {!isReady
+            ? (translation && translation["services_title"] as string) || ""
+            : <Trans
+                i18nKey="services_title"
+                components={{ span: <span />, line: <AnimatedLine /> }}
+              />}
+        </motion.h3>
 
-        <ul className={s.servicesList}>
-          {nannyCards.map((card, index) => (
-            <li
+        <motion.ul className={s.servicesList} variants={containerVariants} initial="hidden">
+          {cards.map((card, index) => (
+            <motion.li
               className={card.theme === "yellow" ? s.yellow : ""}
               key={card.id}
+              variants={cardVariants}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, amount: 0.5 }}
+              transition={{ duration: 0.7, ease: "easeOut" }}
             >
               <div>
                 <div className={s.tagList}>
-                  {card.tags.map((tag, index) => (
-                    <div className={s.tag} key={index}>
+                  {card.tags.map((tag: string, idx: number) => (
+                    <div className={s.tag} key={idx}>
                       <p>{tag}</p>
-                      <span>{index === 1 ? border1 : border2}</span>
+                      <span>{idx === 1 ? border1 : border2}</span>
                     </div>
                   ))}
                 </div>
@@ -159,45 +113,90 @@ export const ServicesSection = () => {
 
               {index === 1 ? (
                 <div className={s.plasters}>
-                  <div className={s.plaster}>
+                  <motion.div
+                    className={s.plaster}
+                    variants={plasterVariants}
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true, amount: 0.5 }}
+                    transition={{ duration: 0.7, ease: "easeOut" }}
+                  >
                     <Image
                       width={1920}
                       height={1080}
                       src="/images/plaster.png"
                       alt="Plaster"
                     />
-                  </div>
+                  </motion.div>
 
-                  <div className={s.plaster}>
+                  <motion.div
+                    className={s.plaster}
+                    variants={plasterVariants}
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true, amount: 0.5 }}
+                    transition={{ duration: 0.7, ease: "easeOut" }}
+                  >
                     <Image
                       width={1920}
                       height={1080}
                       src="/images/plaster.png"
                       alt="Plaster"
                     />
-                  </div>
+                  </motion.div>
                 </div>
               ) : (
-                <div className={s.plaster}>
+                <motion.div
+                  className={s.plaster}
+                  variants={plasterVariants}
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true, amount: 0.5 }}
+                  transition={{ duration: 0.7, ease: "easeOut" }}
+                >
                   <Image
                     width={1920}
                     height={1080}
                     src="/images/plaster.png"
                     alt="Plaster"
                   />
-                </div>
+                </motion.div>
               )}
-            </li>
+            </motion.li>
           ))}
-        </ul>
+        </motion.ul>
 
-        <h3 className={s.title}>
-          Додаткові <span>послуги {line}</span>
-        </h3>
+        <motion.h3
+          className={s.title}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.5 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+        >
+          {!isReady
+            ? (translation && translation["services_additional_title"] as string) || ""
+            : <Trans
+                i18nKey="services_additional_title"
+                components={{ span: <span />, line: <AnimatedLine /> }}
+              />}
+        </motion.h3>
 
-        <ul className={s.accordionList}>
+        <motion.ul
+          className={s.accordionList}
+          variants={accordionListContainerVariants}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.3 }}
+        >
           {accordionData.map((accordion) => (
-            <li key={accordion.id}>
+            <motion.li
+              key={accordion.id}
+              variants={accordionListItemVariants}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.7, ease: "easeOut" }}
+            >
               <Accordion
                 id={accordion.id}
                 isOpen={openId === accordion.id}
@@ -207,10 +206,10 @@ export const ServicesSection = () => {
                 <div>
                   <div>
                     <div className={s.tagList}>
-                      {accordion.tags.map((tag, index) => (
-                        <div className={s.tag} key={index}>
+                      {accordion.tags.map((tag: string, idx: number) => (
+                        <div className={s.tag} key={idx}>
                           <p>{tag}</p>
-                          <span>{index === 1 ? border1 : border2}</span>
+                          <span>{idx === 1 ? border1 : border2}</span>
                         </div>
                       ))}
                     </div>
@@ -238,28 +237,77 @@ export const ServicesSection = () => {
                       </div>
                     )}
 
-                    <button className={s.btn}>{accordion.buttonText}</button>
+                    <button className={s.btn} onClick={() => openModal("formA")}>{accordion.buttonText}</button>
                   </div>
                 </div>
               </Accordion>
-            </li>
+            </motion.li>
           ))}
-        </ul>
+        </motion.ul>
       </Container>
     </section>
   );
 };
 
-const line = (
-  <svg viewBox="0 0 172 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path
-      d="M2 16C2.39229 12.7275 9.17241 10.5471 11.6047 9.70162C17.0037 7.82501 21.1133 4.84878 26.9525 4.84878C30.4999 4.84878 45.4816 1.53741 37.8444 7.94864C35.8765 9.60068 35.8745 8.67763 34.8582 10.5323C33.4661 13.0726 35.9914 11.2041 37.5812 10.9969C45.4273 9.97419 52.1821 10.3024 60.1235 9.60068C72.9775 8.46477 87.3549 10.7211 100.033 8.2564C109.531 6.40974 119.477 6.55482 128.93 4.84869C135.194 3.71824 141.511 2.26739 147.892 2.26739C150 2.26739 155.15 0.96031 154.972 4.12593C154.874 5.85198 149.693 8.12105 148.288 8.77227C146.739 9.49027 138.62 12.4893 141.604 12.4893C155.008 12.4893 156.872 12.2548 170 9.60068"
-      stroke="#FFF9C1"
-      strokeWidth="3"
-      strokeLinecap="round"
-    />
-  </svg>
-);
+const containerVariants: Variants = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.18,
+    },
+  },
+};
+
+const cardVariants: Variants = {
+  hidden: { opacity: 0, y: 30 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
+};
+
+const plasterVariants: Variants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: { duration: 0.3, ease: "easeOut", delay: 0.5 },
+  },
+};
+
+const accordionListContainerVariants: Variants = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.18,
+    },
+  },
+};
+
+const accordionListItemVariants: Variants = {
+  hidden: { opacity: 0, y: 30 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.3, ease: "easeOut" } },
+};
+
+const AnimatedLine = () => {
+  const pathLength = 220;
+  return (
+    <motion.svg
+      viewBox="0 0 172 18"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      style={{ width: "120px", height: "18px", verticalAlign: "middle" }}
+    >
+      <motion.path
+        d="M2 16C2.39229 12.7275 9.17241 10.5471 11.6047 9.70162C17.0037 7.82501 21.1133 4.84878 26.9525 4.84878C30.4999 4.84878 45.4816 1.53741 37.8444 7.94864C35.8765 9.60068 35.8745 8.67763 34.8582 10.5323C33.4661 13.0726 35.9914 11.2041 37.5812 10.9969C45.4273 9.97419 52.1821 10.3024 60.1235 9.60068C72.9775 8.46477 87.3549 10.7211 100.033 8.2564C109.531 6.40974 119.477 6.55482 128.93 4.84869C135.194 3.71824 141.511 2.26739 147.892 2.26739C150 2.26739 155.15 0.96031 154.972 4.12593C154.874 5.85198 149.693 8.12105 148.288 8.77227C146.739 9.49027 138.62 12.4893 141.604 12.4893C155.008 12.4893 156.872 12.2548 170 9.60068"
+        stroke="#FFF9C1"
+        strokeWidth="3"
+        strokeLinecap="round"
+        strokeDasharray={pathLength}
+        initial={{ strokeDashoffset: pathLength }}
+        whileInView={{ strokeDashoffset: 0 }}
+        transition={{ duration: 1.2, ease: "easeOut" }}
+        viewport={{ once: false, amount: 0.5 }}
+      />
+    </motion.svg>
+  );
+};
 
 const border1 = (
   <svg viewBox="0 0 189 57" fill="none" xmlns="http://www.w3.org/2000/svg">

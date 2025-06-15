@@ -7,8 +7,11 @@ import Link from "next/link";
 import clsx from "clsx";
 import { PhoneNumberInput } from "../PhoneInput/PhoneInput";
 import { PASS } from "@/constants";
+import Image from "next/image";
+import { useTranslation } from 'react-i18next';
+import i18n from '@/i18n/client';
 
-export const SelectionPopup = ({ onClose }: { onClose: () => void }) => {
+export const SelectionPopup = ({ onClose, translation, locale }: { onClose: () => void, translation: Record<string, unknown>, locale: string }) => {
   const [employmentTypes, setEmploymentTypes] = useState<string[]>([]);
   const [visible, setVisible] = useState(false);
   const popupRef = useRef<HTMLDivElement>(null);
@@ -17,7 +20,7 @@ export const SelectionPopup = ({ onClose }: { onClose: () => void }) => {
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [location, setLocation] = useState("");
-
+  
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const isValid =
@@ -26,6 +29,9 @@ export const SelectionPopup = ({ onClose }: { onClose: () => void }) => {
     email.trim() &&
     location.trim() &&
     employmentTypes.length > 0;
+
+  const { t } = useTranslation('common');
+  const [isReady, setIsReady] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -55,7 +61,9 @@ export const SelectionPopup = ({ onClose }: { onClose: () => void }) => {
       );
 
       if (response.ok) {
-        handleClose();
+        setIsSubmitted(true);
+
+        // handleClose();
       }
     } catch (error) {
       console.error("Send error:", error);
@@ -83,6 +91,13 @@ export const SelectionPopup = ({ onClose }: { onClose: () => void }) => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [handleClose]);
 
+  useEffect(() => {
+    if (translation && locale) {
+      i18n.addResourceBundle(locale, 'common', translation, true, true);
+      i18n.changeLanguage(locale).then(() => setIsReady(true));
+    }
+  }, [translation, locale]);
+
   const toggleType = (type: string) => {
     setEmploymentTypes((prev) =>
       prev.includes(type) ? prev.filter((t) => t !== type) : [type]
@@ -91,135 +106,155 @@ export const SelectionPopup = ({ onClose }: { onClose: () => void }) => {
 
   return (
     <div className={clsx(s.popupOverlay, visible && s.visible)}>
-      <div
-        ref={popupRef}
-        className={clsx(s.popupContent, visible && s.visible)}
-      >
-        <div className={s.closeBtn} onClick={handleClose}>
-          {closeIco}
-        </div>
-
-        <div className={s.popupTitle}>
-          <h3>Залиште заявку на підбір няні</h3>
-          <p>
-            Ми зв&apos;яжемося з вами найближчим часом щодо підбору няні для
-            вашої дитини
-          </p>
-        </div>
-
-        <form onSubmit={handleSubmit}>
-          <div className={s.inputLine}>
-            <div className={s.inputContainer}>
-              <label>
-                Ім&apos;я та прізвище<span>*</span>
-                <input
-                  className={clsx({
-                    [s.error]: isSubmitted && !fullName.trim(),
-                  })}
-                  value={fullName}
-                  onChange={(e) => setFullName(e.target.value)}
-                  placeholder="Ім'я Прізвище"
-                  type="text"
-                />
-              </label>
-            </div>
-
-            <div className={s.inputContainer}>
-              <label>
-                Контактний номер телефону<span>*</span>
-                <PhoneNumberInput
-                  className={clsx({
-                    ["error"]: isSubmitted && !phone.trim(),
-                  })}
-                  value={phone}
-                  onChange={(val) => setPhone(val)}
-                />
-              </label>
-            </div>
+      {isSubmitted ? (
+        <div
+          ref={popupRef}
+          className={clsx(s.popupContent, visible && s.visible)}
+        >
+          <div className={s.closeBtn} onClick={handleClose}>
+            {closeIco}
           </div>
 
-          <div className={s.inputLine}>
-            <div className={s.inputContainer}>
-              <label>
-                Email<span>*</span>
-                <input
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  type="email"
-                  placeholder="youremail@domain.com"
-                  className={clsx({
-                    [s.error]: isSubmitted && !email.trim(),
-                  })}
-                />
-              </label>
-            </div>
-
-            <div className={s.inputContainer}>
-              <label>
-                Країна та місто проживання<span>*</span>
-                <input
-                  value={location}
-                  onChange={(e) => setLocation(e.target.value)}
-                  placeholder="Київ, Україна"
-                  type="text"
-                  className={clsx({
-                    [s.error]: isSubmitted && !location.trim(),
-                  })}
-                />
-              </label>
+          <div className={s.confirmation}>
+            <div>
+              <Image
+                src={"/icons/confirmation.svg"}
+                alt="confirmation"
+                width={48}
+                height={48}
+              />
+              <h3>{!isReady ? (translation && translation['selection_popup_success_title'] as string) || '' : t('selection_popup_success_title')}</h3>
+              <p>{!isReady ? (translation && translation['selection_popup_success_text'] as string) || '' : t('selection_popup_success_text')}</p>
             </div>
           </div>
+        </div>
+      ) : (
+        <div
+          ref={popupRef}
+          className={clsx(s.popupContent, visible && s.visible)}
+        >
+          <div className={s.closeBtn} onClick={handleClose}>
+            {closeIco}
+          </div>
 
-          <div className={s.employmentBlock}>
-            <p>
-              Формат зайнятості, який вас цікавить<span>*</span>
-            </p>
-            <div
-              className={clsx(s.checkboxGrid, {
-                [s.error]: isSubmitted && employmentTypes.length === 0,
-              })}
+          <div className={s.popupTitle}>
+            <h3>{!isReady ? (translation && translation['selection_popup_title'] as string) || '' : t('selection_popup_title')}</h3>
+            <p>{!isReady ? (translation && translation['selection_popup_subtitle'] as string) || '' : t('selection_popup_subtitle')}</p>
+          </div>
+
+          <form onSubmit={handleSubmit}>
+            <div className={s.inputLine}>
+              <div className={s.inputContainer}>
+                <label>
+                  {!isReady ? (translation && translation['selection_popup_name_label'] as string) || '' : t('selection_popup_name_label')}<span>*</span>
+                  <input
+                    className={clsx({
+                      [s.error]: isSubmitted && !fullName.trim(),
+                    })}
+                    value={fullName}
+                    onChange={(e) => setFullName(e.target.value)}
+                    placeholder={!isReady ? (translation && translation['selection_popup_name_placeholder'] as string) || '' : t('selection_popup_name_placeholder')}
+                    type="text"
+                  />
+                </label>
+              </div>
+
+              <div className={s.inputContainer}>
+                <label>
+                  {!isReady ? (translation && translation['selection_popup_phone_label'] as string) || '' : t('selection_popup_phone_label')}<span>*</span>
+                  <PhoneNumberInput
+                    className={clsx({
+                      ["error"]: isSubmitted && !phone.trim(),
+                    })}
+                    value={phone}
+                    onChange={(val) => setPhone(val)}
+                  />
+                </label>
+              </div>
+            </div>
+
+            <div className={s.inputLine}>
+              <div className={s.inputContainer}>
+                <label>
+                  {!isReady ? (translation && translation['selection_popup_email_label'] as string) || '' : t('selection_popup_email_label')}<span>*</span>
+                  <input
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    type="email"
+                    placeholder={!isReady ? (translation && translation['selection_popup_email_placeholder'] as string) || '' : t('selection_popup_email_placeholder')}
+                    className={clsx({
+                      [s.error]: isSubmitted && !email.trim(),
+                    })}
+                  />
+                </label>
+              </div>
+
+              <div className={s.inputContainer}>
+                <label>
+                  {!isReady ? (translation && translation['selection_popup_location_label'] as string) || '' : t('selection_popup_location_label')}<span>*</span>
+                  <input
+                    value={location}
+                    onChange={(e) => setLocation(e.target.value)}
+                    placeholder={!isReady ? (translation && translation['selection_popup_location_placeholder'] as string) || '' : t('selection_popup_location_placeholder')}
+                    type="text"
+                    className={clsx({
+                      [s.error]: isSubmitted && !location.trim(),
+                    })}
+                  />
+                </label>
+              </div>
+            </div>
+
+            <div className={s.employmentBlock}>
+              <p>
+                {!isReady ? (translation && translation['selection_popup_employment_label'] as string) || '' : t('selection_popup_employment_label')}<span>*</span>
+              </p>
+              <div
+                className={clsx(s.checkboxGrid, {
+                  [s.error]: isSubmitted && employmentTypes.length === 0,
+                })}
+              >
+                {[
+                  !isReady ? (translation && translation['selection_popup_employment_full'] as string) || '' : t('selection_popup_employment_full'),
+                  !isReady ? (translation && translation['selection_popup_employment_part'] as string) || '' : t('selection_popup_employment_part'),
+                  !isReady ? (translation && translation['selection_popup_employment_hourly'] as string) || '' : t('selection_popup_employment_hourly'),
+                  !isReady ? (translation && translation['selection_popup_employment_accommodation'] as string) || '' : t('selection_popup_employment_accommodation'),
+                ].map((label: string) => {
+                  const checked = employmentTypes.includes(label);
+                  return (
+                    <label key={label} className={s.checkboxItem}>
+                      <input
+                        type="checkbox"
+                        checked={checked}
+                        onChange={() => toggleType(label)}
+                        className={s.hiddenCheckbox}
+                      />
+                      <span className={s.customCheckbox}></span>
+                      {label}
+                    </label>
+                  );
+                })}
+              </div>
+            </div>
+
+            <button
+              // disabled={!isValid}
+              typeof="submit"
+              className={`${s.submitBtn} ${!isValid && s.disabled}`}
             >
-              {[
-                "Няня на повну зайнятість",
-                "Няня з частковою зайнятістю",
-                "Погодинна допомога",
-                "Робота з проживанням",
-              ].map((label) => {
-                const checked = employmentTypes.includes(label);
+              {!isReady ? (translation && translation['selection_popup_submit'] as string) || '' : t('selection_popup_submit')}
+            </button>
 
-                return (
-                  <label key={label} className={s.checkboxItem}>
-                    <input
-                      type="checkbox"
-                      checked={checked}
-                      onChange={() => toggleType(label)}
-                      className={s.hiddenCheckbox}
-                    />
-                    <span className={s.customCheckbox}></span>
-                    {label}
-                  </label>
-                );
-              })}
-            </div>
-          </div>
-
-          <button
-            // disabled={!isValid}
-            typeof="submit"
-            className={`${s.submitBtn} ${!isValid && s.disabled}`}
-          >
-            Залишити заявку
-          </button>
-
-          <p className={s.note}>
-            Натискаючи на кнопку, я погоджуюсь з{" "}
-            <Link onClick={onClose} href="/policy">
-              Політикою конфіденційності
-            </Link>{" "}
-            і дозволяю обробку моїх персональних даних для цілей рекрутингу
-          </p>
-        </form>
-      </div>
+            <p className={s.note}>
+              {!isReady ? (translation && translation['selection_popup_note'] as string) || '' : t('selection_popup_note')} {" "}
+              <Link onClick={onClose} href="/policy">
+                {!isReady ? (translation && translation['selection_popup_policy'] as string) || '' : t('selection_popup_policy')}
+              </Link>{" "}
+              {!isReady ? (translation && translation['selection_popup_note2'] as string) || '' : t('selection_popup_note2')}
+            </p>
+          </form>
+        </div>
+      )}
     </div>
   );
 };

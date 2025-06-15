@@ -1,18 +1,14 @@
 .container {
-  position: absolute;
-  top: 0.6vw;
-  right: 13.3vw;
   width: 5vw;
   background-color: var(--primary-pink);
   color: white;
-  overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
   cursor: pointer;
   padding: 0.6vw;
   box-sizing: border-box;
-  transition: 0.3s;
+  position: relative;
 }
 
 .container:hover {
@@ -62,13 +58,19 @@
   flex-direction: column;
   align-items: center;
   overflow: hidden;
+  position: absolute;
+  top: 50%;
+  background-color: var(--primary-pink);
+  z-index: -1;
+  transition: all 0.3s;
+  border-radius: 0 0 1rem 1rem;
 }
 
 .divider {
   width: 75%;
   height: 1px;
   background-color: white;
-  margin: 8px 0;
+  margin: 2rem 0 8px 0;
 }
 
 .langList {
@@ -76,6 +78,7 @@
   flex-direction: column;
   align-items: center;
   gap: 4px;
+  padding-bottom: 0.5rem;
 }
 
 .langButton {

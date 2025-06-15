@@ -1,3 +1,4 @@
+
 import s from "./SidePanel.module.css";
 import Image from "next/image";
 import SidePanelLangSwitcher from "../SidePanelLangSwitcher/SidePanelLangSwitcher";
@@ -28,7 +29,7 @@ const SidePanel = ({ isOpen, onClose }) => {
             className={s.headerLogo}
             width={1920}
             height={1080}
-            src="/icons/footer-logo.svg"
+            src="/icons/header-logo.svg"
             alt="Logotype"
           />
         </header>

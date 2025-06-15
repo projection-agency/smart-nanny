@@ -1,9 +1,13 @@
+"use client";
+
 import { Vacation } from "@/store/vacationSlice";
 import { useModal } from "../ModalContext";
 import s from "./VacationItem.module.css";
+import { useTranslation } from 'react-i18next';
 
 export const VacationItem = ({ item }: { item: Vacation }) => {
   const { openModal } = useModal();
+  const { t } = useTranslation('common');
 
   return (
     <li className={s.vacation}>
@@ -16,7 +20,7 @@ export const VacationItem = ({ item }: { item: Vacation }) => {
           <div className={s.block}>
             <div>
               {location}
-              <span>Локація</span>
+              <span>{t('vacation_location')}</span>
             </div>
             <p>
               {item.Loc_country}, {item.Loc_city}, {item.Loc_district}
@@ -26,20 +30,20 @@ export const VacationItem = ({ item }: { item: Vacation }) => {
           <div className={s.block}>
             <div>
               {schedule}
-              <span>Графік роботи</span>
+              <span>{t('vacation_schedule')}</span>
             </div>
             <p>
               {item.Work_time},
               {item.Employment_type == "full"
-                ? "повна зайнятість"
-                : "неповна зайнятість"}
+                ? t('employment_full_lower')
+                : t('employment_part_lower')}
             </p>
           </div>
 
           <div className={s.block}>
             <div>
               {desc}
-              <span>Опис</span>
+              <span>{t('vacation_desc')}</span>
             </div>
             <p>
               {item.Description.length > 200
@@ -55,7 +59,7 @@ export const VacationItem = ({ item }: { item: Vacation }) => {
           openModal("formA");
         }}
       >
-        Відгукнутись
+        {t('vacation_respond')}
       </button>
     </li>
   );

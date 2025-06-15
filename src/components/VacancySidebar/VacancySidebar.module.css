@@ -1,0 +1,53 @@
+
+@media screen and (max-width: 1024px) {
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999999;
+    height: 100vh;
+    width: 89.9vw;
+    padding: 4.3vw;
+    display: flex;
+    flex-direction: column;
+    transition: transform ease-in-out 250ms;
+    transform: translateX(-100%);
+    background-color: rgb(255, 244, 241);
+    box-sizing: border-box;
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-shrink: 0;
+      margin-bottom: 6.4vw;
+      
+      h2 {
+        font-family: Futura PT;
+        font-size: 6.4vw;
+        font-weight: 500;
+        line-height: 100%;
+        letter-spacing: 0%;
+        text-align: left;
+      }
+      button {
+        width: 12.8vw;
+        height: 12.8vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(51, 51, 51, 0.05);
+        border-radius: 10.9vw;
+
+        img {
+          width: 3.5vw;
+        }
+      }
+    }
+
+  }
+
+  .isOpen {
+    transform: translateX(0%);
+  }
+}

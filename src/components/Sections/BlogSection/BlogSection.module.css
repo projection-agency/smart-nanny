@@ -1,3 +1,15 @@
+@keyframes width {
+  0% {
+    width: 3.4vw;
+  }
+  50% {
+    width: 4vw;
+  }
+  100% {
+    width: 3.4vw;
+  }
+}
+
 .section {
   padding: 7vw 0 5.2vw 0;
 }
@@ -27,6 +39,7 @@ div.swiper {
     top: -1.5vw;
     width: 3.4vw;
     height: auto;
+    animation: width 4s ease-in-out infinite;
   }
 
   span {
@@ -52,7 +65,8 @@ div.swiper {
 }
 
 .list {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 1.8vw;
   margin-bottom: 3.7vw;
 }
@@ -98,8 +112,20 @@ div.swiper {
 }
 
 @media screen and (max-width: 1024px) {
+  @keyframes width {
+    0% {
+      width: 15.2vw;
+    }
+    50% {
+      width: 17vw;
+    }
+    100% {
+      width: 15.2vw;
+    }
+  }
+
   .section {
-    padding-top: 18.7vw;
+    padding-top: 13.3vw;
     padding-bottom: 13.3vw;
 
     .title {
@@ -107,10 +133,10 @@ div.swiper {
       margin-bottom: 10.7vw;
 
       span {
-        max-width: 38.6vw;
+        max-width: 41.6vw;
+        right: 16vw;
         font-size: 4.3vw;
         top: -3vw;
-        right: 19vw;
         transform: rotate(0deg);
 
         svg {
@@ -122,6 +148,7 @@ div.swiper {
         width: 15.2vw;
         top: -11.5vw;
         left: -9.5vw;
+        animation: width 4s ease-in-out infinite;
       }
     }
 
@@ -129,11 +156,13 @@ div.swiper {
       display: none;
     }
 
-    div.swiper {
+    .swiper {
       display: block;
+      margin-bottom: 5.3vw;
 
-      div.swiperSlide {
-        min-height: 121.9vw;
+      .swiperSlide {
+        display: flex;
+        height: auto;
       }
     }
 

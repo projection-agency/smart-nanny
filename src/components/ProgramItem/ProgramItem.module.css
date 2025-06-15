@@ -78,8 +78,9 @@
     transform: rotate(180deg);
   }
 
-  span {
+  .icon {
     background-color: var(--primary-pink);
+    stroke: #ffffff;
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -96,11 +97,12 @@
 }
 
 .toggleBtn:hover {
-  border-color: var(--primary-pink-hover);
-  color: var(--primary-pink-hover);
+  background-color: var(--primary-pink);
+  color: #ffffff;
 
-  span {
-    background-color: var(--primary-pink-hover);
+  span.icon {
+    background-color: #ffffff;
+    stroke: var(--primary-pink);
   }
 }
 
@@ -204,5 +206,145 @@
 
   .module {
     background-color: var(--primary-pink-hover);
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .item {
+    padding: 4.26vw;
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .meta h3 {
+    font-size: 4.26vw;
+    margin-bottom: 4.26vw;
+    letter-spacing: -1px;
+  }
+
+  .module {
+    font-size: 2.6vw;
+    padding: 0.53vw 2.13vw;
+    border-radius: 12.6vw;
+    transition: background-color 0.3s;
+  }
+
+  .info {
+    font-size: 3.73vw;
+    line-height: 90%;
+
+    display: flex;
+    gap: 4.26vw;
+
+    span {
+      gap: 2.13vw;
+    }
+
+    img {
+      width: 4.26vw;
+      height: 4.26vw;
+    }
+  }
+
+  .toggleBtn {
+    border: none;
+    color: var(--primary-pink);
+    border-radius: 5.2vw;
+    width: 8.5vw;
+    height: 8.5vw;
+    gap: 0.8vw;
+    .toggleText {
+      display: none;
+    }
+
+    .opened {
+      transform: rotate(180deg);
+    }
+
+    .icon {
+      width: 8.5vw;
+      height: 8.5vw;
+      flex-shrink: 0;
+      transition: 0.3s;
+
+      svg {
+        width: 4.26vw;
+      }
+    }
+  }
+
+  .content {
+    padding-top: 6.4vw;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .columns {
+    display: flex;
+    flex-direction: column;
+    gap: 6.4vw;
+
+    p {
+      font-family: Moderustic;
+      font-weight: 400;
+      font-size: 3.73vw;
+    }
+
+    li {
+      font-size: 3.73vw;
+      line-height: 135%;
+    }
+
+    li:not(:last-child) {
+      margin-bottom: 1.2vw;
+    }
+
+    .lectionBlock {
+      flex-shrink: 0;
+      max-width: 100%;
+    }
+
+    .resBLock {
+      flex-shrink: 0;
+      max-width: 100%;
+    }
+  }
+
+  .columns h4 {
+    font-size: 4.26vw;
+    margin-bottom: 2.66vw;
+    color: rgba(51, 51, 51, 1);
+  }
+
+  .preview {
+    position: relative;
+    flex-shrink: 0;
+    width: 100%;
+    margin-top: 6.4vw;
+  }
+
+  .preview img {
+    width: 100%;
+  }
+
+  .playButton {
+    width: 17vw;
+    height: 17vw;
+  }
+
+  .playButton:hover {
+    background-color: var(--primary-pink-hover);
+  }
+
+  .active {
+    border-color: var(--primary-pink-hover);
+
+    .module {
+      background-color: var(--primary-pink-hover);
+    }
   }
 }

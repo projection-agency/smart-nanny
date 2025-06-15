@@ -110,7 +110,11 @@
       font-size: 4.3vw;
     }
   }
-
+  .faqStyle {
+    .title {
+      font-size: 4.8vw;
+    }
+  }
   .title {
     font-size: 6.4vw;
   }

@@ -1,4 +1,9 @@
-import React, { useState } from "react";
+"use client";
+
+import '@/i18n/client';
+import i18n from '@/i18n/client';
+
+import React, { useState, useEffect } from "react";
 import s from "./Header.module.css";
 import { Container } from "../Container";
 import Image from "next/image";
@@ -6,10 +11,21 @@ import Link from "next/link";
 import { LanguageSwitcher } from "../LanguageSwitcher/LanguageSwitcher";
 import { useModal } from "../ModalContext";
 import SidePanel from "../SidePanel/SidePanel";
+import { useTranslation } from 'react-i18next';
 
-export const Header = () => {
+export const Header = ({ translation, locale }: { translation: unknown, locale: string }) => {
   const [sidePanelIsOpen, setSidePanelIsOpen] = useState(false);
   const { openModal } = useModal();
+  const { t } = useTranslation('common');
+
+  useEffect(() => {
+    if (translation && locale) {
+      i18n.addResourceBundle(locale, 'common', translation, true, true);
+      i18n.changeLanguage(locale);
+    }
+  }, [translation, locale]);
+
+  const getHref = (path: string) => `/${locale}${path === "/" ? "" : path}`;
 
   const openSidePanel = () => {
     setSidePanelIsOpen(true)
@@ -38,7 +54,7 @@ export const Header = () => {
         </button>
 
         <div className={s.headerLeftBlock}>
-          <Link href="/">
+          <Link href={getHref("/")}>
             <Image
               src="/icons/header-logo.svg"
               className={s.headerLogo}
@@ -51,19 +67,19 @@ export const Header = () => {
           <nav className={s.hiddenOnMobile}>
             <ul>
               <li>
-                <Link href="/">Підбір няні</Link>
+                <Link href={getHref("/")}>{t("nanny_selection")}</Link>
               </li>
               <li>
-                <Link href="/education">Навчання</Link>
+                <Link href={getHref("/education")}>{t("education")}</Link>
               </li>
               <li>
-                <Link href="/nanny-selection">Стати нянею</Link>
+                <Link href={getHref("/nanny-selection")}>{t("become_nanny")}</Link>
               </li>
               <li>
-                <Link href="/vacation">Вакансії</Link>
+                <Link href={getHref("/vacation")}>{t("vacancies")}</Link>
               </li>
               <li>
-                <Link href="/blog">Блог</Link>
+                <Link href={getHref("/blog")}>{t("blog")}</Link>
               </li>
             </ul>
           </nav>
@@ -73,7 +89,7 @@ export const Header = () => {
           <LanguageSwitcher />
 
           <div onClick={() => openModal("formA")} className={s.call}>
-            <span className={s.hiddenOnMobile}>Замовити дзвінок</span>
+            <span className={s.hiddenOnMobile}>{t("order_call")}</span>
 
             <div className={s.callIconMobileCont}>
               <Image

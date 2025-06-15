@@ -1,41 +1,57 @@
 import Link from "next/link";
 import s from "./BlogItem.module.css";
 import Image from "next/image";
+import React from "react";
 
 export const BlogItem = ({
   info,
+  locale
 }: {
   info: {
     title: string;
     date: string;
-    category: string;
+    categories: string[];
     image: string;
     description: string;
     slug?: string;
   };
+  locale: string;
 }) => {
   return (
-    <Link href={`/blog/${info.slug}`} className={s.item}>
-      <div className={s.imageContainer}>
-        <Image
-          width={1920}
-          height={1080}
-          alt={info.category}
-          src={info.image}
-        />
-      </div>
-
-      <div className={s.content}>
-        <div>
-          <span>{info.date}</span>
-          <div></div>
-          <span>{info.category}</span>
+    <div
+      className={s.itemBlock}
+    >
+      <Link href={`/${locale}/blog/${info.slug}`} className={s.item}>
+        <div className={s.imageContainer}>
+          <Image
+            width={1920}
+            height={1080}
+            alt={info.categories?.join(", ") || "Категорія"}
+            src={info.image}
+          />
         </div>
 
-        <h4>{info.title}</h4>
+        <div className={s.content}>
+          <div>
+            <span>{info.date}</span>
+            {info.categories && info.categories.length > 0 && (
+              <>
+                <div></div>
+                {info.categories.map((cat, idx) => (
+                  <React.Fragment key={cat}>
+                    <span>{cat}</span>
+                    {idx < info.categories.length - 1 && <div></div>}
+                  </React.Fragment>
+                ))}
+              </>
+            )}
+          </div>
 
-        <p>{info.description}</p>
-      </div>
-    </Link>
+          <h4>{info.title}</h4>
+
+          <p>{info.description}</p>
+        </div>
+      </Link>
+    </div>
   );
 };

@@ -1,7 +1,9 @@
+"use client";
 import s from "./GetSection.module.css";
 import Image from "next/image";
+import { useTranslation } from 'react-i18next';
 
-const points = [
+const pointsUa = [
   "Сертифікат про завершення курсу",
   "Практичні знання з догляду та розвитку дітей",
   "Розуміння професійної етики та способів ефективної роботи в родині",
@@ -11,6 +13,8 @@ const points = [
 ];
 
 export const GetSection = () => {
+  const { t } = useTranslation('common');
+  const points = Array.isArray(t('get_points', { returnObjects: true })) ? t('get_points', { returnObjects: true }) as string[] : pointsUa;
   return (
     <section className={s.section}>
       <div className={s.imageContainer}>
@@ -34,7 +38,7 @@ export const GetSection = () => {
       </div>
       <div className={s.contentContainer}>
         <h2>
-          Що ви отримаєте після курсу
+          {t('get_title')}
           <Image
             width={1920}
             height={1080}
@@ -44,7 +48,7 @@ export const GetSection = () => {
         </h2>
 
         <ul className={s.list}>
-          {points.map((point, index) => (
+          {points.map((point: string, index: number) => (
             <li key={index}>
               {star}
               <p>{point}</p>
@@ -53,8 +57,9 @@ export const GetSection = () => {
         </ul>
 
         <div className={s.desc}>
-          <span>І це тільки початок!</span>
-          <span>Ми відкриваємо нові можливості та горизонти.{line}</span>
+          <span>{t('get_subtitle_1')}</span>
+          <span>{t('get_subtitle_2')}</span>
+          {line}
         </div>
       </div>
       <Image

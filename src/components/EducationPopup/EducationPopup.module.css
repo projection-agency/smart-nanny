@@ -134,3 +134,177 @@
 .error {
   border: 1px solid red !important;
 }
+
+.confirmation {
+  padding-top: 3.1vw;
+  padding-bottom: 2.1vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  div {
+    width: 30vw;
+    margin-bottom: 2.9vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    img {
+      width: 3.2vw;
+      height: 3.2vw;
+      margin-bottom: 1vw;
+    }
+
+    h3 {
+      margin-bottom: 1.3vw;
+      font-size: 1.3vw;
+      font-family: Futura PT;
+      font-weight: 400;
+      line-height: 100%;
+      letter-spacing: -1px;
+      text-align: center;
+    }
+    p {
+      font-family: Futura PT;
+      font-size: 2.1vw;
+      font-weight: 500;
+      line-height: 100%;
+      letter-spacing: -1px;
+      text-align: center;
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .popupContent {
+    width: 100%;
+    height: 100%;
+    padding: 4.3vw;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0px;
+
+    .closeBtn {
+      width: 12.8vw;
+      height: 12.8vw;
+
+      svg {
+        width: 3.5vw;
+        height: 4.3vw;
+      }
+    }
+
+    .popupTitle {
+      margin-bottom: 9.1vw;
+      text-align: center;
+
+      h3 {
+        text-align: center;
+        width: 100%;
+        font-size: 6.4vw;
+        margin-bottom: 3.2vw;
+      }
+      p {
+        text-align: center;
+        max-width: 100%;
+        font-size: 4.26vw;
+      }
+    }
+
+    .inputLine {
+      grid-template-columns: 1fr;
+      gap: 5.9vw;
+      margin-bottom: 5.9vw;
+
+      .inputContainer {
+        label {
+          font-size: 3.7vw;
+
+          input {
+            padding: 5.3vw 6.4vw;
+            margin-top: 3.2vw;
+            border-radius: 2.7vw;
+
+            font-size: 3.7vw;
+          }
+
+          input::placeholder {
+            font-size: 3.7vw;
+          }
+        }
+      }
+    }
+
+    .employmentBlock {
+      p {
+        font-size: 3.7vw;
+        margin-bottom: 3.2vw;
+      }
+
+      .checkboxGrid {
+        grid-template-columns: 1fr;
+        gap: 2.7vw;
+        margin-bottom: 9.1vw;
+
+        .checkboxItem {
+          padding: 5.3vw 6.4vw;
+          gap: 3.2vw;
+          border-radius: 2.7vw;
+          font-size: 3.7vw;
+        }
+
+        .customCheckbox {
+          width: 5.3vw;
+          height: 5.3vw;
+          border-radius: 1.6vw;
+        }
+      }
+    }
+
+    .submitBtn {
+      padding: 4.3vw;
+      margin-bottom: 3.2vw;
+      border-radius: 26.7vw;
+
+      font-size: 4.3vw;
+    }
+
+    .note {
+      font-size: 3.2vw;
+      max-width: none;
+    }
+
+    .confirmation {
+      gap: 10.7vw;
+      height: 100%;
+
+      div {
+        width: 91.5vw;
+        gap: 3.2vw;
+        margin-bottom: 0;
+
+        h3 {
+          font-size: 4.8vw;
+          margin-bottom: 0;
+        }
+
+        p {
+          width: 84.5vw;
+          font-size: 6.9vw;
+          margin-right: auto;
+          margin-left: auto;
+          margin-bottom: 0;
+        }
+
+        img {
+          width: 12.8vw;
+          height: 12.8vw;
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+}

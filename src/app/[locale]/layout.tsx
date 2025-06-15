@@ -11,6 +11,7 @@ import fs from 'fs/promises';
 import path from 'path';
 import ClientLayout from "./client-layout";
 
+
 const moderustic = Moderustic({
   subsets: ["latin", "cyrillic"],
   weight: ["400", "500", "700"],
