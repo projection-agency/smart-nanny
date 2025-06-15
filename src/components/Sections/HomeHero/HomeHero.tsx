@@ -1,10 +1,13 @@
 "use client";
 
 import { useModal } from "@/components/ModalContext";
-import { btnSvg } from "../BlogSection/BlogSection";
+import { btnSvg } from '@/components/BtnSvg';
 import s from "./HomeHero.module.css";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, easeOut } from "framer-motion";
+import i18n from '@/i18n/client';
+import { useTranslation, Trans } from 'react-i18next';
+import { useEffect, useState } from 'react';
 
 const containerVariants = {
   hidden: {},
@@ -17,11 +20,20 @@ const containerVariants = {
 
 const itemVariants = {
   hidden: { opacity: 0, y: 30 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } },
+  show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: easeOut } },
 };
 
-export const HomeHero = () => {
+export const HomeHero = ({ translation, locale }: { translation: Record<string, unknown>, locale: string }) => {
   const { openModal } = useModal();
+  const { t } = useTranslation('common');
+  const [isReady, setIsReady] = useState(false);
+
+  useEffect(() => {
+    if (translation && locale) {
+      i18n.addResourceBundle(locale, 'common', translation, true, true);
+      i18n.changeLanguage(locale).then(() => setIsReady(true));
+    }
+  }, [translation, locale]);
 
   return (
     <section className={s.section}>
@@ -60,15 +72,22 @@ export const HomeHero = () => {
       >
         <motion.h1 variants={itemVariants}>
           {svg}
-          Надійний підбір{" "}
-          <span>
-            професійних <Line />{" "}
-          </span>{" "}
-          нянь для вашої родини
+          {!isReady
+            ? typeof translation["home_hero_title"] === 'string' ? translation["home_hero_title"] : ''
+            : <Trans
+                i18nKey="home_hero_title"
+                components={{
+                  span: <span />,
+                  line: <Line />
+                }}
+              />}
         </motion.h1>
+        
 
         <motion.p variants={itemVariants}>
-          Ми знаходимо нянь, яким можна довірити найцінніше – вашу дитину.
+          {!isReady
+            ? typeof translation["home_hero_subtitle"] === 'string' ? translation["home_hero_subtitle"] : ''
+            : t('home_hero_subtitle')}
         </motion.p>
 
         <motion.button
@@ -79,7 +98,9 @@ export const HomeHero = () => {
           className={s.btn}
         >
           <div className={s.first}>{btnSvg}</div>
-          Підібрати няню
+          {!isReady
+            ? typeof translation["home_hero_btn"] === 'string' ? translation["home_hero_btn"] : ''
+            : t('home_hero_btn')}
           <div className={s.second}>{btnSvg}</div>
         </motion.button>
         <Image
@@ -120,7 +141,7 @@ const Line = () => {
         pathLength={1}
         initial={{ pathLength: 0 }}
         whileInView={{ pathLength: 1 }}
-        transition={{ duration: 1.2, ease: "easeOut" }}
+        transition={{ duration: 1.2, ease: easeOut }}
         viewport={{ once: false, amount: 0.5 }}
       />
     </motion.svg>

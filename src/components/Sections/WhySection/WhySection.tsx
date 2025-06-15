@@ -9,78 +9,27 @@ import { Pagination } from "swiper/modules";
 import "swiper/css/pagination";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import { useTranslation, Trans } from 'react-i18next';
+import i18n from '@/i18n/client';
+import type { Variants } from 'framer-motion';
 
-const dataShort = [
-  {
-    id: 1,
-    icon: "/icons/why-icons/prof.svg",
-    title: "Професіоналізм",
-    desc: "Наші няні постійно вдосконалюють навички завдяки навчанню з першої домедичної допомоги, розвитку та догляду за дітьми",
-  },
-  {
-    id: 2,
-    icon: "/icons/why-icons/fast.svg",
-    title: "Швидкий підбір",
-    desc: "Маємо велику команду перевірених нянь, тож пропонуємо варіанти за 1–5 днів, гарантуючи своєчасну підтримку родин",
-    span: "Швидкий старт співпраці",
-  },
-  {
-    id: 3,
-    icon: "/icons/why-icons/verified.svg",
-    title: "Перевірені няні",
-    desc: "Кожен кандидат проходить перевірку документів, досвіду, рекомендацій і співбесіду  для вашого спокою та безпеки.",
-  },
-  {
-    id: 4,
-    icon: "/icons/why-icons/support.svg",
-    title: "Підтримка родини",
-    desc: "Ми допомагаємо налагодити комфортну та довготривалу співпрацю, щоб ви почувалися впевнено щодня.",
-    span: "Поруч із вами щодня",
-  },
+const iconsShort = [
+  "/icons/why-icons/prof.svg",
+  "/icons/why-icons/fast.svg",
+  "/icons/why-icons/verified.svg",
+  "/icons/why-icons/support.svg"
 ];
 
-const dataLong = [
-  {
-    id: 1,
-    icon: "/icons/why-icons/Vector.svg",
-    title: "Перевірені родини",
-    desc: "Ми підбираємо лише надійних клієнтів із чіткими умовами, адекватними очікуваннями та безпечною атмосферою в домі",
-  },
-  {
-    id: 2,
-    icon: "/icons/why-icons/Vector-1.svg",
-    title: "Професійний розвиток ",
-    desc: "Надаємо доступ до навчальних матеріалів і методик. Допомагаємо рости в професії  незалежно від того, з чого ви починаєте",
-    span: "Поруч із вами щодня",
-  },
-  {
-    id: 3,
-    icon: "/icons/why-icons/Vector-2.svg",
-    title: "Гнучкий формат",
-    desc: "Знайдіть оптимальний графік для себе: повна, часткова зайнятість, разова допомога або робота з проживанням",
-  },
-  {
-    id: 4,
-    icon: "/icons/why-icons/Vector-3.svg",
-    title: "Справедливі умови й оплата",
-    desc: "Ми не беремося за вакансії з низьким чеком. Кожна ваша година оплачується чесно та згідно з домовленостями",
-    span: "Гідна праця й заробіток",
-  },
-  {
-    id: 5,
-    icon: "/icons/why-icons/Vector-4.svg",
-    title: "Постійна підтримка",
-    desc: "У нас не працює правило «підлаштовуйся сама». Ви завжди можете звернутися за допомогою, порадою чи підтримкою",
-  },
-  {
-    id: 6,
-    icon: "/icons/why-icons/Vector-5.svg",
-    title: "Повага до нянь",
-    desc: "Працюємо лише з родинами, які цінують вашу працю, дотримуються домовленостей і ставляться з турботою",
-  },
+const iconsLong = [
+  "/icons/why-icons/Vector.svg",
+  "/icons/why-icons/Vector-1.svg",
+  "/icons/why-icons/Vector-2.svg",
+  "/icons/why-icons/Vector-3.svg",
+  "/icons/why-icons/Vector-4.svg",
+  "/icons/why-icons/Vector-5.svg"
 ];
 
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: {},
   show: {
     transition: {
@@ -89,38 +38,45 @@ const containerVariants = {
   },
 };
 
-const itemVariants = {
+const itemVariants: Variants = {
   hidden: { opacity: 0, y: 30 },
   show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } },
 };
 
-export const WhySection = () => {
+export const WhySection = ({ translation, locale }: { translation: Record<string, unknown>, locale: string }) => {
   const [windowWidth, setWindowWidth] = useState(0);
+  const { t } = useTranslation('common');
+  const pathname = usePathname();
+  const [isReady, setIsReady] = useState(false);
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    if (translation && locale) {
+      i18n.addResourceBundle(locale, 'common', translation, true, true);
+      i18n.changeLanguage(locale).then(() => setIsReady(true));
+    }
+  }, [translation, locale]);
+
   useEffect(() => {
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
     };
-
     handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
-  const pathname = usePathname();
 
-  const isSelectionPage = pathname === "/nanny-selection" ? true : false;
+  useEffect(() => { setIsClient(true); }, []);
 
-  const data = isSelectionPage ? dataLong : dataShort;
+  const isSelectionPage = pathname === `/${locale}/nanny-selection` ? true : false;
+  const rawData = t(isSelectionPage ? 'why_long' : 'why_short', { returnObjects: true });
+  const data = Array.isArray(rawData) ? rawData : [];
+  const icons = isSelectionPage ? iconsLong : iconsShort;
 
   return (
-    <section
-      className={`${s.section} ${isSelectionPage ? s.sectionSelection : ""} `}
-    >
+    <section className={`${s.section} ${isSelectionPage ? s.sectionSelection : ""} `}>
       <Container className={s.content}>
-        <motion.div
-          variants={containerVariants}
-          // initial="hidden"
-          // animate="show"
-        >
+        <motion.div variants={containerVariants}>
           <motion.h2
             className={s.title}
             variants={itemVariants}
@@ -128,11 +84,15 @@ export const WhySection = () => {
             whileInView="show"
             viewport={{ once: true, amount: 0.3 }}
           >
-            Чому батьки{" "}
-            <span>
-              обирають <Line />{" "}
-            </span>
-            сервіс від Smart Nanny?
+            {!isReady
+              ? (translation && translation["why_title"] as string) || ""
+              : <Trans
+                  i18nKey="why_title"
+                  components={{
+                    span: <span />,
+                    line: <Line />
+                  }}
+                />}
           </motion.h2>
 
           {isSelectionPage && (
@@ -143,9 +103,7 @@ export const WhySection = () => {
               whileInView="show"
               viewport={{ once: true, amount: 0.3 }}
             >
-              Ми будуємо співпрацю на довірі, чітких домовленостях і взаємній
-              повазі. Забезпечуємо прозорий процес, чесні умови та завжди
-              лишаємося на зв&apos;язку, щоб ви завжди відчували підтримку
+              {t('why_desc_selection')}
             </motion.p>
           )}
 
@@ -155,7 +113,7 @@ export const WhySection = () => {
             whileInView="show"
             viewport={{ once: true, amount: 0.3 }}
           >
-            {windowWidth <= 1024 ? (
+            {isClient && windowWidth <= 1024 ? (
               <Swiper
                 className={s.list}
                 breakpoints={{ 1025: { slidesPerView: 4, spaceBetween: 60 } }}
@@ -169,7 +127,7 @@ export const WhySection = () => {
                 }}
               >
                 {data.map((item, index) => (
-                  <SwiperSlide key={item.id + index} className={s.slideCont}>
+                  <SwiperSlide key={index} className={s.slideCont}>
                     <motion.div
                       className={s.swiperSlide}
                       variants={itemVariants}
@@ -181,28 +139,31 @@ export const WhySection = () => {
                         alt={item.title}
                         width={1920}
                         height={1080}
-                        src={item.icon}
+                        src={icons[index]}
                         quality={100}
                       />
                       <h3>{item.title}</h3>
                       <p>{item.desc}</p>
-                      <span
-                        style={
-                          index == 3
-                            ? { transform: "rotate(25deg)" }
-                            : { transform: "rotate(-10deg)" }
-                        }
-                      >
-                        {item.span}
-                      </span>
+                      {item.span && (
+                        <span
+                          style={
+                            index == 3
+                              ? { transform: "rotate(25deg)" }
+                              : { transform: "rotate(-10deg)" }
+                          }
+                        >
+                          {item.span}
+                        </span>
+                      )}
                     </motion.div>
                   </SwiperSlide>
                 ))}
               </Swiper>
-            ) : (
+            ) : null}
+            {isClient && windowWidth > 1024 ? (
               <ul className={s.list}>
                 {data.map((item, index) => (
-                  <li key={item.id + index} className={s.slideCont}>
+                  <li key={index} className={s.slideCont}>
                     <motion.div
                       className={s.swiperSlide}
                       variants={itemVariants}
@@ -214,25 +175,27 @@ export const WhySection = () => {
                         alt={item.title}
                         width={1920}
                         height={1080}
-                        src={item.icon}
+                        src={icons[index]}
                         quality={100}
                       />
                       <h3>{item.title}</h3>
                       <p>{item.desc}</p>
-                      <span
-                        style={
-                          index == 3
-                            ? { transform: "rotate(25deg)" }
-                            : { transform: "rotate(-10deg)" }
-                        }
-                      >
-                        {item.span}
-                      </span>
+                      {item.span && (
+                        <span
+                          style={
+                            index == 3
+                              ? { transform: "rotate(25deg)" }
+                              : { transform: "rotate(-10deg)" }
+                          }
+                        >
+                          {item.span}
+                        </span>
+                      )}
                     </motion.div>
                   </li>
                 ))}
               </ul>
-            )}
+            ) : null}
           </motion.div>
         </motion.div>
         <div className={s.paginationCont}></div>

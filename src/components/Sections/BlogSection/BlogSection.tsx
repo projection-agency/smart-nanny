@@ -9,6 +9,8 @@ import { API_URL } from "@/constants";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import { motion } from "framer-motion";
+import { useTranslation, Trans } from 'react-i18next';
+import { btnSvg } from '@/components/BtnSvg';
 
 export type BlogPost = {
   id: number;
@@ -26,14 +28,25 @@ type Category = {
   name: string;
 };
 
-export const BlogSection = () => {
+export const BlogSection = ({ translation, locale }: { translation: Record<string, unknown>, locale: string }) => {
   const [posts, setPosts] = useState<BlogPost[]>();
   const [categories, setCategories] = useState<Category[]>([]);
+  const { t, i18n } = useTranslation('common');
+  const [isReady, setIsReady] = useState(false);
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
-        const fetchPosts = async () => {
+    if (translation && locale) {
+      i18n.addResourceBundle(locale, 'common', translation, true, true);
+      i18n.changeLanguage(locale).then(() => setIsReady(true));
+    }
+  }, [translation, locale, i18n]);
+
+  useEffect(() => {
+    const lang = i18n.language === 'ua' ? 'uk' : i18n.language;
+    const fetchPosts = async () => {
       try {
-        const response = await fetch(`${API_URL}v2/posts`);
+        const response = await fetch(`${API_URL}v2/posts?lang=${lang}`);
         const data = await response.json();
         setPosts(data);
       } catch (error) {
@@ -43,10 +56,10 @@ export const BlogSection = () => {
 
     const fetchCategories = async () => {
       try {
-        const response = await fetch(`${API_URL}v2/categories`);
+        const response = await fetch(`${API_URL}v2/categories?lang=${lang}`);
         const data = await response.json();
         setCategories(
-          data.filter((cat: Category) => cat.name !== "Без категорії")
+          data.filter((cat: Category) => cat.name !== (lang === 'uk' ? "Без категорії" : "Без категорії"))
         );
       } catch (error) {
         console.error("Помилка при отриманні категорій:", error);
@@ -55,7 +68,9 @@ export const BlogSection = () => {
 
     fetchPosts();
     fetchCategories();
-  }, []);
+  }, [i18n.language]);
+
+  useEffect(() => { setIsClient(true); }, []);
 
   const getCategoryNames = (post: BlogPost) => {
     if (!post.categories || !categories.length) return [];
@@ -75,11 +90,13 @@ export const BlogSection = () => {
           transition={{ duration: 0.7, ease: "easeOut" }}
         >
           {<Stars/>}
-          Щоденник сервісу <span>Новини нашої агенції{line}</span>
+          {!isReady
+            ? (translation && translation["blog_title"] as string) || ""
+            : <Trans i18nKey="blog_title" components={{ span: <span />, line }} />}
         </motion.h2>
 
         <ul className={s.list}>
-          {posts?.slice(0, 3).map((post) => (
+          {posts?.slice(0, 3).map((post: BlogPost) => (
             <BlogItem
               key={post.id}
               info={{
@@ -90,34 +107,38 @@ export const BlogSection = () => {
                 description: post.excerpt?.rendered.replace(/<[^>]+>/g, ""),
                 slug: post.slug,
               }}
+              locale={locale}
             />
           ))}
         </ul>
 
-        <Swiper
-          modules={[Pagination]}
-          pagination={{
-            type: "bullets",
-            el: `.${s.paginationCont}`,
-            bulletElement: "p",
-          }}
-          className={`${s.swiper} swiper`}
-        >
-          {posts?.slice(0, 4).map((post) => (
-            <SwiperSlide key={post.id} className={s.swiperSlide}>
-              <BlogItem
-                info={{
-                  title: post.title?.rendered,
-                  date: new Date(post.date).toLocaleDateString("uk-UA"),
-                  categories: getCategoryNames(post),
-                  image: post.featured_image_url || "/images/blog/1.jpg",
-                  description: post.excerpt?.rendered.replace(/<[^>]+>/g, ""),
-                  slug: post.slug,
-                }}
-              />
-            </SwiperSlide>
-          ))}
-        </Swiper>
+        {isClient && (
+          <Swiper
+            modules={[Pagination]}
+            pagination={{
+              type: "bullets",
+              el: `.${s.paginationCont}`,
+              bulletElement: "p",
+            }}
+            className={`${s.swiper} swiper`}
+          >
+            {posts?.slice(0, 4).map((post: BlogPost) => (
+              <SwiperSlide key={post.id} className={s.swiperSlide}>
+                <BlogItem
+                  info={{
+                    title: post.title?.rendered,
+                    date: new Date(post.date).toLocaleDateString("uk-UA"),
+                    categories: getCategoryNames(post),
+                    image: post.featured_image_url || "/images/blog/1.jpg",
+                    description: post.excerpt?.rendered.replace(/<[^>]+>/g, ""),
+                    slug: post.slug,
+                  }}
+                  locale={locale}
+                />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        )}
 
         <div className={s.paginationCont}></div>
 
@@ -129,7 +150,7 @@ export const BlogSection = () => {
         >
           <Link href="/blog" className={s.btn}>
             <div className={s.first}>{btnSvg}</div>
-            Дивитись більше
+            {t('blog_more')}
             <div className={s.second}>{btnSvg}</div>
           </Link>
         </motion.div>
@@ -238,120 +259,4 @@ const line = (
       strokeLinecap="round"
     />
   </svg>
-);
-
-export const btnSvg = (
-  <motion.svg
-    viewBox="0 0 68 87"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <motion.path
-      d="M1.50315 1.69727C5.28125 4.7002 9.38305 7.34398 11.6847 11.4336C16.8752 20.6561 19.8871 29.7913 21.4067 40.7604C23.1922 53.6486 22.9689 67.0275 13.6788 76.8015C10.696 79.3778 8.74611 80.975 2.9213 85.4895"
-      stroke="#FF91B2"
-      strokeWidth="3"
-      strokeLinecap="butt"
-      pathLength={1}
-      initial={{ pathLength: 0 }}
-      whileInView={{ pathLength: 1 }}
-      transition={{
-        duration: 1.2,
-        ease: "easeOut",
-        repeat: Infinity,
-        repeatType: "reverse",
-        repeatDelay: 2,
-      }}
-      viewport={{ once: false, amount: 0.5 }}
-    />
-    <motion.path
-      d="M66.2812 42.7012L31.2813 42.7012"
-      stroke="#FF91B2"
-      strokeWidth="3"
-      strokeLinecap="butt"
-      pathLength={1}
-      initial={{ pathLength: 0 }}
-      whileInView={{ pathLength: 1 }}
-      transition={{
-        duration: 1.2,
-        ease: "easeOut",
-        delay: 1.2,
-        repeat: Infinity,
-        repeatType: "reverse",
-        repeatDelay: 2,
-      }}
-      viewport={{ once: false, amount: 0.5 }}
-    />
-    <motion.path
-      d="M28.6985 62.7012C31.5328 62.7012 34.0824 64.498 36.6962 65.4485C39.9333 66.6256 43.2229 67.7655 46.2812 69.2947"
-      stroke="#FF91B2"
-      strokeWidth="3"
-      strokeLinecap="butt"
-      pathLength={1}
-      initial={{ pathLength: 0 }}
-      whileInView={{ pathLength: 1 }}
-      transition={{
-        duration: 1.2,
-        ease: "easeOut",
-        delay: 1.2,
-        repeat: Infinity,
-        repeatType: "reverse",
-        repeatDelay: 2,
-      }}
-      viewport={{ once: false, amount: 0.5 }}
-    />
-    <motion.path
-      d="M20.5339 79.7012C21.3468 79.8028 22.66 81.8273 23.2812 82.4485"
-      stroke="#FF91B2"
-      strokeWidth="3"
-      strokeLinecap="butt"
-      pathLength={1}
-      initial={{ pathLength: 0 }}
-      whileInView={{ pathLength: 1 }}
-      transition={{
-        duration: 1.2,
-        ease: "easeOut",
-        delay: 1.2,
-        repeat: Infinity,
-        repeatType: "reverse",
-        repeatDelay: 2,
-      }}
-      viewport={{ once: false, amount: 0.5 }}
-    />
-    <motion.path
-      d="M28.6985 18.2949C31.5328 18.2949 34.0824 16.4981 36.6962 15.5476C39.9333 14.3705 43.2229 13.2306 46.2812 11.7014"
-      stroke="#FF91B2"
-      strokeWidth="3"
-      strokeLinecap="butt"
-      pathLength={1}
-      initial={{ pathLength: 0 }}
-      whileInView={{ pathLength: 1 }}
-      transition={{
-        duration: 1.2,
-        ease: "easeOut",
-        delay: 1.2,
-        repeat: Infinity,
-        repeatType: "reverse",
-        repeatDelay: 2,
-      }}
-      viewport={{ once: false, amount: 0.5 }}
-    />
-    <motion.path
-      d="M22.5339 4.44727C23.3468 4.34566 24.66 2.32118 25.2812 1.69996"
-      stroke="#FF91B2"
-      strokeWidth="3"
-      strokeLinecap="butt"
-      pathLength={1}
-      initial={{ pathLength: 0 }}
-      whileInView={{ pathLength: 1 }}
-      transition={{
-        duration: 1.2,
-        ease: "easeOut",
-        delay: 1.2,
-        repeat: Infinity,
-        repeatType: "reverse",
-        repeatDelay: 2,
-      }}
-      viewport={{ once: false, amount: 0.5 }}
-    />
-  </motion.svg>
 );

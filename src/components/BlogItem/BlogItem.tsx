@@ -5,6 +5,7 @@ import React from "react";
 
 export const BlogItem = ({
   info,
+  locale
 }: {
   info: {
     title: string;
@@ -14,12 +15,13 @@ export const BlogItem = ({
     description: string;
     slug?: string;
   };
+  locale: string;
 }) => {
   return (
     <div
       className={s.itemBlock}
     >
-      <Link href={`/blog/${info.slug}`} className={s.item}>
+      <Link href={`/${locale}/blog/${info.slug}`} className={s.item}>
         <div className={s.imageContainer}>
           <Image
             width={1920}

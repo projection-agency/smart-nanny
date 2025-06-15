@@ -1,13 +1,15 @@
 "use client";
 
 import { useModal } from "@/components/ModalContext";
-import { btnSvg } from "../BlogSection/BlogSection";
+import { btnSvg } from "@/components/BtnSvg";
 import s from "./EducationHero.module.css";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { useTranslation } from 'react-i18next';
 
 export const EducationHero = () => {
   const { openModal } = useModal();
+  const { t } = useTranslation('common');
 
   return (
     <section className={s.section}>
@@ -38,22 +40,48 @@ export const EducationHero = () => {
         />
       </div>
 
-      <div className={s.content}>
-        <h1>
+      <motion.div
+        className={s.content}
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: false, amount: 0.6 }}
+        transition={{ duration: 0.7, ease: "easeOut" }}
+      >
+        <motion.h1
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.6 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+        >
           {svg}
-          <span>Професійна {line} </span> няня
-        </h1>
+          <span>
+            {String(t('education_hero_title_span'))}
+            {line}
+          </span>
+          {String(t('education_hero_title_rest'))}
+        </motion.h1>
 
-        <p>
-          Практичний онлайн-курс, який допомагає впевнено взаємодіяти як з
-          дітьми, так і з батьками, і будувати успішну карєру професійної няні
-        </p>
+        <motion.p
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.6 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+        >
+          {String(t('education_hero_subtitle'))}
+        </motion.p>
 
-        <button onClick={() => openModal("formB")} className={s.btn}>
+        <motion.button
+          onClick={() => openModal("formB")}
+          className={s.btn}
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.6 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+        >
           <div className={s.first}>{btnSvg}</div>
-          Обрати навчання
+          {String(t('education_hero_btn'))}
           <div className={s.second}>{btnSvg}</div>
-        </button>
+        </motion.button>
         <Image
           alt="Plate"
           width={1920}
@@ -78,7 +106,7 @@ export const EducationHero = () => {
           src="/images/pinkCloud3.png"
           className={s.cloud1}
         />
-      </div>
+      </motion.div>
     </section>
   );
 };

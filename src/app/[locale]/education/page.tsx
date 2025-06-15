@@ -1,3 +1,5 @@
+import fs from 'fs/promises';
+import path from 'path';
 import { CourseSection } from "@/components/Sections/CourseSection/CourseSection";
 import { EducationHero } from "@/components/Sections/EducationHero/EducationHero";
 import { FaqSection } from "@/components/Sections/FaqSection/FaqSection";
@@ -11,10 +13,15 @@ export const metadata = {
   description: "Ми підбираємо надійних нянь, яким можна довірити вашу дитину.",
 };
 
-export default function Education() {
+export default async function Education({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  const translationPath = path.resolve(process.cwd(), `public/locales/${locale}/common.json`);
+  const translationRaw = await fs.readFile(translationPath, 'utf-8');
+  const translation = JSON.parse(translationRaw);
+
   const breadcrumbs: BreadcrumbItem[] = [
-    { label: "Головна", href: "/" },
-    { label: "Навчання", active: true },
+    { label: translation['breadcrumbs_home'], href: `/${locale}` },
+    { label: translation['breadcrumbs_education'], active: true },
   ];
 
   return (
@@ -25,7 +32,7 @@ export default function Education() {
       <GetSection />
       <ProgramSection />
       <TariffSection />
-      <FaqSection nannys={true} />
+      <FaqSection translation={translation} locale={locale} nannys={true} />
     </main>
   );
 }

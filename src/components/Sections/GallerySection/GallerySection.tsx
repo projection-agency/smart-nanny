@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
 import { Container } from "@/components/Container";
 import s from "./GallerySection.module.css";
 import Image from "next/image";
@@ -9,21 +9,47 @@ import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
 import "./SwiperButton.css";
 import { motion } from "framer-motion";
+import { useTranslation, Trans } from 'react-i18next';
+import i18n from '@/i18n/client';
 
-const slides = [
-  "/images/gallery/1.jpg",
-  "/images/gallery/2.jpg",
-  "/images/gallery/3.jpg",
-  "/images/gallery/4.jpg",
-  "/images/gallery/5.jpg",
-  "/images/gallery/6.jpg",
-  "/images/gallery/7.jpg",
-  "/images/gallery/8.jpg",
-];
-
-export const GallerySection = () => {
+export const GallerySection = ({ translation, locale }: { translation: Record<string, unknown>, locale: string }) => {
   const prevRef = useRef<HTMLDivElement>(null);
   const nextRef = useRef<HTMLDivElement>(null);
+  const { t } = useTranslation('common');
+  const [isReady, setIsReady] = useState(false);
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    if (translation && locale) {
+      i18n.addResourceBundle(locale, 'common', translation, true, true);
+      i18n.changeLanguage(locale).then(() => setIsReady(true));
+    }
+  }, [translation, locale]);
+
+  useEffect(() => { setIsClient(true); }, []);
+
+  // SSR-safe for all text fields
+  const galleryTitle = !isReady
+    ? (translation && translation['gallery_title']) || ''
+    : null;
+  const gallerySubtitle = !isReady
+    ? (translation && translation['gallery_subtitle']) || ''
+    : t('gallery_subtitle');
+  const galleryHint = !isReady
+    ? (translation && translation['gallery_hint']) || ''
+    : t('gallery_hint');
+
+  
+  const slides = [
+    "/images/gallery/1.jpg",
+    "/images/gallery/2.jpg",
+    "/images/gallery/3.jpg",
+    "/images/gallery/4.jpg",
+    "/images/gallery/5.jpg",
+    "/images/gallery/6.jpg",
+    "/images/gallery/7.jpg",
+    "/images/gallery/8.jpg",
+  ];
 
   // const lineVariants = {
   //   hidden: { pathLength: 0, opacity: 0 },
@@ -46,38 +72,39 @@ export const GallerySection = () => {
             transition={{ duration: 0.7, ease: "easeOut" }}
           >
             <h2>
-              Погляньте, як працюють
-              <span>
-                наші турботливі няні
-                <motion.svg
-                  viewBox="0 0 457 23"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  style={{
-                    width: "100%",
-                    height: "auto",
-                    verticalAlign: "middle",
-                  }}
-                  preserveAspectRatio="xMidYMid meet"
-                >
-                  <motion.path
-                    d="M1.5 15.7765C1.9592 12.5562 9.8956 10.4106 12.7427 9.57868C19.0625 7.73202 23.8729 4.8033 30.7079 4.8033C34.8603 4.8033 52.397 1.5448 43.4574 7.85368C41.1539 9.47934 41.1516 8.57104 39.9619 10.396C38.3324 12.8959 41.2884 11.0572 43.1493 10.8533C52.3334 9.8469 60.2403 10.1699 69.5359 9.47935C84.5821 8.36157 101.412 10.5819 116.251 8.15653C127.37 6.33934 139.011 6.48211 150.077 4.80322C157.409 3.69081 164.804 2.26312 172.273 2.26312C174.74 2.26312 180.769 0.976907 180.56 4.09199C180.446 5.79049 174.381 8.02334 172.736 8.66416C170.923 9.3707 161.419 12.3219 164.913 12.3219C180.602 12.3219 195.212 9.44706 210.579 6.83529C223.75 4.59673 237.069 6.43425 250.45 6.43425C266.135 6.43425 281.09 7.60538 296.87 7.60538C302.873 7.60538 311.146 6.70396 307.823 11.7203C303 19 318 14.8597 321.384 13.8032C329.335 11.3205 338.511 9.69399 346.883 8.51982C354.649 7.43046 362.5 5.77651 370.411 5.77651L385.645 6.12067C386.791 6.12067 392.719 5.57579 392.719 6.77322C392.719 8.55798 390.895 10.5258 389.624 11.7761C386.725 14.6291 383.039 16.9845 379.48 18.9542C378.329 19.5911 377.29 20.1129 379.357 19.5101C383.876 18.1926 389.025 18.2599 393.702 17.4316C399.38 16.4258 404.693 15.1935 410.06 13.0329C414.483 11.2524 419.092 9.54799 423.766 8.51336C430.275 7.07219 437.456 7.42577 444.103 7.42577C447.826 7.42577 451.863 7.8855 455.5 6.99074"
-                    stroke="#FF91B2"
-                    strokeWidth="3"
-                    strokeLinecap="round"
-                    pathLength={1}
-                    initial={{ pathLength: 0 }}
-                    whileInView={{ pathLength: 1 }}
-                    transition={{ duration: 1.2, ease: "easeOut" }}
-                    viewport={{ once: false, amount: 0.5 }}
-                  />
-                </motion.svg>
-              </span>
+              {!isReady
+                ? typeof galleryTitle === 'string'
+                  ? galleryTitle
+                  : ''
+                : <Trans
+                    i18nKey="gallery_title"
+                    components={{
+                      span: <span />,
+                      line: <motion.svg
+                        viewBox="0 0 457 23"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        style={{ width: "100%", height: "auto", verticalAlign: "middle" }}
+                        preserveAspectRatio="xMidYMid meet"
+                      >
+                        <motion.path
+                          d="M1.5 15.7765C1.9592 12.5562 9.8956 10.4106 12.7427 9.57868C19.0625 7.73202 23.8729 4.8033 30.7079 4.8033C34.8603 4.8033 52.397 1.5448 43.4574 7.85368C41.1539 9.47934 41.1516 8.57104 39.9619 10.396C38.3324 12.8959 41.2884 11.0572 43.1493 10.8533C52.3334 9.8469 60.2403 10.1699 69.5359 9.47935C84.5821 8.36157 101.412 10.5819 116.251 8.15653C127.37 6.33934 139.011 6.48211 150.077 4.80322C157.409 3.69081 164.804 2.26312 172.273 2.26312C174.74 2.26312 180.769 0.976907 180.56 4.09199C180.446 5.79049 174.381 8.02334 172.736 8.66416C170.923 9.3707 161.419 12.3219 164.913 12.3219C180.602 12.3219 195.212 9.44706 210.579 6.83529C223.75 4.59673 237.069 6.43425 250.45 6.43425C266.135 6.43425 281.09 7.60538 296.87 7.60538C302.873 7.60538 311.146 6.70396 307.823 11.7203C303 19 318 14.8597 321.384 13.8032C329.335 11.3205 338.511 9.69399 346.883 8.51982C354.649 7.43046 362.5 5.77651 370.411 5.77651L385.645 6.12067C386.791 6.12067 392.719 5.57579 392.719 6.77322C392.719 8.55798 390.895 10.5258 389.624 11.7761C386.725 14.6291 383.039 16.9845 379.48 18.9542C378.329 19.5911 377.29 20.1129 379.357 19.5101C383.876 18.1926 389.025 18.2599 393.702 17.4316C399.38 16.4258 404.693 15.1935 410.06 13.0329C414.483 11.2524 419.092 9.54799 423.766 8.51336C430.275 7.07219 437.456 7.42577 444.103 7.42577C447.826 7.42577 451.863 7.8855 455.5 6.99074"
+                          stroke="#FF91B2"
+                          strokeWidth="3"
+                          strokeLinecap="round"
+                          pathLength={1}
+                          initial={{ pathLength: 0 }}
+                          whileInView={{ pathLength: 1 }}
+                          transition={{ duration: 1.2, ease: "easeOut" }}
+                          viewport={{ once: false, amount: 0.5 }}
+                        />
+                      </motion.svg>
+                    }}
+                  />}
             </h2>
-            <p>
-              Ознайомтесь із нашими нянями через щирі фото з реального життя. Ви
-              побачите людей, які щодня турбуються про дітей з любовʼю, турботою
-              та професійним підходом.
+            <p>{!isReady
+              ? typeof gallerySubtitle === 'string' ? gallerySubtitle : ''
+              : t('gallery_subtitle')}
             </p>
             <Image
               alt="Worm"
@@ -91,7 +118,10 @@ export const GallerySection = () => {
 
           <div className={s.swiperController}>
             <div className={s.hint}>
-              <span>Гортай праворуч</span>
+              <span>{!isReady
+                ? typeof galleryHint === 'string' ? galleryHint : ''
+                : t('gallery_hint')}
+              </span>
               <motion.svg
                 viewBox="0 0 54 53"
                 fill="none"
@@ -167,56 +197,58 @@ export const GallerySection = () => {
           viewport={{ once: false, amount: 0.4 }}
           transition={{ duration: 0.7, ease: "easeOut", delay: 0.2 }}
         >
-          <Swiper
-            modules={[Navigation, Pagination]}
-            breakpoints={{
-              0: {
-                slidesPerView: 1.1,
-                spaceBetween: 12,
-                navigation: { enabled: false },
-                pagination: { enabled: true },
-              },
-              1024: {
-                spaceBetween: 36,
-                slidesPerView: 4.2,
-                navigation: { enabled: true },
-                pagination: { enabled: false },
-              },
-            }}
-            pagination={{
-              enabled: true,
-              type: "bullets",
-              el: `.${s.paginationCont}`,
-              bulletElement: "p",
-            }}
-            navigation={{
-              prevEl: prevRef.current,
-              nextEl: nextRef.current,
-            }}
-            onInit={(swiper) => {
-              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-              // @ts-expect-error
-              swiper.params.navigation.prevEl = prevRef.current;
-              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-              // @ts-expect-error
-              swiper.params.navigation.nextEl = nextRef.current;
-              swiper.navigation.init();
-              swiper.navigation.update();
-            }}
-            className={`${s.swiper} swiper`}
-          >
-            {slides.map((src, index) => (
-              <SwiperSlide key={index}>
-                <Image
-                  src={src}
-                  alt={`Slide ${index + 1}`}
-                  width={600}
-                  height={400}
-                  className={s.image}
-                />
-              </SwiperSlide>
-            ))}
-          </Swiper>
+          {isClient && (
+            <Swiper
+              modules={[Navigation, Pagination]}
+              breakpoints={{
+                0: {
+                  slidesPerView: 1.1,
+                  spaceBetween: 12,
+                  navigation: { enabled: false },
+                  pagination: { enabled: true },
+                },
+                1024: {
+                  spaceBetween: 36,
+                  slidesPerView: 4.2,
+                  navigation: { enabled: true },
+                  pagination: { enabled: false },
+                },
+              }}
+              pagination={{
+                enabled: true,
+                type: "bullets",
+                el: `.${s.paginationCont}`,
+                bulletElement: "p",
+              }}
+              navigation={{
+                prevEl: prevRef.current,
+                nextEl: nextRef.current,
+              }}
+              onInit={(swiper) => {
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                // @ts-expect-error
+                swiper.params.navigation.prevEl = prevRef.current;
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                // @ts-expect-error
+                swiper.params.navigation.nextEl = nextRef.current;
+                swiper.navigation.init();
+                swiper.navigation.update();
+              }}
+              className={`${s.swiper} swiper`}
+            >
+              {slides.map((src, index) => (
+                <SwiperSlide key={index}>
+                  <Image
+                    src={src}
+                    alt={`Slide ${index + 1}`}
+                    width={600}
+                    height={400}
+                    className={s.image}
+                  />
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          )}
           <div className={s.paginationCont}></div>
         </motion.div>
       </Container>

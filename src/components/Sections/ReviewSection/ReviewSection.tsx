@@ -9,41 +9,52 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { useEffect, useRef, useState } from "react";
-import { API_URL } from "@/constants";
 import { motion } from "framer-motion";
+import { useTranslation, Trans } from 'react-i18next';
+import { API_URL } from "@/constants";
 
-type APISmartReview = {
+interface Review {
   id: number;
-  Full_name: string;
-  Location: string;
-  Date: string;
   Photo: string;
+  Full_name: string;
   Review: string;
-};
+  Date: string;
+  Location: string;
+}
 
-export const ReviewSection = () => {
+export const ReviewSection = ({ translation, locale }: { translation: Record<string, unknown>, locale: string }) => {
   const paginationRef = useRef<HTMLDivElement>(null);
-  const [reviews, setReviews] = useState<APISmartReview[]>([]);
-
   const [isReady, setIsReady] = useState(false);
+  const [isClient, setIsClient] = useState(false);
+  const [reviews, setReviews] = useState<Review[]>([]);
+
+  const { t, i18n } = useTranslation('common');
 
   useEffect(() => {
-    setIsReady(true);
-  }, []);
+    if (translation && locale) {
+      i18n.addResourceBundle(locale, 'common', translation, true, true);
+      i18n.changeLanguage(locale).then(() => setIsReady(true));
+    }
+  }, [translation, locale, i18n]);
 
   useEffect(() => {
     const fetchReviews = async () => {
       try {
-        const response = await fetch(`${API_URL}v2/review`);
+        const response = await fetch(`${API_URL}v2/review?lang=${locale}`);
         const data = await response.json();
         setReviews(data);
       } catch (error) {
-        console.error("Помилка при отриманні FAQ:", error);
+        console.error("Помилка при отриманні відгуків:", error);
       }
     };
-
     fetchReviews();
-  }, []);
+  }, [locale]);
+
+  useEffect(() => { setIsClient(true); }, []);
+
+  // SSR-only reviews (translation)
+  const reviewsRaw = !isReady ? (translation && translation['reviews'] as unknown[]) || [] : t('reviews', { returnObjects: true }) || [];
+  const reviewsSSR = Array.isArray(reviewsRaw) ? reviewsRaw : [];
 
   // const lineVariants = {
   //   hidden: { pathLength: 0, opacity: 0 },
@@ -71,10 +82,12 @@ export const ReviewSection = () => {
             viewport={{ once: false, amount: 0.6 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
           >
-            Що кажуть родини після співпраці
+            {!isReady
+              ? (translation && translation["review_title"] as string) || ""
+              : <Trans i18nKey="review_title" />}
             <span>
               {" "}
-              з нами
+              <Trans i18nKey="review_title_span" />
               <motion.svg
                 viewBox="0 0 195 18"
                 fill="none"
@@ -108,7 +121,7 @@ export const ReviewSection = () => {
             viewport={{ once: false, amount: 0.7 }}
             transition={{ duration: 0.7, ease: "easeOut", delay: 0.15 }}
           >
-            Історії родин, які вже знайшли свою ідеальну няню через Smart Nanny
+            {t('review_desc')}
           </motion.p>
 
           <motion.div
@@ -126,7 +139,7 @@ export const ReviewSection = () => {
             />
           </motion.div>
 
-          {isReady && (
+          {isClient && isReady && (
             <motion.div
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -152,7 +165,7 @@ export const ReviewSection = () => {
                 slidesPerView={1}
                 className={s.swiper}
               >
-                {reviews.map((review) => (
+                {(reviews.length > 0 ? reviews : reviewsSSR).map((review) => (
                   <SwiperSlide key={review.id}>
                     <div className={s.card}>
                       <div className={s.plus}>{plus}</div>

@@ -8,8 +8,10 @@ import clsx from "clsx";
 import { PhoneNumberInput } from "../PhoneInput/PhoneInput";
 import { PASS } from "@/constants";
 import Image from "next/image";
+import { useTranslation } from 'react-i18next';
+import i18n from '@/i18n/client';
 
-export const EducationPopup = ({ onClose }: { onClose: () => void }) => {
+export function EducationPopup({ translation, locale, onClose }: { translation: Record<string, unknown>, locale: string, onClose: () => void }) {
   const [visible, setVisible] = useState(false);
   const popupRef = useRef<HTMLDivElement>(null);
 
@@ -17,6 +19,8 @@ export const EducationPopup = ({ onClose }: { onClose: () => void }) => {
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const { t } = useTranslation('common');
+  const [isReady, setIsReady] = useState(false);
 
   const isValid = fullName.trim() && phone.trim() && email.trim();
 
@@ -72,6 +76,13 @@ export const EducationPopup = ({ onClose }: { onClose: () => void }) => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [handleClose]);
 
+  useEffect(() => {
+    if (translation && locale) {
+      i18n.addResourceBundle(locale, 'common', translation, true, true);
+      i18n.changeLanguage(locale).then(() => setIsReady(true));
+    }
+  }, [translation, locale]);
+
   return (
     <div className={clsx(s.popupOverlay, visible && s.visible)}>
       {isSubmitted ? (
@@ -91,8 +102,8 @@ export const EducationPopup = ({ onClose }: { onClose: () => void }) => {
                 width={48}
                 height={48}
               />
-              <h3>Дякуємо за заявку!</h3>
-              <p>Менеджер зв&apos;яжеться з вами для уточнення деталей :)</p>
+              <h3>{!isReady ? (translation && translation['education_popup_success_title'] as string) || '' : t('education_popup_success_title')}</h3>
+              <p>{!isReady ? (translation && translation['education_popup_success_text'] as string) || '' : t('education_popup_success_text')}</p>
             </div>
           </div>
         </div>
@@ -105,21 +116,18 @@ export const EducationPopup = ({ onClose }: { onClose: () => void }) => {
             {closeIco}
           </div>
           <div className={s.popupTitle}>
-            <h3>Залиште заявку на навчання</h3>
-            <p>
-              Ми зв&apos;яжемося з вами найближчим часом і надамо всі деталі
-              щодо проходження курсу
-            </p>
+            <h3>{!isReady ? (translation && translation['education_popup_title'] as string) || '' : t('education_popup_title')}</h3>
+            <p>{!isReady ? (translation && translation['education_popup_subtitle'] as string) || '' : t('education_popup_subtitle')}</p>
           </div>
 
           <form onSubmit={handleSubmit}>
             <div className={s.inputLine}>
               <div className={s.inputContainer}>
                 <label>
-                  Ім&apos;я та прізвище<span>*</span>
+                  {!isReady ? (translation && translation['education_popup_name_label'] as string) || '' : t('education_popup_name_label')}<span>*</span>
                   <input
                     type="text"
-                    placeholder="Ім'я Прізвище"
+                    placeholder={!isReady ? (translation && translation['education_popup_name_placeholder'] as string) || '' : t('education_popup_name_placeholder')}
                     value={fullName}
                     onChange={(e) => setFullName(e.target.value)}
                     className={clsx({
@@ -133,7 +141,7 @@ export const EducationPopup = ({ onClose }: { onClose: () => void }) => {
             <div className={s.inputLine}>
               <div className={s.inputContainer}>
                 <label>
-                  Контактний номер телефону<span>*</span>
+                  {!isReady ? (translation && translation['education_popup_phone_label'] as string) || '' : t('education_popup_phone_label')}<span>*</span>
                   <PhoneNumberInput
                     className={clsx({
                       ["error"]: isSubmitted && !phone.trim(),
@@ -148,10 +156,10 @@ export const EducationPopup = ({ onClose }: { onClose: () => void }) => {
             <div className={s.inputLine}>
               <div className={s.inputContainer}>
                 <label>
-                  Email<span>*</span>
+                  {!isReady ? (translation && translation['education_popup_email_label'] as string) || '' : t('education_popup_email_label')}<span>*</span>
                   <input
                     type="email"
-                    placeholder="youremail@domain.com"
+                    placeholder={!isReady ? (translation && translation['education_popup_email_placeholder'] as string) || '' : t('education_popup_email_placeholder')}
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     className={clsx({
@@ -166,19 +174,19 @@ export const EducationPopup = ({ onClose }: { onClose: () => void }) => {
               type="submit"
               className={clsx(s.submitBtn, { [s.disabled]: !isValid })}
             >
-              Залишити заявку
+              {!isReady ? (translation && translation['education_popup_submit'] as string) || '' : t('education_popup_submit')}
             </button>
 
             <p className={s.note}>
-              Натискаючи на кнопку, я погоджуюсь з{" "}
+              {!isReady ? (translation && translation['education_popup_note'] as string) || '' : t('education_popup_note')} {" "}
               <Link onClick={onClose} href="/policy">
-                Політикою конфіденційності
+                {!isReady ? (translation && translation['education_popup_policy'] as string) || '' : t('education_popup_policy')}
               </Link>{" "}
-              і дозволяю обробку моїх персональних даних для цілей рекрутингу
+              {!isReady ? (translation && translation['education_popup_note2'] as string) || '' : t('education_popup_note2')}
             </p>
           </form>
         </div>
       )}
     </div>
   );
-};
+}

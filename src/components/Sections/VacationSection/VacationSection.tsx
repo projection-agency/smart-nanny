@@ -10,7 +10,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Navigation, Pagination } from "swiper/modules";
 import { arrow } from "../GallerySection/GallerySection";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { VacationController } from "@/components/VacationController/VacationController";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "@/store/store";
@@ -18,8 +18,10 @@ import { fetchVacations } from "@/store/vacationSlice";
 import Link from "next/link";
 import { selectFilteredVacations } from "@/store/selectors";
 import { motion, AnimatePresence } from "framer-motion";
+import { useTranslation, Trans } from 'react-i18next';
+import i18n from '@/i18n/client';
 
-export const VacationSection = () => {
+export const VacationSection = ({ translation, locale }: { translation: Record<string, unknown>, locale: string }) => {
   const prevRef = useRef<HTMLDivElement>(null);
   const nextRef = useRef<HTMLDivElement>(null);
 
@@ -28,9 +30,14 @@ export const VacationSection = () => {
 
   const dispatch = useDispatch<AppDispatch>();
 
+  const { t } = useTranslation('common');
+
+  const [isReady, setIsReady] = useState(false);
+  const [isClient, setIsClient] = useState(false);
+
   useEffect(() => {
-    dispatch(fetchVacations());
-  }, [dispatch]);
+    dispatch(fetchVacations(locale));
+  }, [dispatch, locale]);
 
   const filtered = useSelector(selectFilteredVacations);
 
@@ -49,6 +56,15 @@ export const VacationSection = () => {
     }
   }, []);
 
+  useEffect(() => {
+    if (translation && locale) {
+      i18n.addResourceBundle(locale, 'common', translation, true, true);
+      i18n.changeLanguage(locale).then(() => setIsReady(true));
+    }
+  }, [translation, locale]);
+
+  useEffect(() => { setIsClient(true); }, []);
+
   return (
     <motion.section
       className={s.section}
@@ -66,36 +82,37 @@ export const VacationSection = () => {
           transition={{ duration: 0.7, ease: "easeOut" }}
         >
           <h2>
-            Актуальні
-            <span>
-              {" "}
-              вакансії
-              <motion.svg
-                viewBox="0 0 195 18"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                style={{
-                  width: "100%",
-                  height: "auto",
-                  verticalAlign: "middle",
-                }}
-                preserveAspectRatio="xMidYMid meet"
-              >
-                <motion.path
-                  d="M2 15.5949C2.45184 12.3746 10.2611 10.229 13.0626 9.39704C19.2811 7.55038 24.0144 4.62166 30.7399 4.62166C34.8258 4.62166 52.0814 1.36315 43.2851 7.67204C41.0185 9.29771 41.0162 8.3894 39.8456 10.2144C38.2422 12.7142 41.1508 10.8755 42.9819 10.6716C52.0189 9.66526 59.7991 9.98828 68.9458 9.29771C83.7508 8.17993 100.311 10.4003 114.913 7.97489C125.853 6.1577 137.308 6.30047 148.196 4.62157C155.411 3.50917 162.687 2.08148 170.036 2.08148C172.464 2.08148 178.396 0.795266 178.191 3.91035C178.078 5.60885 172.111 7.8417 170.492 8.48252C168.708 9.18906 159.357 12.1403 162.794 12.1403C178.232 12.1403 178.379 10.0355 193.5 7.42374"
-                  stroke="#FF91B2"
-                  strokeWidth="3"
-                  strokeLinecap="round"
-                  pathLength={1}
-                  initial={{ pathLength: 0 }}
-                  whileInView={{ pathLength: 1 }}
-                  transition={{ duration: 1.2, ease: "easeOut" }}
-                  viewport={{ once: false, amount: 0.5 }}
-                />
-              </motion.svg>
-            </span>
+            {!isReady
+              ? typeof translation["vacation_title"] === "string"
+                ? translation["vacation_title"]
+                : ""
+              : <Trans
+                  i18nKey="vacation_title"
+                  components={{
+                    span: <span />,
+                    line: <motion.svg
+                      viewBox="0 0 195 18"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      style={{ width: "100%", height: "auto", verticalAlign: "middle" }}
+                      preserveAspectRatio="xMidYMid meet"
+                    >
+                      <motion.path
+                        d="M2 15.5949C2.45184 12.3746 10.2611 10.229 13.0626 9.39704C19.2811 7.55038 24.0144 4.62166 30.7399 4.62166C34.8258 4.62166 52.0814 1.36315 43.2851 7.67204C41.0185 9.29771 41.0162 8.3894 39.8456 10.2144C38.2422 12.7142 41.1508 10.8755 42.9819 10.6716C52.0189 9.66526 59.7991 9.98828 68.9458 9.29771C83.7508 8.17993 100.311 10.4003 114.913 7.97489C125.853 6.1577 137.308 6.30047 148.196 4.62157C155.411 3.50917 162.687 2.08148 170.036 2.08148C172.464 2.08148 178.396 0.795266 178.191 3.91035C178.078 5.60885 172.111 7.8417 170.492 8.48252C168.708 9.18906 159.357 12.1403 162.794 12.1403C178.232 12.1403 178.379 10.0355 193.5 7.42374"
+                        stroke="#FF91B2"
+                        strokeWidth="3"
+                        strokeLinecap="round"
+                        pathLength={1}
+                        initial={{ pathLength: 0 }}
+                        whileInView={{ pathLength: 1 }}
+                        transition={{ duration: 1.2, ease: "easeOut" }}
+                        viewport={{ once: false, amount: 0.5 }}
+                      />
+                    </motion.svg>
+                  }}
+                />}
           </h2>
-          <VacationController />
+          <VacationController translation={translation} locale={locale} />
           {svg}
           <Image
             alt="Plate"
@@ -107,49 +124,51 @@ export const VacationSection = () => {
           />
         </motion.div>
 
-        <Swiper
-          key={filtered.map((item, i) => item.Title || i).join(",")}
-          modules={[Navigation, Pagination]}
-          breakpoints={{
-            0: {
-              slidesPerView: 1,
-              navigation: { enabled: false },
-              pagination: { enabled: true },
-            },
-            1024: {
-              slidesPerView: 3,
-              spaceBetween: 24,
-              pagination: { enabled: false },
-              navigation: { enabled: true },
-            },
-          }}
-          pagination={{
-            type: "bullets",
-            el: `.${s.paginationCont}`,
-            bulletElement: "p",
-          }}
-          navigation={{
-            prevEl: prevRef.current,
-            nextEl: nextRef.current,
-          }}
-          onSwiper={(swiper) => (swiperRef.current = swiper)}
-          className={`${s.swiper} swiper`}
-        >
-          <AnimatePresence initial={false}>
-            {filtered.map((item, index) => (
-              <SwiperSlide key={item.Title + "-" + index}>
-                <motion.div
-                  initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: false, amount: 0.6 }}
-                  transition={{ duration: 0.7, ease: "easeOut" }}
-                >
-                  <VacationItem item={item} />
-                </motion.div>
-              </SwiperSlide>
-            ))}
-          </AnimatePresence>
-        </Swiper>
+        {isClient && (
+          <Swiper
+            key={filtered.map((item, i) => item.Title || i).join(",")}
+            modules={[Navigation, Pagination]}
+            breakpoints={{
+              0: {
+                slidesPerView: 1,
+                navigation: { enabled: false },
+                pagination: { enabled: true },
+              },
+              1024: {
+                slidesPerView: 3,
+                spaceBetween: 24,
+                pagination: { enabled: false },
+                navigation: { enabled: true },
+              },
+            }}
+            pagination={{
+              type: "bullets",
+              el: `.${s.paginationCont}`,
+              bulletElement: "p",
+            }}
+            navigation={{
+              prevEl: prevRef.current,
+              nextEl: nextRef.current,
+            }}
+            onSwiper={(swiper) => (swiperRef.current = swiper)}
+            className={`${s.swiper} swiper`}
+          >
+            <AnimatePresence initial={false}>
+              {filtered.map((item, index) => (
+                <SwiperSlide key={item.Title + "-" + index}>
+                  <motion.div
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: false, amount: 0.6 }}
+                    transition={{ duration: 0.7, ease: "easeOut" }}
+                  >
+                    <VacationItem item={item} />
+                  </motion.div>
+                </SwiperSlide>
+              ))}
+            </AnimatePresence>
+          </Swiper>
+        )}
         <div className={s.paginationCont}></div>
 
         <div className={s.swiperController}>
@@ -165,7 +184,7 @@ export const VacationSection = () => {
         </div>
 
         <Link href="/" className={s.moreVacations}>
-          Переглянути всі вакансії
+          {t('vacation_all')}
         </Link>
       </Container>
     </motion.section>

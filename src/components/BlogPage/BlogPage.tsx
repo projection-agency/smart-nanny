@@ -7,21 +7,34 @@ import s from "./BlogPage.module.css";
 import { BlogPost } from "../Sections/BlogSection/BlogSection";
 import { API_URL } from "@/constants";
 import { motion } from "framer-motion";
+import { useTranslation } from 'react-i18next';
+import i18n from '@/i18n/client';
+import Spinner from "@/components/Spinner";
 
 export interface Category {
   id: number;
   name: string;
 }
 
-export const BlogPage = () => {
+export const BlogPage = ({ translation, locale }: { translation: unknown, locale: string }) => {
+  const { t } = useTranslation('common');
+  const [isReady, setIsReady] = useState(false);
   const [activeId, setActiveId] = useState<number | null>(null);
   const [posts, setPosts] = useState<BlogPost[]>();
   const [categories, setCategories] = useState<Category[]>([]);
 
   useEffect(() => {
+    if (translation && locale) {
+      i18n.addResourceBundle(locale, 'common', translation, true, true);
+      i18n.changeLanguage(locale).then(() => setIsReady(true));
+    }
+  }, [translation, locale]);
+
+  useEffect(() => {
+    const lang = locale === 'ua' ? 'uk' : locale;
     const fetchPosts = async () => {
       try {
-        const response = await fetch(`${API_URL}v2/posts`);
+        const response = await fetch(`${API_URL}v2/posts?lang=${lang}`);
         const data = await response.json();
         setPosts(data);
       } catch (error) {
@@ -31,7 +44,7 @@ export const BlogPage = () => {
 
     const fetchCategories = async () => {
       try {
-        const response = await fetch(`${API_URL}v2/categories`);
+        const response = await fetch(`${API_URL}v2/categories?lang=${lang}`);
         const data = await response.json();
         const filtered = data.filter(
           (cat: Category) => cat.name !== "Без категорії"
@@ -44,14 +57,13 @@ export const BlogPage = () => {
 
     fetchPosts();
     fetchCategories();
-  }, []);
+  }, [locale]);
 
   const handleClick = (id: number) => {
     if (id === activeId) {
       setActiveId(null);
       return;
     }
-
     setActiveId(id);
   };
 
@@ -59,6 +71,10 @@ export const BlogPage = () => {
 
   // const categories = [];
   // posts.forEach((post) => {});
+
+  const blogTitleSpan = String(!isReady ? (translation && (translation as Record<string, string>)['blog_title_span']) : t('blog_title_span'));
+  const blogTitleRest = String(!isReady ? (translation && (translation as Record<string, string>)['blog_title_rest']) : t('blog_title_rest'));
+  const blogSubtitle = String(!isReady ? (translation && (translation as Record<string, string>)['blog_subtitle']) : t('blog_subtitle'));
 
   return (
     <motion.section
@@ -71,33 +87,30 @@ export const BlogPage = () => {
         <motion.div
           className={s.titleContainer}
           initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, amount: 0.6 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
         >
           <motion.h2
             initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, amount: 0.6 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
           >
-            <span>Щоденник {line}</span>
-            від Smart Nanny
+            <span>
+              {blogTitleSpan} {line}
+            </span>
+            {blogTitleRest}
             {svg}
           </motion.h2>
 
           <motion.p
             initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, amount: 0.6 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
           >
-            Ми знаходимо нянь, яким можна довірити найцінніше – вашу дитину.
+            {blogSubtitle}
           </motion.p>
 
-          <div
-            className={s.tabController}
-          >
+          <div className={s.tabController}>
             {categories.map((item) => (
               <motion.div
                 onClick={() => handleClick(item.id)}
@@ -110,27 +123,35 @@ export const BlogPage = () => {
           </div>
         </motion.div>
 
-        <ul className={s.list}>
-          {posts
-            ?.filter((post) =>
-              activeId ? post.categories?.includes(activeId) : true
-            )
-            .map((post) => (
-              <BlogItem
-                key={post.id}
-                info={{
-                  title: post.title?.rendered,
-                  date: new Date(post.date).toLocaleDateString("uk-UA"),
-                  categories: categories
-                    .filter((cat) => post.categories?.includes(cat.id))
-                    .map((cat) => cat.name),
-                  image: post.featured_image_url || "/images/blog/1.jpg",
-                  description: post.excerpt?.rendered.replace(/<[^>]+>/g, ""),
-                  slug: post.slug,
-                }}
-              />
-            ))}
-        </ul>
+        {/* Blog posts list or spinner */}
+        {posts === undefined ? (
+          <div style={{ minHeight: '30vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <Spinner />
+          </div>
+        ) : (
+          <ul className={s.list}>
+            {posts
+              ?.filter((post) =>
+                activeId ? post.categories?.includes(activeId) : true
+              )
+              .map((post) => (
+                <BlogItem
+                  locale={locale}
+                  key={post.id}
+                  info={{
+                    title: post.title?.rendered,
+                    date: new Date(post.date).toLocaleDateString("uk-UA"),
+                    categories: categories
+                      .filter((cat) => post.categories?.includes(cat.id))
+                      .map((cat) => cat.name),
+                    image: post.featured_image_url || "/images/blog/1.jpg",
+                    description: post.excerpt?.rendered.replace(/<[^>]+>/g, ""),
+                    slug: post.slug,
+                  }}
+                />
+              ))}
+          </ul>
+        )}
       </Container>
     </motion.section>
   );

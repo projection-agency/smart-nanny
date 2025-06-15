@@ -62,11 +62,14 @@
     letter-spacing: -3px;
     text-align: center;
     color: rgba(51, 51, 51, 1);
+    margin: 0 auto;
     margin-bottom: 1.6vw;
+    width: 90%;
+
 
     .svg {
       position: absolute;
-      right: 3vw;
+      right: 1vw;
       top: 0;
       width: 3.4vw;
       height: auto;

@@ -20,7 +20,7 @@ export const useModal = () => {
   return context;
 };
 
-export const ModalProvider = ({ children }: { children: ReactNode }) => {
+export const ModalProvider = ({ children, translation, locale }: { children: ReactNode, translation: Record<string, unknown>, locale: string }) => {
   const [currentModal, setCurrentModal] = useState<ModalKey>(null);
 
   const openModal = (key: ModalKey) => setCurrentModal(key);
@@ -30,8 +30,8 @@ export const ModalProvider = ({ children }: { children: ReactNode }) => {
     <ModalContext.Provider value={{ openModal, closeModal, currentModal }}>
       {children}
 
-      {currentModal === "formA" && <SelectionPopup onClose={closeModal} />}
-      {currentModal === "formB" && <EducationPopup onClose={closeModal} />}
+      {currentModal === "formA" && <SelectionPopup onClose={closeModal} translation={translation} locale={locale} />}
+      {currentModal === "formB" && <EducationPopup onClose={closeModal} translation={translation} locale={locale} />}
     </ModalContext.Provider>
   );
 };
