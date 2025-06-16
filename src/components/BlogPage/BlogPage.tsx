@@ -31,7 +31,7 @@ export const BlogPage = ({ translation, locale }: { translation: unknown, locale
   }, [translation, locale]);
 
   useEffect(() => {
-    const lang = locale === 'ua' ? 'uk' : locale;
+    const lang = locale === 'ua' ? 'ua' : locale;
     const fetchPosts = async () => {
       try {
         const response = await fetch(`${API_URL}v2/posts?lang=${lang}`);

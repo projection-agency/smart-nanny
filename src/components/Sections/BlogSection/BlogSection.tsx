@@ -43,7 +43,7 @@ export const BlogSection = ({ translation, locale }: { translation: Record<strin
   }, [translation, locale, i18n]);
 
   useEffect(() => {
-    const lang = i18n.language === 'ua' ? 'uk' : i18n.language;
+    const lang = i18n.language === 'ua' ? 'ua' : i18n.language;
     const fetchPosts = async () => {
       try {
         const response = await fetch(`${API_URL}v2/posts?lang=${lang}`);
@@ -59,7 +59,7 @@ export const BlogSection = ({ translation, locale }: { translation: Record<strin
         const response = await fetch(`${API_URL}v2/categories?lang=${lang}`);
         const data = await response.json();
         setCategories(
-          data.filter((cat: Category) => cat.name !== (lang === 'uk' ? "Без категорії" : "Без категорії"))
+          data.filter((cat: Category) => cat.name !== (lang === 'ua' ? "Без категорії" : "Без категорії"))
         );
       } catch (error) {
         console.error("Помилка при отриманні категорій:", error);
@@ -148,7 +148,7 @@ export const BlogSection = ({ translation, locale }: { translation: Record<strin
           viewport={{ once: false, amount: 0.6 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
         >
-          <Link href="/blog" className={s.btn}>
+          <Link href={`/${locale}/blog`} className={s.btn}>
             <div className={s.first}>{btnSvg}</div>
             {t('blog_more')}
             <div className={s.second}>{btnSvg}</div>

@@ -31,7 +31,7 @@ export const EducationTariffs = () => {
   const { t, i18n } = useTranslation('common');
   const [tariffs, setTariffs] = useState<Tariff[]>([]);
   useEffect(() => {
-    const lang = (i18n.language === 'ua' ? 'uk' : i18n.language).toLowerCase();
+    const lang = (i18n.language === 'ua' ? 'ua' : i18n.language).toLowerCase();
     const fetchTariffs = async () => {
       try {
         const response = await fetch(`${API_URL}v2/course_tariff?lang=${lang}`);

@@ -23,7 +23,7 @@ export const ProgramSection = () => {
   const [modules, setModules] = useState<APIModule[]>([]);
 
   useEffect(() => {
-    const lang = (i18n.language === 'ua' ? 'uk' : i18n.language).toLowerCase();
+    const lang = (i18n.language === 'ua' ? 'ua' : i18n.language).toLowerCase();
     const fetchModules = async () => {
       try {
         const response = await fetch(

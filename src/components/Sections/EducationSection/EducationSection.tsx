@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { useTranslation } from 'react-i18next';
 import i18n from '@/i18n/client';
+import Link from "next/link";
 
 export const EducationSection = ({ translation, locale }: { translation: Record<string, unknown>, locale: string }) => {
   const { t } = useTranslation('common');
@@ -109,20 +110,22 @@ export const EducationSection = ({ translation, locale }: { translation: Record<
               </motion.p>
             </motion.div>
 
-            <motion.button
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: false, amount: 0.6 }}
-              transition={{ duration: 0.7, ease: "easeOut" }}
-            >
-              {!isReady
-                ? typeof translation['education_btn'] === 'string'
-                  ? translation['education_btn']
-                  : ''
-                : typeof t('education_btn') === 'string'
-                  ? t('education_btn')
-                  : ''}
-            </motion.button>
+            <Link href={`/${locale}/education`} passHref legacyBehavior>
+              <motion.button
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: false, amount: 0.6 }}
+                transition={{ duration: 0.7, ease: "easeOut" }}
+              >
+                {!isReady
+                  ? typeof translation['education_btn'] === 'string'
+                    ? translation['education_btn']
+                    : ''
+                  : typeof t('education_btn') === 'string'
+                    ? t('education_btn')
+                    : ''}
+              </motion.button>
+            </Link>
           </motion.div>
 
           <div className={s.clouds}>

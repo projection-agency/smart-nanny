@@ -29,7 +29,7 @@ export const FaqSection = ({ nannys, translation, locale }: { nannys?: boolean, 
   };
 
   useEffect(() => {
-    const lang = (i18n.language === 'ua' ? 'uk' : i18n.language).toLowerCase();
+    const lang = (i18n.language === 'ua' ? 'ua' : i18n.language).toLowerCase();
     const fetchFaqs = async () => {
       try {
         const response = await fetch(`${API_URL}v2/faq?per_page=16&lang=${lang}`);

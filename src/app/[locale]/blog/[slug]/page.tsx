@@ -36,7 +36,7 @@ export default function BlogPage() {
 
   useEffect(() => {
     if (!slug || !locale) return;
-    const lang = locale === 'ua' ? 'uk' : locale;
+    const lang = locale === 'ua' ? 'ua' : locale;
     const fetchPost = async () => {
       try {
         const res = await fetch(`${API_URL}v2/posts?slug=${slug}&_embed=1&lang=${lang}`);
@@ -60,7 +60,7 @@ export default function BlogPage() {
 
   useEffect(() => {
     if (!locale) return;
-    const lang = locale === 'ua' ? 'uk' : locale;
+    const lang = locale === 'ua' ? 'ua' : locale;
     const fetchCategories = async () => {
       try {
         const response = await fetch(`${API_URL}v2/categories?lang=${lang}`);
