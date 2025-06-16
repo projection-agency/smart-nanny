@@ -1,13 +1,16 @@
+"use client";
+
 import s from "./VacancySidebar.module.css";
 import Image from "next/image";
 import { VacationController } from "../VacationController/VacationController";
-import Link from "next/link";
+import { useTranslation } from "react-i18next";
 
-const VacancySidebar = ({ isOpen, onClose }) => {
+const VacancySidebar = ({ isOpen, onClose, translation, locale }) => {
+  const { t } = useTranslation("common");
   return (
     <aside className={`${s.sidebar} ${isOpen ? s.isOpen : ""}`}>
       <header>
-        <h2>Фільтри</h2>
+        <h2>{t("vacation_mobile_filter")}</h2>
         <button onClick={() => onClose()}>
           <Image
             width={1920}
@@ -17,7 +20,10 @@ const VacancySidebar = ({ isOpen, onClose }) => {
           />
         </button>
       </header>
-        <VacationController></VacationController>
+      <VacationController
+        translation={translation}
+        locale={locale}
+      ></VacationController>
     </aside>
   );
 };

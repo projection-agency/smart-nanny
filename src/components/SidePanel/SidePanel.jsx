@@ -1,8 +1,9 @@
-
+"use client"
 import s from "./SidePanel.module.css";
 import Image from "next/image";
 import SidePanelLangSwitcher from "../SidePanelLangSwitcher/SidePanelLangSwitcher";
 import Link from "next/link";
+import { useTranslation } from "react-i18next";
 
 const navLinks = [
   { title: "Підбір няні", link: "" },
@@ -12,7 +13,10 @@ const navLinks = [
   { title: "Блог", link: "blog" },
 ];
 
-const SidePanel = ({ isOpen, onClose }) => {
+const SidePanel = ({ isOpen, onClose, locale }) => {
+  const {t} = useTranslation("common");
+  const getHref = (path) => `/${locale}${path === "/" ? "" : path}`;
+  
   return (
     <aside className={`${s.sidePanel} ${isOpen ? s.isOpen : " "}`}>
       <div className={s.sidePanelCont}>
@@ -36,25 +40,46 @@ const SidePanel = ({ isOpen, onClose }) => {
         <SidePanelLangSwitcher />
 
         <nav className={s.nav}>
-          <h2>Меню</h2>
+          <h2>{t("mobile_sidebar_menu")}</h2>
           <ul className={s.sidePanelNavList}>
-            {navLinks.map((item, index) => {
-              return (
-                <li key={index} onClick={() => onClose()}>
-                  <Link href={`/${item.link}`}>{item.title}</Link>
-                </li>
-              );
-            })}
+            <li>
+              <Link href={getHref("/")} onClick={() => onClose()}>
+                {t("nanny_selection")}
+              </Link>
+            </li>
+            <li>
+              <Link href={getHref("/education")} onClick={() => onClose()}>
+                {t("education")}
+              </Link>
+            </li>
+            <li>
+              <Link
+                href={getHref("/nanny-selection")}
+                onClick={() => onClose()}
+              >
+                {t("become_nanny")}
+              </Link>
+            </li>
+            <li>
+              <Link href={getHref("/vacation")} onClick={() => onClose()}>
+                {t("vacancies")}
+              </Link>
+            </li>
+            <li>
+              <Link href={getHref("/blog")} onClick={() => onClose()}>
+                {t("blog")}
+              </Link>
+            </li>
           </ul>
         </nav>
 
         <div className={s.contacts}>
           <div>
-            <p className={s.contactSubtitle}>Написати нам</p>
+            <p className={s.contactSubtitle}>{t("mobile_sidebar_write_us")}</p>
             <a href="">service.smartnanny@gmail.com</a>
           </div>
           <div>
-            <p className={s.contactSubtitle}>Зателефонувати нам</p>
+            <p className={s.contactSubtitle}>{t("mobile_sidebar_write_us")}</p>
             <a href="">+38 (098) 308 58 47</a>
           </div>
 

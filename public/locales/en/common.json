@@ -1,405 +1,463 @@
 {
-    "hello": "Hello",
-    "vacancies": "Vacancies",
-    "nanny_selection": "Nanny selection",
-    "education": "Education",
-    "become_nanny": "Become a nanny",
-    "blog": "Blog",
-    "order_call": "Order a call",
-    "home_hero_title": "Reliable <span>professional <line/> </span> nanny selection for your family",
-    "home_hero_subtitle": "We find nannies you can trust with your most precious – your child.",
-    "home_hero_btn": "Select a nanny",
-    "why_title": "Why do parents <span>choose <line/> </span> Smart Nanny service?",
-    "why_desc_selection": "We build cooperation on trust, clear agreements, and mutual respect. We ensure a transparent process, fair conditions, and always stay in touch so you always feel supported.",
-    "why_short": [
-        {
-            "title": "Professionalism",
-            "desc": "Our nannies constantly improve their skills through first aid, development, and childcare training."
-        },
-        {
-            "title": "Fast selection",
-            "desc": "We have a large team of verified nannies, so we offer options within 1–5 days, guaranteeing timely support for families.",
-            "span": "Quick start of cooperation"
-        },
-        {
-            "title": "Verified nannies",
-            "desc": "Each candidate undergoes document, experience, and reference checks, as well as an interview for your peace of mind and safety."
-        },
-        {
-            "title": "Family support",
-            "desc": "We help establish comfortable and long-term cooperation so you feel confident every day.",
-            "span": "By your side every day"
-        }
-    ],
-    "why_long": [
-        {
-            "title": "Verified families",
-            "desc": "We select only reliable clients with clear conditions, adequate expectations, and a safe home environment."
-        },
-        {
-            "title": "Professional development",
-            "desc": "We provide access to educational materials and methods. We help you grow in your profession, no matter where you start.",
-            "span": "By your side every day"
-        },
-        {
-            "title": "Flexible format",
-            "desc": "Find the optimal schedule for yourself: full-time, part-time, one-time help, or live-in work."
-        },
-        {
-            "title": "Fair conditions and pay",
-            "desc": "We do not take on vacancies with a low rate. Every hour of yours is paid fairly and according to agreements.",
-            "span": "Decent work and earnings"
-        },
-        {
-            "title": "Constant support",
-            "desc": "We do not have a 'fit in yourself' rule. You can always ask for help, advice, or support."
-        },
-        {
-            "title": "Respect for nannies",
-            "desc": "We work only with families who value your work, keep agreements, and treat you with care."
-        }
-    ],
-    "services_title": "Our main <span>services <line/></span>",
-    "services_additional_title": "Additional <span>services <line/></span>",
-    "services_cards": [
-      {
-        "id": "permanent",
-        "title": "PERMANENT NANNY",
-        "description": "A service for families who need stable help. We carefully select a nanny, taking into account your wishes, needs, and family values for long-term cooperation.",
-        "tags": ["Long-term", "Smooth adaptation"],
-        "price": "from <span>12,000 UAH</span> / per selection",
-        "shortDesc": "100% of the nanny's monthly salary",
-        "buttonText": "Select a nanny",
-        "theme": "white"
-      },
-      {
-        "id": "hourly",
-        "title": "HOURLY NANNY",
-        "description": "A service for families who need situational help for a few hours or a short period (a few days or weeks). We will find a qualified nanny in just 1-2 days, and in some cases — even on the same day.",
-        "tags": ["A few hours/days", "Flexible schedule"],
-        "price": "from <span>300 UAH</span> / hour",
-        "buttonText": "Select a nanny",
-        "theme": "white"
-      },
-      {
-        "id": "training",
-        "title": "NANNY TRAINING",
-        "description": "An online course for nannies who want to work confidently and understand children's needs. The program covers neuropedagogy, basics of pediatrics, child psychology, and career development. After completion — a certificate recognized by our service and families.",
-        "tags": ["Quick start", "Flexible schedule"],
-        "price": "",
-        "buttonText": "Learn more",
-        "theme": "yellow"
-      }
-    ],
-    "services_accordion": [
-      {
-        "id": 1,
-        "title": "nanny-teacher",
-        "description": "A service for families who need stable help. We carefully select a nanny, taking into account your wishes, needs, and family values for long-term cooperation.",
-        "tags": ["Long-term", "Smooth adaptation"],
-        "price": "from <span>12,000 UAH</span> / per selection",
-        "shortDesc": "100% of the nanny's monthly salary",
-        "buttonText": "Select a nanny",
-        "theme": "white"
-      },
-      {
-        "id": 2,
-        "title": "night nanny",
-        "description": "A service for families who need situational help for a few hours or a short period (a few days or weeks). We will find a qualified nanny in just 1-2 days, and in some cases — even on the same day.",
-        "tags": ["A few hours/days", "Flexible schedule"],
-        "price": "from <span>300 UAH</span> / hour",
-        "buttonText": "Select a nanny",
-        "theme": "white"
-      },
-      {
-        "id": 3,
-        "title": "event nanny",
-        "description": "An online course for nannies who want to work confidently and understand children's needs. The program covers neuropedagogy, basics of pediatrics, child psychology, and career development. After completion — a certificate recognized by our service and families.",
-        "tags": ["Quick start", "Flexible schedule"],
-        "price": "from <span>20,000 UAH</span> / month",
-        "buttonText": "Learn more",
-        "theme": "yellow"
-      },
-      {
-        "id": 4,
-        "title": "weekend nanny",
-        "description": "An online course for nannies who want to work confidently and understand children's needs. The program covers neuropedagogy, basics of pediatrics, child psychology, and career development. After completion — a certificate recognized by our service and families.",
-        "tags": ["Quick start", "Flexible schedule"],
-        "price": "from <span>20,000 UAH</span> / month",
-        "buttonText": "Learn more",
-        "theme": "yellow"
-      }
-    ],
-    "road_title": "How we select and <span>train specialists <line/></span>",
-    "road_subtitle": "We find nannies you can trust with your most precious – your child.",
-    "road_steps": [
-      {
-        "step": "Step 1",
-        "title": "Thorough candidate selection",
-        "description": "At this stage, we filter candidates during an interview with HR based on their motivation, willingness to work with children, and alignment with family values.",
-        "needed": [
-          "Passport",
-          "Tax ID",
-          "Education document",
-          "Medical certificate of fitness",
-          "References"
-        ]
-      },
-      {
-        "step": "Step 2",
-        "title": "Knowledge assessment",
-        "description": "Candidates take a test on childcare, safety, and child development. This confirms that they not only love children but also have the necessary knowledge.",
-        "needed": [
-          "Safety and care knowledge assessment",
-          "First aid training",
-          "Pedagogy course",
-          "Childcare and development knowledge",
-          "First aid knowledge"
-        ]
-      },
-      {
-        "step": "Step 3",
-        "title": "Training and preparation",
-        "description": "Candidates undergo first aid training and a professional 'Professional Nanny' course, where they gain practical knowledge for working with children.",
-        "needed": [
-          "Safety and care test",
-          "First aid training",
-          "Professional Nanny course",
-          "Pedagogy course"
-        ]
-      },
-      {
-        "step": "Step 4",
-        "title": "Final selection",
-        "description": "We support the nanny at all stages of work: we consult, help with questions, and invite them to a community of like-minded people, where you can always find support and inspiration.",
-        "needed": [
-          "Discussion",
-          "Support and inspiration from the team",
-          "Community of like-minded people"
-        ]
-      }
-    ],
-    "road_btn": "Select a nanny",
-    "road_requirements": "Requirements:",
-    "gallery_title": "See how our <span>caring nannies<line/></span> work",
-    "gallery_subtitle": "Get to know our nannies through genuine photos from real life. You will see people who care for children every day with love, care, and professionalism.",
-    "gallery_hint": "Swipe right",
-    "vacation_title": "Current <span>vacancies<line/></span>",
-    "vacation_all": "View all vacancies",
-    "vacation_country": "Country",
-    "vacation_city": "City",
-    "vacation_employment": "Employment type",
-    "employment_full": "Full-time",
-    "employment_part": "Part-time",
-    "employment_hourly": "Hourly assistance",
-    "employment_accommodation": "With accommodation",
-    "vacation_all_count": "View all {{count}} vacancies",
-    "vacation_location": "Location",
-    "vacation_schedule": "Work schedule",
-    "employment_full_lower": "full-time",
-    "employment_part_lower": "part-time",
-    "vacation_desc": "Choose verified offers from families working with the Smart Nanny agency.",
-    "vacation_respond": "Respond",
-    "blog_title": "Service diary <span>Our agency news<line/></span>",
-    "blog_title_span": "Service diary",
-    "blog_title_rest": "by Smart Nanny",
-    "blog_subtitle": "We find nannies you can trust with your most precious – your child.",
-    "blog_more": "See more",
-    "blog_category_all": "All categories",
-    "review_title": "What families say after working",
-    "review_title_span": "with us",
-    "review_desc": "Stories of families who have already found their perfect nanny through Smart Nanny",
-    "faq_title": "Frequently asked questions",
-    "faq_from_nanny": "from nannies",
-    "faq_from_parents": "from parents",
-    "faq_from_course": "about the course",
-    "footer_title_main": "Your space of care ",
-    "footer_title_span": "and support ",
-    "footer_nav": [
-      "Become a nanny",
-      "Vacancies",
-      "Blog",
-      "Education"
-    ],
-    "footer_social": [
-      "Instagram",
-      "Viber",
-      "Telegram",
-      "WhatsApp"
-    ],
-    "footer_policy": "Privacy Policy",
-    "footer_offer": "Public Offer Agreement",
-    "footer_rights": "©2025 Smart Nanny. All Rights Reserved.",
-    "footer_dev": "Website developed by:",
-    "footer_dev_name": "Before/After",
-    "education_hero_title": "<span>Professional {line}</span> nanny",
-    "education_hero_subtitle": "A practical online course that helps you confidently interact with both children and parents, and build a successful career as a professional nanny.",
-    "education_hero_btn": "Choose training",
-    "education_hero_title_span": "Professional",
-    "education_hero_title_rest": "nanny",
-    "course_title_before": "This course",
-    "course_title_highlight": " is for you ",
-    "course_title_after": " if you...",
-    "course_cards": [
-      {
-        "title": "Dream of becoming a nanny",
-        "description": "You will get a complete base of knowledge, skills, and confidence to start your career",
-        "icon": "/icons/course-icons.svg#icon-1"
-      },
-      {
-        "title": "Want to reach a new level",
-        "description": "You will deepen your knowledge and gain more confidence at work",
-        "icon": "/icons/course-icons.svg#icon-2"
-      },
-      {
-        "title": "Have a foundation – need to structure it",
-        "description": "You will systematize your knowledge and get new tools for work",
-        "icon": "/icons/course-icons.svg#icon-3"
-      },
-      {
-        "title": "Strive for new methods",
-        "description": "You will update your approaches and add more interesting activities",
-        "icon": "/icons/course-icons.svg#icon-4"
-      }
-    ],
-    "get_title": "What you will get after the course",
-    "get_points": [
-      "Certificate of course completion",
-      "Practical knowledge of childcare and child development",
-      "Understanding of professional ethics and effective work in a family",
-      "Skills in pediatrics, psychology, pedagogy, and communication",
-      "Ready-made instructions for working with children of different ages",
-      "Tips for employment and career development"
-    ],
-    "get_subtitle_1": "And this is just the beginning!",
-    "get_subtitle_2": "We open up new opportunities and horizons.",
-    "program_title_highlight": "Your learning program ",
-    "program_title_rest": "Course program",
-    "program_subtitle": "This course is designed so that you not only listen to lectures, but also get a clear system of knowledge and practical skills. Each module is a logical step towards confidence, professionalism, and readiness to work with children of any age.",
-    "program_module": "Module",
-    "program_lectures": "Lectures",
-    "program_result": "Result",
-    "program_expand": "Show",
-    "program_collapse": "Collapse",
-    "tariff_title_before": "Tariffs for ",
-    "tariff_title_highlight": "training",
-    "tariff_title": "Tariffs for <span>training <line/></span>",
-    "tariff_btn": "Choose training",
-    "tariff_price": "Price",
-    "tariff_basic": "Basic",
-    "education_stats": [
-      { "value": "200+", "description": "Course graduates" },
-      { "value": "70%", "description": "Our nannies get a job after the first interview" },
-      { "value": "300+", "description": "Nannies already work with us" },
-      { "value": "80%", "description": "Graduates increased their pay level after training" }
-    ],
-    "education_title": "Professional training ",
-    "education_title_highlight": "for nannies",
-    "education_subtitle": " for nannies",
-    "education_desc1": "Our course is a modern approach to child development and care. You will gain truly important knowledge: basics of pediatrics, child psychology, early development methods, games and activities to stimulate growth.",
-    "education_desc2": "You will also learn to work harmoniously in a family and develop your professional skills. The course is designed for those who want to grow through practice and understanding of the child.",
-    "education_btn": "Choose training",
-    "vacation_form_title": "Want to work as a nanny at Smart Nanny?",
-    "vacation_form_span": "Submit your application to the agency",
-    "vacation_form_subtitle": "Fill out a short form — we will review your application and contact you as soon as possible",
-    "vacation_form_form_title": "Fill out a short form — we will review your application and contact you as soon as possible",
-    "vacation_form_name_label": "Full name",
-    "vacation_form_name_placeholder": "Name Surname",
-    "vacation_form_location_label": "Country and city of residence",
-    "vacation_form_location_placeholder": "Kyiv, Ukraine",
-    "vacation_form_birth_label": "Date of birth",
-    "vacation_form_phone_label": "Contact phone number",
-    "vacation_form_email_label": "Email",
-    "vacation_form_email_placeholder": "youremail@domain.com",
-    "vacation_form_experience_label": "Nanny experience",
-    "vacation_form_experience_placeholder": "0",
-    "vacation_form_employment_label": "Employment type you are interested in",
-    "vacation_form_employment_part": "Part-time",
-    "vacation_form_employment_accommodation": "With accommodation",
-    "vacation_form_employment_hourly": "Hourly assistance",
-    "vacation_form_employment_full": "Full-time",
-    "vacation_form_submit": "Submit application",
-    "vacation_form_note": "By clicking the button, I agree with the",
-    "vacation_form_policy": "Privacy Policy",
-    "vacation_form_note2": "and allow the processing of my personal data for recruitment purposes",
-    "nanny_hero_title_span": "Together",
-    "nanny_hero_title_rest": "to new opportunities",
-    "nanny_hero_subtitle": "We are a team that unites nannies for professional growth. We work with trusted families, create a friendly community, and support stable income.",
-    "nanny_hero_btn": "Apply now",
-    "breadcrumbs_home": "Home",
-    "breadcrumbs_blog": "Blog",
-    "breadcrumbs_education": "Education",
-    "breadcrumbs_offer": "Offer",
-    "breadcrumbs_nanny": "Become a nanny",
-    "breadcrumbs_policy": "Privacy Policy",
-    "breadcrumbs_vacation": "Vacancies",
-    "breadcrumbs_404": "404",
-    "vacation_hero_title": "Current <1>vacancies<0/></1> for nannies",
-    "vacation_hero_desc": "Choose verified offers from families working with the Smart Nanny agency.",
-    "education_popup_title": "Leave a request for training",
-    "education_popup_subtitle": "We will contact you shortly and provide all the details about the course",
-    "education_popup_name_label": "Full name",
-    "education_popup_name_placeholder": "Name Surname",
-    "education_popup_phone_label": "Contact phone number",
-    "education_popup_email_label": "Email",
-    "education_popup_email_placeholder": "youremail@domain.com",
-    "education_popup_submit": "Submit application",
-    "education_popup_note": "By clicking the button, I agree with the",
-    "education_popup_policy": "Privacy Policy",
-    "education_popup_note2": "and allow the processing of my personal data for recruitment purposes",
-    "education_popup_success_title": "Thank you for your application!",
-    "education_popup_success_text": "A manager will contact you to clarify the details :)",
-    "selection_popup_title": "Leave a request for nanny selection",
-    "selection_popup_subtitle": "We will contact you shortly regarding the selection of a nanny for your child",
-    "selection_popup_name_label": "Full name",
-    "selection_popup_name_placeholder": "Name Surname",
-    "selection_popup_phone_label": "Contact phone number",
-    "selection_popup_email_label": "Email",
-    "selection_popup_email_placeholder": "youremail@domain.com",
-    "selection_popup_location_label": "Country and city of residence",
-    "selection_popup_location_placeholder": "Kyiv, Ukraine",
-    "selection_popup_employment_label": "Employment format you are interested in",
-    "selection_popup_employment_full": "Full-time nanny",
-    "selection_popup_employment_part": "Part-time nanny",
-    "selection_popup_employment_hourly": "Hourly assistance",
-    "selection_popup_employment_accommodation": "Live-in work",
-    "selection_popup_submit": "Submit application",
-    "selection_popup_note": "By clicking the button, I agree with the",
-    "selection_popup_policy": "Privacy Policy",
-    "selection_popup_note2": "and allow the processing of my personal data for recruitment purposes",
-    "selection_popup_success_title": "Thank you for your application!",
-    "selection_popup_success_text": "A manager will contact you to clarify the details :)",
-    "offer_title": "Public Offer Agreement",
-    "offer_hero": "Public Offer <span>Agreement{line}</span>",
-    "offer_sections": [
-      { "question": "General Provisions", "answer": "This agreement governs the relationship between the customer and the contractor regarding the provision of the services specified below." },
-      { "question": "Subject of the Agreement", "answer": "The subject of the agreement is the provision of services by the contractor in accordance with the customer's technical assignment." },
-      { "question": "Procedure for Service Provision", "answer": "Services are provided in stages, according to the agreed work schedule and deadlines." },
-      { "question": "Rights and Obligations of the Parties", "answer": "The customer undertakes to provide all necessary information, the contractor — to perform the work qualitatively and on time." },
-      { "question": "Cost and Payment Procedure", "answer": "The cost of services is agreed by the parties and paid in stages or after completion of the work, according to the issued invoice." },
-      { "question": "Warranty and Refunds", "answer": "The contractor provides a 30-day warranty for the completed work. In case of deficiencies, corrections or refunds are made." },
-      { "question": "Confidentiality and Data Protection", "answer": "The parties undertake not to disclose confidential information obtained during cooperation to third parties." },
-      { "question": "Liability of the Parties", "answer": "The parties are liable in accordance with applicable law and the terms of this agreement." },
-      { "question": "Dispute Resolution Procedure", "answer": "All disputes are resolved through negotiations, and if no agreement is reached — in court." },
-      { "question": "Term of the Agreement", "answer": "The agreement enters into force upon signing and remains in effect until all obligations are fulfilled by the parties." }
-    ],
-    "offer_breadcrumbs": [
-      { "label": "Home", "href": "/en" },
-      { "label": "Public Offer Agreement", "active": true }
-    ],
-    "policy_title": "Privacy Policy",
-    "policy_hero": "Privacy <span>Policy{line}</span>",
-    "policy_date": "Effective date: May 12, 2025",
-    "policy_desc": "We value your trust and understand how important it is to ensure the confidentiality and security of your personal data. This Privacy Policy explains what data we collect, how we process, store, share it, and what rights you have as a user.",
-    "policy_sections": [
-      { "question": "Who we are", "answer": "We are a company providing digital services. Our contact details are listed below." },
-      { "question": "What personal data we collect", "answer": "We may collect your name, email, phone number, IP address, and other technical data." },
-      { "question": "How we use your data", "answer": "Your data is used to provide services, communicate, and improve our service." },
-      { "question": "Legal grounds for data processing", "answer": "We process data based on your consent, contract performance, or legitimate interests." },
-      { "question": "Data retention periods", "answer": "Data is stored for as long as necessary to achieve the purpose of processing or as required by law." },
-      { "question": "How we protect your data", "answer": "We use technical and organizational measures to protect your data from unauthorized access." },
-      { "question": "Your rights", "answer": "You have the right to access, modify, delete your data, and other rights under the law." },
-      { "question": "Changes to the Policy", "answer": "We may update this Policy from time to time. All changes will be published on this page." },
-      { "question": "Contacts", "answer": "For all privacy questions, you can contact us by email or phone listed on the website." }
-    ]
+  "hello": "Hello",
+  "vacancies": "Vacancies",
+  "nanny_selection": "Nanny selection",
+  "education": "Education",
+  "become_nanny": "Become a nanny",
+  "blog": "Blog",
+  "order_call": "Order a call",
+  "home_hero_title": "Reliable <span>professional <line/> </span> nanny selection for your family",
+  "home_hero_subtitle": "We find nannies you can trust with your most precious – your child.",
+  "home_hero_btn": "Select a nanny",
+  "why_title": "Why do parents <span>choose <line/> </span> Smart Nanny service?",
+  "why_desc_selection": "We build cooperation on trust, clear agreements, and mutual respect. We ensure a transparent process, fair conditions, and always stay in touch so you always feel supported.",
+  "why_short": [
+    {
+      "title": "Professionalism",
+      "desc": "Our nannies constantly improve their skills through first aid, development, and childcare training."
+    },
+    {
+      "title": "Fast selection",
+      "desc": "We have a large team of verified nannies, so we offer options within 1–5 days, guaranteeing timely support for families.",
+      "span": "Quick start of cooperation"
+    },
+    {
+      "title": "Verified nannies",
+      "desc": "Each candidate undergoes document, experience, and reference checks, as well as an interview for your peace of mind and safety."
+    },
+    {
+      "title": "Family support",
+      "desc": "We help establish comfortable and long-term cooperation so you feel confident every day.",
+      "span": "By your side every day"
+    }
+  ],
+  "why_long": [
+    {
+      "title": "Verified families",
+      "desc": "We select only reliable clients with clear conditions, adequate expectations, and a safe home environment."
+    },
+    {
+      "title": "Professional development",
+      "desc": "We provide access to educational materials and methods. We help you grow in your profession, no matter where you start.",
+      "span": "By your side every day"
+    },
+    {
+      "title": "Flexible format",
+      "desc": "Find the optimal schedule for yourself: full-time, part-time, one-time help, or live-in work."
+    },
+    {
+      "title": "Fair conditions and pay",
+      "desc": "We do not take on vacancies with a low rate. Every hour of yours is paid fairly and according to agreements.",
+      "span": "Decent work and earnings"
+    },
+    {
+      "title": "Constant support",
+      "desc": "We do not have a 'fit in yourself' rule. You can always ask for help, advice, or support."
+    },
+    {
+      "title": "Respect for nannies",
+      "desc": "We work only with families who value your work, keep agreements, and treat you with care."
+    }
+  ],
+  "services_title": "Our main <span>services <line/></span>",
+  "services_additional_title": "Additional <span>services <line/></span>",
+  "services_cards": [
+    {
+      "id": "permanent",
+      "title": "PERMANENT NANNY",
+      "description": "A service for families who need stable help. We carefully select a nanny, taking into account your wishes, needs, and family values for long-term cooperation.",
+      "tags": ["Long-term", "Smooth adaptation"],
+      "price": "from <span>12,000 UAH</span> / per selection",
+      "shortDesc": "100% of the nanny's monthly salary",
+      "buttonText": "Select a nanny",
+      "theme": "white"
+    },
+    {
+      "id": "hourly",
+      "title": "HOURLY NANNY",
+      "description": "A service for families who need situational help for a few hours or a short period (a few days or weeks). We will find a qualified nanny in just 1-2 days, and in some cases — even on the same day.",
+      "tags": ["A few hours/days", "Flexible schedule"],
+      "price": "from <span>300 UAH</span> / hour",
+      "buttonText": "Select a nanny",
+      "theme": "white"
+    },
+    {
+      "id": "training",
+      "title": "NANNY TRAINING",
+      "description": "An online course for nannies who want to work confidently and understand children's needs. The program covers neuropedagogy, basics of pediatrics, child psychology, and career development. After completion — a certificate recognized by our service and families.",
+      "tags": ["Quick start", "Flexible schedule"],
+      "price": "",
+      "buttonText": "Learn more",
+      "theme": "yellow"
+    }
+  ],
+  "services_accordion": [
+    {
+      "id": 1,
+      "title": "nanny-teacher",
+      "description": "A service for families who need stable help. We carefully select a nanny, taking into account your wishes, needs, and family values for long-term cooperation.",
+      "tags": ["Long-term", "Smooth adaptation"],
+      "price": "from <span>12,000 UAH</span> / per selection",
+      "shortDesc": "100% of the nanny's monthly salary",
+      "buttonText": "Select a nanny",
+      "theme": "white"
+    },
+    {
+      "id": 2,
+      "title": "night nanny",
+      "description": "A service for families who need situational help for a few hours or a short period (a few days or weeks). We will find a qualified nanny in just 1-2 days, and in some cases — even on the same day.",
+      "tags": ["A few hours/days", "Flexible schedule"],
+      "price": "from <span>300 UAH</span> / hour",
+      "buttonText": "Select a nanny",
+      "theme": "white"
+    },
+    {
+      "id": 3,
+      "title": "event nanny",
+      "description": "An online course for nannies who want to work confidently and understand children's needs. The program covers neuropedagogy, basics of pediatrics, child psychology, and career development. After completion — a certificate recognized by our service and families.",
+      "tags": ["Quick start", "Flexible schedule"],
+      "price": "from <span>20,000 UAH</span> / month",
+      "buttonText": "Learn more",
+      "theme": "yellow"
+    },
+    {
+      "id": 4,
+      "title": "weekend nanny",
+      "description": "An online course for nannies who want to work confidently and understand children's needs. The program covers neuropedagogy, basics of pediatrics, child psychology, and career development. After completion — a certificate recognized by our service and families.",
+      "tags": ["Quick start", "Flexible schedule"],
+      "price": "from <span>20,000 UAH</span> / month",
+      "buttonText": "Learn more",
+      "theme": "yellow"
+    }
+  ],
+  "road_title": "How we select and <span>train specialists <line/></span>",
+  "road_subtitle": "We find nannies you can trust with your most precious – your child.",
+  "road_steps": [
+    {
+      "step": "Step 1",
+      "title": "Thorough candidate selection",
+      "description": "At this stage, we filter candidates during an interview with HR based on their motivation, willingness to work with children, and alignment with family values.",
+      "needed": [
+        "Passport",
+        "Tax ID",
+        "Education document",
+        "Medical certificate of fitness",
+        "References"
+      ]
+    },
+    {
+      "step": "Step 2",
+      "title": "Knowledge assessment",
+      "description": "Candidates take a test on childcare, safety, and child development. This confirms that they not only love children but also have the necessary knowledge.",
+      "needed": [
+        "Safety and care knowledge assessment",
+        "First aid training",
+        "Pedagogy course",
+        "Childcare and development knowledge",
+        "First aid knowledge"
+      ]
+    },
+    {
+      "step": "Step 3",
+      "title": "Training and preparation",
+      "description": "Candidates undergo first aid training and a professional 'Professional Nanny' course, where they gain practical knowledge for working with children.",
+      "needed": [
+        "Safety and care test",
+        "First aid training",
+        "Professional Nanny course",
+        "Pedagogy course"
+      ]
+    },
+    {
+      "step": "Step 4",
+      "title": "Final selection",
+      "description": "We support the nanny at all stages of work: we consult, help with questions, and invite them to a community of like-minded people, where you can always find support and inspiration.",
+      "needed": [
+        "Discussion",
+        "Support and inspiration from the team",
+        "Community of like-minded people"
+      ]
+    }
+  ],
+  "road_btn": "Select a nanny",
+  "road_requirements": "Requirements:",
+  "gallery_title": "See how our <span>caring nannies<line/></span> work",
+  "gallery_subtitle": "Get to know our nannies through genuine photos from real life. You will see people who care for children every day with love, care, and professionalism.",
+  "gallery_hint": "Swipe right",
+  "vacation_title": "Current <span>vacancies<line/></span>",
+  "vacation_all": "View all vacancies",
+  "vacation_country": "Country",
+  "vacation_city": "City",
+  "vacation_employment": "Employment type",
+  "employment_full": "Full-time",
+  "employment_part": "Part-time",
+  "employment_hourly": "Hourly assistance",
+  "employment_accommodation": "With accommodation",
+  "vacation_all_count": "View all {{count}} vacancies",
+  "vacation_location": "Location",
+  "vacation_schedule": "Work schedule",
+  "employment_full_lower": "full-time",
+  "employment_part_lower": "part-time",
+  "vacation_desc": "Choose verified offers from families working with the Smart Nanny agency.",
+  "vacation_respond": "Respond",
+  "blog_title": "Service diary <span>Our agency news<line/></span>",
+  "blog_title_span": "Service diary",
+  "blog_title_rest": "by Smart Nanny",
+  "blog_subtitle": "We find nannies you can trust with your most precious – your child.",
+  "blog_more": "See more",
+  "blog_category_all": "All categories",
+  "review_title": "What families say after working",
+  "review_title_span": "with us",
+  "review_desc": "Stories of families who have already found their perfect nanny through Smart Nanny",
+  "faq_title": "Frequently asked questions",
+  "faq_from_nanny": "from nannies",
+  "faq_from_parents": "from parents",
+  "faq_from_course": "about the course",
+  "footer_title_main": "Your space of care ",
+  "footer_title_span": "and support ",
+  "footer_nav": ["Become a nanny", "Vacancies", "Blog", "Education"],
+  "footer_social": ["Instagram", "Viber", "Telegram", "WhatsApp"],
+  "footer_policy": "Privacy Policy",
+  "footer_offer": "Public Offer Agreement",
+  "footer_rights": "©2025 Smart Nanny. All Rights Reserved.",
+  "footer_dev": "Website developed by:",
+  "footer_dev_name": "Before/After",
+  "education_hero_title": "<span>Professional {line}</span> nanny",
+  "education_hero_subtitle": "A practical online course that helps you confidently interact with both children and parents, and build a successful career as a professional nanny.",
+  "education_hero_btn": "Choose training",
+  "education_hero_title_span": "Professional",
+  "education_hero_title_rest": "nanny",
+  "course_title_before": "This course",
+  "course_title_highlight": " is for you ",
+  "course_title_after": " if you...",
+  "course_cards": [
+    {
+      "title": "Dream of becoming a nanny",
+      "description": "You will get a complete base of knowledge, skills, and confidence to start your career",
+      "icon": "/icons/course-icons.svg#icon-1"
+    },
+    {
+      "title": "Want to reach a new level",
+      "description": "You will deepen your knowledge and gain more confidence at work",
+      "icon": "/icons/course-icons.svg#icon-2"
+    },
+    {
+      "title": "Have a foundation – need to structure it",
+      "description": "You will systematize your knowledge and get new tools for work",
+      "icon": "/icons/course-icons.svg#icon-3"
+    },
+    {
+      "title": "Strive for new methods",
+      "description": "You will update your approaches and add more interesting activities",
+      "icon": "/icons/course-icons.svg#icon-4"
+    }
+  ],
+  "get_title": "What you will get after the course",
+  "get_points": [
+    "Certificate of course completion",
+    "Practical knowledge of childcare and child development",
+    "Understanding of professional ethics and effective work in a family",
+    "Skills in pediatrics, psychology, pedagogy, and communication",
+    "Ready-made instructions for working with children of different ages",
+    "Tips for employment and career development"
+  ],
+  "get_subtitle_1": "And this is just the beginning!",
+  "get_subtitle_2": "We open up new opportunities and horizons.",
+  "program_title_highlight": "Your learning program ",
+  "program_title_rest": "Course program",
+  "program_subtitle": "This course is designed so that you not only listen to lectures, but also get a clear system of knowledge and practical skills. Each module is a logical step towards confidence, professionalism, and readiness to work with children of any age.",
+  "program_module": "Module",
+  "program_lectures": "Lectures",
+  "program_result": "Result",
+  "program_expand": "Show",
+  "program_collapse": "Collapse",
+  "tariff_title_before": "Tariffs for ",
+  "tariff_title_highlight": "training",
+  "tariff_title": "Tariffs for <span>training <line/></span>",
+  "tariff_btn": "Choose training",
+  "tariff_price": "Price",
+  "tariff_basic": "Basic",
+  "education_stats": [
+    { "value": "200+", "description": "Course graduates" },
+    {
+      "value": "70%",
+      "description": "Our nannies get a job after the first interview"
+    },
+    { "value": "300+", "description": "Nannies already work with us" },
+    {
+      "value": "80%",
+      "description": "Graduates increased their pay level after training"
+    }
+  ],
+  "education_title": "Professional training ",
+  "education_title_highlight": "for nannies",
+  "education_subtitle": " for nannies",
+  "education_desc1": "Our course is a modern approach to child development and care. You will gain truly important knowledge: basics of pediatrics, child psychology, early development methods, games and activities to stimulate growth.",
+  "education_desc2": "You will also learn to work harmoniously in a family and develop your professional skills. The course is designed for those who want to grow through practice and understanding of the child.",
+  "education_btn": "Choose training",
+  "vacation_form_title": "Want to work as a nanny at Smart Nanny?",
+  "vacation_form_span": "Submit your application to the agency",
+  "vacation_form_subtitle": "Fill out a short form — we will review your application and contact you as soon as possible",
+  "vacation_form_form_title": "Fill out a short form — we will review your application and contact you as soon as possible",
+  "vacation_form_name_label": "Full name",
+  "vacation_form_name_placeholder": "Name Surname",
+  "vacation_form_location_label": "Country and city of residence",
+  "vacation_form_location_placeholder": "Kyiv, Ukraine",
+  "vacation_form_birth_label": "Date of birth",
+  "vacation_form_phone_label": "Contact phone number",
+  "vacation_form_email_label": "Email",
+  "vacation_form_email_placeholder": "youremail@domain.com",
+  "vacation_form_experience_label": "Nanny experience",
+  "vacation_form_experience_placeholder": "0",
+  "vacation_form_employment_label": "Employment type you are interested in",
+  "vacation_form_employment_part": "Part-time",
+  "vacation_form_employment_accommodation": "With accommodation",
+  "vacation_form_employment_hourly": "Hourly assistance",
+  "vacation_form_employment_full": "Full-time",
+  "vacation_form_submit": "Submit application",
+  "vacation_form_note": "By clicking the button, I agree with the",
+  "vacation_form_policy": "Privacy Policy",
+  "vacation_form_note2": "and allow the processing of my personal data for recruitment purposes",
+  "nanny_hero_title_span": "Together",
+  "nanny_hero_title_rest": "to new opportunities",
+  "nanny_hero_subtitle": "We are a team that unites nannies for professional growth. We work with trusted families, create a friendly community, and support stable income.",
+  "nanny_hero_btn": "Apply now",
+  "breadcrumbs_home": "Home",
+  "breadcrumbs_blog": "Blog",
+  "breadcrumbs_education": "Education",
+  "breadcrumbs_offer": "Offer",
+  "breadcrumbs_nanny": "Become a nanny",
+  "breadcrumbs_policy": "Privacy Policy",
+  "breadcrumbs_vacation": "Vacancies",
+  "breadcrumbs_404": "404",
+  "vacation_hero_title": "Current <1>vacancies<0/></1> for nannies",
+  "vacation_hero_desc": "Choose verified offers from families working with the Smart Nanny agency.",
+  "education_popup_title": "Leave a request for training",
+  "education_popup_subtitle": "We will contact you shortly and provide all the details about the course",
+  "education_popup_name_label": "Full name",
+  "education_popup_name_placeholder": "Name Surname",
+  "education_popup_phone_label": "Contact phone number",
+  "education_popup_email_label": "Email",
+  "education_popup_email_placeholder": "youremail@domain.com",
+  "education_popup_submit": "Submit application",
+  "education_popup_note": "By clicking the button, I agree with the",
+  "education_popup_policy": "Privacy Policy",
+  "education_popup_note2": "and allow the processing of my personal data for recruitment purposes",
+  "education_popup_success_title": "Thank you for your application!",
+  "education_popup_success_text": "A manager will contact you to clarify the details :)",
+  "selection_popup_title": "Leave a request for nanny selection",
+  "selection_popup_subtitle": "We will contact you shortly regarding the selection of a nanny for your child",
+  "selection_popup_name_label": "Full name",
+  "selection_popup_name_placeholder": "Name Surname",
+  "selection_popup_phone_label": "Contact phone number",
+  "selection_popup_email_label": "Email",
+  "selection_popup_email_placeholder": "youremail@domain.com",
+  "selection_popup_location_label": "Country and city of residence",
+  "selection_popup_location_placeholder": "Kyiv, Ukraine",
+  "selection_popup_employment_label": "Employment format you are interested in",
+  "selection_popup_employment_full": "Full-time nanny",
+  "selection_popup_employment_part": "Part-time nanny",
+  "selection_popup_employment_hourly": "Hourly assistance",
+  "selection_popup_employment_accommodation": "Live-in work",
+  "selection_popup_submit": "Submit application",
+  "selection_popup_note": "By clicking the button, I agree with the",
+  "selection_popup_policy": "Privacy Policy",
+  "selection_popup_note2": "and allow the processing of my personal data for recruitment purposes",
+  "selection_popup_success_title": "Thank you for your application!",
+  "selection_popup_success_text": "A manager will contact you to clarify the details :)",
+  "offer_title": "Public Offer Agreement",
+  "offer_hero": "Public Offer <span>Agreement{line}</span>",
+  "offer_sections": [
+    {
+      "question": "General Provisions",
+      "answer": "This agreement governs the relationship between the customer and the contractor regarding the provision of the services specified below."
+    },
+    {
+      "question": "Subject of the Agreement",
+      "answer": "The subject of the agreement is the provision of services by the contractor in accordance with the customer's technical assignment."
+    },
+    {
+      "question": "Procedure for Service Provision",
+      "answer": "Services are provided in stages, according to the agreed work schedule and deadlines."
+    },
+    {
+      "question": "Rights and Obligations of the Parties",
+      "answer": "The customer undertakes to provide all necessary information, the contractor — to perform the work qualitatively and on time."
+    },
+    {
+      "question": "Cost and Payment Procedure",
+      "answer": "The cost of services is agreed by the parties and paid in stages or after completion of the work, according to the issued invoice."
+    },
+    {
+      "question": "Warranty and Refunds",
+      "answer": "The contractor provides a 30-day warranty for the completed work. In case of deficiencies, corrections or refunds are made."
+    },
+    {
+      "question": "Confidentiality and Data Protection",
+      "answer": "The parties undertake not to disclose confidential information obtained during cooperation to third parties."
+    },
+    {
+      "question": "Liability of the Parties",
+      "answer": "The parties are liable in accordance with applicable law and the terms of this agreement."
+    },
+    {
+      "question": "Dispute Resolution Procedure",
+      "answer": "All disputes are resolved through negotiations, and if no agreement is reached — in court."
+    },
+    {
+      "question": "Term of the Agreement",
+      "answer": "The agreement enters into force upon signing and remains in effect until all obligations are fulfilled by the parties."
+    }
+  ],
+  "offer_breadcrumbs": [
+    { "label": "Home", "href": "/en" },
+    { "label": "Public Offer Agreement", "active": true }
+  ],
+  "policy_title": "Privacy Policy",
+  "policy_hero": "Privacy <span>Policy{line}</span>",
+  "policy_date": "Effective date: May 12, 2025",
+  "policy_desc": "We value your trust and understand how important it is to ensure the confidentiality and security of your personal data. This Privacy Policy explains what data we collect, how we process, store, share it, and what rights you have as a user.",
+  "policy_sections": [
+    {
+      "question": "Who we are",
+      "answer": "We are a company providing digital services. Our contact details are listed below."
+    },
+    {
+      "question": "What personal data we collect",
+      "answer": "We may collect your name, email, phone number, IP address, and other technical data."
+    },
+    {
+      "question": "How we use your data",
+      "answer": "Your data is used to provide services, communicate, and improve our service."
+    },
+    {
+      "question": "Legal grounds for data processing",
+      "answer": "We process data based on your consent, contract performance, or legitimate interests."
+    },
+    {
+      "question": "Data retention periods",
+      "answer": "Data is stored for as long as necessary to achieve the purpose of processing or as required by law."
+    },
+    {
+      "question": "How we protect your data",
+      "answer": "We use technical and organizational measures to protect your data from unauthorized access."
+    },
+    {
+      "question": "Your rights",
+      "answer": "You have the right to access, modify, delete your data, and other rights under the law."
+    },
+    {
+      "question": "Changes to the Policy",
+      "answer": "We may update this Policy from time to time. All changes will be published on this page."
+    },
+    {
+      "question": "Contacts",
+      "answer": "For all privacy questions, you can contact us by email or phone listed on the website."
+    }
+  ],
+  "mobile_sidebar_menu": "Menu",
+  "mobile_sidebar_write_us": "Write to us",
+  "mobile_sidebar_call_us": "Call us",
+  "vacation_mobile_filter": "Filters",
+  "respond_popup_title": "Respond to a vacancy"
 }

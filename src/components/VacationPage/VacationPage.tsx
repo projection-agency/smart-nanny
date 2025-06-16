@@ -16,12 +16,18 @@ import {
   Breadcrumbs,
   BreadcrumbItem,
 } from "@/components/Breadcrumbs/Breadcrumbs";
-import { useTranslation, Trans } from 'react-i18next';
-import i18n from '@/i18n/client';
+import { useTranslation, Trans } from "react-i18next";
+import i18n from "@/i18n/client";
 import Spinner from "@/components/Spinner";
 
-export const VacationPage = ({ translation, locale }: { translation: Record<string, unknown>, locale: string }) => {
-  const { t } = useTranslation('common');
+export const VacationPage = ({
+  translation,
+  locale,
+}: {
+  translation: Record<string, unknown>;
+  locale: string;
+}) => {
+  const { t } = useTranslation("common");
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [isDesktop, setIsDesktop] = useState(true);
   const [isReady, setIsReady] = useState(false);
@@ -43,7 +49,7 @@ export const VacationPage = ({ translation, locale }: { translation: Record<stri
 
   useEffect(() => {
     if (translation && locale) {
-      i18n.addResourceBundle(locale, 'common', translation, true, true);
+      i18n.addResourceBundle(locale, "common", translation, true, true);
       i18n.changeLanguage(locale).then(() => setIsReady(true));
     }
   }, [translation, locale]);
@@ -59,31 +65,40 @@ export const VacationPage = ({ translation, locale }: { translation: Record<stri
   };
 
   const breadcrumbs: BreadcrumbItem[] = [
-    { label: !isReady ? (translation && translation['breadcrumbs_home'] as string) || '' : t('breadcrumbs_home'), href: `/${locale}` },
-    { label: !isReady ? (translation && translation['breadcrumbs_vacation'] as string) || '' : t('breadcrumbs_vacation'), active: true },
+    {
+      label: !isReady
+        ? (translation && (translation["breadcrumbs_home"] as string)) || ""
+        : t("breadcrumbs_home"),
+      href: `/${locale}`,
+    },
+    {
+      label: !isReady
+        ? (translation && (translation["breadcrumbs_vacation"] as string)) || ""
+        : t("breadcrumbs_vacation"),
+      active: true,
+    },
   ];
 
   return (
     <main>
       <Breadcrumbs items={breadcrumbs} colorScheme="dark" />
       <section className={s.section}>
-        <motion.div
-          className={s.titleCOntainer}
-        >
+        <motion.div className={s.titleCOntainer}>
           <motion.h2
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false, amount: 0.6 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
           >
-            {!isReady
-              ? (translation && translation['vacation_hero_title'] as string) || ''
-              : (
-                <Trans
-                  i18nKey="vacation_hero_title"
-                  components={{ 0: line, 1: <span /> }}
-                />
-              )}
+            {!isReady ? (
+              (translation && (translation["vacation_hero_title"] as string)) ||
+              ""
+            ) : (
+              <Trans
+                i18nKey="vacation_hero_title"
+                components={{ 0: line, 1: <span /> }}
+              />
+            )}
             {svg}
           </motion.h2>
 
@@ -94,8 +109,10 @@ export const VacationPage = ({ translation, locale }: { translation: Record<stri
             transition={{ duration: 0.7, ease: "easeOut" }}
           >
             {!isReady
-              ? (translation && translation['vacation_hero_desc'] as string) || ''
-              : t('vacation_hero_desc')}
+              ? (translation &&
+                  (translation["vacation_hero_desc"] as string)) ||
+                ""
+              : t("vacation_hero_desc")}
           </motion.p>
         </motion.div>
 
@@ -123,16 +140,21 @@ export const VacationPage = ({ translation, locale }: { translation: Record<stri
             src="/icons/icon-filter.svg"
             alt="filter"
           />
-          Фільтри
+          {t("vacation_mobile_filter")}
         </motion.button>
 
         <Container className={s.container}>
-          {(!filtered || filtered.length === 0) ? (
+          {!filtered || filtered.length === 0 ? (
             <motion.div
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, ease: 'easeOut' }}
-              style={{ minHeight: '50vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+              transition={{ duration: 0.7, ease: "easeOut" }}
+              style={{
+                minHeight: "50vh",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
             >
               <Spinner />
             </motion.div>
@@ -147,11 +169,16 @@ export const VacationPage = ({ translation, locale }: { translation: Record<stri
       </section>
 
       {!isDesktop && (
-        <VacancySidebar isOpen={modalIsOpen} onClose={closeModal} />
+        <VacancySidebar
+          isOpen={modalIsOpen}
+          onClose={closeModal}
+          translation={translation}
+          locale={locale}
+        />
       )}
     </main>
   );
-}
+};
 
 const line = (
   <motion.svg
@@ -207,4 +234,4 @@ const svg = (
       strokeLinecap="round"
     />
   </svg>
-); 
+);

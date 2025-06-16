@@ -11,6 +11,7 @@ import { useTranslation } from 'react-i18next';
 import i18n from '@/i18n/client';
 import Spinner from "@/components/Spinner";
 
+
 export interface Category {
   id: number;
   name: string;
@@ -67,8 +68,6 @@ export const BlogPage = ({ translation, locale }: { translation: unknown, locale
     setActiveId(id);
   };
 
-  console.log(posts);
-
   // const categories = [];
   // posts.forEach((post) => {});
 
@@ -90,6 +89,7 @@ export const BlogPage = ({ translation, locale }: { translation: unknown, locale
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
         >
+
           <motion.h2
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}

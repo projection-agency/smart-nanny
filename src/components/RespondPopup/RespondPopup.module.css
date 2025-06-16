@@ -1,0 +1,310 @@
+.popupOverlay {
+  top: 0;
+  left: 0;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99;
+  opacity: 0;
+  background-color: rgba(43, 43, 43, 0.459);
+  width: 100%;
+  height: 100%;
+  transition: opacity 0.3s ease;
+}
+
+.popupOverlay.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.popupContent {
+  position: relative;
+  background-color: rgba(254, 251, 250, 1);
+  padding: 3.1vw;
+  min-width: 41.6vw;
+  border-radius: 2.6vw;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  transform: scale(0.9);
+}
+
+.popupContent.visible {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.closeBtn {
+  position: absolute;
+  width: 3.1vw;
+  height: 3.1vw;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(51, 51, 51, 0.05);
+  top: 3.1vw;
+  right: 3.1vw;
+  transition: background-color 0.3s;
+  cursor: pointer;
+
+  svg {
+    width: 1vw;
+    height: auto;
+    transition: fill 0.3s;
+    fill: rgba(51, 51, 51, 0.4);
+  }
+}
+
+.closeBtn:hover {
+  background-color: var(--primary-pink-hover);
+
+  svg {
+    fill: rgba(254, 251, 250, 1);
+    stroke: rgba(254, 251, 250, 1);
+  }
+}
+
+.popupTitle {
+  margin-bottom: 2.9vw;
+
+  h3 {
+    font-family: Futura PT;
+    font-weight: 500;
+    font-size: 2vw;
+    line-height: 100%;
+    color: rgba(51, 51, 51, 1);
+    margin-bottom: 0.8vw;
+  }
+
+  p {
+    font-family: Moderustic;
+    font-weight: 400;
+    font-size: 0.9vw;
+    line-height: 135%;
+    max-width: 20vw;
+  }
+}
+
+.inputLine {
+  gap: 0.8vw;
+  margin-bottom: 1.2vw;
+}
+
+.submitBtn {
+  font-family: Futura PT;
+  font-weight: 500;
+  font-size: 1vw;
+  line-height: 100%;
+  letter-spacing: 0%;
+  text-align: center;
+  padding: 1.6vw;
+  background-color: var(--primary-pink);
+  width: 100%;
+  color: rgba(253, 248, 245, 1);
+  border-radius: 5.2vw;
+  transition: background-color 0.3s;
+  cursor: pointer;
+  margin-bottom: 0.8vw;
+  margin-top: 1.7vw;
+}
+
+.submitBtn:hover {
+  background-color: var(--primary-pink-hover);
+}
+
+.note {
+  font-family: Moderustic;
+  font-weight: 400;
+  font-size: 0.7vw;
+  line-height: 139%;
+  text-align: center;
+  max-width: 30vw;
+  margin: 0 auto;
+  color: rgba(51, 51, 51, 0.4);
+
+  a {
+    text-decoration: underline;
+  }
+
+  a:hover {
+    color: black;
+  }
+}
+
+.error {
+  border: 1px solid red !important;
+}
+
+.confirmation {
+  padding-top: 3.1vw;
+  padding-bottom: 2.1vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  div {
+    width: 30vw;
+    margin-bottom: 2.9vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    img {
+      width: 3.2vw;
+      height: 3.2vw;
+      margin-bottom: 1vw;
+    }
+
+    h3 {
+      margin-bottom: 1.3vw;
+      font-size: 1.3vw;
+      font-family: Futura PT;
+      font-weight: 400;
+      line-height: 100%;
+      letter-spacing: -1px;
+      text-align: center;
+    }
+    p {
+      font-family: Futura PT;
+      font-size: 2.1vw;
+      font-weight: 500;
+      line-height: 100%;
+      letter-spacing: -1px;
+      text-align: center;
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .popupContent {
+    width: 100%;
+    height: 100%;
+    padding: 4.3vw;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0px;
+
+    .closeBtn {
+      width: 12.8vw;
+      height: 12.8vw;
+
+      svg {
+        width: 3.5vw;
+        height: 4.3vw;
+      }
+    }
+
+    .popupTitle {
+      margin-bottom: 9.1vw;
+      text-align: center;
+
+      h3 {
+        text-align: center;
+        width: 100%;
+        font-size: 6.4vw;
+        margin-bottom: 3.2vw;
+      }
+      p {
+        text-align: center;
+        max-width: 100%;
+        font-size: 4.26vw;
+      }
+    }
+
+    .inputLine {
+      grid-template-columns: 1fr;
+      gap: 5.9vw;
+      margin-bottom: 5.9vw;
+
+      .inputContainer {
+        label {
+          font-size: 3.7vw;
+
+          input {
+            padding: 5.3vw 6.4vw;
+            margin-top: 3.2vw;
+            border-radius: 2.7vw;
+
+            font-size: 3.7vw;
+          }
+
+          input::placeholder {
+            font-size: 3.7vw;
+          }
+        }
+      }
+    }
+
+    .employmentBlock {
+      p {
+        font-size: 3.7vw;
+        margin-bottom: 3.2vw;
+      }
+
+      .checkboxGrid {
+        grid-template-columns: 1fr;
+        gap: 2.7vw;
+        margin-bottom: 9.1vw;
+
+        .checkboxItem {
+          padding: 5.3vw 6.4vw;
+          gap: 3.2vw;
+          border-radius: 2.7vw;
+          font-size: 3.7vw;
+        }
+
+        .customCheckbox {
+          width: 5.3vw;
+          height: 5.3vw;
+          border-radius: 1.6vw;
+        }
+      }
+    }
+
+    .submitBtn {
+      padding: 4.3vw;
+      margin-bottom: 3.2vw;
+      border-radius: 26.7vw;
+
+      font-size: 4.3vw;
+    }
+
+    .note {
+      font-size: 3.2vw;
+      max-width: none;
+    }
+
+    .confirmation {
+      gap: 10.7vw;
+      height: 100%;
+
+      div {
+        width: 91.5vw;
+        gap: 3.2vw;
+        margin-bottom: 0;
+
+        h3 {
+          font-size: 4.8vw;
+          margin-bottom: 0;
+        }
+
+        p {
+          width: 84.5vw;
+          font-size: 6.9vw;
+          margin-right: auto;
+          margin-left: auto;
+          margin-bottom: 0;
+        }
+
+        img {
+          width: 12.8vw;
+          height: 12.8vw;
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+}

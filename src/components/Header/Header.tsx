@@ -128,7 +128,7 @@ export const Header = ({ translation, locale }: { translation: unknown, locale: 
             </div>
           </div>
         </div>
-        <SidePanel isOpen={sidePanelIsOpen} onClose={closeSidePanel}/>
+        <SidePanel isOpen={sidePanelIsOpen} onClose={closeSidePanel} locale={locale}/>
       </Container>
 
     </header>
