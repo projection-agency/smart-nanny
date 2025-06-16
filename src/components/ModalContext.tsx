@@ -3,8 +3,9 @@
 import { createContext, useContext, useState, ReactNode } from "react";
 import { SelectionPopup } from "./SelectionPopup/SelectionPopup";
 import { EducationPopup } from "./EducationPopup/EducationPopup";
+import { RespondPopup } from "./RespondPopup/RespondPopup";
 
-type ModalKey = "formA" | "formB" | "subscribe" | null;
+type ModalKey = "formA" | "formB" | "formC" | "subscribe" | null;
 
 interface ModalContextType {
   openModal: (key: ModalKey) => void;
@@ -32,6 +33,7 @@ export const ModalProvider = ({ children, translation, locale }: { children: Rea
 
       {currentModal === "formA" && <SelectionPopup onClose={closeModal} translation={translation} locale={locale} />}
       {currentModal === "formB" && <EducationPopup onClose={closeModal} translation={translation} locale={locale} />}
+      {currentModal === "formC" && <RespondPopup onClose={closeModal} translation={translation} locale={locale} />}
     </ModalContext.Provider>
   );
 };
