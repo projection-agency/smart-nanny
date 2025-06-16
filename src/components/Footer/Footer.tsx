@@ -4,68 +4,82 @@ import { Container } from "../Container";
 import Image from "next/image";
 import s from "./Footer.module.css";
 import Link from "next/link";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
 
-export const Footer = ({ translation, locale }: { translation: Record<string, unknown>, locale: string }) => {
-  const { t, i18n } = useTranslation('common');
+export const Footer = ({
+  translation,
+  locale,
+}: {
+  translation: Record<string, unknown>;
+  locale: string;
+}) => {
+  const { t, i18n } = useTranslation("common");
   const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
     if (translation && locale) {
-      i18n.addResourceBundle(locale, 'common', translation, true, true);
+      i18n.addResourceBundle(locale, "common", translation, true, true);
       i18n.changeLanguage(locale).then(() => setIsReady(true));
     }
   }, [translation, locale, i18n]);
 
   const navLinks = !isReady
-    ? (translation && translation['footer_nav'] as string[]) || []
-    : t('footer_nav', { returnObjects: true });
+    ? (translation && (translation["footer_nav"] as string[])) || []
+    : t("footer_nav", { returnObjects: true });
   const socialLinks = !isReady
-    ? (translation && translation['footer_social'] as string[]) || []
-    : t('footer_social', { returnObjects: true });
+    ? (translation && (translation["footer_social"] as string[])) || []
+    : t("footer_social", { returnObjects: true });
 
   const footerTitleMain = !isReady
-    ? (translation && translation['footer_title_main'] as string) || ''
-    : t('footer_title_main');
+    ? (translation && (translation["footer_title_main"] as string)) || ""
+    : t("footer_title_main");
   const footerTitleSpan = !isReady
-    ? (translation && translation['footer_title_span'] as string) || ''
-    : t('footer_title_span');
+    ? (translation && (translation["footer_title_span"] as string)) || ""
+    : t("footer_title_span");
   const footerPolicy = !isReady
-    ? (translation && translation['footer_policy'] as string) || ''
-    : t('footer_policy');
+    ? (translation && (translation["footer_policy"] as string)) || ""
+    : t("footer_policy");
   const footerOffer = !isReady
-    ? (translation && translation['footer_offer'] as string) || ''
-    : t('footer_offer');
+    ? (translation && (translation["footer_offer"] as string)) || ""
+    : t("footer_offer");
   const footerRights = !isReady
-    ? (translation && translation['footer_rights'] as string) || ''
-    : t('footer_rights');
+    ? (translation && (translation["footer_rights"] as string)) || ""
+    : t("footer_rights");
   const footerDev = !isReady
-    ? (translation && translation['footer_dev'] as string) || ''
-    : t('footer_dev');
+    ? (translation && (translation["footer_dev"] as string)) || ""
+    : t("footer_dev");
   const footerDevName = !isReady
-    ? (translation && translation['footer_dev_name'] as string) || ''
-    : t('footer_dev_name');
+    ? (translation && (translation["footer_dev_name"] as string)) || ""
+    : t("footer_dev_name");
 
   const navUrls = [
-    `/${locale}`,
+    `/${locale}/nanny-selection`,
     `/${locale}/vacation`,
     `/${locale}/blog`,
-    `/${locale}/education`
+    `/${locale}/education`,
   ];
   const socialUrls = [
-    'https://www.instagram.com/smartnanny.service/', // Instagram
-    'https://viber.com/smartnanny_service', // Viber
-    'https://t.me/smartnanny_service', // Telegram
-    'https://wa.me/380671234567'  // WhatsApp
+    "https://www.instagram.com/smartnanny.service/", // Instagram
+    "https://viber.com/smartnanny_service", // Viber
+    "https://t.me/smartnanny_service", // Telegram
+    "https://wa.me/380671234567", // WhatsApp
   ];
 
-  const navLinksArr = Array.isArray(navLinks) && typeof navLinks[0] === 'string'
-    ? (navLinks as string[]).map((label, idx) => ({ href: navUrls[idx] || '#', label }))
-    : (navLinks as { href: string; label: string }[]);
-  const socialLinksArr = Array.isArray(socialLinks) && typeof socialLinks[0] === 'string'
-    ? (socialLinks as string[]).map((label, idx) => ({ href: socialUrls[idx] || '#', label }))
-    : (socialLinks as { href: string; label: string }[]);
+  const navLinksArr =
+    Array.isArray(navLinks) && typeof navLinks[0] === "string"
+      ? (navLinks as string[]).map((label, idx) => ({
+          href: navUrls[idx] || "#",
+          label,
+        }))
+      : (navLinks as { href: string; label: string }[]);
+  const socialLinksArr =
+    Array.isArray(socialLinks) && typeof socialLinks[0] === "string"
+      ? (socialLinks as string[]).map((label, idx) => ({
+          href: socialUrls[idx] || "#",
+          label,
+        }))
+      : (socialLinks as { href: string; label: string }[]);
 
   return (
     <footer className={s.footer}>
@@ -120,24 +134,28 @@ export const Footer = ({ translation, locale }: { translation: Record<string, un
 
         <nav className={s.footerNav}>
           <ul>
-            {navLinksArr.map((item: { href: string; label: string }) => (
-              <li key={item.label}>
-                <Link href={item.href}>{item.label}</Link>
-              </li>
-            ))}
+            {navLinksArr.map((item: { href: string; label: string }) => {
+              return (
+                <li key={item.label}>
+                  <Link href={item.href}>{item.label}</Link>
+                </li>
+              );
+            })}
           </ul>
         </nav>
 
         <ul className={s.socialLinks}>
           {socialLinksArr.map((item: { href: string; label: string }) => {
             let iconName = item.label.toLowerCase();
-            if (iconName === 'instagram') iconName = 'inst';
-            if (iconName === 'telegram') iconName = 'tg';
+            if (iconName === "instagram") iconName = "inst";
+            if (iconName === "telegram") iconName = "tg";
             return (
               <li key={item.label}>
                 <a href={item.href}>
                   <svg>
-                    <use xlinkHref={`/icons/social-icons.svg#icon-${iconName}`}></use>
+                    <use
+                      xlinkHref={`/icons/social-icons.svg#icon-${iconName}`}
+                    ></use>
                   </svg>
                   {item.label}
                 </a>
@@ -157,7 +175,7 @@ export const Footer = ({ translation, locale }: { translation: Record<string, un
           </div>
 
           <div>
-            {footerDev}{' '}
+            {footerDev}{" "}
             <a className={s.dev} href="">
               {footerDevName}
             </a>

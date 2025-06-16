@@ -9,7 +9,7 @@
   font-weight: 500;
   font-size: 3.3vw;
   line-height: 100%;
-  letter-spacing: -2px;
+  letter-spacing: -1px;
   margin: 0 auto;
   width: 35vw;
   text-align: center;
@@ -23,7 +23,7 @@
     font-weight: 600;
     font-size: 2.8vw;
     line-height: 90%;
-    letter-spacing: -1%;
+    letter-spacing: -1px;
     text-align: center;
     color: var(--primary-yellow);
   }
@@ -315,13 +315,17 @@
   width: 48px;
   height: 48px;
   border: 5px solid #f3f3f3;
-  border-top: 5px solid #FF91B2;
+  border-top: 5px solid #ff91b2;
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 @media screen and (max-width: 1024px) {
@@ -336,6 +340,8 @@
     font-size: 9.6vw;
     width: auto;
     margin-bottom: 10.7vw;
+
+    font-weight: 450;
     span {
       font-size: 9.6vw;
     }
@@ -369,6 +375,7 @@
       .cardTitle {
         font-size: 6.5vw;
         margin-bottom: 3.2vw;
+        -webkit-text-stroke-width: 0.2vw;
       }
 
       .cardDesc {
@@ -401,7 +408,7 @@
 
       button {
         font-size: 4.3vw;
-        padding: 6.4vw 0;
+        padding: 4.9vw 0;
         border-radius: 26.7vw;
       }
     }
@@ -412,6 +419,11 @@
   }
 
   /* ACCORDION LIST */
+
+  h3.title span {
+    -webkit-text-stroke-width: 0.2vw;
+    letter-spacing: 0px;
+  }
 
   .accordionList {
     flex-direction: column;
