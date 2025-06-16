@@ -1,3 +1,5 @@
+import fs from 'fs/promises';
+import path from 'path';
 import { EducationSection } from "@/components/Sections/EducationSection/EducationSection";
 import { FaqSection } from "@/components/Sections/FaqSection/FaqSection";
 import { NannySelectionHero } from "@/components/Sections/NannySelectionHero/NannySelectionHero";
@@ -12,22 +14,27 @@ export const metadata = {
   description: "Ми підбираємо надійних нянь, яким можна довірити вашу дитину.",
 };
 
-export default function NannySelection() {
+export default async function NannySelection({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  const translationPath = path.resolve(process.cwd(), `public/locales/${locale}/common.json`);
+  const translationRaw = await fs.readFile(translationPath, 'utf-8');
+  const translation = JSON.parse(translationRaw);
+
   const breadcrumbs: BreadcrumbItem[] = [
-    { label: "Головна", href: "/" },
-    { label: "Стати нянею", active: true },
+    { label: translation['breadcrumbs_home'], href: `/${locale}` },
+    { label: translation['breadcrumbs_nanny'], active: true },
   ];
 
   return (
     <main>
       <Breadcrumbs items={breadcrumbs} colorScheme="light" />
-      <NannySelectionHero />
-      <RoadSection />
-      <WhySection />
-      <VacationSection />
-      <EducationSection />
-      <VacationFormSection />
-      <FaqSection />
+      <NannySelectionHero translation={translation} locale={locale} />
+      <RoadSection translation={translation} locale={locale} />
+      <WhySection translation={translation} locale={locale} />
+      <VacationSection translation={translation} locale={locale} />
+      <EducationSection translation={translation} locale={locale} />
+      <VacationFormSection translation={translation} locale={locale} />
+      <FaqSection translation={translation} locale={locale} />
     </main>
   );
 }

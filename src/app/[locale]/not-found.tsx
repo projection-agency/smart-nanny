@@ -2,10 +2,12 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, easeOut } from "framer-motion";
 import { Breadcrumbs } from "@/components/Breadcrumbs/Breadcrumbs";
-import { btnSvg } from "@/components/Sections/BlogSection/BlogSection";
+import { btnSvg } from '@/components/BtnSvg';
 import s from "./not-found.module.css";
+import { useTranslation } from 'react-i18next';
+import { useParams } from 'next/navigation';
 
 const svg = (
   <svg
@@ -52,17 +54,20 @@ const containerVariants = {
 
 const itemVariants = {
   hidden: { opacity: 0, y: 30 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } },
+  show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: easeOut } },
 };
 
 export default function NotFound() {
+  const { t } = useTranslation('common');
+  const { locale } = useParams<{ locale: string }>();
+
   return (
     <>
       <main className={s.mainNotFound}>
         <Breadcrumbs
           items={[
-            { label: "Головна", href: "/" },
-            { label: "404", active: true },
+            { label: t('breadcrumbs_home'), href: `/${locale}` },
+            { label: t('breadcrumbs_404'), active: true },
           ]}
           colorScheme="dark"
         />

@@ -1,3 +1,4 @@
+
 import s from "./SidePanel.module.css";
 import Image from "next/image";
 import SidePanelLangSwitcher from "../SidePanelLangSwitcher/SidePanelLangSwitcher";

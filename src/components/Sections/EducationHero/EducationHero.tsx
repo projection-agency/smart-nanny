@@ -1,13 +1,15 @@
 "use client";
 
 import { useModal } from "@/components/ModalContext";
-import { btnSvg } from "../BlogSection/BlogSection";
+import { btnSvg } from "@/components/BtnSvg";
 import s from "./EducationHero.module.css";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { useTranslation } from 'react-i18next';
 
 export const EducationHero = () => {
   const { openModal } = useModal();
+  const { t } = useTranslation('common');
 
   return (
     <section className={s.section}>
@@ -52,7 +54,11 @@ export const EducationHero = () => {
           transition={{ duration: 0.7, ease: "easeOut" }}
         >
           {svg}
-          <span>Професійна {line} </span> няня
+          <span>
+            {String(t('education_hero_title_span'))}
+            {line}
+          </span>
+          {String(t('education_hero_title_rest'))}
         </motion.h1>
 
         <motion.p
@@ -61,8 +67,7 @@ export const EducationHero = () => {
           viewport={{ once: false, amount: 0.6 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
         >
-          Практичний онлайн-курс, який допомагає впевнено взаємодіяти як з
-          дітьми, так і з батьками, і будувати успішну карєру професійної няні
+          {String(t('education_hero_subtitle'))}
         </motion.p>
 
         <motion.button
@@ -74,7 +79,7 @@ export const EducationHero = () => {
           transition={{ duration: 0.7, ease: "easeOut" }}
         >
           <div className={s.first}>{btnSvg}</div>
-          Обрати навчання
+          {String(t('education_hero_btn'))}
           <div className={s.second}>{btnSvg}</div>
         </motion.button>
         <Image

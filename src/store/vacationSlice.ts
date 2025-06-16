@@ -12,10 +12,11 @@ export interface Vacation {
   Price: string;
 }
 
-export const fetchVacations = createAsyncThunk<Vacation[]>(
+export const fetchVacations = createAsyncThunk<Vacation[], string>(
   "vacations/fetchVacations",
-  async () => {
-    const res = await fetch(`${API_URL}v2/vacancy`);
+  async (locale) => {
+    const lang = locale === "ua" ? "ua" : "en";
+    const res = await fetch(`${API_URL}v2/vacancy?lang=${lang}`);
     if (!res.ok) throw new Error("Failed to fetch");
     const data = await res.json();
     return data;

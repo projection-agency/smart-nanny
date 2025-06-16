@@ -7,37 +7,47 @@ import { useEffect, useMemo, useState } from "react";
 import { API_URL } from "@/constants";
 import { motion } from "framer-motion";
 import { usePathname } from "next/navigation";
+import { useTranslation } from 'react-i18next';
 
 type FaqItem = {
   id: number;
   Question: string;
   Answer: string;
-  faq_categories: { slug: string }[];
+  faq_categories: { slug: string; uk_id?: number }[];
   faq_category: number[];
 };
 
-export const FaqSection = ({ nannys }: { nannys?: boolean }) => {
+export const FaqSection = ({ nannys, translation, locale }: { nannys?: boolean, translation: Record<string, unknown>, locale: string }) => {
   const [openId, setOpenId] = useState<number | null>(null);
   const [faqs, setFaqs] = useState<FaqItem[]>([]);
   const pathname: string = usePathname();
+  const { t, i18n } = useTranslation('common');
+  const [isReady, setIsReady] = useState(false);
 
   const toggle = (id: number) => {
     setOpenId((prev) => (prev === id ? null : id));
   };
 
   useEffect(() => {
+    const lang = (i18n.language === 'ua' ? 'ua' : i18n.language).toLowerCase();
     const fetchFaqs = async () => {
       try {
-        const response = await fetch(`${API_URL}v2/faq?per_page=100`);
+        const response = await fetch(`${API_URL}v2/faq?per_page=16&lang=${lang}`);
         const data = await response.json();
         setFaqs(data);
       } catch (error) {
         console.error("Помилка при отриманні FAQ:", error);
       }
     };
-
     fetchFaqs();
-  }, []);
+  }, [i18n.language]);
+
+  useEffect(() => {
+    if (translation && locale) {
+      i18n.addResourceBundle(locale, 'common', translation, true, true);
+      i18n.changeLanguage(locale).then(() => setIsReady(true));
+    }
+  }, [translation, locale, i18n]);
 
   const { parentsFaqs, nannysFaqs, courseFaqs } = useMemo(() => {
     const parents: FaqItem[] = [];
@@ -53,11 +63,12 @@ export const FaqSection = ({ nannys }: { nannys?: boolean }) => {
     // });
 
     faqs?.forEach((faq) => {
-      if (faq.faq_category?.[0] === 2) {
+      const ukId = faq.faq_categories?.[0]?.uk_id;
+      if (ukId === 2) {
         parents.push(faq);
-      } else if (faq.faq_category?.[0] === 4) {
+      } else if (ukId === 4) {
         course.push(faq);
-      } else if (faq.faq_category?.[0] === 3) {
+      } else if (ukId === 3) {
         nannys.push(faq);
       }
     });
@@ -71,6 +82,12 @@ export const FaqSection = ({ nannys }: { nannys?: boolean }) => {
     (pathname.includes("nanny-selection") && nannysFaqs) ||
     [];
 
+  // SSR-only faqs (translation)
+  // const faqsRaw = !isReady
+  //   ? (translation && translation['faq'] as unknown[]) || []
+  //   : t('faq', { returnObjects: true }) || [];
+  // const faqsSSR = Array.isArray(faqsRaw) ? faqsRaw : [];
+
   return (
     <section className={s.section}>
       <Container className={s.container}>
@@ -81,10 +98,21 @@ export const FaqSection = ({ nannys }: { nannys?: boolean }) => {
           viewport={{ once: true, amount: 0.7 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
         >
-          Часті питання
+          {(() => {
+            if (!isReady) {
+              return (translation && translation["faq_title"] as string) || "";
+            } else {
+              return t('faq_title') || "";
+            }
+          })()}
           <span>
             {" "}
-            {nannys ? "від нянь" : "від батьків"} <Line />
+            {pathname.includes('education')
+              ? t('faq_from_course')
+              : nannys
+                ? t('faq_from_nanny')
+                : t('faq_from_parents')}
+            <Line />
           </span>
         </motion.h2>
 

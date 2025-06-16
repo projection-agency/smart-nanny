@@ -3,6 +3,7 @@ import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import s from "./ProgramItem.module.css";
 import { motion } from "framer-motion";
+import { useTranslation } from 'react-i18next';
 
 export type ProgramItemProps = {
   module: number;
@@ -26,6 +27,7 @@ export const ProgramItem = ({
   const [isOpen, setIsOpen] = useState(false);
   const contentRef = useRef<HTMLDivElement>(null);
   const [height, setHeight] = useState("0px");
+  const { t } = useTranslation('common');
 
   useEffect(() => {
     if (contentRef.current) {
@@ -43,7 +45,7 @@ export const ProgramItem = ({
     >
       <div className={s.header}>
         <div className={s.meta}>
-          <span className={s.module}>Модуль {module}</span>
+          <span className={s.module}>{t('program_module')} {module}</span>
           <h3>{title}</h3>
           <div className={s.info}>
             <span>
@@ -68,7 +70,7 @@ export const ProgramItem = ({
         </div>
         <button onClick={() => setIsOpen(!isOpen)} className={s.toggleBtn}>
           <span className={s.toggleText}>
-            {isOpen ? "Згорнути" : "Показати"}{" "}
+            {isOpen ? t('program_collapse') : t('program_expand')} {" "}
           </span>
           <span className={`${isOpen ? s.opened : ""} ${s.icon}`}>{arrow}</span>
         </button>
@@ -82,7 +84,7 @@ export const ProgramItem = ({
         <div className={s.content}>
           <div className={s.columns}>
             <div className={s.lectionBlock}>
-              <h4>Лекції:</h4>
+              <h4>{t('program_lectures')}:</h4>
               <ol>
                 {lectures.map((l, i) => (
                   <li key={i}>
@@ -92,7 +94,7 @@ export const ProgramItem = ({
               </ol>
             </div>
             <div className={s.resBLock}>
-              <h4>Результат:</h4>
+              <h4>{t('program_result')}:</h4>
               <p>{result}</p>
             </div>
           </div>

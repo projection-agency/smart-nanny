@@ -6,6 +6,8 @@ import s from "./article.module.css";
 import Image from "next/image";
 import { API_URL } from "@/constants";
 import { Breadcrumbs, BreadcrumbItem } from "@/components/Breadcrumbs/Breadcrumbs";
+import { useTranslation } from 'react-i18next';
+import Spinner from '@/components/Spinner';
 
 export type BlogPost = {
   id: number;
@@ -26,17 +28,18 @@ type Category = {
 };
 
 export default function BlogPage() {
-  const { slug } = useParams<{ slug: string }>();
+  const { slug, locale } = useParams<{ slug: string, locale: string }>();
+  const { t } = useTranslation('common');
   const [post, setPost] = useState<BlogPost | null>(null);
   const [loading, setLoading] = useState(true);
   const [categories, setCategories] = useState<Category[]>([]);
 
   useEffect(() => {
-    if (!slug) return;
-
+    if (!slug || !locale) return;
+    const lang = locale === 'ua' ? 'ua' : locale;
     const fetchPost = async () => {
       try {
-        const res = await fetch(`${API_URL}v2/posts?slug=${slug}&_embed=1`);
+        const res = await fetch(`${API_URL}v2/posts?slug=${slug}&_embed=1&lang=${lang}`);
         const data: BlogPost[] = await res.json();
 
         if (data[0]) {
@@ -53,12 +56,14 @@ export default function BlogPage() {
     };
 
     fetchPost();
-  }, [slug]);
+  }, [slug, locale]);
 
   useEffect(() => {
+    if (!locale) return;
+    const lang = locale === 'ua' ? 'ua' : locale;
     const fetchCategories = async () => {
       try {
-        const response = await fetch(`${API_URL}v2/categories`);
+        const response = await fetch(`${API_URL}v2/categories?lang=${lang}`);
         const data = await response.json();
         setCategories(data.filter((cat: Category) => cat.name !== "Без категорії"));
       } catch (error) {
@@ -66,10 +71,10 @@ export default function BlogPage() {
       }
     };
     fetchCategories();
-  }, []);
+  }, [locale]);
 
   if (loading) {
-    return <div className={s.loading}>Завантаження…</div>;
+    return <Spinner />;
   }
 
   if (!post) {
@@ -91,8 +96,8 @@ export default function BlogPage() {
     : [];
 
   const breadcrumbs: BreadcrumbItem[] = [
-    { label: "Головна", href: "/" },
-    { label: "Блог", href: "/blog" },
+    { label: t('breadcrumbs_home'), href: `/${locale}` },
+    { label: t('breadcrumbs_blog'), href: `/${locale}/blog` },
     { label: post.title.rendered.length > 40 ? post.title.rendered.slice(0, 40) + "..." : post.title.rendered, active: true },
   ];
 

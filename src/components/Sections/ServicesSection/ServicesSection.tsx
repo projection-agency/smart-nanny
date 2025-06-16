@@ -3,141 +3,42 @@
 import { Container } from "@/components/Container";
 import s from "./ServicesSection.module.css";
 import { Accordion } from "@/components/Accordion/Accordion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { useModal } from "@/components/ModalContext";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
+import { useTranslation, Trans } from 'react-i18next';
+import i18n from '@/i18n/client';
+import type { Variants } from 'framer-motion';
 
-export const nannyCards = [
-  {
-    id: "permanent",
-    title: "ПОСТІЙНА НЯНЯ",
-    description:
-      "Послуга для родин, яким потрібна стабільна допомога. Ми ретельно підбираємо няню, враховуючи ваші побажання, потреби та сімейні цінності для довготривалої співпраці.",
-    tags: ["Довготривало", "Плавна адаптація"],
-    price: "від <span>12,000 грн</span> / за підбір",
-    shortDesc: "100% місячної оплати няні",
-    buttonText: "Підібрати няню",
-    theme: "white",
-  },
-  {
-    id: "hourly",
-    title: "ПОГОДИННА НЯНЯ",
-    description:
-      "Послуга для родин, яким потрібна ситуативна допомога на кілька годин або на короткий період (кілька днів чи тижнів). Підберемо кваліфіковану няню буквально за 1-2 дні, а в деяких випадках — навіть у той самий день.",
-    tags: ["Кілька годин/днів", "Гнучкий графік"],
-    price: "від <span>300 грн</span> / год",
-    buttonText: "Підібрати няню",
-    theme: "white",
-  },
-  {
-    id: "training",
-    title: "НАВЧАННЯ ДЛЯ НЯНЬ",
-    description:
-      "Онлайн-курс для нянь, які хочуть працювати впевнено та з розумінням потреб дітей. Програма охоплює нейропедагогіку, основи педіатрії, дитячу психологію та кар'єрний розвиток. Після завершення — сертифікат, який визнають наш сервіс і родини.",
-    tags: ["Швидкий старт", "Гнучкий графік"],
-    price: "",
-    buttonText: "Дізнатися детальніше",
-    theme: "yellow",
-  },
-];
-export const accordionData = [
-  {
-    id: 1,
-    title: "няня-педагог",
-    description:
-      "Послуга для родин, яким потрібна стабільна допомога. Ми ретельно підбираємо няню, враховуючи ваші побажання, потреби та сімейні цінності для довготривалої співпраці.",
-    tags: ["Довготривало", "Плавна адаптація"],
-    price: "від <span>12,000 грн</span> / за підбір",
-    shortDesc: "100% місячної оплати няні",
-    buttonText: "Підібрати няню",
-    theme: "white",
-  },
-  {
-    id: 2,
-    title: "нічна няня",
-    description:
-      "Послуга для родин, яким потрібна ситуативна допомога на кілька годин або на короткий період (кілька днів чи тижнів). Підберемо кваліфіковану няню буквально за 1-2 дні, а в деяких випадках — навіть у той самий день.",
-    tags: ["Кілька годин/днів", "Гнучкий графік"],
-    price: "від <span>300 грн</span> / год",
-    buttonText: "Підібрати няню",
-    theme: "white",
-  },
-  {
-    id: 3,
-    title: "няня на захід",
-    description:
-      "Онлайн-курс для нянь, які хочуть працювати впевнено та з розумінням потреб дітей. Програма охоплює нейропедагогіку, основи педіатрії, дитячу психологію та кар'єрний розвиток. Після завершення — сертифікат, який визнають наш сервіс і родини.",
-    tags: ["Швидкий старт", "Гнучкий графік"],
-    price: "від <span>20,000 грн</span> / місяць",
-
-    buttonText: "Дізнатися детальніше",
-    theme: "yellow",
-  },
-  {
-    id: 4,
-    title: "няня вихідного дня",
-    description:
-      "Онлайн-курс для нянь, які хочуть працювати впевнено та з розумінням потреб дітей. Програма охоплює нейропедагогіку, основи педіатрії, дитячу психологію та кар'єрний розвиток. Після завершення — сертифікат, який визнають наш сервіс і родини.",
-    tags: ["Швидкий старт", "Гнучкий графік"],
-    price: "від <span>20,000 грн</span> / місяць",
-
-    buttonText: "Дізнатися детальніше",
-    theme: "yellow",
-  },
-];
-
-const containerVariants = {
-  hidden: {},
-  show: {
-    transition: {
-      staggerChildren: 0.18,
-    },
-  },
-};
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 30 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
-};
-
-const plasterVariants = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: { duration: 0.3, ease: "easeOut", delay: 0.5 },
-  },
-};
-
-const accordionListContainerVariants = {
-  hidden: {},
-  show: {
-    transition: {
-      staggerChildren: 0.18,
-    },
-  },
-};
-
-const accordionListItemVariants = {
-  hidden: { opacity: 0, y: 30 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.3, ease: "easeOut" } },
-};
-
-export const ServicesSection = () => {
+export const ServicesSection = ({ translation, locale }: { translation: Record<string, unknown>, locale: string }) => {
   const [openId, setOpenId] = useState<number | null>(null);
+  const { t } = useTranslation('common');
+  const [isReady, setIsReady] = useState(false);
 
   const toggle = (id: number) => {
     setOpenId((prev) => (prev === id ? null : id));
   };
 
   const { openModal } = useModal();
-
   const router = useRouter();
-
   const handleRedirect = () => {
-    router.push("/education");
+    router.push(`/${locale}/education`);
   };
+
+  const rawCards = t('services_cards', { returnObjects: true });
+  const cards = Array.isArray(rawCards) ? rawCards : [];
+
+  const rawAccordionData = t('services_accordion', { returnObjects: true });
+  const accordionData = Array.isArray(rawAccordionData) ? rawAccordionData : [];
+
+  useEffect(() => {
+    if (translation && locale) {
+      i18n.addResourceBundle(locale, 'common', translation, true, true);
+      i18n.changeLanguage(locale).then(() => setIsReady(true));
+    }
+  }, [translation, locale]);
 
   return (
     <section className={s.section}>
@@ -149,11 +50,16 @@ export const ServicesSection = () => {
           viewport={{ once: false, amount: 0.5 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
         >
-          Наші основні <span>послуги <AnimatedLine /></span>
+          {!isReady
+            ? (translation && translation["services_title"] as string) || ""
+            : <Trans
+                i18nKey="services_title"
+                components={{ span: <span />, line: <AnimatedLine /> }}
+              />}
         </motion.h3>
 
         <motion.ul className={s.servicesList} variants={containerVariants} initial="hidden">
-          {nannyCards.map((card, index) => (
+          {cards.map((card, index) => (
             <motion.li
               className={card.theme === "yellow" ? s.yellow : ""}
               key={card.id}
@@ -165,10 +71,10 @@ export const ServicesSection = () => {
             >
               <div>
                 <div className={s.tagList}>
-                  {card.tags.map((tag, index) => (
-                    <div className={s.tag} key={index}>
+                  {card.tags.map((tag: string, idx: number) => (
+                    <div className={s.tag} key={idx}>
                       <p>{tag}</p>
-                      <span>{index === 1 ? border1 : border2}</span>
+                      <span>{idx === 1 ? border1 : border2}</span>
                     </div>
                   ))}
                 </div>
@@ -267,7 +173,12 @@ export const ServicesSection = () => {
           viewport={{ once: false, amount: 0.5 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
         >
-          Додаткові <span>послуги <AnimatedLine /></span>
+          {!isReady
+            ? (translation && translation["services_additional_title"] as string) || ""
+            : <Trans
+                i18nKey="services_additional_title"
+                components={{ span: <span />, line: <AnimatedLine /> }}
+              />}
         </motion.h3>
 
         <motion.ul
@@ -295,10 +206,10 @@ export const ServicesSection = () => {
                 <div>
                   <div>
                     <div className={s.tagList}>
-                      {accordion.tags.map((tag, index) => (
-                        <div className={s.tag} key={index}>
+                      {accordion.tags.map((tag: string, idx: number) => (
+                        <div className={s.tag} key={idx}>
                           <p>{tag}</p>
-                          <span>{index === 1 ? border1 : border2}</span>
+                          <span>{idx === 1 ? border1 : border2}</span>
                         </div>
                       ))}
                     </div>
@@ -326,7 +237,7 @@ export const ServicesSection = () => {
                       </div>
                     )}
 
-                    <button className={s.btn}>{accordion.buttonText}</button>
+                    <button className={s.btn} onClick={() => openModal("formA")}>{accordion.buttonText}</button>
                   </div>
                 </div>
               </Accordion>
@@ -336,6 +247,42 @@ export const ServicesSection = () => {
       </Container>
     </section>
   );
+};
+
+const containerVariants: Variants = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.18,
+    },
+  },
+};
+
+const cardVariants: Variants = {
+  hidden: { opacity: 0, y: 30 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
+};
+
+const plasterVariants: Variants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: { duration: 0.3, ease: "easeOut", delay: 0.5 },
+  },
+};
+
+const accordionListContainerVariants: Variants = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.18,
+    },
+  },
+};
+
+const accordionListItemVariants: Variants = {
+  hidden: { opacity: 0, y: 30 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.3, ease: "easeOut" } },
 };
 
 const AnimatedLine = () => {

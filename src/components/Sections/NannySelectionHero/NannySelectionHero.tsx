@@ -1,18 +1,31 @@
 "use client";
 
 import { useModal } from "@/components/ModalContext";
-import { btnSvg } from "../BlogSection/BlogSection";
+import { btnSvg } from '@/components/BtnSvg';
 import s from "./NannySelectionHero.module.css";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { useTranslation } from 'react-i18next';
+import i18n from '@/i18n/client';
+import { useEffect, useState } from 'react';
+import type { Variants } from "framer-motion";
 
-const itemVariants = {
+const itemVariants: Variants = {
   hidden: { opacity: 0, y: 30 },
   show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } },
 };
 
-export const NannySelectionHero = () => {
+export const NannySelectionHero = ({ translation, locale }: { translation: Record<string, unknown>, locale: string }) => {
+  const { t } = useTranslation('common');
   const { openModal } = useModal();
+  const [isReady, setIsReady] = useState(false);
+
+  useEffect(() => {
+    if (translation && locale) {
+      i18n.addResourceBundle(locale, 'common', translation, true, true);
+      i18n.changeLanguage(locale).then(() => setIsReady(true));
+    }
+  }, [translation, locale]);
 
   return (
     <section className={s.section}>
@@ -35,15 +48,16 @@ export const NannySelectionHero = () => {
         />
       </div>
 
-      <motion.div
-        className={s.content} variants={itemVariants}
-      >
+      <motion.div className={s.content} variants={itemVariants}>
         <motion.h1
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
         >
-          <span>Разом {line} </span> до нових можливостей
+          <span>
+            {!isReady ? (translation && translation['nanny_hero_title_span'] as string) || '' : t('nanny_hero_title_span')} {line} 
+          </span>
+          {!isReady ? (translation && translation['nanny_hero_title_rest'] as string) || '' : t('nanny_hero_title_rest')}
         </motion.h1>
 
         <motion.p
@@ -51,9 +65,7 @@ export const NannySelectionHero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
         >
-          Ми команда, що об’єднує нянь для професійного зростання. Ми працюємо з
-          перевіреними родинами, створюємо дружню спільноту та підтримуємо
-          стабільний дохід
+          {!isReady ? (translation && translation['nanny_hero_subtitle'] as string) || '' : t('nanny_hero_subtitle')}
         </motion.p>
 
         <motion.button
@@ -64,7 +76,7 @@ export const NannySelectionHero = () => {
           className={s.btn}
         >
           <div className={s.first}>{btnSvg}</div>
-          Подати заявку
+          {!isReady ? (translation && translation['nanny_hero_btn'] as string) || '' : t('nanny_hero_btn')}
           <div className={s.second}>{btnSvg}</div>
         </motion.button>
 

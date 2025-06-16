@@ -1,30 +1,40 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { useRouter, usePathname, useParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import s from "./LanguageSwitcher.module.css";
+import { setLanguageCookie } from '@/utils/setLanguageCookie';
+import i18n from '@/i18n/client';
 
-const languages = ["EN", "DE"];
+const languages = ["UA", "EN"];
+const localeMap = { UA: "ua", EN: "en" };
 
 export const LanguageSwitcher = () => {
   const [open, setOpen] = useState(false);
-  const [currentLang, setCurrentLang] = useState("UA");
+  const params = useParams();
+  const router = useRouter();
+  const pathname = usePathname();
 
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const savedLang = localStorage.getItem("lang");
-      if (savedLang) setCurrentLang(savedLang);
-    }
-  }, []);
+  // Визначаємо поточну мову з params
+  const currentLocale = params.locale as string;
+  const currentLang = currentLocale === "en" ? "EN" : "UA";
 
   const toggle = () => setOpen((prev) => !prev);
 
   const selectLang = (lang: string) => {
-    setCurrentLang(lang);
+    const newLocale = localeMap[lang as "UA" | "EN"];
     if (typeof window !== "undefined") {
       localStorage.setItem("lang", lang);
     }
+    // Формуємо новий шлях з новою локаллю
+    const segments = pathname.split("/");
+    segments[1] = newLocale; // замінюємо локаль
+    const newPath = segments.join("/") || "/";
+    router.push(newPath);
     setOpen(false);
+    setLanguageCookie(lang);
+    i18n.changeLanguage(lang);
   };
 
   return (
@@ -34,7 +44,6 @@ export const LanguageSwitcher = () => {
       className={s.container}
       style={{
         borderRadius: open ? "1.5vw" : "86vw",
-        // transform: open ? "translateY(2vw)" : "",
       }}
     >
       <div className={s.topRow} onClick={toggle}>
@@ -71,7 +80,7 @@ export const LanguageSwitcher = () => {
           >
             <div className={s.divider} />
             <div className={s.langList}>
-              {languages.map((lang) => (
+              {languages.filter((lang) => lang !== currentLang).map((lang) => (
                 <button
                   key={lang}
                   onClick={() => selectLang(lang)}

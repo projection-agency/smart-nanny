@@ -2,7 +2,9 @@
 import { Container } from "@/components/Container";
 import s from "./CourseSection.module.css";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, easeOut } from "framer-motion";
+import { useTranslation } from 'react-i18next';
+import { useEffect, useState } from "react";
 
 const svg = (
   <svg
@@ -40,10 +42,21 @@ const svg = (
 
 const itemVariants = {
   hidden: { opacity: 0, y: 30 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.7,
+      ease: easeOut,
+    },
+  },
 };
 
 export const CourseSection = () => {
+  const { t } = useTranslation('common');
+  const [isClient, setIsClient] = useState(false);
+  useEffect(() => { setIsClient(true); }, []);
+  const cardsData = Array.isArray(t('course_cards', { returnObjects: true })) ? t('course_cards', { returnObjects: true }) as {title: string, description: string, icon: string}[] : [];
   return (
     <section className={s.section}>
       <Image
@@ -63,69 +76,67 @@ export const CourseSection = () => {
           variants={itemVariants}
         >
           {svg}
-          Цей курс
-          <span> для вас {line} </span>
-          якщо ви...
+          {String(t('course_title_before'))}
+          <span>
+            {String(t('course_title_highlight'))}
+            {line}
+          </span>
+          {String(t('course_title_after'))}
         </motion.h2>
 
         <ul className={s.list}>
-          {cardsData.map((item, index) => (
-            <motion.li
-              key={index}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: false, amount: 0.5 }}
-              variants={itemVariants}
-            >
-              <svg>
-                <use xlinkHref={item.icon}></use>
-              </svg>
+          {cardsData.map((item: {title: string, description: string, icon: string}, index: number) => (
+            isClient ? (
+              <motion.li
+                key={index}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: false, amount: 0.5 }}
+                variants={itemVariants}
+              >
+                <svg>
+                  <use xlinkHref={item.icon}></use>
+                </svg>
 
-              <h4>{item.title}</h4>
+                <h4>{item.title}</h4>
 
-              <p>{item.description}</p>
+                <p>{item.description}</p>
 
-              <Image
-                alt="Border"
-                width={1920}
-                height={1080}
-                priority
-                src="/images/border-image.png"
-                className={s.border}
-              />
-            </motion.li>
+                <Image
+                  alt="Border"
+                  width={1920}
+                  height={1080}
+                  priority
+                  src="/images/border-image.png"
+                  className={s.border}
+                />
+              </motion.li>
+            ) : (
+              <li key={index}>
+                <svg>
+                  <use xlinkHref={item.icon}></use>
+                </svg>
+
+                <h4>{item.title}</h4>
+
+                <p>{item.description}</p>
+
+                <Image
+                  alt="Border"
+                  width={1920}
+                  height={1080}
+                  priority
+                  src="/images/border-image.png"
+                  className={s.border}
+                />
+              </li>
+            )
           ))}
         </ul>
       </Container>
     </section>
   );
 };
-
-const cardsData = [
-  {
-    title: "Мрієте стати нянею",
-    description:
-      "Отримаєте повну базу знань, навичок і впевненості для старту в професії",
-    icon: "/icons/course-icons.svg#icon-1",
-  },
-  {
-    title: "Хочете вийти на новий рівень",
-    description:
-      "Поглибите свої знання та отримаєте більше впевненості у роботі",
-    icon: "/icons/course-icons.svg#icon-2",
-  },
-  {
-    title: "Є основа - варто структурувати",
-    description:
-      "Систематизуєте свої знання та отримаєте нові інструменти для роботи",
-    icon: "/icons/course-icons.svg#icon-3",
-  },
-  {
-    title: "Прагнете нових методик",
-    description: "Оновіть підходи та додавайте більше цікавого в заняття",
-    icon: "/icons/course-icons.svg#icon-4",
-  },
-];
 
 const line = (
   <motion.svg

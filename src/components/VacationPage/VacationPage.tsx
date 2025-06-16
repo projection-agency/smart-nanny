@@ -1,7 +1,7 @@
 "use client";
 
 import { VacationController } from "@/components/VacationController/VacationController";
-import s from "./vacation.module.css";
+import s from "../../app/[locale]/vacation/vacation.module.css";
 import { Container } from "@/components/Container";
 import { VacationItem } from "@/components/VacationItem/VacationItem";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,20 +11,20 @@ import { fetchVacations } from "@/store/vacationSlice";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import VacancySidebar from "../../components/VacancySidebar/VacancySidebar";
+import VacancySidebar from "@/components/VacancySidebar/VacancySidebar";
 import {
   Breadcrumbs,
   BreadcrumbItem,
 } from "@/components/Breadcrumbs/Breadcrumbs";
+import { useTranslation, Trans } from 'react-i18next';
+import i18n from '@/i18n/client';
+import Spinner from "@/components/Spinner";
 
-// export const metadata = {
-//   title: "Вакансії",
-//   description: "Ми підбираємо надійних нянь, яким можна довірити вашу дитину.",
-// };
-
-export default function Vacations() {
+export const VacationPage = ({ translation, locale }: { translation: Record<string, unknown>, locale: string }) => {
+  const { t } = useTranslation('common');
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [isDesktop, setIsDesktop] = useState(true);
+  const [isReady, setIsReady] = useState(false);
 
   const dispatch = useDispatch<AppDispatch>();
 
@@ -38,8 +38,15 @@ export default function Vacations() {
   }, []);
 
   useEffect(() => {
-    dispatch(fetchVacations());
-  }, [dispatch]);
+    dispatch(fetchVacations(locale));
+  }, [dispatch, locale]);
+
+  useEffect(() => {
+    if (translation && locale) {
+      i18n.addResourceBundle(locale, 'common', translation, true, true);
+      i18n.changeLanguage(locale).then(() => setIsReady(true));
+    }
+  }, [translation, locale]);
 
   const filtered = useSelector(selectFilteredVacations);
 
@@ -52,8 +59,8 @@ export default function Vacations() {
   };
 
   const breadcrumbs: BreadcrumbItem[] = [
-    { label: "Головна", href: "/" },
-    { label: "Вакансії", active: true },
+    { label: !isReady ? (translation && translation['breadcrumbs_home'] as string) || '' : t('breadcrumbs_home'), href: `/${locale}` },
+    { label: !isReady ? (translation && translation['breadcrumbs_vacation'] as string) || '' : t('breadcrumbs_vacation'), active: true },
   ];
 
   return (
@@ -62,10 +69,6 @@ export default function Vacations() {
       <section className={s.section}>
         <motion.div
           className={s.titleCOntainer}
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, amount: 0.6 }}
-          transition={{ duration: 0.7, ease: "easeOut" }}
         >
           <motion.h2
             initial={{ opacity: 0, y: 40 }}
@@ -73,7 +76,15 @@ export default function Vacations() {
             viewport={{ once: false, amount: 0.6 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
           >
-            <span>Актуальні {line}</span> вакансії для нянь{svg}
+            {!isReady
+              ? (translation && translation['vacation_hero_title'] as string) || ''
+              : (
+                <Trans
+                  i18nKey="vacation_hero_title"
+                  components={{ 0: line, 1: <span /> }}
+                />
+              )}
+            {svg}
           </motion.h2>
 
           <motion.p
@@ -82,8 +93,9 @@ export default function Vacations() {
             viewport={{ once: false, amount: 0.6 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
           >
-            Обирайте перевірені пропозиції від родин, з якими працює агентство
-            Smart Nanny
+            {!isReady
+              ? (translation && translation['vacation_hero_desc'] as string) || ''
+              : t('vacation_hero_desc')}
           </motion.p>
         </motion.div>
 
@@ -94,7 +106,7 @@ export default function Vacations() {
           viewport={{ once: false, amount: 0.6 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
         >
-          <VacationController />
+          <VacationController translation={translation} locale={locale} />
         </motion.div>
 
         <motion.button
@@ -115,11 +127,22 @@ export default function Vacations() {
         </motion.button>
 
         <Container className={s.container}>
-          <ul className={s.vacationsList}>
-            {filtered.map((item, index) => (
-              <VacationItem key={index} item={item} />
-            ))}
-          </ul>
+          {(!filtered || filtered.length === 0) ? (
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, ease: 'easeOut' }}
+              style={{ minHeight: '50vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+            >
+              <Spinner />
+            </motion.div>
+          ) : (
+            <ul className={s.vacationsList}>
+              {filtered.map((item, index) => (
+                <VacationItem key={index} item={item} />
+              ))}
+            </ul>
+          )}
         </Container>
       </section>
 
@@ -184,4 +207,4 @@ const svg = (
       strokeLinecap="round"
     />
   </svg>
-);
+); 

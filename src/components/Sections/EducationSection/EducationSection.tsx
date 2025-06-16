@@ -3,27 +3,33 @@ import { Container } from "@/components/Container";
 import s from "./EducationSection.module.css";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { useTranslation } from 'react-i18next';
+import i18n from '@/i18n/client';
+import Link from "next/link";
 
-export const statsData = [
-  {
-    value: "200+",
-    description: "Випускниць курсу",
-  },
-  {
-    value: "70%",
-    description: "Наших нянь отримують роботу після першого інтерв’ю",
-  },
-  {
-    value: "300+",
-    description: "Нянь уже працюють з нами",
-  },
-  {
-    value: "80%",
-    description: "Випускниць підвищили рівень оплати після навчання",
-  },
-];
+export const EducationSection = ({ translation, locale }: { translation: Record<string, unknown>, locale: string }) => {
+  const { t } = useTranslation('common');
+  const [isReady, setIsReady] = useState(false);
 
-export const EducationSection = () => {
+  useEffect(() => {
+    if (translation && locale) {
+      i18n.addResourceBundle(locale, 'common', translation, true, true);
+      i18n.changeLanguage(locale).then(() => setIsReady(true));
+    }
+  }, [translation, locale]);
+
+  // SSR-safe stats
+  const statsRaw = !isReady
+    ? (translation && translation['education_stats'] as unknown[]) || []
+    : t('education_stats', { returnObjects: true }) || [];
+  const stats = Array.isArray(statsRaw) ? statsRaw : [];
+
+  // const faqsRaw = !isReady
+  //   ? (translation && translation['education_faq'] as unknown[]) || []
+  //   : t('education_faq', { returnObjects: true }) || [];
+  // const faqs = Array.isArray(faqsRaw) ? faqsRaw : [];
+
   return (
     <section className={s.section}>
       <Container>
@@ -66,7 +72,13 @@ export const EducationSection = () => {
               transition={{ duration: 0.7, ease: "easeOut" }}
             >
               {svg}
-              Професійне навчання <span>для нянь {line}</span>
+              {!isReady
+                ? (translation && (translation['education_title'] as string)) || ''
+                : t('education_title')} 
+              <span>    
+                {String(t('education_title_highlight'))}
+                {line}
+              </span>
             </motion.h2>
 
             <motion.div
@@ -82,10 +94,9 @@ export const EducationSection = () => {
                 viewport={{ once: false, amount: 0.6 }}
                 transition={{ duration: 0.7, ease: "easeOut" }}
               >
-                Наш курс — це сучасний підхід до розвитку та догляду за дітьми.
-                Ви отримаєте знання, які справді важливі: основи педіатрії,
-                дитяча психологія, методики раннього розвитку, ігри та заняття
-                для стимуляції росту.
+                {!isReady
+                  ? typeof translation['education_desc1'] === 'string' ? translation['education_desc1'] : ''
+                  : String(t('education_desc1'))}
               </motion.p>
               <motion.p
                 initial={{ opacity: 0, y: 40 }}
@@ -93,20 +104,28 @@ export const EducationSection = () => {
                 viewport={{ once: false, amount: 0.6 }}
                 transition={{ duration: 0.7, ease: "easeOut" }}
               >
-                Також навчитесь гармонійно працювати в родині та розвивати свої
-                професійні навички. Курс створений для тих, хто прагне зростати
-                через практику й розуміння дитини.
+                {!isReady
+                  ? typeof translation['education_desc2'] === 'string' ? translation['education_desc2'] : ''
+                  : String(t('education_desc2'))}
               </motion.p>
             </motion.div>
 
-            <motion.button
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: false, amount: 0.6 }}
-              transition={{ duration: 0.7, ease: "easeOut" }}
-            >
-              Обрати навчання
-            </motion.button>
+            <Link href={`/${locale}/education`} passHref legacyBehavior>
+              <motion.button
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: false, amount: 0.6 }}
+                transition={{ duration: 0.7, ease: "easeOut" }}
+              >
+                {!isReady
+                  ? typeof translation['education_btn'] === 'string'
+                    ? translation['education_btn']
+                    : ''
+                  : typeof t('education_btn') === 'string'
+                    ? t('education_btn')
+                    : ''}
+              </motion.button>
+            </Link>
           </motion.div>
 
           <div className={s.clouds}>
@@ -151,18 +170,21 @@ export const EducationSection = () => {
           transition={{ duration: 0.7, ease: "easeOut" }}
         >
           <ul>
-            {statsData.map((item, index) => (
-              <motion.li
-                key={index}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: false, amount: 0.6 }}
-                transition={{ duration: 0.7, ease: "easeOut" }}
-              >
-                <span>{item.value}</span>
-                <p>{item.description}</p>
-              </motion.li>
-            ))}
+            {stats.map((item: unknown, index: number) => {
+              const stat = item as { value: string; description: string };
+              return (
+                <motion.li
+                  key={index}
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: false, amount: 0.6 }}
+                  transition={{ duration: 0.7, ease: "easeOut" }}
+                >
+                  <span>{stat.value}</span>
+                  <p>{stat.description}</p>
+                </motion.li>
+              );
+            })}
           </ul>
         </motion.div>
       </Container>

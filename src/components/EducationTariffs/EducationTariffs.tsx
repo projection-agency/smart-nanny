@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useModal } from "../ModalContext";
 import s from "./EducationTariffs.module.css";
 import { API_URL } from "@/constants";
+import { useTranslation } from 'react-i18next';
 
 type TariffOption = {
   label: string;
@@ -27,18 +28,20 @@ type ApiTariff = {
 
 export const EducationTariffs = () => {
   const { openModal } = useModal();
+  const { t, i18n } = useTranslation('common');
   const [tariffs, setTariffs] = useState<Tariff[]>([]);
   useEffect(() => {
+    const lang = (i18n.language === 'ua' ? 'ua' : i18n.language).toLowerCase();
     const fetchTariffs = async () => {
       try {
-        const response = await fetch(`${API_URL}v2/course_tariff`);
+        const response = await fetch(`${API_URL}v2/course_tariff?lang=${lang}`);
         const data: ApiTariff[] = await response.json();
 
         const parsedTariffs: Tariff[] = data.map((item) => ({
           id: item.id,
           title: item.title?.rendered || "",
           price: item.Price,
-          buttonText: "Обрати навчання",
+          buttonText: t('tariff_btn'),
           options:
             item.Tariff?.map((opt) => ({
               label: opt.Text,
@@ -46,10 +49,10 @@ export const EducationTariffs = () => {
             })) || [],
         }));
 
-        // Сортування — "Базовий" першим
+        // Сортування — "Базовий" першим (ua) або "Basic" (en)
         parsedTariffs.sort((a, b) => {
-          if (a.title === "Базовий") return -1;
-          if (b.title === "Базовий") return 1;
+          if (a.title === t('tariff_basic')) return -1;
+          if (b.title === t('tariff_basic')) return 1;
           return 0;
         });
 
@@ -60,7 +63,7 @@ export const EducationTariffs = () => {
     };
 
     fetchTariffs();
-  }, []);
+  }, [i18n.language, t]);
 
   return (
     <div className={s.tariffs}>
@@ -68,19 +71,29 @@ export const EducationTariffs = () => {
         <div className={s.tariff} key={tariff.id}>
           <h3>{tariff.title}</h3>
           <ul>
-            {tariff.options.map((opt, i) => (
-              <li className={!opt.included ? s.grey : ""} key={i}>
-                {opt.included ? yes : no} {opt.label}
-              </li>
-            ))}
+            {tariff.options.map((opt, i) => {
+              // Витягуємо текст у дужках, якщо є
+              const match = opt.label.match(/^(.*?)(\s*\((.*?)\))?$/);
+              const mainText = match ? match[1].trim() : opt.label;
+              const secondaryText = match && match[3] ? match[3] : null;
+              return (
+                <li className={!opt.included ? s.grey : ""} key={i}>
+                  {opt.included ? yes : no}
+                  <div className={s.optionTextWrapper}>
+                    <span className={s.optionMain}>{mainText}</span>
+                    {secondaryText && (
+                      <span className={s.optionSecondary}>({secondaryText})</span>
+                    )}
+                  </div>
+                </li>
+              );
+            })}
           </ul>
           <div className={s.price}>
-            <span>Вартість:</span>
+            <span>{t('tariff_price')}:</span>
             <span>{tariff.price}</span>
           </div>
-          <button onClick={() => openModal("formB")}>
-            {tariff.buttonText}
-          </button>
+          <button onClick={() => openModal("formB")}>{tariff.buttonText}</button>
         </div>
       ))}
     </div>
