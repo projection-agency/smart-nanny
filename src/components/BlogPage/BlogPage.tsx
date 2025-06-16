@@ -11,10 +11,6 @@ import { useTranslation } from 'react-i18next';
 import i18n from '@/i18n/client';
 import Spinner from "@/components/Spinner";
 
-const itemVariants = {
-  hidden: { opacity: 0, y: 30 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } },
-};
 
 export interface Category {
   id: number;
