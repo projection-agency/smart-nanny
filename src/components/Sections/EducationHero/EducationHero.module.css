@@ -207,6 +207,7 @@
 
       span {
         font-size: 8.5vw;
+        -webkit-text-stroke-width: 0.2vw;
         svg {
           bottom: -2.1vw;
           display: block;

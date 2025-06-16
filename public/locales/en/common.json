@@ -78,6 +78,8 @@
       "description": "A service for families who need situational help for a few hours or a short period (a few days or weeks). We will find a qualified nanny in just 1-2 days, and in some cases — even on the same day.",
       "tags": ["A few hours/days", "Flexible schedule"],
       "price": "from <span>300 UAH</span> / hour",
+      "shortDesc": "100% of the nanny's monthly salary",
+
       "buttonText": "Select a nanny",
       "theme": "white"
     },

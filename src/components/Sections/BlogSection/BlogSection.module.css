@@ -135,9 +135,12 @@ div.swiper {
       span {
         max-width: 41.6vw;
         right: 16vw;
-        font-size: 4.3vw;
         top: -3vw;
         transform: rotate(0deg);
+
+        font-size: 4.3vw;
+        letter-spacing: -1px;
+        -webkit-text-stroke-width: 0.2vw;
 
         svg {
           display: none;

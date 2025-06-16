@@ -113,10 +113,12 @@
   .faqStyle {
     .title {
       font-size: 4.8vw;
+      max-width: 64.5vw;
     }
   }
   .title {
     font-size: 6.4vw;
+    -webkit-text-stroke-width: 0.2vw;
   }
 
   .icon {
