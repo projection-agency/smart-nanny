@@ -2,7 +2,7 @@
   0% {
     transform: rotateZ(10deg);
   }
-  50%{
+  50% {
     transform: rotateZ(-10deg);
   }
   100% {
@@ -32,6 +32,7 @@
     width: 5.2vw;
     top: -2.5vw;
     left: -2.5vw;
+    stroke: rgba(255, 145, 178, 1);
     animation: rotate 4s ease-in-out infinite;
   }
 

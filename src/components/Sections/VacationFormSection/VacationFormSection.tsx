@@ -90,7 +90,7 @@ const flower = (
   <svg
     className={s.flower}
     viewBox="0 0 120 115"
-    fill="none"
+    fill="#FF91B2"
     xmlns="http://www.w3.org/2000/svg"
   >
     <mask
@@ -100,10 +100,10 @@ const flower = (
       y="9.28989"
       width="104.249"
       height="96.4949"
-      fill="black"
+      fill="#FF91B2"
     >
       <rect
-        fill="white"
+        fill="#FF91B2"
         x="7.64024"
         y="9.28989"
         width="104.249"

@@ -43,14 +43,13 @@
   0% {
     transform: rotateZ(10deg);
   }
-  50%{
+  50% {
     transform: rotateZ(-10deg);
   }
   100% {
     transform: rotateZ(10deg);
   }
 }
-
 
 .content {
   position: relative;
@@ -89,7 +88,6 @@
         width: 100%;
         left: 0;
         bottom: -0.7vw;
-        
       }
     }
   }
@@ -161,8 +159,12 @@
   }
 }
 
-.cloud1{
-  display: none;
+.cloud1 {
+  position: absolute;
+  width: 8.3vw;
+  top: -17vw;
+  right: -16vw;
+  animation: levitate 6s infinite;
 }
 
 @media screen and (max-width: 1024px) {
@@ -245,15 +247,15 @@
 
     .cloud {
       width: 29.8vw;
-      top: -33vw;
-      left: -4vw;
+      top: -36vw;
+      left: -14vw;
     }
 
     .cloud1 {
       position: absolute;
       width: 29.8vw;
       top: -36vw;
-      right: -13vw;
+      right: -6vw;
     }
   }
 }
