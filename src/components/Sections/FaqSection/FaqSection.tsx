@@ -17,7 +17,7 @@ type FaqItem = {
   faq_category: number[];
 };
 
-export const FaqSection = ({ nannys, translation, locale }: { nannys?: boolean, translation: Record<string, unknown>, locale: string }) => {
+export const FaqSection = ({ translation, locale }: { nannys?: boolean, translation: Record<string, unknown>, locale: string }) => {
   const [openId, setOpenId] = useState<number | null>(null);
   const [faqs, setFaqs] = useState<FaqItem[]>([]);
   const pathname: string = usePathname();
@@ -77,9 +77,9 @@ export const FaqSection = ({ nannys, translation, locale }: { nannys?: boolean, 
   }, [faqs]);
 
   const currentFaqs =
-    (pathname.includes("education") && courseFaqs) ||
+    (pathname.includes("/education") && courseFaqs) ||
+    (pathname.includes("/nanny-selection") && nannysFaqs) ||
     (pathname.includes("/") && parentsFaqs) ||
-    (pathname.includes("nanny-selection") && nannysFaqs) ||
     [];
 
   // SSR-only faqs (translation)
@@ -107,11 +107,8 @@ export const FaqSection = ({ nannys, translation, locale }: { nannys?: boolean, 
           })()}
           <span>
             {" "}
-            {pathname.includes('education')
-              ? t('faq_from_course')
-              : nannys
-                ? t('faq_from_nanny')
-                : t('faq_from_parents')}
+            {pathname.includes('education') && t('faq_from_course') || pathname.includes("nanny-selection") && t("faq_from_nanny") || pathname.includes("/") && t('faq_from_parents')}
+
             <Line />
           </span>
         </motion.h2>

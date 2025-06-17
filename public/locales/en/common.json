@@ -323,7 +323,7 @@
   "nanny_hero_title_span": "Together",
   "nanny_hero_title_rest": "to new opportunities",
   "nanny_hero_subtitle": "We are a team that unites nannies for professional growth. We work with trusted families, create a friendly community, and support stable income.",
-  "nanny_hero_btn": "Apply now",
+  "nanny_hero_btn": "Submit an application",
   "breadcrumbs_home": "Home",
   "breadcrumbs_blog": "Blog",
   "breadcrumbs_education": "Education",
@@ -461,5 +461,6 @@
   "mobile_sidebar_write_us": "Write to us",
   "mobile_sidebar_call_us": "Call us",
   "vacation_mobile_filter": "Filters",
-  "respond_popup_title": "Respond to a vacancy"
+  "respond_popup_title": "Respond to a vacancy",
+  "blog_page_view_more_section_title": "Read on"
 }

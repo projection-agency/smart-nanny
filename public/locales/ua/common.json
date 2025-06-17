@@ -273,7 +273,7 @@
       "icon": "/icons/course-icons.svg#icon-3"
     },
     {
-      "title": "Шукаєте нові методики",
+      "title": "Прагнете нових методик",
       "description": "Оновите свої підходи та додасте більше цікавих занять",
       "icon": "/icons/course-icons.svg#icon-4"
     }
@@ -365,7 +365,7 @@
   "nanny_hero_title_span": "Разом",
   "nanny_hero_title_rest": "до нових можливостей",
   "nanny_hero_subtitle": "Ми команда, яка об'єднує нянь для професійного розвитку. Ми працюємо з довіреними родинами, створюємо дружню спільноту та підтримуємо стабільний дохід.",
-  "nanny_hero_btn": "Записатись",
+  "nanny_hero_btn": "Подати заявку",
   "offer_title": "Договір публічної оферти",
   "offer_hero": "Договір <span>публічної оферти{line}</span>",
   "offer_sections": [
@@ -460,5 +460,6 @@
   "mobile_sidebar_write_us": "Написати нам",
   "mobile_sidebar_call_us": "Подзвонити нам",
   "vacation_mobile_filter": "Фільтри",
-  "respond_popup_title": "Відгукнутись на вакансію"
+  "respond_popup_title": "Відгукнутись на вакансію",
+  "blog_page_view_more_section_title":"Читати далі"
 }

@@ -49,6 +49,9 @@ export const GallerySection = ({ translation, locale }: { translation: Record<st
     "/images/gallery/6.jpg",
     "/images/gallery/7.jpg",
     "/images/gallery/8.jpg",
+    "/images/gallery/9.jpg",
+    "/images/gallery/10.jpg",
+    "/images/gallery/11.jpg",
   ];
 
   // const lineVariants = {

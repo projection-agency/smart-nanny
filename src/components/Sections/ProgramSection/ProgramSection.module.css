@@ -76,13 +76,13 @@
       }
     }
 
-  .stars {
-    position: absolute;
-    left: -8.5vw;
-    top: -2.5vw;
-    width: 3.4vw;
-    height: auto;
-  }
+    .stars {
+      position: absolute;
+      left: -8.5vw;
+      top: -2.5vw;
+      width: 3.4vw;
+      height: auto;
+    }
   }
 
   p {
@@ -107,6 +107,18 @@
 }
 
 @media screen and (max-width: 1024px) {
+  @keyframes width {
+    0% {
+      width: 15.2vw;
+    }
+    50% {
+      width: 17vw;
+    }
+    100% {
+      width: 15.2vw;
+    }
+  }
+
   .section {
     position: relative;
     overflow: visible;
@@ -120,6 +132,13 @@
 
   .titleContainer {
     margin-bottom: 10.6vw;
+
+    .stars {
+      width: 15.2vw;
+      top: -11.5vw;
+      left: -1.5vw;
+      animation: width 4s ease-in-out infinite;
+    }
 
     h2 {
       font-size: 9.6vw;
