@@ -1,5 +1,27 @@
 .section {
   padding: 5.2vw 0 10.4vw 0;
+
+  .viewMoreCont {
+    padding: 0 3.1vw;
+    margin: 0 auto;
+
+    h2 {
+      margin-bottom: 3.8vw;
+
+      font-family: Futura PT;
+      font-weight: 500;
+      font-size: 3.3vw;
+      line-height: 100%;
+      letter-spacing: -1px;
+      text-align: center;
+    }
+
+    .viewMoreList {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1.8vw;
+    }
+  }
 }
 
 .container {
@@ -36,6 +58,8 @@
 }
 
 .textContainer {
+  margin-bottom: 10.4vw;
+
   p {
     font-family: Moderustic;
     font-weight: 400;
@@ -47,7 +71,7 @@
   p:not(:last-child) {
     margin-bottom: 1.5vw;
   }
-  img{
+  img {
     margin-bottom: 4.1vw;
     border-radius: 1.2vw;
     width: 100%;
@@ -100,17 +124,43 @@
 @media screen and (max-width: 1024px) {
   .section {
     padding: 21.3vw 0;
+
+    .viewMoreCont {
+      h2 {
+        font-size: 9.6vw;
+        font-weight: 450;
+        margin-bottom: 10.7vw;
+      }
+      .swiper {
+        display: block;
+        margin-bottom: 5.3vw;
+
+        .swiperSlide {
+          display: flex;
+          height: auto;
+        }
+      }
+
+      .paginationCont {
+        display: flex;
+        justify-content: center;
+
+        p {
+          background-color: black;
+        }
+      }
+    }
   }
-  
+
   .container {
     max-width: 90.91vw;
     margin: 0 auto;
   }
-  
+
   .titleContainer {
     text-align: left;
     margin-bottom: 10.66vw;
-  
+
     h1 {
       font-family: Futura PT;
       font-weight: 450;
@@ -118,33 +168,33 @@
       margin-bottom: 6.4vw;
       text-align: left;
     }
-  
+
     p {
       font-size: 3.73vw;
     }
   }
-  
+
   .imageContainer {
     border-radius: 3.2vw;
     overflow: hidden;
     margin-bottom: 10.6vw;
   }
-  
+
   .textContainer {
+    margin-bottom: 21.3vw;
     p {
       font-size: 3.73vw;
     }
-  
+
     p:not(:last-child) {
       margin-bottom: 10.6vw;
     }
-    img{
+    img {
       margin-bottom: 10.6vw;
       border-radius: 3.2vw;
     }
   }
-  
-  
+
   .titleContainer > div {
     display: flex;
     justify-content: flex-start;
@@ -153,20 +203,20 @@
     align-items: center;
     flex-wrap: wrap;
     margin-bottom: 6.4vw;
-  
+
     span {
       font-size: 4.26vw;
     }
-  
+
     div {
       width: 1.2vw;
       height: 1.2vw;
     }
   }
-  
+
   .otherArticles {
     padding-bottom: 10.4vw;
-  
+
     h2 {
       font-family: Futura PT;
       font-weight: 500;
@@ -177,11 +227,10 @@
       margin-bottom: 3.7vw;
     }
   }
-  
+
   .list {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 1.8vw;
   }
-
 }

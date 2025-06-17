@@ -71,6 +71,7 @@
     width: max-content;
     height: 2.8vw;
     margin-bottom: 0.8vw;
+    aspect-ratio: auto;
   }
 
   h3 {
@@ -131,7 +132,7 @@
 
 @media screen and (max-width: 1024px) {
   .section {
-    padding: 26.7vw 0 ;
+    padding: 26.7vw 0;
   }
 
   .content {
