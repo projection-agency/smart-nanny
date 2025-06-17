@@ -18,19 +18,24 @@ import { fetchVacations } from "@/store/vacationSlice";
 import Link from "next/link";
 import { selectFilteredVacations } from "@/store/selectors";
 import { motion, AnimatePresence } from "framer-motion";
-import { useTranslation, Trans } from 'react-i18next';
-import i18n from '@/i18n/client';
+import { useTranslation, Trans } from "react-i18next";
+import i18n from "@/i18n/client";
 
-export const VacationSection = ({ translation, locale }: { translation: Record<string, unknown>, locale: string }) => {
+export const VacationSection = ({
+  translation,
+  locale,
+}: {
+  translation: Record<string, unknown>;
+  locale: string;
+}) => {
   const prevRef = useRef<HTMLDivElement>(null);
   const nextRef = useRef<HTMLDivElement>(null);
-
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const swiperRef = useRef<any>(null);
 
   const dispatch = useDispatch<AppDispatch>();
 
-  const { t } = useTranslation('common');
+  const { t } = useTranslation("common");
 
   const [isReady, setIsReady] = useState(false);
   const [isClient, setIsClient] = useState(false);
@@ -58,12 +63,14 @@ export const VacationSection = ({ translation, locale }: { translation: Record<s
 
   useEffect(() => {
     if (translation && locale) {
-      i18n.addResourceBundle(locale, 'common', translation, true, true);
+      i18n.addResourceBundle(locale, "common", translation, true, true);
       i18n.changeLanguage(locale).then(() => setIsReady(true));
     }
   }, [translation, locale]);
 
-  useEffect(() => { setIsClient(true); }, []);
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   return (
     <motion.section
@@ -82,19 +89,27 @@ export const VacationSection = ({ translation, locale }: { translation: Record<s
           transition={{ duration: 0.7, ease: "easeOut" }}
         >
           <h2>
-            {!isReady
-              ? typeof translation["vacation_title"] === "string"
-                ? translation["vacation_title"]
-                : ""
-              : <Trans
-                  i18nKey="vacation_title"
-                  components={{
-                    span: <span />,
-                    line: <motion.svg
+            {!isReady ? (
+              typeof translation["vacation_title"] === "string" ? (
+                translation["vacation_title"]
+              ) : (
+                ""
+              )
+            ) : (
+              <Trans
+                i18nKey="vacation_title"
+                components={{
+                  span: <span />,
+                  line: (
+                    <motion.svg
                       viewBox="0 0 195 18"
                       fill="none"
                       xmlns="http://www.w3.org/2000/svg"
-                      style={{ width: "100%", height: "auto", verticalAlign: "middle" }}
+                      style={{
+                        width: "100%",
+                        height: "auto",
+                        verticalAlign: "middle",
+                      }}
                       preserveAspectRatio="xMidYMid meet"
                     >
                       <motion.path
@@ -109,8 +124,10 @@ export const VacationSection = ({ translation, locale }: { translation: Record<s
                         viewport={{ once: false, amount: 0.5 }}
                       />
                     </motion.svg>
-                  }}
-                />}
+                  ),
+                }}
+              />
+            )}
           </h2>
           <VacationController translation={translation} locale={locale} />
           {svg}
@@ -184,7 +201,7 @@ export const VacationSection = ({ translation, locale }: { translation: Record<s
         </div>
 
         <Link href="/" className={s.moreVacations}>
-          {t('vacation_all')}
+          {t("vacation_all")}
         </Link>
       </Container>
     </motion.section>

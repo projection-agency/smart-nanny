@@ -31,8 +31,7 @@ export const VacationPage = ({
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [isDesktop, setIsDesktop] = useState(true);
   const [isReady, setIsReady] = useState(false);
-
-  const dispatch = useDispatch<AppDispatch>();
+const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
     const checkScreen = () => {

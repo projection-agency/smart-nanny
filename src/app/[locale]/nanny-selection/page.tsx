@@ -2,7 +2,7 @@ import fs from 'fs/promises';
 import path from 'path';
 import { EducationSection } from "@/components/Sections/EducationSection/EducationSection";
 import { FaqSection } from "@/components/Sections/FaqSection/FaqSection";
-import { NannySelectionHero } from "@/components/Sections/NannySelectionHero/NannySelectionHero";
+import { NannySelectionHero } from '@/components/Sections/NannySelectionHero/NannySelectionHero';
 import { RoadSection } from "@/components/Sections/RoadSection/RoadSection";
 import { VacationFormSection } from "@/components/Sections/VacationFormSection/VacationFormSection";
 import { VacationSection } from "@/components/Sections/VacationSection/VacationSection";

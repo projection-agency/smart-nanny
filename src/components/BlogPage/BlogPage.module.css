@@ -32,6 +32,7 @@
   position: relative;
 
   .stars {
+    display: none;
     position: absolute;
     left: 32.5vw;
     top: -1.5vw;

@@ -4,25 +4,31 @@ import s from "./EducationSection.module.css";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import { useTranslation } from 'react-i18next';
-import i18n from '@/i18n/client';
+import { useTranslation } from "react-i18next";
+import i18n from "@/i18n/client";
 import Link from "next/link";
 
-export const EducationSection = ({ translation, locale }: { translation: Record<string, unknown>, locale: string }) => {
-  const { t } = useTranslation('common');
+export const EducationSection = ({
+  translation,
+  locale,
+}: {
+  translation: Record<string, unknown>;
+  locale: string;
+}) => {
+  const { t } = useTranslation("common");
   const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
     if (translation && locale) {
-      i18n.addResourceBundle(locale, 'common', translation, true, true);
+      i18n.addResourceBundle(locale, "common", translation, true, true);
       i18n.changeLanguage(locale).then(() => setIsReady(true));
     }
   }, [translation, locale]);
 
   // SSR-safe stats
   const statsRaw = !isReady
-    ? (translation && translation['education_stats'] as unknown[]) || []
-    : t('education_stats', { returnObjects: true }) || [];
+    ? (translation && (translation["education_stats"] as unknown[])) || []
+    : t("education_stats", { returnObjects: true }) || [];
   const stats = Array.isArray(statsRaw) ? statsRaw : [];
 
   // const faqsRaw = !isReady
@@ -32,7 +38,7 @@ export const EducationSection = ({ translation, locale }: { translation: Record<
 
   return (
     <section className={s.section}>
-      <Container>
+      <Container className={s.container}>
         <motion.div
           className={s.topBlock}
           initial={{ opacity: 0, y: 40 }}
@@ -73,10 +79,11 @@ export const EducationSection = ({ translation, locale }: { translation: Record<
             >
               {svg}
               {!isReady
-                ? (translation && (translation['education_title'] as string)) || ''
-                : t('education_title')} 
-              <span>    
-                {String(t('education_title_highlight'))}
+                ? (translation && (translation["education_title"] as string)) ||
+                  ""
+                : t("education_title")}
+              <span>
+                {String(t("education_title_highlight"))}
                 {line}
               </span>
             </motion.h2>
@@ -95,8 +102,10 @@ export const EducationSection = ({ translation, locale }: { translation: Record<
                 transition={{ duration: 0.7, ease: "easeOut" }}
               >
                 {!isReady
-                  ? typeof translation['education_desc1'] === 'string' ? translation['education_desc1'] : ''
-                  : String(t('education_desc1'))}
+                  ? typeof translation["education_desc1"] === "string"
+                    ? translation["education_desc1"]
+                    : ""
+                  : String(t("education_desc1"))}
               </motion.p>
               <motion.p
                 initial={{ opacity: 0, y: 40 }}
@@ -105,12 +114,14 @@ export const EducationSection = ({ translation, locale }: { translation: Record<
                 transition={{ duration: 0.7, ease: "easeOut" }}
               >
                 {!isReady
-                  ? typeof translation['education_desc2'] === 'string' ? translation['education_desc2'] : ''
-                  : String(t('education_desc2'))}
+                  ? typeof translation["education_desc2"] === "string"
+                    ? translation["education_desc2"]
+                    : ""
+                  : String(t("education_desc2"))}
               </motion.p>
             </motion.div>
 
-            <Link href={`/${locale}/education`} passHref legacyBehavior>
+            <Link href={`/${locale}/education`} passHref>
               <motion.button
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -118,32 +129,15 @@ export const EducationSection = ({ translation, locale }: { translation: Record<
                 transition={{ duration: 0.7, ease: "easeOut" }}
               >
                 {!isReady
-                  ? typeof translation['education_btn'] === 'string'
-                    ? translation['education_btn']
-                    : ''
-                  : typeof t('education_btn') === 'string'
-                    ? t('education_btn')
-                    : ''}
+                  ? typeof translation["education_btn"] === "string"
+                    ? translation["education_btn"]
+                    : ""
+                  : typeof t("education_btn") === "string"
+                  ? t("education_btn")
+                  : ""}
               </motion.button>
             </Link>
           </motion.div>
-
-          <div className={s.clouds}>
-            <Image
-              width={1920}
-              height={1080}
-              src="/images/cloud1.png"
-              alt="Cloud"
-              className={s.cloud1}
-            />
-            <Image
-              width={1920}
-              height={1080}
-              src="/images/cloud2.png"
-              alt="Cloud"
-              className={s.cloud2}
-            />
-          </div>
 
           <div className={s.imageBlock}>
             <Image
@@ -161,6 +155,23 @@ export const EducationSection = ({ translation, locale }: { translation: Record<
             />
           </div>
         </motion.div>
+
+        <div className={s.clouds}>
+          <Image
+            width={1920}
+            height={1080}
+            src="/images/cloud1.png"
+            alt="Cloud"
+            className={s.cloud1}
+          />
+          <Image
+            width={1920}
+            height={1080}
+            src="/images/cloud2.png"
+            alt="Cloud"
+            className={s.cloud2}
+          />
+        </div>
 
         <motion.div
           className={s.bottomBlock}

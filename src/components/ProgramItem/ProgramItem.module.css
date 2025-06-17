@@ -101,7 +101,6 @@
   color: #ffffff;
 
   span.icon {
-    background-color: #ffffff;
     stroke: var(--primary-pink);
   }
 }
