@@ -247,6 +247,7 @@
   "program_result": "Результат",
   "program_expand": "Показати",
   "program_collapse": "Згорнути",
+  "program_duration":"хв",
   "tariff_title_before": "Тарифи на ",
   "tariff_title_highlight": "навчання",
   "tariff_title": "Тарифи на <span>навчання <line/></span>",

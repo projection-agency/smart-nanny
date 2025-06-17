@@ -273,6 +273,7 @@
   "program_result": "Result",
   "program_expand": "Show",
   "program_collapse": "Collapse",
+    "program_duration":"min",
   "tariff_title_before": "Tariffs for ",
   "tariff_title_highlight": "training",
   "tariff_title": "Tariffs for <span>training <line/></span>",
