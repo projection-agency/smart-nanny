@@ -105,7 +105,7 @@ export const WhySection = ({
                 i18nKey="why_title"
                 components={{
                   span: <span />,
-                  line: <AnimatedLine />,
+                  line: <AnimatedLine stroke="#FF91B2"/>,
                 }}
               />
             )}

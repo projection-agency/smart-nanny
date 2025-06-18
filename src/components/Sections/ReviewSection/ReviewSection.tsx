@@ -10,8 +10,9 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { useTranslation, Trans } from 'react-i18next';
+import { useTranslation, Trans } from "react-i18next";
 import { API_URL } from "@/constants";
+import { AnimatedLine } from "@/components/AnimatedLine/AnimatedLine";
 
 interface Review {
   id: number;
@@ -22,17 +23,23 @@ interface Review {
   Location: string;
 }
 
-export const ReviewSection = ({ translation, locale }: { translation: Record<string, unknown>, locale: string }) => {
+export const ReviewSection = ({
+  translation,
+  locale,
+}: {
+  translation: Record<string, unknown>;
+  locale: string;
+}) => {
   const paginationRef = useRef<HTMLDivElement>(null);
   const [isReady, setIsReady] = useState(false);
   const [isClient, setIsClient] = useState(false);
   const [reviews, setReviews] = useState<Review[]>([]);
 
-  const { t, i18n } = useTranslation('common');
+  const { t, i18n } = useTranslation("common");
 
   useEffect(() => {
     if (translation && locale) {
-      i18n.addResourceBundle(locale, 'common', translation, true, true);
+      i18n.addResourceBundle(locale, "common", translation, true, true);
       i18n.changeLanguage(locale).then(() => setIsReady(true));
     }
   }, [translation, locale, i18n]);
@@ -50,10 +57,14 @@ export const ReviewSection = ({ translation, locale }: { translation: Record<str
     fetchReviews();
   }, [locale]);
 
-  useEffect(() => { setIsClient(true); }, []);
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   // SSR-only reviews (translation)
-  const reviewsRaw = !isReady ? (translation && translation['reviews'] as unknown[]) || [] : t('reviews', { returnObjects: true }) || [];
+  const reviewsRaw = !isReady
+    ? (translation && (translation["reviews"] as unknown[])) || []
+    : t("reviews", { returnObjects: true }) || [];
   const reviewsSSR = Array.isArray(reviewsRaw) ? reviewsRaw : [];
 
   // const lineVariants = {
@@ -82,36 +93,23 @@ export const ReviewSection = ({ translation, locale }: { translation: Record<str
             viewport={{ once: false, amount: 0.6 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
           >
-            {!isReady
-              ? (translation && translation["review_title"] as string) || ""
-              : <Trans i18nKey="review_title" />}
-            <span>
-              {" "}
-              <Trans i18nKey="review_title_span" />
-              <motion.svg
-                viewBox="0 0 195 18"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                style={{
-                  width: "100%",
-                  height: "auto",
-                  verticalAlign: "middle",
-                }}
-                preserveAspectRatio="xMidYMid meet"
-              >
-                <motion.path
-                  d="M2 15.5949C2.45184 12.3746 10.2611 10.229 13.0626 9.39704C19.2811 7.55038 24.0144 4.62166 30.7399 4.62166C34.8258 4.62166 52.0814 1.36315 43.2851 7.67204C41.0185 9.29771 41.0162 8.3894 39.8456 10.2144C38.2422 12.7142 41.1508 10.8755 42.9819 10.6716C52.0189 9.66526 59.7991 9.98828 68.9458 9.29771C83.7508 8.17993 100.311 10.4003 114.913 7.97489C125.853 6.1577 137.308 6.30047 148.196 4.62157C155.411 3.50917 162.687 2.08148 170.036 2.08148C172.464 2.08148 178.396 0.795266 178.191 3.91035C178.078 5.60885 172.111 7.8417 170.492 8.48252C168.708 9.18906 159.357 12.1403 162.794 12.1403C178.232 12.1403 178.379 10.0355 193.5 7.42374"
-                  stroke="#FF91B2"
-                  strokeWidth="3"
-                  strokeLinecap="round"
-                  pathLength={1}
-                  initial={{ pathLength: 0 }}
-                  whileInView={{ pathLength: 1 }}
-                  transition={{ duration: 1.2, ease: "easeOut" }}
-                  viewport={{ once: false, amount: 0.5 }}
-                />
-              </motion.svg>
-            </span>
+            {!isReady ? (
+              (translation && (translation["review_title"] as string)) || ""
+            ) : (
+              <>
+                <Trans i18nKey="review_title" />
+                <span>
+                  {" "}
+                  <Trans
+                    i18nKey="review_title_span"
+                    components={{
+                      span: <span />,
+                      line: <AnimatedLine stroke={"#FF91B2"} />,
+                    }}
+                  />
+                </span>
+              </>
+            )}
           </motion.h2>
 
           <motion.p
@@ -121,7 +119,7 @@ export const ReviewSection = ({ translation, locale }: { translation: Record<str
             viewport={{ once: false, amount: 0.7 }}
             transition={{ duration: 0.7, ease: "easeOut", delay: 0.15 }}
           >
-            {t('review_desc')}
+            {t("review_desc")}
           </motion.p>
 
           <motion.div
