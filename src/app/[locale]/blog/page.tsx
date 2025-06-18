@@ -1,7 +1,6 @@
 import fs from 'fs/promises';
 import path from 'path';
-import { BlogPage } from "@/components/BlogPage/BlogPage";
-
+import { BlogPage } from '@/components/BlogPage/BlogPage';
 export const metadata = {
   title: "Блог",
   description: "Ми підбираємо надійних нянь, яким можна довірити вашу дитину.",

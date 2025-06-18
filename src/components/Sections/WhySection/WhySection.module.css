@@ -71,7 +71,7 @@
     width: max-content;
     height: 2.8vw;
     margin-bottom: 0.8vw;
-    aspect-ratio: auto;
+    aspect-ratio: auto !important;
   }
 
   h3 {

@@ -90,10 +90,7 @@ export const BlogPage = ({ translation, locale }: { translation: unknown, locale
           transition={{ duration: 0.7, ease: "easeOut" }}
         >
 
-          <motion.h2
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: "easeOut" }}
+          <h2
           >
             <Stars />
             <span>
@@ -101,7 +98,7 @@ export const BlogPage = ({ translation, locale }: { translation: unknown, locale
             </span>
             {blogTitleRest}
             {svg}
-          </motion.h2>
+          </h2>
 
           <motion.p
             initial={{ opacity: 0, y: 40 }}

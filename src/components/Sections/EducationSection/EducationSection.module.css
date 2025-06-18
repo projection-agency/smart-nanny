@@ -50,7 +50,7 @@
     .svg {
       width: 2vw;
       position: absolute;
-      right: 0.5vw;
+      right: -1.5vw;
       top: -0.5vw;
       animation: rotate 3s ease-in-out infinite;
     }
@@ -184,6 +184,30 @@
     padding: 21.3vw 0;
     position: relative;
     overflow: hidden;
+    .container {
+      position: relative;
+      .clouds {
+        display: block;
+        .cloud1,
+        .cloud2 {
+          position: absolute;
+          z-index: 9;
+          animation: levitate 6s ease-in-out infinite;
+        }
+
+        .cloud1 {
+          width: 29.9vw;
+          top: -28vw;
+          left: -15vw;
+        }
+
+        .cloud2 {
+          width: 29.9vw;
+          top: 105vw;
+          right: -15vw;
+        }
+      }
+    }
 
     .topBlock {
       grid-template-columns: 1fr;
@@ -212,28 +236,6 @@
           top: -5vw;
           right: -3.5vw;
           animation: levitate 4s ease-in-out infinite;
-        }
-      }
-
-      .clouds {
-        display: block;
-        .cloud1,
-        .cloud2 {
-          position: absolute;
-          z-index: 9;
-          animation: levitate 6s ease-in-out infinite;
-        }
-
-        .cloud1 {
-          width: 29.9vw;
-          top: -9vw;
-          left: -15vw;
-        }
-
-        .cloud2 {
-          width: 29.9vw;
-          top: 125vw;
-          right: -15vw;
         }
       }
 

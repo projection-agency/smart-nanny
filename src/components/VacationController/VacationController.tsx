@@ -151,12 +151,16 @@ export const VacationController = ({
         {vacationAllCount}
       </Link>
 
-      <button
-        className={s.eraseFiltersDesktop}
-        onClick={() => handleEraseFilters()}
-      >
-        Скинути фільтри
-      </button>
+      {pathname.includes("/vacation") ? (
+        <button
+          className={s.eraseFiltersDesktop}
+          onClick={() => handleEraseFilters()}
+        >
+          Скинути фільтри
+        </button>
+      ) : (
+        ""
+      )}
     </div>
   );
 };

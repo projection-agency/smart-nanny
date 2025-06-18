@@ -133,13 +133,6 @@
   .titleContainer {
     margin-bottom: 10.6vw;
 
-    .stars {
-      width: 15.2vw;
-      top: -11.5vw;
-      left: -1.5vw;
-      animation: width 4s ease-in-out infinite;
-    }
-
     h2 {
       font-size: 9.6vw;
       line-height: 90%;
@@ -169,6 +162,13 @@
         width: 15vw;
         top: -4vw;
         left: -11vw;
+      }
+
+      .stars {
+        width: 15.2vw;
+        top: -7.5vw;
+        left: -11.5vw;
+        animation: width 4s ease-in-out infinite;
       }
     }
 

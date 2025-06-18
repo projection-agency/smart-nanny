@@ -32,7 +32,7 @@ export const Accordion = ({
       <button className={s.header}>
         <span className={s.title}>{title}</span>
         <span className={`${s.icon} ${isOpen ? s.open : ""}`}>
-          <svg width="10" height="6" viewBox="0 0 10 6" fill="none">
+          {/* <svg width="10" height="6" viewBox="0 0 10 6" fill="none">
             <path
               d="M1 1L5 5L9 1"
               stroke="#333"
@@ -40,7 +40,8 @@ export const Accordion = ({
               strokeLinecap="round"
               strokeLinejoin="round"
             />
-          </svg>
+          </svg> */}
+          {corner}
         </span>
       </button>
 
@@ -61,3 +62,10 @@ export const Accordion = ({
     </motion.div>
   );
 };
+
+const corner = (
+  <svg width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M13.1387 1.11914C13.3537 1.37891 13.3537 1.78223 13.1387 2.04199L7.52148 8.82812V8.82715C7.48156 8.87774 7.32642 9.06056 7.0625 9.08691C6.87897 9.10508 6.73261 9.03865 6.63965 8.97559C6.5544 8.91775 6.50043 8.85316 6.47949 8.82715L6.47852 8.82812L0.861328 2.04199V2.04102C0.647462 1.78129 0.645171 1.38027 0.861328 1.11914C0.975411 0.981407 1.13878 0.899551 1.31543 0.899414C1.49227 0.899414 1.65633 0.981265 1.77051 1.11914L6.90039 7.31641L6.96875 7.39941V7.49121L6.98438 7.49023L7 7.49121V7.4375L7.06934 7.35352L12.2305 1.11914C12.3446 0.981472 12.5079 0.899414 12.6846 0.899414C12.8613 0.899479 13.0245 0.981403 13.1387 1.11914Z" fill="#FFF4F1" stroke="#FFF4F1" stroke-width="0.6"/>
+</svg>
+
+)
