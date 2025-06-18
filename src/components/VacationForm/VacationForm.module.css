@@ -174,9 +174,15 @@
             input[type="date"] {
               width: 100%;
               min-height: 12vw;
+              height: 12vw;
               font-size: 3.7vw;
               padding: 5.3vw 6.4vw;
               box-sizing: border-box;
+              appearance: none;
+              -webkit-appearance: none;
+              border: 1px solid #ccc;
+              background: #fff;
+              color: #333;
             }
 
             input::placeholder {
