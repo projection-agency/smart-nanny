@@ -8,13 +8,19 @@ import Image from "next/image";
 import { useModal } from "@/components/ModalContext";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
-import { useTranslation, Trans } from 'react-i18next';
-import i18n from '@/i18n/client';
-import type { Variants } from 'framer-motion';
-
-export const ServicesSection = ({ translation, locale }: { translation: Record<string, unknown>, locale: string }) => {
+import { useTranslation, Trans } from "react-i18next";
+import i18n from "@/i18n/client";
+import type { Variants } from "framer-motion";
+import { AnimatedLine } from "@/components/AnimatedLine/AnimatedLine";
+export const ServicesSection = ({
+  translation,
+  locale,
+}: {
+  translation: Record<string, unknown>;
+  locale: string;
+}) => {
   const [openId, setOpenId] = useState<number | null>(null);
-  const { t } = useTranslation('common');
+  const { t } = useTranslation("common");
   const [isReady, setIsReady] = useState(false);
 
   const toggle = (id: number) => {
@@ -27,15 +33,15 @@ export const ServicesSection = ({ translation, locale }: { translation: Record<s
     router.push(`/${locale}/education`);
   };
 
-  const rawCards = t('services_cards', { returnObjects: true });
+  const rawCards = t("services_cards", { returnObjects: true });
   const cards = Array.isArray(rawCards) ? rawCards : [];
 
-  const rawAccordionData = t('services_accordion', { returnObjects: true });
+  const rawAccordionData = t("services_accordion", { returnObjects: true });
   const accordionData = Array.isArray(rawAccordionData) ? rawAccordionData : [];
 
   useEffect(() => {
     if (translation && locale) {
-      i18n.addResourceBundle(locale, 'common', translation, true, true);
+      i18n.addResourceBundle(locale, "common", translation, true, true);
       i18n.changeLanguage(locale).then(() => setIsReady(true));
     }
   }, [translation, locale]);
@@ -50,15 +56,24 @@ export const ServicesSection = ({ translation, locale }: { translation: Record<s
           viewport={{ once: false, amount: 0.5 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
         >
-          {!isReady
-            ? (translation && translation["services_title"] as string) || ""
-            : <Trans
-                i18nKey="services_title"
-                components={{ span: <span />, line: <AnimatedLine /> }}
-              />}
+          {!isReady ? (
+            (translation && (translation["services_title"] as string)) || ""
+          ) : (
+            <Trans
+              i18nKey="why_title"
+              components={{
+                span: <span />,
+                line: <AnimatedLine stroke={"#fff9c1"}/>,
+              }}
+            />
+          )}
         </motion.h3>
 
-        <motion.ul className={s.servicesList} variants={containerVariants} initial="hidden">
+        <motion.ul
+          className={s.servicesList}
+          variants={containerVariants}
+          initial="hidden"
+        >
           {cards.map((card, index) => (
             <motion.li
               className={card.theme === "yellow" ? s.yellow : ""}
@@ -173,12 +188,16 @@ export const ServicesSection = ({ translation, locale }: { translation: Record<s
           viewport={{ once: false, amount: 0.5 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
         >
-          {!isReady
-            ? (translation && translation["services_additional_title"] as string) || ""
-            : <Trans
-                i18nKey="services_additional_title"
-                components={{ span: <span />, line: <AnimatedLine /> }}
-              />}
+          {!isReady ? (
+            (translation &&
+              (translation["services_additional_title"] as string)) ||
+            ""
+          ) : (
+            <Trans
+              i18nKey="services_additional_title"
+              components={{ span: <span />, line: <AnimatedLine stroke={"#fff9c1"}/> }}
+            />
+          )}
         </motion.h3>
 
         <motion.ul
@@ -237,7 +256,12 @@ export const ServicesSection = ({ translation, locale }: { translation: Record<s
                       </div>
                     )}
 
-                    <button className={s.btn} onClick={() => openModal("formA")}>{accordion.buttonText}</button>
+                    <button
+                      className={s.btn}
+                      onClick={() => openModal("formA")}
+                    >
+                      {accordion.buttonText}
+                    </button>
                   </div>
                 </div>
               </Accordion>
@@ -285,29 +309,29 @@ const accordionListItemVariants: Variants = {
   show: { opacity: 1, y: 0, transition: { duration: 0.3, ease: "easeOut" } },
 };
 
-const AnimatedLine = () => {
-  const pathLength = 220;
-  return (
-    <motion.svg
-      viewBox="0 0 172 18"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      style={{ width: "120px", height: "18px", verticalAlign: "middle" }}
-    >
-      <motion.path
-        d="M2 16C2.39229 12.7275 9.17241 10.5471 11.6047 9.70162C17.0037 7.82501 21.1133 4.84878 26.9525 4.84878C30.4999 4.84878 45.4816 1.53741 37.8444 7.94864C35.8765 9.60068 35.8745 8.67763 34.8582 10.5323C33.4661 13.0726 35.9914 11.2041 37.5812 10.9969C45.4273 9.97419 52.1821 10.3024 60.1235 9.60068C72.9775 8.46477 87.3549 10.7211 100.033 8.2564C109.531 6.40974 119.477 6.55482 128.93 4.84869C135.194 3.71824 141.511 2.26739 147.892 2.26739C150 2.26739 155.15 0.96031 154.972 4.12593C154.874 5.85198 149.693 8.12105 148.288 8.77227C146.739 9.49027 138.62 12.4893 141.604 12.4893C155.008 12.4893 156.872 12.2548 170 9.60068"
-        stroke="#FFF9C1"
-        strokeWidth="3"
-        strokeLinecap="round"
-        strokeDasharray={pathLength}
-        initial={{ strokeDashoffset: pathLength }}
-        whileInView={{ strokeDashoffset: 0 }}
-        transition={{ duration: 1.2, ease: "easeOut" }}
-        viewport={{ once: false, amount: 0.5 }}
-      />
-    </motion.svg>
-  );
-};
+// const AnimatedLine = () => {
+//   const pathLength = 220;
+//   return (
+//     <motion.svg
+//       viewBox="0 0 172 18"
+//       fill="none"
+//       xmlns="http://www.w3.org/2000/svg"
+//       style={{ width: "150px", height: "18px", verticalAlign: "middle" }}
+//     >
+//       <motion.path
+//         d="M2 16C2.39229 12.7275 9.17241 10.5471 11.6047 9.70162C17.0037 7.82501 21.1133 4.84878 26.9525 4.84878C30.4999 4.84878 45.4816 1.53741 37.8444 7.94864C35.8765 9.60068 35.8745 8.67763 34.8582 10.5323C33.4661 13.0726 35.9914 11.2041 37.5812 10.9969C45.4273 9.97419 52.1821 10.3024 60.1235 9.60068C72.9775 8.46477 87.3549 10.7211 100.033 8.2564C109.531 6.40974 119.477 6.55482 128.93 4.84869C135.194 3.71824 141.511 2.26739 147.892 2.26739C150 2.26739 155.15 0.96031 154.972 4.12593C154.874 5.85198 149.693 8.12105 148.288 8.77227C146.739 9.49027 138.62 12.4893 141.604 12.4893C155.008 12.4893 156.872 12.2548 170 9.60068"
+//         stroke="#FFF9C1"
+//         strokeWidth="3"
+//         strokeLinecap="round"
+//         strokeDasharray={pathLength}
+//         initial={{ strokeDashoffset: pathLength }}
+//         whileInView={{ strokeDashoffset: 0 }}
+//         transition={{ duration: 1.2, ease: "easeOut" }}
+//         viewport={{ once: false, amount: 0.5 }}
+//       />
+//     </motion.svg>
+//   );
+// };
 
 const border1 = (
   <svg viewBox="0 0 189 57" fill="none" xmlns="http://www.w3.org/2000/svg">
