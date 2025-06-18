@@ -1,7 +1,7 @@
 "use client";
 
 import { useModal } from "@/components/ModalContext";
-import { btnSvg } from '@/components/BtnSvg';
+import { BtnSvg } from '@/components/BtnSvg';
 import s from "./HomeHero.module.css";
 import Image from "next/image";
 import { motion, easeOut } from "framer-motion";
@@ -97,11 +97,11 @@ export const HomeHero = ({ translation, locale }: { translation: Record<string, 
           }}
           className={s.btn}
         >
-          <div className={s.first}>{btnSvg}</div>
+          <div className={s.first}>{<BtnSvg/>}</div>
           {!isReady
             ? typeof translation["home_hero_btn"] === 'string' ? translation["home_hero_btn"] : ''
             : t('home_hero_btn')}
-          <div className={s.second}>{btnSvg}</div>
+          <div className={s.second}>{<BtnSvg/>}</div>
         </motion.button>
         <Image
           alt="Plate"
