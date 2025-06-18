@@ -1,7 +1,7 @@
 "use client";
 
 import { useModal } from "@/components/ModalContext";
-import { btnSvg } from "@/components/BtnSvg";
+import { BtnSvg } from "@/components/BtnSvg";
 import s from "./EducationHero.module.css";
 import Image from "next/image";
 import { motion } from "framer-motion";
@@ -79,9 +79,9 @@ export const EducationHero = () => {
           viewport={{ once: false, amount: 0.6 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
         >
-          <div className={s.first}>{btnSvg}</div>
+          <div className={s.first}>{<BtnSvg />}</div>
           {String(t("education_hero_btn"))}
-          <div className={s.second}>{btnSvg}</div>
+          <div className={s.second}>{<BtnSvg />}</div>
         </motion.button>
         <Image
           alt="Plate"

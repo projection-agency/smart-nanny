@@ -2,7 +2,7 @@
 
 import { Container } from "@/components/Container";
 import s from "./RoadSection.module.css";
-import { btnSvg } from "@/components/BtnSvg";
+import { BtnSvg } from "@/components/BtnSvg";
 import { useModal } from "@/components/ModalContext";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
@@ -198,9 +198,9 @@ export const RoadSection = ({
           viewport={{ once: false, amount: 0.3 }}
           variants={itemVariants}
         >
-          <div className={s.first}>{btnSvg}</div>
+          <div className={s.first}>{<BtnSvg />}</div>
           {t("road_btn")}
-          <div className={s.second}>{btnSvg}</div>
+          <div className={s.second}>{<BtnSvg />}</div>
         </motion.button>
       </Container>
     </section>

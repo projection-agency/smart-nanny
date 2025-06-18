@@ -1,7 +1,7 @@
 "use client";
 
 import { useModal } from "@/components/ModalContext";
-import { btnSvg } from '@/components/BtnSvg';
+import { BtnSvg } from '@/components/BtnSvg';
 import s from "./NannySelectionHero.module.css";
 import Image from "next/image";
 import { motion } from "framer-motion";
@@ -76,9 +76,9 @@ export const NannySelectionHero = ({ translation, locale }: { translation: Recor
           onClick={() => openModal("formB")}
           className={s.btn}
         >
-          <div className={s.first}>{btnSvg}</div>
+          <div className={s.first}>{<BtnSvg />}</div>
           {!isReady ? (translation && translation['nanny_hero_btn'] as string) || '' : t('nanny_hero_btn')}
-          <div className={s.second}>{btnSvg}</div>
+          <div className={s.second}>{<BtnSvg />}</div>
         </motion.button>
 
         <Image
