@@ -9,6 +9,7 @@ import { useTranslation } from 'react-i18next';
 import i18n from '@/i18n/client';
 import { useEffect, useState } from 'react';
 import type { Variants } from "framer-motion";
+import { AnimatedLine } from "@/components/AnimatedLine/AnimatedLine";
 
 const itemVariants: Variants = {
   hidden: { opacity: 0, y: 30 },
@@ -55,7 +56,7 @@ export const NannySelectionHero = ({ translation, locale }: { translation: Recor
           transition={{ duration: 0.7, ease: "easeOut" }}
         >
           <span>
-            {!isReady ? (translation && translation['nanny_hero_title_span'] as string) || '' : t('nanny_hero_title_span')} {line} 
+            {!isReady ? (translation && translation['nanny_hero_title_span'] as string) || '' : t('nanny_hero_title_span')} {<AnimatedLine stroke="#ff91b2"/>} 
           </span>
           {!isReady ? (translation && translation['nanny_hero_title_rest'] as string) || '' : t('nanny_hero_title_rest')}
         </motion.h1>

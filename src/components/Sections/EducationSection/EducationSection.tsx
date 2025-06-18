@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import i18n from "@/i18n/client";
 import Link from "next/link";
+import { AnimatedLine } from "@/components/AnimatedLine/AnimatedLine";
 
 export const EducationSection = ({
   translation,
@@ -84,7 +85,7 @@ export const EducationSection = ({
                 : t("education_title")}
               <span>
                 {String(t("education_title_highlight"))}
-                {line}
+                {<AnimatedLine stroke="#fff9c1"/>}
               </span>
             </motion.h2>
 
@@ -203,27 +204,27 @@ export const EducationSection = ({
   );
 };
 
-const line = (
-  <motion.svg
-    viewBox="0 0 220 18"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-    style={{ verticalAlign: "middle" }}
-    preserveAspectRatio="xMidYMid meet"
-  >
-    <motion.path
-      d="M2 15.5937C2.50964 12.3212 11.318 10.1408 14.4779 9.29537C21.4919 7.41876 26.8309 4.44253 34.4168 4.44253C39.0254 4.44253 58.4887 1.13116 48.567 7.54239C46.0104 9.19443 46.0078 8.27138 44.6875 10.126C42.879 12.6664 46.1597 10.7979 48.2251 10.5906C58.4182 9.56794 67.1937 9.8962 77.5106 9.19443C94.2098 8.05852 112.888 10.3149 129.358 7.85015C141.698 6.00349 154.619 6.14857 166.9 4.44244C175.037 3.31199 183.245 1.86114 191.534 1.86114C194.272 1.86114 200.964 0.55406 200.732 3.71968C200.605 5.44573 193.874 7.7148 192.049 8.36602C190.036 9.08402 179.489 12.0831 183.366 12.0831C200.779 12.0831 200.944 9.9442 218 7.29006"
-      stroke="#FFF9C1"
-      strokeWidth="3"
-      strokeLinecap="round"
-      pathLength={1}
-      initial={{ pathLength: 0 }}
-      whileInView={{ pathLength: 1 }}
-      transition={{ duration: 1.2, ease: "easeOut" }}
-      viewport={{ once: false, amount: 0.5 }}
-    />
-  </motion.svg>
-);
+// const line = (
+//   <motion.svg
+//     viewBox="0 0 220 18"
+//     fill="none"
+//     xmlns="http://www.w3.org/2000/svg"
+//     style={{ verticalAlign: "middle" }}
+//     preserveAspectRatio="xMidYMid meet"
+//   >
+//     <motion.path
+//       d="M2 15.5937C2.50964 12.3212 11.318 10.1408 14.4779 9.29537C21.4919 7.41876 26.8309 4.44253 34.4168 4.44253C39.0254 4.44253 58.4887 1.13116 48.567 7.54239C46.0104 9.19443 46.0078 8.27138 44.6875 10.126C42.879 12.6664 46.1597 10.7979 48.2251 10.5906C58.4182 9.56794 67.1937 9.8962 77.5106 9.19443C94.2098 8.05852 112.888 10.3149 129.358 7.85015C141.698 6.00349 154.619 6.14857 166.9 4.44244C175.037 3.31199 183.245 1.86114 191.534 1.86114C194.272 1.86114 200.964 0.55406 200.732 3.71968C200.605 5.44573 193.874 7.7148 192.049 8.36602C190.036 9.08402 179.489 12.0831 183.366 12.0831C200.779 12.0831 200.944 9.9442 218 7.29006"
+//       stroke="#FFF9C1"
+//       strokeWidth="3"
+//       strokeLinecap="round"
+//       pathLength={1}
+//       initial={{ pathLength: 0 }}
+//       whileInView={{ pathLength: 1 }}
+//       transition={{ duration: 1.2, ease: "easeOut" }}
+//       viewport={{ once: false, amount: 0.5 }}
+//     />
+//   </motion.svg>
+// );
 
 const svg = (
   <svg
