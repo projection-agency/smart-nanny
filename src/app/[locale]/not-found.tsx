@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion, easeOut } from "framer-motion";
 import { Breadcrumbs } from "@/components/Breadcrumbs/Breadcrumbs";
-import { btnSvg } from '@/components/BtnSvg';
+import { BtnSvg } from '@/components/BtnSvg';
 import s from "./not-found.module.css";
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'next/navigation';
@@ -97,9 +97,9 @@ export default function NotFound() {
 
           <motion.div variants={itemVariants}>
             <Link href="/" className={s.btn}>
-              <div className={s.first}>{btnSvg}</div>
+              <div className={s.first}>{<BtnSvg /> }</div>
               Головна
-              <div className={s.second}>{btnSvg}</div>
+              <div className={s.second}>{<BtnSvg />}</div>
             </Link>
           </motion.div>
           <Image

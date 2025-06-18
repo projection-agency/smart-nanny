@@ -10,7 +10,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import { motion } from "framer-motion";
 import { useTranslation, Trans } from 'react-i18next';
-import { btnSvg } from '@/components/BtnSvg';
+import { BtnSvg } from '@/components/BtnSvg';
 
 export type BlogPost = {
   id: number;
@@ -149,9 +149,9 @@ export const BlogSection = ({ translation, locale }: { translation: Record<strin
           transition={{ duration: 0.7, ease: "easeOut" }}
         >
           <Link href={`/${locale}/blog`} className={s.btn}>
-            <div className={s.first}>{btnSvg}</div>
+            <div className={s.first}>{<BtnSvg />}</div>
             {t('blog_more')}
-            <div className={s.second}>{btnSvg}</div>
+            <div className={s.second}>{<BtnSvg />}</div>
           </Link>
         </motion.div>
       </Container>
