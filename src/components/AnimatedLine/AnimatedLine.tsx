@@ -5,7 +5,7 @@ import { motion, useInView } from "framer-motion";
 
 export const AnimatedLine = ({stroke}:{stroke:string}) => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.5 });
+  const isInView = useInView(ref, { once: false, amount: 0.5 });
 
   return (
     <motion.svg

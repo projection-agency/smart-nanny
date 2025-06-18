@@ -2,9 +2,10 @@
 import { Container } from "@/components/Container";
 import s from "./CourseSection.module.css";
 import Image from "next/image";
-import { motion, easeOut } from "framer-motion";
-import { useTranslation } from 'react-i18next';
+import { motion, easeOut, useInView } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
+import { useRef } from "react";
 
 const svg = (
   <svg
@@ -53,10 +54,18 @@ const itemVariants = {
 };
 
 export const CourseSection = () => {
-  const { t } = useTranslation('common');
+  const { t } = useTranslation("common");
   const [isClient, setIsClient] = useState(false);
-  useEffect(() => { setIsClient(true); }, []);
-  const cardsData = Array.isArray(t('course_cards', { returnObjects: true })) ? t('course_cards', { returnObjects: true }) as {title: string, description: string, icon: string}[] : [];
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+  const cardsData = Array.isArray(t("course_cards", { returnObjects: true }))
+    ? (t("course_cards", { returnObjects: true }) as {
+        title: string;
+        description: string;
+        icon: string;
+      }[])
+    : [];
   return (
     <section className={s.section}>
       <Image
@@ -76,74 +85,88 @@ export const CourseSection = () => {
           variants={itemVariants}
         >
           {svg}
-          {String(t('course_title_before'))}
+          {String(t("course_title_before"))}
           <span>
-            {String(t('course_title_highlight'))}
-            {line}
+            {String(t("course_title_highlight"))}
+            {<Line/>}
           </span>
-          {String(t('course_title_after'))}
+          {String(t("course_title_after"))}
         </motion.h2>
 
         <ul className={s.list}>
-          {cardsData.map((item: {title: string, description: string, icon: string}, index: number) => (
-            isClient ? (
-              <motion.li
-                key={index}
-                initial="hidden"
-                whileInView="show"
-                viewport={{ once: false, amount: 0.5 }}
-                variants={itemVariants}
-              >
-                <svg>
-                  <use xlinkHref={item.icon}></use>
-                </svg>
+          {cardsData.map(
+            (
+              item: { title: string; description: string; icon: string },
+              index: number
+            ) =>
+              isClient ? (
+                <motion.li
+                  key={index}
+                  initial="hidden"
+                  whileInView="show"
+                  viewport={{ once: false, amount: 0.5 }}
+                  variants={itemVariants}
+                >
+                  <svg>
+                    <use xlinkHref={item.icon}></use>
+                  </svg>
 
-                <h4>{item.title}</h4>
+                  <h4>{item.title}</h4>
 
-                <p>{item.description}</p>
+                  <p>{item.description}</p>
 
-                <Image
-                  alt="Border"
-                  width={1920}
-                  height={1080}
-                  priority
-                  src="/images/border-image.png"
-                  className={s.border}
-                />
-              </motion.li>
-            ) : (
-              <li key={index}>
-                <svg>
-                  <use xlinkHref={item.icon}></use>
-                </svg>
+                  <Image
+                    alt="Border"
+                    width={1920}
+                    height={1080}
+                    priority
+                    src="/images/border-image.png"
+                    className={s.border}
+                  />
+                </motion.li>
+              ) : (
+                <li key={index}>
+                  <svg>
+                    <use xlinkHref={item.icon}></use>
+                  </svg>
 
-                <h4>{item.title}</h4>
+                  <h4>{item.title}</h4>
 
-                <p>{item.description}</p>
+                  <p>{item.description}</p>
 
-                <Image
-                  alt="Border"
-                  width={1920}
-                  height={1080}
-                  priority
-                  src="/images/border-image.png"
-                  className={s.border}
-                />
-              </li>
-            )
-          ))}
+                  <Image
+                    alt="Border"
+                    width={1920}
+                    height={1080}
+                    priority
+                    src="/images/border-image.png"
+                    className={s.border}
+                  />
+                </li>
+              )
+          )}
         </ul>
       </Container>
     </section>
   );
 };
 
-const line = (
-  <motion.svg
+const Line = () => {
+  const ref = useRef(null);
+
+  const isInView = useInView(ref, { once: false, amount: 0.5 });
+
+  return <motion.svg
+    ref={ref}
     viewBox="0 0 166 15"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
-    style={{ width: "100%", height: "auto", verticalAlign: "middle" }}
+    style={{
+      width: "100%",
+      height: "auto",
+      verticalAlign: "middle",
+      display: "block", // Важливо для Safari
+    }}
     preserveAspectRatio="xMidYMid meet"
   >
     <motion.path
@@ -151,11 +174,9 @@ const line = (
       stroke="#FFF9C1"
       strokeWidth="3"
       strokeLinecap="round"
-      pathLength={1}
       initial={{ pathLength: 0 }}
-      whileInView={{ pathLength: 1 }}
+      animate={{ pathLength: isInView ? 1 : 0 }}
       transition={{ duration: 1.2, ease: "easeOut" }}
-      viewport={{ once: false, amount: 0.5 }}
     />
-  </motion.svg>
-);
+  </motion.svg>;
+};

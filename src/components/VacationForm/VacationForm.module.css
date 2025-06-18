@@ -185,7 +185,7 @@
               background: rgba(51, 51, 51, 0.03) !important;
               color: #333 !important;
             }
-            input[type="date"]:placeholder {
+            input[type="date"]::placeholder {
               color: #333 !important;
             }
 
