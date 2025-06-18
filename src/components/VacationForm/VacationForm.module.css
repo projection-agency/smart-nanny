@@ -180,9 +180,12 @@
               box-sizing: border-box;
               appearance: none;
               -webkit-appearance: none;
-              border: 1px solid #ccc;
-              background: #fff;
-              color: #333;
+              border: 1px solid #fff !important;
+              background: #fff !important;
+              color: #333 !important;
+            }
+            input[type="date"]:placeholder {
+              color: #333 !important;
             }
 
             input::placeholder {
