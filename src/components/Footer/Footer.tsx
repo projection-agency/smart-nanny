@@ -6,6 +6,7 @@ import s from "./Footer.module.css";
 import Link from "next/link";
 import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
+import { AnimatedLine } from "../AnimatedLine/AnimatedLine";
 
 export const Footer = ({
   translation,
@@ -128,7 +129,7 @@ export const Footer = ({
           {footerTitleMain}
           <span>
             {footerTitleSpan}
-            {line}
+            <AnimatedLine stroke="#fff9c1"/>
           </span>
         </h2>
 
