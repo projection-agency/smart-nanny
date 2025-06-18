@@ -100,13 +100,8 @@ export const ReviewSection = ({
                 <Trans i18nKey="review_title" />
                 <span>
                   {" "}
-                  <Trans
-                    i18nKey="review_title_span"
-                    components={{
-                      span: <span />,
-                      line: <AnimatedLine stroke={"#FF91B2"} />,
-                    }}
-                  />
+                  <Trans i18nKey="review_title_span" />
+                  <AnimatedLine stroke={"#FF91B2"} />
                 </span>
               </>
             )}

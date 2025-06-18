@@ -1,0 +1,9 @@
+.svg{
+stroke-width: 0.3vw;
+}
+
+@media screen and (max-width:1024px) {
+    .svg{
+       stroke-width: 1.5vw;
+    }
+}

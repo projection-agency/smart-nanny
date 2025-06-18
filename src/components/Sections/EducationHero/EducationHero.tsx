@@ -56,13 +56,8 @@ export const EducationHero = () => {
         >
           {svg}
           <span>
-            <Trans
-              i18nKey="education_hero_title_span"
-              components={{
-                span: <span />,
-                line: <AnimatedLine stroke={"#FF91B2"} />,
-              }}
-            />
+            <Trans i18nKey="education_hero_title_span" />
+            <AnimatedLine stroke={"#FF91B2"} />
           </span>
           {String(t("education_hero_title_rest"))}
         </motion.h1>
