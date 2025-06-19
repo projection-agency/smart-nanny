@@ -41,27 +41,6 @@
     .container {
       max-width: 91.5vw;
     }
-    .title {
-      display: block;
-      width: 60vw;
-      margin-left: auto;
-      margin-right: auto;
-      margin-bottom: 10.7vw;
-      font-size: 9.6vw;
-      span {
-        display: block;
-        width: 38.6vw;
-        margin-left: auto;
-        margin-right: auto;
-        -webkit-text-stroke-width: 0.2vw;
-
-        font-size: 8.5vw;
-        letter-spacing: -1px;
-        svg {
-          position: static;
-        }
-      }
-    }
 
     .faqList {
       grid-template-columns: 1fr;
@@ -77,6 +56,31 @@
             font-size: 4.3vw;
           }
         }
+      }
+    }
+  }
+  
+  .title {
+    display: block;
+    width: 60vw;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10.7vw;
+    font-size: 9.6vw;
+    font-weight: 450;
+
+    span {
+      display: block;
+      width: 38.6vw;
+      margin-left: auto;
+      margin-right: auto;
+      font-weight: 400;
+      -webkit-text-stroke-width: 0.2vw;
+
+      font-size: 8.5vw;
+      letter-spacing: -1px;
+      svg {
+        position: static;
       }
     }
   }

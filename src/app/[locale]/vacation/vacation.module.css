@@ -85,9 +85,11 @@
         max-width: 80.7vw;
         font-size: 10.7vw;
         margin-bottom: 7.5vw;
+        font-weight: 500;
 
         span {
           font-size: 8.5vw;
+          font-weight: 400;
 
           svg {
             width: 35.2vw;

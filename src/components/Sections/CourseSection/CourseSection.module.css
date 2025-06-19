@@ -121,6 +121,7 @@
     font-size: 9.6vw;
     max-width: 68vw;
     margin-bottom: 10.9vw;
+    font-weight: 450;
 
     .svg {
       position: absolute;
@@ -132,6 +133,7 @@
 
     span {
       font-size: 8.53vw;
+      font-weight: 400;
 
       svg {
         position: absolute;
