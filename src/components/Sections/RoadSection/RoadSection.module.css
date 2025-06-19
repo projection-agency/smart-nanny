@@ -191,10 +191,12 @@
         font-size: 9.6vw;
         margin-bottom: 7.5vw;
         letter-spacing: -0.3vw;
+        font-weight: 450;
 
         span {
           font-size: 8.5vw;
           -webkit-text-stroke-width: 0.2vw;
+          font-weight: 400;
 
           svg {
             bottom: -4.2vw;

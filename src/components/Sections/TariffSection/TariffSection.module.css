@@ -94,6 +94,7 @@
   .title {
     font-size: 8.5vw;
     margin-bottom: 10.6vw;
+    font-weight: 450;
 
     .svgMobile {
       position: absolute;
@@ -109,6 +110,7 @@
     span {
       font-size: 8.5vw;
       letter-spacing: -1px;
+      font-weight: 400;
 
       svg {
         position: absolute;

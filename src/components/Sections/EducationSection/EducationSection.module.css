@@ -252,6 +252,7 @@
           max-width: none;
           margin-bottom: 9.6vw;
           letter-spacing: -0.3vw;
+          font-weight: 450;
 
           svg {
             width: 8.7vw;
@@ -263,6 +264,7 @@
         span {
           position: relative;
           font-size: 32px;
+          font-weight: 400;
 
           svg {
             width: 100%;
