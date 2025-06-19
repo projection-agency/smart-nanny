@@ -225,7 +225,7 @@ const buttonSvg = (
     viewBox="0 0 42 61"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
-    style={{ verticalAlign: "middle", display:"block" }}
+    style={{ verticalAlign: "middle", display: "block" }}
     preserveAspectRatio="xMidYMid meet"
   >
     <motion.path
@@ -235,7 +235,7 @@ const buttonSvg = (
       strokeLinecap="round"
       pathLength={1}
       initial={{ pathLength: 0 }}
-      whileInView={{ pathLength: 1 }}
+      animate={{ pathLength: 1 }}
       transition={{
         duration: 1.2,
         ease: "easeOut",
@@ -251,7 +251,7 @@ const buttonSvg = (
       strokeLinecap="round"
       pathLength={1}
       initial={{ pathLength: 0 }}
-      whileInView={{ pathLength: 1 }}
+      animate={{ pathLength: 1 }}
       transition={{
         duration: 1.2,
         ease: "easeOut",
@@ -267,7 +267,7 @@ const buttonSvg = (
       strokeLinecap="round"
       pathLength={1}
       initial={{ pathLength: 0 }}
-      whileInView={{ pathLength: 1 }}
+      animate={{ pathLength: 1 }}
       transition={{
         duration: 1.2,
         ease: "easeOut",
