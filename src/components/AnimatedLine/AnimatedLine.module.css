@@ -4,6 +4,6 @@ stroke-width: 0.2vw;
 
 @media screen and (max-width:1024px) {
     .svg{
-       stroke-width: 0.8vw;
+       stroke-width: 1vw;
     }
 }
