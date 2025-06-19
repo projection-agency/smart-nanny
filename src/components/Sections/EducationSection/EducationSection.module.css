@@ -184,10 +184,13 @@
     padding: 21.3vw 0;
     position: relative;
     overflow: hidden;
+
     .container {
       position: relative;
+
       .clouds {
         display: block;
+
         .cloud1,
         .cloud2 {
           position: absolute;

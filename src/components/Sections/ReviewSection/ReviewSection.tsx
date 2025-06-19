@@ -67,14 +67,6 @@ export const ReviewSection = ({
     : t("reviews", { returnObjects: true }) || [];
   const reviewsSSR = Array.isArray(reviewsRaw) ? reviewsRaw : [];
 
-  // const lineVariants = {
-  //   hidden: { pathLength: 0, opacity: 0 },
-  //   show: {
-  //     pathLength: 1,
-  //     opacity: 1,
-  //     transition: { duration: 1, ease: "easeInOut" },
-  //   },
-  // };
 
   return (
     <section className={s.section}>
@@ -83,7 +75,7 @@ export const ReviewSection = ({
           className={s.wrapper}
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, amount: 0.6 }}
+          viewport={{ once: false,  }}
           transition={{ duration: 0.7, ease: "easeOut" }}
         >
           <motion.h2

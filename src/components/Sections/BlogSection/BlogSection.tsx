@@ -115,6 +115,7 @@ export const BlogSection = ({ translation, locale }: { translation: Record<strin
         {isClient && (
           <Swiper
             modules={[Pagination]}
+            spaceBetween={20}
             pagination={{
               type: "bullets",
               el: `.${s.paginationCont}`,

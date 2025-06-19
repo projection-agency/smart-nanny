@@ -11,6 +11,7 @@ import { useTranslation } from "react-i18next";
 import i18n from "@/i18n/client";
 import Spinner from "@/components/Spinner";
 import { AnimatedLine } from "../AnimatedLine/AnimatedLine";
+import { Breadcrumbs, BreadcrumbItem } from "../Breadcrumbs/Breadcrumbs";
 
 export interface Category {
   id: number;
@@ -21,7 +22,7 @@ export const BlogPage = ({
   translation,
   locale,
 }: {
-  translation: unknown;
+  translation: Record<string, unknown>;
   locale: string;
 }) => {
   const { t } = useTranslation("common");
@@ -95,6 +96,21 @@ export const BlogPage = ({
       : t("blog_subtitle")
   );
 
+  const breadcrumbs: BreadcrumbItem[] = [
+    {
+      label: !isReady
+        ? (translation && (translation["breadcrumbs_home"] as string)) || ""
+        : t("breadcrumbs_home"),
+      href: `/${locale}`,
+    },
+    {
+      label: !isReady
+        ? (translation && (translation["breadcrumbs_blog"] as string)) || ""
+        : t("breadcrumbs_blog"),
+      active: true,
+    },
+  ];
+
   return (
     <motion.section
       className={s.section}
@@ -102,6 +118,8 @@ export const BlogPage = ({
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.7, ease: "easeOut" }}
     >
+      <Breadcrumbs items={breadcrumbs} colorScheme="dark" />
+
       <Container>
         <motion.div
           className={s.titleContainer}
