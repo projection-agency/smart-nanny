@@ -344,6 +344,10 @@
     font-weight: 450;
     span {
       font-size: 9.6vw;
+
+      svg{
+        bottom:-1.5vw;
+      }
     }
   }
 

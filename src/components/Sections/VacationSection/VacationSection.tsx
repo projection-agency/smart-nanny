@@ -225,7 +225,7 @@ const buttonSvg = (
     viewBox="0 0 42 61"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
-    style={{ verticalAlign: "middle" }}
+    style={{ verticalAlign: "middle", display:"block" }}
     preserveAspectRatio="xMidYMid meet"
   >
     <motion.path
