@@ -183,6 +183,7 @@
           img {
             height: 9.6vw;
             margin-bottom: 3.2vw;
+            display: block !important;
           }
 
           h3 {
