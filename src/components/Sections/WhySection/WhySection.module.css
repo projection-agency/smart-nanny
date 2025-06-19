@@ -69,7 +69,7 @@
   }
 
   img {
-    width: max-content;
+    width: auto;
     height: 2.8vw;
     margin-bottom: 0.8vw;
     aspect-ratio: auto !important;
