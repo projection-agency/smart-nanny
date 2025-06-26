@@ -32,7 +32,7 @@ export const NannySelectionHero = ({ translation, locale }: { translation: Recor
     <section className={s.section}>
       <div className={s.homeHeroImage}>
         <Image
-          src="/images/nanny-hero.png"
+          src="/images/nanny-hero.jpg"
           alt="Hero image"
           width={1920}
           height={1080}

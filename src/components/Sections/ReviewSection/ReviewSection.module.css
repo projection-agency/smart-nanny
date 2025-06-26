@@ -75,6 +75,8 @@
 
   .avatar {
     width: 5.2vw;
+    height: 5.2vw;
+    border-radius: 5.2vw;
   }
 
   .name {
