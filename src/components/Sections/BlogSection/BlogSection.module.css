@@ -35,8 +35,8 @@ div.swiper {
 
   .stars {
     position: absolute;
-    left: -1.5vw;
-    top: -1.5vw;
+    left: -1.8vw;
+    top: -1.8vw;
     width: 3.4vw;
     height: auto;
     animation: width 4s ease-in-out infinite;
@@ -150,8 +150,8 @@ div.swiper {
 
       .stars {
         width: 15.2vw;
-        top: -11.5vw;
-        left: -9.5vw;
+        top: -12.5vw;
+        left: -10.5vw;
         animation: width 4s ease-in-out infinite;
       }
     }

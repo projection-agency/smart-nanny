@@ -89,9 +89,8 @@ export const ReviewSection = ({
               (translation && (translation["review_title"] as string)) || ""
             ) : (
               <>
-                <Trans i18nKey="review_title" />
+                <Trans i18nKey="review_title" />{" "}
                 <span>
-                  {" "}
                   <Trans i18nKey="review_title_span" />
                   <AnimatedLine stroke={"#FF91B2"} />
                 </span>
@@ -189,12 +188,8 @@ export const ReviewSection = ({
           </div>
         </motion.div>
 
-        <motion.div
+        <div
           className={s.imageContainer}
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true, amount: 0.7 }}
-          transition={{ duration: 0.3, ease: "easeOut", delay: 0.15 }}
         >
           <Image
             src="/images/reviewImage.png"
@@ -202,7 +197,7 @@ export const ReviewSection = ({
             width={1920}
             height={1080}
           />
-        </motion.div>
+        </div>
       </Container>
     </section>
   );
