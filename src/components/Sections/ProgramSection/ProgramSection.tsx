@@ -16,6 +16,7 @@ type APIModule = {
   Lectures: string[];
   Result: string;
   previewImage?: string;
+  Video_module?: string;
 };
 
 export const ProgramSection = () => {
@@ -37,6 +38,8 @@ export const ProgramSection = () => {
     };
     fetchModules();
   }, [i18n.language]);
+
+  console.log(modules);
 
   return (
     <section className={s.section}>
@@ -71,6 +74,7 @@ export const ProgramSection = () => {
             lectures={mod.Lectures || []}
             result={mod.Result || ""}
             previewImage={mod.previewImage}
+            videoUrl={mod.Video_module}
           />
         ))}
       </ul>

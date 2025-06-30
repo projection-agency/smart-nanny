@@ -4,6 +4,7 @@ import Image from "next/image";
 import s from "./ProgramItem.module.css";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
+import { closeIco } from "../ModalContext";
 
 export type ProgramItemProps = {
   module: number;
@@ -13,6 +14,7 @@ export type ProgramItemProps = {
   lectures: string[];
   result: string;
   previewImage?: string;
+  videoUrl?: string;
 };
 
 export const ProgramItem = ({
@@ -23,12 +25,14 @@ export const ProgramItem = ({
   lectures,
   result,
   previewImage,
+  videoUrl,
 }: ProgramItemProps) => {
   console.log(duration);
   const [isOpen, setIsOpen] = useState(false);
   const contentRef = useRef<HTMLDivElement>(null);
   const [height, setHeight] = useState("0px");
   const { t } = useTranslation("common");
+  const [isVideoOpen, setIsVideoOpen] = useState(false);
 
   useEffect(() => {
     if (contentRef.current) {
@@ -101,18 +105,29 @@ export const ProgramItem = ({
               <p>{result}</p>
             </div>
           </div>
-          <div className={s.preview}>
-            <Image
-              src={previewImage || "/images/program-item-video.jpg"}
-              alt="Превʼю"
-              width={1920}
-              height={1080}
-            />
-
-            <div className={s.playButton}>▶</div>
-          </div>
+          {typeof videoUrl === 'string' && videoUrl.trim().length > 0 && (
+            <div className={s.preview} onClick={() => setIsVideoOpen(true)} style={{ cursor: 'pointer' }}>
+              <Image
+                src={previewImage || "/images/program-item-video.jpg"}
+                alt="Превʼю"
+                width={1920}
+                height={1080}
+              />
+              <div className={s.playButton}>▶</div>
+            </div>
+          )}
         </div>
       </div>
+      {isVideoOpen && typeof videoUrl === 'string' && videoUrl.trim().length > 0 && (
+        <div className={s.videoPopup} onClick={() => setIsVideoOpen(false)}>
+          <div className={s.videoPopupContent} onClick={e => e.stopPropagation()}>
+            <video src={videoUrl} controls autoPlay style={{ width: '100%', height: 'auto' }} />
+            <button onClick={() => setIsVideoOpen(false)} className={s.closeBtn}>
+              {closeIco}
+            </button>
+          </div>
+        </div>
+      )}
     </motion.li>
   );
 };

@@ -75,6 +75,9 @@ export const VacationController = ({
   const vacationEmployment = !isReady
     ? (translation && (translation["vacation_employment"] as string)) || ""
     : t("vacation_employment");
+  const resetFiltersText = !isReady
+    ? (translation && (translation["vacation_reset"] as string)) || ""
+    : t("vacation_reset");
   const vacationAllCount = !isReady
     ? (
         (translation && (translation["vacation_all_count"] as string)) ||
@@ -139,7 +142,7 @@ export const VacationController = ({
         className={s.eraseFiltersMobile}
         onClick={() => handleEraseFilters()}
       >
-        Скинути фільтри
+        {resetFiltersText}
       </button>
 
       <Link
@@ -156,7 +159,7 @@ export const VacationController = ({
           className={s.eraseFiltersDesktop}
           onClick={() => handleEraseFilters()}
         >
-          Скинути фільтри
+          {resetFiltersText}
         </button>
       ) : (
         ""

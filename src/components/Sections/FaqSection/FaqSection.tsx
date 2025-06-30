@@ -117,8 +117,9 @@ export const FaqSection = ({
               return t("faq_title") || "";
             }
           })()}
+          {" "}
           <span>
-            {" "}
+            
             {(pathname.includes("education") && t("faq_from_course")) ||
               (pathname.includes("nanny-selection") && t("faq_from_nanny")) ||
               (pathname.includes("/") && t("faq_from_parents"))}

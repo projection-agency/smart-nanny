@@ -34,29 +34,29 @@
   "why_long": [
     {
       "title": "Verified families",
-      "desc": "We select only reliable clients with clear conditions, adequate expectations, and a safe home environment."
+      "desc": "We select only reliable clients with clear conditions, adequate expectations, and a safe home environment"
     },
     {
       "title": "Professional development",
-      "desc": "We provide access to educational materials and methods. We help you grow in your profession, no matter where you start.",
+      "desc": "We provide access to educational materials and methods. We help you grow in your profession, no matter where you start",
       "span": "By your side every day"
     },
     {
       "title": "Flexible format",
-      "desc": "Find the optimal schedule for yourself: full-time, part-time, one-time help, or live-in work."
+      "desc": "Find the optimal schedule for yourself: full-time, part-time, one-time help, or live-in work"
     },
     {
       "title": "Fair conditions and pay",
-      "desc": "We do not take on vacancies with a low rate. Every hour of yours is paid fairly and according to agreements.",
+      "desc": "We do not take on vacancies with a low rate. Every hour of yours is paid fairly and according to agreements",
       "span": "Decent work and earnings"
     },
     {
       "title": "Constant support",
-      "desc": "We do not have a 'fit in yourself' rule. You can always ask for help, advice, or support."
+      "desc": "We do not have a 'fit in yourself' rule. You can always ask for help, advice, or support"
     },
     {
       "title": "Respect for nannies",
-      "desc": "We work only with families who value your work, keep agreements, and treat you with care."
+      "desc": "We work only with families who value your work, keep agreements, and treat you with care"
     }
   ],
   "services_title": "Our main <span>services <line/></span>",
@@ -96,44 +96,44 @@
   "services_accordion": [
     {
       "id": 1,
-      "title": "nanny-teacher",
-      "description": "A service for families who need stable help. We carefully select a nanny, taking into account your wishes, needs, and family values for long-term cooperation.",
-      "tags": ["Long-term", "Smooth adaptation"],
-      "price": "from <span>12,000 UAH</span> / per selection",
+      "title": "Nanny-Educator",
+      "description": "Support with preparing for school or kindergarten. Nannies with a background in education conduct activities that help children adapt, develop speech, logic, and social skills.",
+      "tags": ["Quick Start", "Flexible Schedule"],
+      "price": "from <span>350 UAH</span> / hour",
       "shortDesc": "100% of the nanny's monthly salary",
-      "buttonText": "Select a nanny",
+      "buttonText": "Find a Nanny",
       "theme": "white"
     },
     {
       "id": 2,
-      "title": "night nanny",
-      "description": "A service for families who need situational help for a few hours or a short period (a few days or weeks). We will find a qualified nanny in just 1-2 days, and in some cases — even on the same day.",
-      "tags": ["A few hours/days", "Flexible schedule"],
+      "title": "Night Nanny",
+      "description": "A service for families with infants or those who need support at night. The nanny comes overnight and takes care of the child — so you can rest peacefully or recover after childbirth.",
+      "tags": ["Quick Start", "Flexible Schedule"],
       "price": "from <span>300 UAH</span> / hour",
-      "buttonText": "Select a nanny",
+      "buttonText": "Find a Nanny",
       "theme": "white"
     },
     {
       "id": 3,
-      "title": "event nanny",
-      "description": "An online course for nannies who want to work confidently and understand children's needs. The program covers neuropedagogy, basics of pediatrics, child psychology, and career development. After completion — a certificate recognized by our service and families.",
-      "tags": ["Quick start", "Flexible schedule"],
-      "price": "from <span>20,000 UAH</span> / month",
-      "buttonText": "Learn more",
+      "title": "Event Nanny",
+      "description": "We’re ready for any occasion — from family and kids’ events to important conferences and celebrations. Our nannies will provide engaging activities, games, and complete safety so you can enjoy the event worry-free.",
+      "tags": ["Quick Start", "Flexible Schedule"],
+      "price": "from <span>350 UAH</span> / hour",
+      "buttonText": "Learn More",
       "theme": "yellow"
     },
     {
       "id": 4,
-      "title": "weekend nanny",
-      "description": "An online course for nannies who want to work confidently and understand children's needs. The program covers neuropedagogy, basics of pediatrics, child psychology, and career development. After completion — a certificate recognized by our service and families.",
-      "tags": ["Quick start", "Flexible schedule"],
-      "price": "from <span>20,000 UAH</span> / month",
-      "buttonText": "Learn more",
+      "title": "Weekend Nanny",
+      "description": "A solution for parents who want to have some free time on Saturday or Sunday — for rest, errands, or just recharging.",
+      "tags": ["Quick Start", "Flexible Schedule"],
+      "price": "from <span>300 UAH</span> / hour",
+      "buttonText": "Learn More",
       "theme": "yellow"
     }
   ],
   "road_title": "How we select and <span>train specialists <line/></span>",
-  "road_subtitle": "We find nannies you can trust with your most precious – your child.",
+  "road_subtitle": "Professionalism doesn't happen by chance — we build it step by step",
   "road_steps": [
     {
       "step": "Step 1",
@@ -191,6 +191,7 @@
   "vacation_country": "Country",
   "vacation_city": "City",
   "vacation_employment": "Employment type",
+  "vacation_reset": "Reset filters",
   "employment_full": "Full-time",
   "employment_part": "Part-time",
   "employment_hourly": "Hourly assistance",
