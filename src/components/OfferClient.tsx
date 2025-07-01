@@ -64,7 +64,7 @@ export default function OfferClient({ translation, locale }: { translation: Reco
         <h1>
           {svg}
           {heroBefore && <>{heroBefore} </>}
-          <span>{heroSpan}{line}</span>
+          <span>{heroSpan}</span>
         </h1>
         <ul className={s.list}>
           {sectionsArr.map((faq, idx) => (

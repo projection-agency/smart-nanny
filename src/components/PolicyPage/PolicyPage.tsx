@@ -120,7 +120,7 @@ export function PolicyPage({ translation, locale }: { translation: Record<string
           <h1>
             {svg}
             {heroBefore && <>{heroBefore} </>}
-            <span>{heroSpan}{line}</span>
+            <span>{heroSpan}</span>
           </h1>
           <span className={s.span}>{policyDate}</span>
           <p className={s.text}>{policyDesc}</p>
