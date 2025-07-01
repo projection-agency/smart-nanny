@@ -24,7 +24,7 @@
     line-height: 90%;
     text-align: center;
     color: rgba(51, 51, 51, 1);
-    max-width: 40vw;
+    max-width: 36vw;
     margin: 0 auto;
     margin-bottom: 1.6vw;
 
@@ -32,7 +32,7 @@
       position: absolute;
       width: 3.5vw;
       top: -1vw;
-      right: 0;
+      right: -2vw;
       animation: rotate 4s ease-in-out infinite;
     }
 
