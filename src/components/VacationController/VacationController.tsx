@@ -85,11 +85,17 @@ export const VacationController = ({
       ).replace("{{count}}", vacations.length.toString())
     : t("vacation_all_count", { count: vacations.length });
 
-  const employmentMap: Record<string, Vacation["Employment_type"]> = {
+  const employmentMap: Record<string, string> = {
     [employmentFull]: "full",
     [employmentPart]: "part",
     [employmentHourly]: "hourly_assistance",
     [employmentAccommodation]: "with_accommodation",
+  };
+  const employmentReverseMap: Record<string, string> = {
+    full: employmentFull,
+    part: employmentPart,
+    hourly_assistance: employmentHourly,
+    with_accommodation: employmentAccommodation,
   };
 
   const employmentOptions = [
@@ -131,9 +137,9 @@ export const VacationController = ({
         <Dropdown
           placeholder={vacationEmployment}
           options={employmentOptions}
-          value={selectedEmployment}
-          onSelect={(value) => {
-            dispatch(setEmploymentFilter(employmentMap[value]));
+          value={selectedEmployment && employmentReverseMap[selectedEmployment] ? employmentReverseMap[selectedEmployment] : ""}
+          onSelect={(label) => {
+            dispatch(setEmploymentFilter(employmentMap[label]));
           }}
         />
       </div>

@@ -7,27 +7,27 @@
   "blog": "Blog",
   "order_call": "Order a call",
   "home_hero_title": "Reliable <span>professional <line/> </span> nanny selection for your family",
-  "home_hero_subtitle": "We find nannies you can trust with your most precious – your child.",
+  "home_hero_subtitle": "With us are the people you can truly trust with what matters most – your child.",
   "home_hero_btn": "Select a nanny",
   "why_title": "Why do parents <span>choose <line/> </span> Smart Nanny service?",
   "why_desc_selection": "We build cooperation on trust, clear agreements, and mutual respect. We ensure a transparent process, fair conditions, and always stay in touch so you always feel supported.",
   "why_short": [
     {
       "title": "Professionalism",
-      "desc": "Our nannies constantly improve their skills through first aid, development, and childcare training."
+      "desc": "Our nannies constantly improve their skills through first aid, development, and childcare training"
     },
     {
       "title": "Fast selection",
-      "desc": "We have a large team of verified nannies, so we offer options within 1–5 days, guaranteeing timely support for families.",
+      "desc": "We have a large team of verified nannies, so we offer options within 1–5 days, guaranteeing timely support for families",
       "span": "Quick start of cooperation"
     },
     {
       "title": "Verified nannies",
-      "desc": "Each candidate undergoes document, experience, and reference checks, as well as an interview for your peace of mind and safety."
+      "desc": "Each candidate undergoes document, experience, and reference checks, as well as an interview for your peace of mind and safety"
     },
     {
       "title": "Family support",
-      "desc": "We help establish comfortable and long-term cooperation so you feel confident every day.",
+      "desc": "We help establish comfortable and long-term cooperation so you feel confident every day",
       "span": "By your side every day"
     }
   ],
@@ -78,8 +78,7 @@
       "description": "A service for families who need situational help for a few hours or a short period (a few days or weeks). We will find a qualified nanny in just 1-2 days, and in some cases — even on the same day.",
       "tags": ["A few hours/days", "Flexible schedule"],
       "price": "from <span>300 UAH</span> / hour",
-      "shortDesc": "100% of the nanny's monthly salary",
-
+      "shortDesc": "",
       "buttonText": "Select a nanny",
       "theme": "white"
     },
@@ -183,7 +182,7 @@
   ],
   "road_btn": "Select a nanny",
   "road_requirements": "Requirements:",
-  "gallery_title": "See how our <span>caring nannies<line/></span> work",
+  "gallery_title": "See how our caring <span>nannies work<line/></span> ",
   "gallery_subtitle": "Get to know our nannies through genuine photos from real life. You will see people who care for children every day with love, care, and professionalism.",
   "gallery_hint": "Swipe right",
   "vacation_title": "Current <span>vacancies<line/></span>",
