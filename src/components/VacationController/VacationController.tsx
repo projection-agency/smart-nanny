@@ -10,7 +10,6 @@ import {
   setCityFilter,
   setEmploymentFilter,
   resetFilters,
-  Vacation,
 } from "@/store/vacationSlice";
 import { selectCitiesByCountry, selectCountries } from "@/store/selectors";
 import { RootState } from "@/store/store";
