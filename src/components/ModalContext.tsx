@@ -12,7 +12,7 @@ interface ModalContextType {
   openModal: (key: ModalKey, payload?: string) => void;
   closeModal: () => void;
   currentModal: ModalKey;
-  payload: string;
+  payload?: string;
 }
 
 const ModalContext = createContext<ModalContextType | null>(null);
@@ -32,7 +32,7 @@ export const ModalProvider = ({
   children: ReactNode;
   translation: Record<string, unknown>;
   locale: string;
-  payload: string;
+  payload?: string;
 }) => {
   const [currentModal, setCurrentModal] = useState<ModalKey>(null);
   const [modalData, setModalData] = useState<string>("");
@@ -47,7 +47,7 @@ export const ModalProvider = ({
 
   return (
     <ModalContext.Provider
-      value={{ openModal, closeModal, currentModal, payload }}
+      value={{ openModal, closeModal, currentModal,payload }}
     >
       {children}
 
@@ -75,8 +75,6 @@ export const ModalProvider = ({
       {currentModal === "formD" && (
         <ReviewPopup
           onClose={closeModal}
-          translation={translation}
-          locale={locale}
           payload={modalData}
         />
       )}
