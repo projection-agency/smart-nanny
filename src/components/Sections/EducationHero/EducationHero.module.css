@@ -5,9 +5,11 @@
   padding-bottom: 8.3vw;
   overflow: hidden;
 }
+
 .homeHeroImageMobile {
   display: none;
 }
+
 .homeHeroImage {
   flex-shrink: 0;
   width: 55%;

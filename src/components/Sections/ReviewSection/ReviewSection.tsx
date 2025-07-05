@@ -1,5 +1,6 @@
 "use client";
 
+import { useModal } from "@/components/ModalContext";
 import { Container } from "@/components/Container";
 import s from "./ReviewSection.module.css";
 import Image from "next/image";
@@ -34,6 +35,7 @@ export const ReviewSection = ({
   const [isReady, setIsReady] = useState(false);
   const [isClient, setIsClient] = useState(false);
   const [reviews, setReviews] = useState<Review[]>([]);
+  const { openModal } = useModal();
 
   const { t, i18n } = useTranslation("common");
 
@@ -61,7 +63,6 @@ export const ReviewSection = ({
     setIsClient(true);
   }, []);
 
-  // SSR-only reviews (translation)
   const reviewsRaw = !isReady
     ? (translation && (translation["reviews"] as unknown[])) || []
     : t("reviews", { returnObjects: true }) || [];
@@ -152,7 +153,7 @@ export const ReviewSection = ({
                 {(reviews.length > 0 ? reviews : reviewsSSR).map((review) => (
                   <SwiperSlide key={review.id}>
                     <div className={s.card}>
-                      <div className={s.plus}>{plus}</div>
+                      <div className={s.plus} onClick={()=>openModal("formD",review.Review)}>{plus}</div>
 
                       <div className={s.header}>
                         <Image
@@ -165,7 +166,6 @@ export const ReviewSection = ({
                         <div className={s.name}>{review.Full_name}</div>
                       </div>
                       <p className={s.text}>
-                        {" "}
                         {review.Review.length > 100
                           ? review.Review.slice(0, 100) + "..."
                           : review.Review}

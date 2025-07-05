@@ -89,12 +89,14 @@
   }
 
   .text {
+    margin-bottom: 1.5vw;
+    max-width: 100%;
+    overflow-y: scroll;
+
     font-family: Moderustic;
     font-weight: 400;
     font-size: 1vw;
     line-height: 150%;
-    margin-bottom: 1.5vw;
-    max-width: 75%;
   }
 
   .footer {

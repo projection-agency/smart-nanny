@@ -27,7 +27,6 @@ export const ProgramItem = ({
   previewImage,
   videoUrl,
 }: ProgramItemProps) => {
-  console.log(duration);
   const [isOpen, setIsOpen] = useState(false);
   const contentRef = useRef<HTMLDivElement>(null);
   const [height, setHeight] = useState("0px");

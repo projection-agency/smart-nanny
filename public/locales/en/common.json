@@ -10,7 +10,7 @@
   "home_hero_subtitle": "With us are the people you can truly trust with what matters most – your child.",
   "home_hero_btn": "Select a nanny",
   "why_title": "Why do parents <span>choose <line/> </span> Smart Nanny service?",
-  "why_desc_selection": "We build cooperation on trust, clear agreements, and mutual respect. We ensure a transparent process, fair conditions, and always stay in touch so you always feel supported.",
+  "why_desc_selection": "We build cooperation on trust, clear agreements and mutual respect. We provide a transparent process, fair conditions and always stay in touch so that you feel supported..",
   "why_short": [
     {
       "title": "Professionalism",
@@ -85,7 +85,7 @@
     {
       "id": "training",
       "title": "NANNY TRAINING",
-      "description": "An online course for nannies who want to work confidently and understand children's needs. The program covers neuropedagogy, basics of pediatrics, child psychology, and career development. After completion — a certificate recognized by our service and families.",
+      "description": "An online course for nannies who want to work confidently and understand children's needs. The program covers neuropedagogy, basics of pediatrics, child psychology, and career development. Upon completion — a certificate of successful completion of the courseAfter completion — a certificate of successful completion of the course.",
       "tags": ["Quick start", "Flexible schedule"],
       "price": "",
       "buttonText": "Learn more",
@@ -137,13 +137,14 @@
     {
       "step": "Step 1",
       "title": "Thorough candidate selection",
-      "description": "At this stage, we filter candidates during an interview with HR based on their motivation, willingness to work with children, and alignment with family values.",
+      "description": "At this stage, candidates are selected during an interview with HR, where we assess their motivation, willingness to work with children, and compliance with family values.",
       "needed": [
         "Passport",
         "Tax ID",
         "Education document",
-        "Medical certificate of fitness",
-        "References"
+        "Current medical certificate",
+        "Recommendations from previous employers",
+        "Certificate of no criminal record"
       ]
     },
     {
@@ -151,11 +152,9 @@
       "title": "Knowledge assessment",
       "description": "Candidates take a test on childcare, safety, and child development. This confirms that they not only love children but also have the necessary knowledge.",
       "needed": [
-        "Safety and care knowledge assessment",
-        "First aid training",
-        "Pedagogy course",
-        "Childcare and development knowledge",
-        "First aid knowledge"
+        "Understanding the basics of child safety and care",
+        "Knowledge about the stages of child development",
+        "Knowledge of first aid"
       ]
     },
     {
@@ -163,10 +162,8 @@
       "title": "Training and preparation",
       "description": "Candidates undergo first aid training and a professional 'Professional Nanny' course, where they gain practical knowledge for working with children.",
       "needed": [
-        "Safety and care test",
-        "First aid training",
-        "Professional Nanny course",
-        "Pedagogy course"
+        "Take first aid training",
+        "Complete the professional course \"Professional Nanny\""
       ]
     },
     {
@@ -174,9 +171,9 @@
       "title": "Final selection",
       "description": "We support the nanny at all stages of work: we consult, help with questions, and invite them to a community of like-minded people, where you can always find support and inspiration.",
       "needed": [
-        "Discussion",
-        "Support and inspiration from the team",
-        "Community of like-minded people"
+        "Support and involvement in the internal community",
+        "Openness to feedback and development",
+        "Final interview with the team"
       ]
     }
   ],
@@ -257,6 +254,7 @@
   "get_title": "What you will get after the course",
   "get_points": [
     "Certificate of course completion",
+    "Free employment from the Smart Nanny service",
     "Practical knowledge of childcare and child development",
     "Understanding of professional ethics and effective work in a family",
     "Skills in pediatrics, psychology, pedagogy, and communication",
@@ -273,7 +271,7 @@
   "program_result": "Result",
   "program_expand": "Show",
   "program_collapse": "Collapse",
-    "program_duration":"min",
+  "program_duration": "min",
   "tariff_title_before": "Tariffs for ",
   "tariff_title_highlight": "training",
   "tariff_title": "Tariffs for <span>training <line/></span>",
@@ -323,7 +321,7 @@
   "vacation_form_note2": "and allow the processing of my personal data for recruitment purposes",
   "nanny_hero_title_span": "Together",
   "nanny_hero_title_rest": "to new opportunities",
-  "nanny_hero_subtitle": "We are a team that unites nannies for professional growth. We work with trusted families, create a friendly community, and support stable income.",
+  "nanny_hero_subtitle": "We are a team that brings together nannies for professional development and support. We work only with trusted families and create a friendly community of like-minded people.",
   "nanny_hero_btn": "Submit an application",
   "breadcrumbs_home": "Home",
   "breadcrumbs_blog": "Blog",
