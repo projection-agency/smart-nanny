@@ -13,7 +13,9 @@ import { motion } from "framer-motion";
 import { useTranslation, Trans } from "react-i18next";
 import { API_URL } from "@/constants";
 import { AnimatedLine } from "@/components/AnimatedLine/AnimatedLine";
-
+import "simplebar-react/dist/simplebar.min.css";
+import SimpleBar from "simplebar-react";
+// import "./ScrollBox.css"; // для додаткової кастомізації (див. нижче)
 interface Review {
   id: number;
   Photo: string;
@@ -66,7 +68,6 @@ export const ReviewSection = ({
     : t("reviews", { returnObjects: true }) || [];
   const reviewsSSR = Array.isArray(reviewsRaw) ? reviewsRaw : [];
 
-
   return (
     <section className={s.section}>
       <Container className={s.container}>
@@ -74,7 +75,7 @@ export const ReviewSection = ({
           className={s.wrapper}
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false,  }}
+          viewport={{ once: false }}
           transition={{ duration: 0.7, ease: "easeOut" }}
         >
           <motion.h2
@@ -161,9 +162,9 @@ export const ReviewSection = ({
                         />
                         <div className={s.name}>{review.Full_name}</div>
                       </div>
-                      <p className={s.text}>
+                      <SimpleBar className={s.text}>
                         {review.Review}
-                      </p>
+                      </SimpleBar>
                       <div className={s.footer}>
                         <span>{review.Date}</span>
                         <span>{review.Location}</span>
@@ -182,9 +183,7 @@ export const ReviewSection = ({
           </div>
         </motion.div>
 
-        <div
-          className={s.imageContainer}
-        >
+        <div className={s.imageContainer}>
           <Image
             src="/images/reviewImage.png"
             alt="Family"
@@ -205,4 +204,3 @@ const arrow = (
     />
   </svg>
 );
-
