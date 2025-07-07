@@ -153,8 +153,6 @@ export const ReviewSection = ({
                 {(reviews.length > 0 ? reviews : reviewsSSR).map((review) => (
                   <SwiperSlide key={review.id}>
                     <div className={s.card}>
-                      <div className={s.plus} onClick={()=>openModal("formD",review.Review)}>{plus}</div>
-
                       <div className={s.header}>
                         <Image
                           width={1920}
@@ -166,9 +164,7 @@ export const ReviewSection = ({
                         <div className={s.name}>{review.Full_name}</div>
                       </div>
                       <p className={s.text}>
-                        {review.Review.length > 100
-                          ? review.Review.slice(0, 100) + "..."
-                          : review.Review}
+                        {review.Review}
                       </p>
                       <div className={s.footer}>
                         <span>{review.Date}</span>

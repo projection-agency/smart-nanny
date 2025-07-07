@@ -91,6 +91,7 @@
   .text {
     margin-bottom: 1.5vw;
     max-width: 100%;
+    max-height: 8vw;
     overflow-y: scroll;
 
     font-family: Moderustic;
@@ -256,8 +257,9 @@
             }
 
             .text {
-              font-size: 4.3vw;
+              max-height: 25vw;
               margin-bottom: 6.4vw;
+              font-size: 4.3vw;
             }
 
             .footer {

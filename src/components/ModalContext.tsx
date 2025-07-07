@@ -1,18 +1,16 @@
 "use client";
 
 import { createContext, useContext, useState, ReactNode } from "react";
-import { ReviewPopup } from "./ReviewPopup/ReviewPopup";
 import { SelectionPopup } from "./SelectionPopup/SelectionPopup";
 import { EducationPopup } from "./EducationPopup/EducationPopup";
 import { RespondPopup } from "./RespondPopup/RespondPopup";
 
-type ModalKey = "formA" | "formB" | "formC" | "formD" | "subscribe" | null;
+type ModalKey = "formA" | "formB" | "formC" | "subscribe" | null;
 
 interface ModalContextType {
   openModal: (key: ModalKey, payload?: string) => void;
   closeModal: () => void;
   currentModal: ModalKey;
-  payload?: string;
 }
 
 const ModalContext = createContext<ModalContextType | null>(null);
@@ -27,28 +25,21 @@ export const ModalProvider = ({
   children,
   translation,
   locale,
-  payload,
 }: {
   children: ReactNode;
   translation: Record<string, unknown>;
   locale: string;
-  payload?: string;
 }) => {
   const [currentModal, setCurrentModal] = useState<ModalKey>(null);
-  const [modalData, setModalData] = useState<string>("");
-  const openModal = (key: ModalKey, payload?: string) => {
+  const openModal = (key: ModalKey) => {
     setCurrentModal(key);
-    setModalData(payload || "");
   };
   const closeModal = () => {
     setCurrentModal(null);
-    setModalData("");
   };
 
   return (
-    <ModalContext.Provider
-      value={{ openModal, closeModal, currentModal,payload }}
-    >
+    <ModalContext.Provider value={{ openModal, closeModal, currentModal }}>
       {children}
 
       {currentModal === "formA" && (
@@ -70,12 +61,6 @@ export const ModalProvider = ({
           onClose={closeModal}
           translation={translation}
           locale={locale}
-        />
-      )}
-      {currentModal === "formD" && (
-        <ReviewPopup
-          onClose={closeModal}
-          payload={modalData}
         />
       )}
     </ModalContext.Provider>
