@@ -122,12 +122,47 @@ input::placeholder {
   font-display: swap;
 }
 
+.simplebar-track.simplebar-vertical {
+  opacity: 1 !important;
+  width: 0.2vw !important;
+  padding: 0;
+  background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 0.3vw !important;
+
+}
+
+.simplebar-scrollbar {
+  width: 0.2vw !important;
+}
+
+.simplebar-scrollbar::before {
+  opacity: 1 !important;
+  width: 0.2vw !important;
+  inset: 0px !important;
+  border-radius: 0.3vw !important;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
 @media screen and (max-width: 1024px) {
   body {
     padding-top: 17.3vw;
   }
 
-  h1,h2{
+  h1,
+  h2 {
     letter-spacing: -1px;
+  }
+
+  .simplebar-track.simplebar-vertical{
+    width: 1vw !important;
+  }
+
+  .simplebar-scrollbar {
+    width: 1vw !important;
+  }
+
+  .simplebar-scrollbar::before {
+    width: 1vw !important;
+    border-radius: 1vw !important;
   }
 }
