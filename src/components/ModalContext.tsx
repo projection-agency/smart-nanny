@@ -8,7 +8,7 @@ import { RespondPopup } from "./RespondPopup/RespondPopup";
 type ModalKey = "formA" | "formB" | "formC" | "subscribe" | null;
 
 interface ModalContextType {
-  openModal: (key: ModalKey) => void;
+  openModal: (key: ModalKey, payload?: string) => void;
   closeModal: () => void;
   currentModal: ModalKey;
 }
@@ -21,19 +21,48 @@ export const useModal = () => {
   return context;
 };
 
-export const ModalProvider = ({ children, translation, locale }: { children: ReactNode, translation: Record<string, unknown>, locale: string }) => {
+export const ModalProvider = ({
+  children,
+  translation,
+  locale,
+}: {
+  children: ReactNode;
+  translation: Record<string, unknown>;
+  locale: string;
+}) => {
   const [currentModal, setCurrentModal] = useState<ModalKey>(null);
-
-  const openModal = (key: ModalKey) => setCurrentModal(key);
-  const closeModal = () => setCurrentModal(null);
+  const openModal = (key: ModalKey) => {
+    setCurrentModal(key);
+  };
+  const closeModal = () => {
+    setCurrentModal(null);
+  };
 
   return (
     <ModalContext.Provider value={{ openModal, closeModal, currentModal }}>
       {children}
 
-      {currentModal === "formA" && <SelectionPopup onClose={closeModal} translation={translation} locale={locale} />}
-      {currentModal === "formB" && <EducationPopup onClose={closeModal} translation={translation} locale={locale} />}
-      {currentModal === "formC" && <RespondPopup onClose={closeModal} translation={translation} locale={locale} />}
+      {currentModal === "formA" && (
+        <SelectionPopup
+          onClose={closeModal}
+          translation={translation}
+          locale={locale}
+        />
+      )}
+      {currentModal === "formB" && (
+        <EducationPopup
+          onClose={closeModal}
+          translation={translation}
+          locale={locale}
+        />
+      )}
+      {currentModal === "formC" && (
+        <RespondPopup
+          onClose={closeModal}
+          translation={translation}
+          locale={locale}
+        />
+      )}
     </ModalContext.Provider>
   );
 };

@@ -62,8 +62,6 @@ export const SelectionPopup = ({ onClose, translation, locale }: { onClose: () =
 
       if (response.ok) {
         setIsSubmitted(true);
-
-        // handleClose();
       }
     } catch (error) {
       console.error("Send error:", error);

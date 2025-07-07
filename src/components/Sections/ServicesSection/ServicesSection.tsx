@@ -60,7 +60,7 @@ export const ServicesSection = ({
             (translation && (translation["services_title"] as string)) || ""
           ) : (
             <Trans
-              i18nKey="why_title"
+              i18nKey="services_title"
               components={{
                 span: <span />,
                 line: <AnimatedLine stroke={"#fff9c1"}/>,

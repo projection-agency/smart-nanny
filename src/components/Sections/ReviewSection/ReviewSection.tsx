@@ -61,7 +61,6 @@ export const ReviewSection = ({
     setIsClient(true);
   }, []);
 
-  // SSR-only reviews (translation)
   const reviewsRaw = !isReady
     ? (translation && (translation["reviews"] as unknown[])) || []
     : t("reviews", { returnObjects: true }) || [];
@@ -152,8 +151,6 @@ export const ReviewSection = ({
                 {(reviews.length > 0 ? reviews : reviewsSSR).map((review) => (
                   <SwiperSlide key={review.id}>
                     <div className={s.card}>
-                      <div className={s.plus}>{plus}</div>
-
                       <div className={s.header}>
                         <Image
                           width={1920}
@@ -165,10 +162,7 @@ export const ReviewSection = ({
                         <div className={s.name}>{review.Full_name}</div>
                       </div>
                       <p className={s.text}>
-                        {" "}
-                        {review.Review.length > 100
-                          ? review.Review.slice(0, 100) + "..."
-                          : review.Review}
+                        {review.Review}
                       </p>
                       <div className={s.footer}>
                         <span>{review.Date}</span>
@@ -212,13 +206,3 @@ const arrow = (
   </svg>
 );
 
-const plus = (
-  <svg viewBox="0 0 40 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path
-      d="M20.3371 10.7427C20.3371 16.1142 20.8393 21.6049 20.8393 26.8197M12.8044 19.2834H29.3762M21.6364 34.0937H16.3777C12.7722 34.0937 10.5286 31.8123 7.63636 29.5917C5.51903 27.966 4.40519 27.6199 3.72727 24.7713C3.14903 22.3416 2 20.7369 2 18.2229C2 14.5536 2.363 12.6016 4.45455 9.62809L10.5909 5.12605C10.5909 5.12605 21.7633 0.00241914 27.7898 3.07536C31.4503 4.94189 33.3774 7.09616 34.9974 10.7427C36.5614 14.2633 38 20.5137 38 24.4757C38 33.7261 28.55 34.0937 21.6364 34.0937Z"
-      stroke="#FF91B2"
-      strokeWidth="3"
-      strokeLinecap="round"
-    />
-  </svg>
-);

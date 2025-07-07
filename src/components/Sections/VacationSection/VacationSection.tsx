@@ -177,7 +177,7 @@ export const VacationSection = ({
           <div>{buttonSvg}</div>
         </div>
 
-        <Link href="/" className={s.moreVacations}>
+        <Link href={`/${locale}/vacation`} className={s.moreVacations}>
           {t("vacation_all")}
         </Link>
       </Container>

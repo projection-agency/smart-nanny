@@ -32,7 +32,7 @@ export const VacationPage = ({
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [isDesktop, setIsDesktop] = useState(true);
   const [isReady, setIsReady] = useState(false);
-const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
     const checkScreen = () => {
@@ -96,7 +96,10 @@ const dispatch = useDispatch<AppDispatch>();
             ) : (
               <Trans
                 i18nKey="vacation_hero_title"
-                components={{ 0: <AnimatedLine stroke="#ff91b2"/>, 1: <span /> }}
+                components={{
+                  0: <AnimatedLine stroke="#ff91b2" />,
+                  1: <span />,
+                }}
               />
             )}
             {svg}
@@ -179,28 +182,6 @@ const dispatch = useDispatch<AppDispatch>();
     </main>
   );
 };
-
-// const line = (
-//   <motion.svg
-//     viewBox="0 0 290 23"
-//     fill="none"
-//     xmlns="http://www.w3.org/2000/svg"
-//     style={{ verticalAlign: "middle" }}
-//     preserveAspectRatio="xMidYMid meet"
-//   >
-//     <motion.path
-//       d="M1.50004 20.7578C1.85727 17.5375 8.03152 15.3919 10.2465 14.56C15.163 12.7133 18.9054 9.7846 24.2228 9.7846C27.4532 9.7846 41.0961 6.52609 34.1414 12.835C32.3494 14.4606 32.3476 13.5523 31.4221 15.3773C30.1544 17.8772 32.454 16.0385 33.9017 15.8346C41.0466 14.8282 47.1979 15.1512 54.4296 14.4606C66.135 13.3429 79.2277 15.5632 90.7725 13.1378C99.4224 11.3206 108.479 11.4634 117.088 9.78451C122.792 8.67211 128.544 7.24442 134.355 7.24442C136.274 7.24442 140.965 5.9582 140.802 9.07329C140.714 10.7718 135.995 13.0046 134.716 13.6455C133.305 14.352 125.912 17.3032 128.629 17.3032C140.835 17.3032 152.201 14.4284 164.156 11.8166C174.403 9.57803 184.765 5.41555 195.174 5.41555C207.377 5.41555 219.011 3.58668 231.287 3.58668C235.958 3.58668 239.808 1.68424 239.808 7.70164C239.808 9.69628 239.612 11.8532 238.817 13.6455C238.432 14.513 235.096 18.4038 235.751 16.7444C237.774 11.6149 246.261 11.429 250.358 9.78451C256.544 7.30183 263.683 5.67529 270.196 4.50112C276.238 3.41176 282.345 1.75781 288.5 1.75781"
-//       stroke="#FF91B2"
-//       strokeWidth="3"
-//       strokeLinecap="round"
-//       pathLength={1}
-//       initial={{ pathLength: 0 }}
-//       whileInView={{ pathLength: 1 }}
-//       transition={{ duration: 1.2, ease: "easeOut" }}
-//       viewport={{ once: false, amount: 0.5 }}
-//     />
-//   </motion.svg>
-// );
 
 const svg = (
   <svg

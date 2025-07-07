@@ -60,9 +60,10 @@ export const Footer = ({
     `/${locale}/blog`,
     `/${locale}/education`,
   ];
+
   const socialUrls = [
     "https://www.instagram.com/smartnanny.service/", // Instagram
-    "viber://add?number=+380931234567", // Viber
+    "viber://add?number=380931234567", // Viber
     "https://t.me/smartnanny_service", // Telegram
     "https://wa.me/380983085847", // WhatsApp
   ];

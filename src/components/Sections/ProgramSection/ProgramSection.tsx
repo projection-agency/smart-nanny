@@ -39,8 +39,6 @@ export const ProgramSection = () => {
     fetchModules();
   }, [i18n.language]);
 
-  console.log(modules);
-
   return (
     <section className={s.section}>
       <div className={s.titleContainer}>
