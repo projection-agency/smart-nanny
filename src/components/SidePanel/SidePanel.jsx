@@ -85,7 +85,7 @@ const SidePanel = ({ isOpen, onClose, locale }) => {
 
           <ul className={s.socialLinks}>
             <li>
-              <Link href="">
+              <Link href="https://www.instagram.com/smartnanny.service/">
                 <Image
                   width={32}
                   height={32}
@@ -96,7 +96,7 @@ const SidePanel = ({ isOpen, onClose, locale }) => {
             </li>
 
             <li>
-              <Link href="">
+              <Link href="viber://add?number=+380983085847" type="tel">
                 <Image
                   width={32}
                   height={32}
@@ -107,7 +107,7 @@ const SidePanel = ({ isOpen, onClose, locale }) => {
             </li>
 
             <li>
-              <Link href="">
+              <Link href="https://t.me/smartnanny_service">
                 <Image
                   width={32}
                   height={32}
@@ -118,7 +118,7 @@ const SidePanel = ({ isOpen, onClose, locale }) => {
             </li>
 
             <li>
-              <Link href="">
+              <Link href="https://wa.me/380983085847">
                 <Image
                   width={32}
                   height={32}

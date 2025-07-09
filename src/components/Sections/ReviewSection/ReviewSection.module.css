@@ -97,13 +97,13 @@
     font-weight: 400;
     font-size: 1vw;
     line-height: 150%;
-    scrollbar-width: none;         /* Firefox */
-  -ms-overflow-style: none;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;
   }
 
   .text::-webkit-scrollbar {
-  display: none;                 /* Chrome, Safari, Edge */
-}
+    display: none; /* Chrome, Safari, Edge */
+  }
 
   .footer {
     display: flex;
@@ -262,7 +262,7 @@
             }
 
             .text {
-              max-height: 25vw;
+              max-height: 40vw;
               margin-bottom: 6.4vw;
               font-size: 4.3vw;
             }
