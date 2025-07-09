@@ -7,7 +7,9 @@ import s from "./VacationForm.module.css";
 import { PhoneNumberInput } from "../PhoneInput/PhoneInput";
 import { Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
+import Image from "next/image";
+import { closeIco } from "../ModalContext";
 
 export const VacationForm = ({
   translation,
@@ -18,6 +20,7 @@ export const VacationForm = ({
 }) => {
   const { t } = useTranslation("common");
   const [isReady, setIsReady] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const [employmentTypes, setEmploymentTypes] = useState<string[]>([]);
 
   useEffect(() => {
@@ -33,9 +36,30 @@ export const VacationForm = ({
     );
   };
 
-  const formatFormValues = (
-    form:HTMLFormElement
-  ) => {
+  const isValidDate = (input: string): boolean => {
+    const date = new Date(input);
+    return !isNaN(date.getTime());
+  };
+
+  const isInPast = (input: string): boolean => {
+    const date = new Date(input);
+    const now = new Date();
+    return date < now;
+  };
+
+  const isAtLeastAge = (input: string, minAge: number): boolean => {
+    const birthDate = new Date(input);
+    const today = new Date();
+
+    const age = today.getFullYear() - birthDate.getFullYear();
+    const m = today.getMonth() - birthDate.getMonth();
+    const isBirthdayPassed =
+      m > 0 || (m === 0 && today.getDate() >= birthDate.getDate());
+
+    return age > minAge || (age === minAge && isBirthdayPassed);
+  };
+
+  const formatFormValues = (form: HTMLFormElement) => {
     const full_name = (form[0] as HTMLInputElement).value;
     const country = (form[1] as HTMLInputElement).value;
     const birth_date = (form[2] as HTMLInputElement).value;
@@ -72,10 +96,52 @@ export const VacationForm = ({
     };
   };
 
-  const handleSubmit = async (e:React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     const form = e.target as HTMLFormElement;
     e.preventDefault();
+
+    const errors: string[] = [];
+
     const result = formatFormValues(form);
+
+    if (!result.full_name) {
+      errors.push("Вкажіть ваше ім'я");
+    }
+    if (!result.country) {
+      errors.push("Вкажіть ваше місце проживання");
+    }
+    if (!result.birth_date) {
+      errors.push("Вкажіть дату народження");
+    }
+
+    if (!isValidDate(result.birth_date)) {
+      errors.push("Некоректна дата народження");
+    } else if (!isInPast(result.birth_date)) {
+      errors.push("Дата народження не може бути в майбутньому");
+    } else if (!isAtLeastAge(result.birth_date, 18)) {
+      errors.push("Потрібно бути старше 18 років");
+    }
+    if (!result.phone) {
+      errors.push("Вкажіть номер телефону");
+    }
+    if (result.phone.length < 19) {
+      errors.push("Введіть валідний телефон");
+    }
+    if (!result.email) {
+      errors.push("Вкажіть Email");
+    }
+    if (!result.experience) {
+      errors.push("Вкажіть ваш досвід");
+    }
+    if (result.format.length === 0) {
+      errors.push("Оберіть формат зайнятості");
+    }
+
+    if (errors.length > 0) {
+      alert("Помилки:\n" + errors.join("\n"));
+      return;
+    }
+
     try {
       const response = await axios.post(
         "https://www.apismart.projection-learn.website/wp-json/applications/v1/nanny_signup",
@@ -88,9 +154,22 @@ export const VacationForm = ({
         }
       );
       console.log(response);
-    } catch (error) {
-      console.log(error);
+      setIsSubmitted(true);
+    } catch (err) {
+      const error = err as AxiosError;
+      if (error.response && error.response.data) {
+        const message =
+          (error.response.data as {message:string}).message ||
+          "Сталася помилка під час відправки форми";
+        alert(message);
+      } else {
+        alert("Невідома помилка");
+      }
     }
+  };
+
+  const handleClose = () => {
+    setIsSubmitted(false);
   };
 
   const employmentLabels = [
@@ -119,210 +198,255 @@ export const VacationForm = ({
 
   return (
     <div className={s.formBlock}>
-      <h3 className={s.formTitle}>
-        {!isReady
-          ? typeof translation["vacation_form_form_title"] === "string"
-            ? translation["vacation_form_form_title"]
-            : ""
-          : t("vacation_form_form_title")}
-      </h3>
+      {isSubmitted ? (
+        <>
+          <div className={s.closeBtn} onClick={handleClose}>
+            {closeIco}
+          </div>
 
-      <form className={s.form} onSubmit={handleSubmit}>
-        <div className={s.inputLine}>
-          <div className={s.inputContainer}>
-            <label>
-              {!isReady
-                ? typeof translation["vacation_form_name_label"] === "string"
-                  ? translation["vacation_form_name_label"]
-                  : ""
-                : t("vacation_form_name_label")}
-              <span>*</span>
-              <input
-                placeholder={
-                  !isReady
-                    ? typeof translation["vacation_form_name_placeholder"] ===
-                      "string"
-                      ? translation["vacation_form_name_placeholder"]
-                      : ""
-                    : t("vacation_form_name_placeholder")
-                }
-                type="text"
+          <div className={s.confirmation}>
+            <div>
+              <Image
+                src={"/icons/confirmation.svg"}
+                alt="confirmation"
+                width={48}
+                height={48}
               />
-            </label>
+              <h3>
+                {!isReady
+                  ? (translation &&
+                      (translation[
+                        "education_popup_success_title"
+                      ] as string)) ||
+                    ""
+                  : t("education_popup_success_title")}
+              </h3>
+              <p>
+                {!isReady
+                  ? (translation &&
+                      (translation[
+                        "education_popup_success_text"
+                      ] as string)) ||
+                    ""
+                  : t("education_popup_success_text")}
+              </p>
+            </div>
           </div>
-          <div className={s.inputContainer}>
-            <label>
-              {!isReady
-                ? typeof translation["vacation_form_location_label"] ===
-                  "string"
-                  ? translation["vacation_form_location_label"]
-                  : ""
-                : t("vacation_form_location_label")}
-              <span>*</span>
-              <input
-                placeholder={
-                  !isReady
-                    ? typeof translation[
-                        "vacation_form_location_placeholder"
-                      ] === "string"
-                      ? translation["vacation_form_location_placeholder"]
-                      : ""
-                    : t("vacation_form_location_placeholder")
-                }
-                type="text"
-              />
-            </label>
-          </div>
-          <div className={s.inputContainer}>
-            <label>
-              {!isReady
-                ? typeof translation["vacation_form_birth_label"] === "string"
-                  ? translation["vacation_form_birth_label"]
-                  : ""
-                : t("vacation_form_birth_label")}
-              <span>*</span>
-              <input type="date" />
-            </label>
-          </div>
-        </div>
-
-        <div className={s.inputLine}>
-          <div className={s.inputContainer}>
-            <label>
-              {!isReady
-                ? typeof translation["vacation_form_phone_label"] === "string"
-                  ? translation["vacation_form_phone_label"]
-                  : ""
-                : t("vacation_form_phone_label")}
-              <span>*</span>
-              <PhoneNumberInput />
-            </label>
-          </div>
-          <div className={s.inputContainer}>
-            <label>
-              {!isReady
-                ? typeof translation["vacation_form_email_label"] === "string"
-                  ? translation["vacation_form_email_label"]
-                  : ""
-                : t("vacation_form_email_label")}
-              <span>*</span>
-              <input
-                type="email"
-                placeholder={
-                  !isReady
-                    ? typeof translation["vacation_form_email_placeholder"] ===
-                      "string"
-                      ? translation["vacation_form_email_placeholder"]
-                      : ""
-                    : t("vacation_form_email_placeholder")
-                }
-              />
-            </label>
-          </div>
-          <div className={s.inputContainer}>
-            <label>
-              {!isReady
-                ? typeof translation["vacation_form_experience_label"] ===
-                  "string"
-                  ? translation["vacation_form_experience_label"]
-                  : ""
-                : t("vacation_form_experience_label")}
-              <span>*</span>
-              <input
-                type="number"
-                placeholder={
-                  !isReady
-                    ? typeof translation[
-                        "vacation_form_experience_placeholder"
-                      ] === "string"
-                      ? translation["vacation_form_experience_placeholder"]
-                      : ""
-                    : t("vacation_form_experience_placeholder")
-                }
-                min={0}
-              />
-            </label>
-          </div>
-        </div>
-
-        <div className={s.employmentBlock}>
-          <p>
+        </>
+      ) : (
+        <>
+          {" "}
+          <h3 className={s.formTitle}>
             {!isReady
-              ? typeof translation["vacation_form_employment_label"] ===
-                "string"
-                ? translation["vacation_form_employment_label"]
+              ? typeof translation["vacation_form_form_title"] === "string"
+                ? translation["vacation_form_form_title"]
                 : ""
-              : t("vacation_form_employment_label")}
-            <span>*</span>
-          </p>
-          <Swiper
-            modules={[Pagination]}
-            breakpoints={{
-              0: { enabled: true, spaceBetween: 20, slidesPerView: 1.2 },
-              1025: {
-                spaceBetween: 0,
-                enabled: false,
-                slidesPerView: "auto",
-              },
-            }}
-            spaceBetween={20}
-            pagination={{
-              type: "bullets",
-              el: `.${s.paginationCont}`,
-              bulletElement: "p",
-            }}
-            className={`${s.swiper} swiper`}
-          >
-            {employmentLabels.map((label, idx) => {
-              const checked = employmentTypes.includes(label);
+              : t("vacation_form_form_title")}
+          </h3>
+          <form className={s.form} onSubmit={handleSubmit}>
+            <div className={s.inputLine}>
+              <div className={s.inputContainer}>
+                <label>
+                  {!isReady
+                    ? typeof translation["vacation_form_name_label"] ===
+                      "string"
+                      ? translation["vacation_form_name_label"]
+                      : ""
+                    : t("vacation_form_name_label")}
+                  <span>*</span>
+                  <input
+                    placeholder={
+                      !isReady
+                        ? typeof translation[
+                            "vacation_form_name_placeholder"
+                          ] === "string"
+                          ? translation["vacation_form_name_placeholder"]
+                          : ""
+                        : t("vacation_form_name_placeholder")
+                    }
+                    type="text"
+                  />
+                </label>
+              </div>
+              <div className={s.inputContainer}>
+                <label>
+                  {!isReady
+                    ? typeof translation["vacation_form_location_label"] ===
+                      "string"
+                      ? translation["vacation_form_location_label"]
+                      : ""
+                    : t("vacation_form_location_label")}
+                  <span>*</span>
+                  <input
+                    placeholder={
+                      !isReady
+                        ? typeof translation[
+                            "vacation_form_location_placeholder"
+                          ] === "string"
+                          ? translation["vacation_form_location_placeholder"]
+                          : ""
+                        : t("vacation_form_location_placeholder")
+                    }
+                    type="text"
+                  />
+                </label>
+              </div>
+              <div className={s.inputContainer}>
+                <label>
+                  {!isReady
+                    ? typeof translation["vacation_form_birth_label"] ===
+                      "string"
+                      ? translation["vacation_form_birth_label"]
+                      : ""
+                    : t("vacation_form_birth_label")}
+                  <span>*</span>
+                  <input type="date" />
+                </label>
+              </div>
+            </div>
 
-              return (
-                <SwiperSlide className={s.swiperSlide} key={idx}>
-                  <label key={label} className={s.checkboxItem}>
-                    <input
-                      type="checkbox"
-                      checked={checked}
-                      onChange={() => toggleType(label)}
-                      className={s.hiddenCheckbox}
-                    />
-                    <span className={s.customCheckbox}></span>
-                    {label}
-                  </label>
-                </SwiperSlide>
-              );
-            })}
-          </Swiper>
-          <div className={s.paginationCont}></div>
-        </div>
+            <div className={s.inputLine}>
+              <div className={s.inputContainer}>
+                <label>
+                  {!isReady
+                    ? typeof translation["vacation_form_phone_label"] ===
+                      "string"
+                      ? translation["vacation_form_phone_label"]
+                      : ""
+                    : t("vacation_form_phone_label")}
+                  <span>*</span>
+                  <PhoneNumberInput />
+                </label>
+              </div>
+              <div className={s.inputContainer}>
+                <label>
+                  {!isReady
+                    ? typeof translation["vacation_form_email_label"] ===
+                      "string"
+                      ? translation["vacation_form_email_label"]
+                      : ""
+                    : t("vacation_form_email_label")}
+                  <span>*</span>
+                  <input
+                    type="email"
+                    placeholder={
+                      !isReady
+                        ? typeof translation[
+                            "vacation_form_email_placeholder"
+                          ] === "string"
+                          ? translation["vacation_form_email_placeholder"]
+                          : ""
+                        : t("vacation_form_email_placeholder")
+                    }
+                  />
+                </label>
+              </div>
+              <div className={s.inputContainer}>
+                <label>
+                  {!isReady
+                    ? typeof translation["vacation_form_experience_label"] ===
+                      "string"
+                      ? translation["vacation_form_experience_label"]
+                      : ""
+                    : t("vacation_form_experience_label")}
+                  <span>*</span>
+                  <input
+                    type="number"
+                    placeholder={
+                      !isReady
+                        ? typeof translation[
+                            "vacation_form_experience_placeholder"
+                          ] === "string"
+                          ? translation["vacation_form_experience_placeholder"]
+                          : ""
+                        : t("vacation_form_experience_placeholder")
+                    }
+                    min={0}
+                  />
+                </label>
+              </div>
+            </div>
 
-        <button className={s.submitBtn} type="submit">
-          {!isReady
-            ? typeof translation["vacation_form_submit"] === "string"
-              ? translation["vacation_form_submit"]
-              : ""
-            : t("vacation_form_submit")}
-        </button>
+            <div className={s.employmentBlock}>
+              <p>
+                {!isReady
+                  ? typeof translation["vacation_form_employment_label"] ===
+                    "string"
+                    ? translation["vacation_form_employment_label"]
+                    : ""
+                  : t("vacation_form_employment_label")}
+                <span>*</span>
+              </p>
+              <Swiper
+                modules={[Pagination]}
+                breakpoints={{
+                  0: { enabled: true, spaceBetween: 20, slidesPerView: 1.2 },
+                  1025: {
+                    spaceBetween: 0,
+                    enabled: false,
+                    slidesPerView: "auto",
+                  },
+                }}
+                spaceBetween={20}
+                pagination={{
+                  type: "bullets",
+                  el: `.${s.paginationCont}`,
+                  bulletElement: "p",
+                }}
+                className={`${s.swiper} swiper`}
+              >
+                {employmentLabels.map((label, idx) => {
+                  const checked = employmentTypes.includes(label);
 
-        <p className={s.note}>
-          {!isReady
-            ? typeof translation["vacation_form_note"] === "string"
-              ? translation["vacation_form_note"]
-              : ""
-            : t("vacation_form_note")}{" "}
-          <a href={`/${locale}/policy`}>
-            {!isReady
-              ? typeof translation["vacation_form_policy"] === "string"
-                ? translation["vacation_form_policy"]
-                : ""
-              : t("vacation_form_policy")}
-          </a>{" "}
-          {!isReady
-            ? typeof translation["vacation_form_note2"] === "string"
-              ? translation["vacation_form_note2"]
-              : ""
-            : t("vacation_form_note2")}
-        </p>
-      </form>
+                  return (
+                    <SwiperSlide className={s.swiperSlide} key={idx}>
+                      <label key={label} className={s.checkboxItem}>
+                        <input
+                          type="checkbox"
+                          checked={checked}
+                          onChange={() => toggleType(label)}
+                          className={s.hiddenCheckbox}
+                        />
+                        <span className={s.customCheckbox}></span>
+                        {label}
+                      </label>
+                    </SwiperSlide>
+                  );
+                })}
+              </Swiper>
+              <div className={s.paginationCont}></div>
+            </div>
+
+            <button className={s.submitBtn} type="submit">
+              {!isReady
+                ? typeof translation["vacation_form_submit"] === "string"
+                  ? translation["vacation_form_submit"]
+                  : ""
+                : t("vacation_form_submit")}
+            </button>
+
+            <p className={s.note}>
+              {!isReady
+                ? typeof translation["vacation_form_note"] === "string"
+                  ? translation["vacation_form_note"]
+                  : ""
+                : t("vacation_form_note")}{" "}
+              <a href={`/${locale}/policy`}>
+                {!isReady
+                  ? typeof translation["vacation_form_policy"] === "string"
+                    ? translation["vacation_form_policy"]
+                    : ""
+                  : t("vacation_form_policy")}
+              </a>{" "}
+              {!isReady
+                ? typeof translation["vacation_form_note2"] === "string"
+                  ? translation["vacation_form_note2"]
+                  : ""
+                : t("vacation_form_note2")}
+            </p>
+          </form>
+        </>
+      )}
     </div>
   );
 };
