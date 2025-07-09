@@ -33,16 +33,18 @@ export const VacationForm = ({
     );
   };
 
-  const formatFormValues = (form) => {
-    const full_name = form[0].value;
-    const country = form[1].value;
-    const birth_date = form[2].value;
-    const phone = form[3].value;
-    const email = form[4].value;
-    const experience = form[5].value;
-    let format = [];
+  const formatFormValues = (
+    form:HTMLFormElement
+  ) => {
+    const full_name = (form[0] as HTMLInputElement).value;
+    const country = (form[1] as HTMLInputElement).value;
+    const birth_date = (form[2] as HTMLInputElement).value;
+    const phone = (form[3] as HTMLInputElement).value;
+    const email = (form[4] as HTMLInputElement).value;
+    const experience = (form[5] as HTMLInputElement).value;
+    const format = [];
     for (let i = 6; i < 10; i++) {
-      if (form[i].checked) {
+      if ((form[i] as HTMLInputElement).checked) {
         switch (i) {
           case 6:
             format.push("Няня на неповну зайнятість");
@@ -70,8 +72,8 @@ export const VacationForm = ({
     };
   };
 
-  const handleSubmit = async (e) => {
-    const form = e.target;
+  const handleSubmit = async (e:React.FormEvent<HTMLFormElement>) => {
+    const form = e.target as HTMLFormElement;
     e.preventDefault();
     const result = formatFormValues(form);
     try {
@@ -85,9 +87,9 @@ export const VacationForm = ({
           },
         }
       );
-      console.log(response)
+      console.log(response);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   };
 
