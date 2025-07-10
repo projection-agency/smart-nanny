@@ -45,7 +45,7 @@ export function RespondPopup({
         break;
       case "phone":
         if (!value) error = "Вкажіть номер телефону";
-        else if (value.length < 19) error = "Введіть валідний телефон";
+        else if (value.length < 12) error = "Введіть валідний телефон";
         break;
       default:
         break;
@@ -54,13 +54,52 @@ export function RespondPopup({
     setErrors((prev) => ({ ...prev, [name]: error }));
   };
 
-  const validateForm = (keys: string[], values: (string | string[])[]) => {
-    for (let i = 0; i < 8; i++) {
-      const value = values[i];
-      if (typeof value === "string") {
-        validateValue(keys[i], value);
-      }
+  const getValidationError = (
+    name: string,
+    value: string | string[]
+  ): string => {
+    if (name === "format" && Array.isArray(value)) {
+      if (value.length === 0) return "Оберіть хоча б один формат зайнятості";
+      return "";
     }
+
+    if (typeof value !== "string") return "";
+
+    switch (name) {
+      case "full_name":
+        if (!value.trim()) return "Вкажіть ваше ім'я";
+        break;
+      case "country":
+        if (!value.trim()) return "Вкажіть ваше місце проживання";
+        break;
+      case "phone":
+        if (!value) return "Вкажіть номер телефону";
+        else if (value.length < 12) return "Введіть валідний телефон";
+        break;
+      case "email":
+        if (!value) return "Вкажіть Email";
+        break;
+      case "experience":
+        if (!value) return "Вкажіть ваш досвід";
+        break;
+    }
+    return "";
+  };
+
+  const validateForm = (
+    keys: string[],
+    values: (string | string[])[]
+  ): Record<string, string> => {
+    const newErrors: Record<string, string> = {};
+
+    for (let i = 0; i < keys.length; i++) {
+      const key = keys[i];
+      const value = values[i];
+      const error = getValidationError(key, value);
+      if (error) newErrors[key] = error;
+    }
+
+    return newErrors;
   };
 
   const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
@@ -77,9 +116,9 @@ export function RespondPopup({
       email,
     };
 
-    validateForm(Object.keys(payload), Object.values(payload));
+    const localErrors = validateForm(Object.keys(payload), Object.values(payload));
 
-    const hasAnyKeys = Object.keys(errors).length > 0;
+    const hasAnyKeys = Object.keys(localErrors).length > 0;
     if (hasAnyKeys) {
       console.log("error");
       return;
