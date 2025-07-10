@@ -11,6 +11,16 @@ import axios, { AxiosError } from "axios";
 import Image from "next/image";
 import { closeIco } from "../ModalContext";
 
+const defaultValues = {
+  full_name: "",
+  country: "",
+  birth_date: "",
+  phone: "",
+  email: "",
+  experience: "",
+  format: [],
+};
+
 export const VacationForm = ({
   translation,
   locale,
@@ -159,16 +169,41 @@ export const VacationForm = ({
     };
   };
 
+  const validateForm = (keys: string[], values: (string | string[])[]) => {
+    for (let i = 0; i < 8; i++) {
+      const value = values[i];
+      if (typeof value === "string") {
+        validateField(keys[i], value);
+      } else {
+        if (employmentTypes.length === 0) {
+          setErrors((prev) => ({
+            ...prev,
+            format: "Оберіть хоча б один формат зайнятості",
+          }));
+        } else {
+          setErrors((prev) => {
+            const updated = { ...prev };
+            delete updated.format;
+            return updated;
+          });
+        }
+      }
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     const form = e.target as HTMLFormElement;
     e.preventDefault();
 
+    const result = formatFormValues(form);
+
+    validateForm(Object.keys(result), Object.values(result));
+
     const hasAnyKeys = Object.keys(errors).length > 0;
     if (hasAnyKeys) {
+      console.log("error")
       return;
     }
-
-    const result = formatFormValues(form);
 
     try {
       const response = await axios.post(
@@ -186,13 +221,10 @@ export const VacationForm = ({
     } catch (err) {
       const error = err as AxiosError;
       if (error.response && error.response.data) {
-        const message =
-          (error.response.data as { message: string }).message ||
-          "Сталася помилка під час відправки форми";
-        alert(message);
+        console.log(error);
       } else {
-        alert("Невідома помилка");
       }
+      return;
     }
   };
 
@@ -297,6 +329,7 @@ export const VacationForm = ({
                     }
                     type="text"
                     name="full_name"
+                    defaultValue={defaultValues.full_name}
                     onBlur={handleBlur}
                   />
                 </label>
@@ -324,6 +357,7 @@ export const VacationForm = ({
                           : ""
                         : t("vacation_form_location_placeholder")
                     }
+                    defaultValue={defaultValues.country}
                     type="text"
                     name="country"
                     onBlur={handleBlur}
@@ -343,7 +377,12 @@ export const VacationForm = ({
                       : ""
                     : t("vacation_form_birth_label")}
                   <span>*</span>
-                  <input type="date" name="birth_date" onBlur={handleBlur} />
+                  <input
+                    type="date"
+                    name="birth_date"
+                    onBlur={handleBlur}
+                    defaultValue={defaultValues.birth_date}
+                  />
                 </label>
               </div>
             </div>
@@ -364,6 +403,7 @@ export const VacationForm = ({
                     inputClass={s.input}
                     name="phone"
                     onBlur={handleBlur}
+                    // defaultValue={defaultValues.phone}
                   />
                 </label>
               </div>
@@ -382,6 +422,7 @@ export const VacationForm = ({
                     type="email"
                     name="email"
                     onBlur={handleBlur}
+                    defaultValue={defaultValues.email}
                     placeholder={
                       !isReady
                         ? typeof translation[
@@ -408,6 +449,7 @@ export const VacationForm = ({
                     : t("vacation_form_experience_label")}
                   <span>*</span>
                   <input
+                    defaultValue={defaultValues.phone}
                     name="experience"
                     onBlur={handleBlur}
                     type="number"

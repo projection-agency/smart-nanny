@@ -46,7 +46,7 @@ export const SelectionPopup = ({
     let error = "";
 
     switch (name) {
-      case "name":
+      case "full_name":
         if (!value.trim()) error = "Вкажіть ім'я";
         break;
       case "email":
@@ -86,11 +86,30 @@ export const SelectionPopup = ({
     }
   };
 
+  const validateForm = (keys: string[], values: (string | string[])[]) => {
+    for (let i = 0; i < 8; i++) {
+      const value = values[i];
+      if (typeof value === "string") {
+        validateValue(keys[i], value);
+      } else {
+        if (employmentTypes.length === 0) {
+          setErrors((prev) => ({
+            ...prev,
+            format: "Оберіть хоча б один формат зайнятості",
+          }));
+        } else {
+          setErrors((prev) => {
+            const updated = { ...prev };
+            delete updated.format;
+            return updated;
+          });
+        }
+      }
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitted(true);
-
-    if (!isValid) return;
 
     const payload = {
       full_name: fullName,
@@ -99,6 +118,14 @@ export const SelectionPopup = ({
       location,
       format: employmentTypes,
     };
+
+    validateForm(Object.keys(payload), Object.values(payload));
+
+    const hasAnyKeys = Object.keys(errors).length > 0;
+    if (hasAnyKeys) {
+      console.log(errors)
+      return;
+    }
 
     try {
       const response = await fetch(
@@ -235,7 +262,7 @@ export const SelectionPopup = ({
                   <span>*</span>
                   <input
                     className={clsx({
-                      [s.error]: errors.name,
+                      [s.error]: errors.full_name,
                     })}
                     value={fullName}
                     onChange={(e) => setFullName(e.target.value)}
@@ -249,7 +276,7 @@ export const SelectionPopup = ({
                         : t("selection_popup_name_placeholder")
                     }
                     type="text"
-                    name="name"
+                    name="full_name"
                     onBlur={handleBlur}
                   />
                 </label>
@@ -411,7 +438,7 @@ export const SelectionPopup = ({
             </div>
 
             <button
-              disabled={!isValid}
+              // disabled={!isValid}
               typeof="submit"
               className={`${s.submitBtn} ${!isValid && s.disabled}`}
             >

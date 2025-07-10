@@ -37,7 +37,7 @@ export function RespondPopup({
     let error = "";
 
     switch (name) {
-      case "name":
+      case "full_name":
         if (!value.trim()) error = "Вкажіть ім'я";
         break;
       case "email":
@@ -54,6 +54,15 @@ export function RespondPopup({
     setErrors((prev) => ({ ...prev, [name]: error }));
   };
 
+  const validateForm = (keys: string[], values: (string | string[])[]) => {
+    for (let i = 0; i < 8; i++) {
+      const value = values[i];
+      if (typeof value === "string") {
+        validateValue(keys[i], value);
+      }
+    }
+  };
+
   const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
     const { value, name } = e.target;
     validateValue(name, value);
@@ -62,13 +71,19 @@ export function RespondPopup({
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!isValid) return;
-
     const payload = {
       full_name: fullName,
       phone,
       email,
     };
+
+    validateForm(Object.keys(payload), Object.values(payload));
+
+    const hasAnyKeys = Object.keys(errors).length > 0;
+    if (hasAnyKeys) {
+      console.log("error");
+      return;
+    }
 
     try {
       const response = await fetch(
@@ -207,11 +222,11 @@ export function RespondPopup({
                         : t("education_popup_name_placeholder")
                     }
                     value={fullName}
-                    name="name"
+                    name="full_name"
                     onBlur={handleBlur}
                     onChange={(e) => setFullName(e.target.value)}
                     className={clsx({
-                      [s.error]: errors.name,
+                      [s.error]: errors.full_name,
                     })}
                   />
                 </label>
