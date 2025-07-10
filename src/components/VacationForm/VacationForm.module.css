@@ -237,6 +237,7 @@
   .formBlock {
     padding: 6.4vw;
     max-width: 89.9vw;
+    height: auto;
 
     .formTitle {
       display: none;
