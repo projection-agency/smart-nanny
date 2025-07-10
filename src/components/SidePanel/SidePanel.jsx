@@ -96,7 +96,7 @@ const SidePanel = ({ isOpen, onClose, locale }) => {
             </li>
 
             <li>
-              <Link href="viber://add?number=380983085847" type="tel">
+              <Link href="viber://chat?number=%2B380983085847" type="tel">
                 <Image
                   width={32}
                   height={32}
