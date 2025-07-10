@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import s from "./SidePanel.module.css";
 import Image from "next/image";
 import SidePanelLangSwitcher from "../SidePanelLangSwitcher/SidePanelLangSwitcher";
@@ -14,9 +14,9 @@ const navLinks = [
 ];
 
 const SidePanel = ({ isOpen, onClose, locale }) => {
-  const {t} = useTranslation("common");
+  const { t } = useTranslation("common");
   const getHref = (path) => `/${locale}${path === "/" ? "" : path}`;
-  
+
   return (
     <aside className={`${s.sidePanel} ${isOpen ? s.isOpen : " "}`}>
       <div className={s.sidePanelCont}>
@@ -96,7 +96,8 @@ const SidePanel = ({ isOpen, onClose, locale }) => {
             </li>
 
             <li>
-              <Link href="viber://chat?number=+380983085847">
+              {/* viber://chat?number=+380983085847 */}
+              <Link href="https://vb.me/+380983085847">
                 <Image
                   width={32}
                   height={32}
