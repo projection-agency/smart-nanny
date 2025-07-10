@@ -8,10 +8,18 @@ import clsx from "clsx";
 import { PhoneNumberInput } from "../PhoneInput/PhoneInput";
 import { PASS } from "@/constants";
 import Image from "next/image";
-import { useTranslation } from 'react-i18next';
-import i18n from '@/i18n/client';
+import { useTranslation } from "react-i18next";
+import i18n from "@/i18n/client";
 
-export const SelectionPopup = ({ onClose, translation, locale }: { onClose: () => void, translation: Record<string, unknown>, locale: string }) => {
+export const SelectionPopup = ({
+  onClose,
+  translation,
+  locale,
+}: {
+  onClose: () => void;
+  translation: Record<string, unknown>;
+  locale: string;
+}) => {
   const [employmentTypes, setEmploymentTypes] = useState<string[]>([]);
   const [visible, setVisible] = useState(false);
   const popupRef = useRef<HTMLDivElement>(null);
@@ -20,7 +28,8 @@ export const SelectionPopup = ({ onClose, translation, locale }: { onClose: () =
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [location, setLocation] = useState("");
-  
+  const [errors, setErrors] = useState<Record<string, string>>({});
+
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const isValid =
@@ -30,8 +39,52 @@ export const SelectionPopup = ({ onClose, translation, locale }: { onClose: () =
     location.trim() &&
     employmentTypes.length > 0;
 
-  const { t } = useTranslation('common');
+  const { t } = useTranslation("common");
   const [isReady, setIsReady] = useState(false);
+
+  const validateValue = (name: string, value: string) => {
+    let error = "";
+
+    switch (name) {
+      case "name":
+        if (!value.trim()) error = "Вкажіть ім'я";
+        break;
+      case "email":
+        if (!value.trim()) error = "Вкажіть email";
+        break;
+      case "phone":
+        if (!value) error = "Вкажіть номер телефону";
+        else if (value.length < 19) error = "Введіть валідний телефон";
+        break;
+      case "location":
+        if (!value.trim()) error = "Вкажіть вашу локацію";
+        break;
+      default:
+        break;
+    }
+
+    setErrors((prev) => ({ ...prev, [name]: error }));
+  };
+
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+    const { value, name, type } = e.target;
+    if (type === "checkbox" && name === "employment") {
+      if (employmentTypes.length === 0) {
+        setErrors((prev) => ({
+          ...prev,
+          format: "Оберіть хоча б один формат зайнятості",
+        }));
+      } else {
+        setErrors((prev) => {
+          const updated = { ...prev };
+          delete updated.format;
+          return updated;
+        });
+      }
+    } else {
+      validateValue(name, value);
+    }
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -91,7 +144,7 @@ export const SelectionPopup = ({ onClose, translation, locale }: { onClose: () =
 
   useEffect(() => {
     if (translation && locale) {
-      i18n.addResourceBundle(locale, 'common', translation, true, true);
+      i18n.addResourceBundle(locale, "common", translation, true, true);
       i18n.changeLanguage(locale).then(() => setIsReady(true));
     }
   }, [translation, locale]);
@@ -121,8 +174,24 @@ export const SelectionPopup = ({ onClose, translation, locale }: { onClose: () =
                 width={48}
                 height={48}
               />
-              <h3>{!isReady ? (translation && translation['selection_popup_success_title'] as string) || '' : t('selection_popup_success_title')}</h3>
-              <p>{!isReady ? (translation && translation['selection_popup_success_text'] as string) || '' : t('selection_popup_success_text')}</p>
+              <h3>
+                {!isReady
+                  ? (translation &&
+                      (translation[
+                        "selection_popup_success_title"
+                      ] as string)) ||
+                    ""
+                  : t("selection_popup_success_title")}
+              </h3>
+              <p>
+                {!isReady
+                  ? (translation &&
+                      (translation[
+                        "selection_popup_success_text"
+                      ] as string)) ||
+                    ""
+                  : t("selection_popup_success_text")}
+              </p>
             </div>
           </div>
         </div>
@@ -136,36 +205,74 @@ export const SelectionPopup = ({ onClose, translation, locale }: { onClose: () =
           </div>
 
           <div className={s.popupTitle}>
-            <h3>{!isReady ? (translation && translation['selection_popup_title'] as string) || '' : t('selection_popup_title')}</h3>
-            <p>{!isReady ? (translation && translation['selection_popup_subtitle'] as string) || '' : t('selection_popup_subtitle')}</p>
+            <h3>
+              {!isReady
+                ? (translation &&
+                    (translation["selection_popup_title"] as string)) ||
+                  ""
+                : t("selection_popup_title")}
+            </h3>
+            <p>
+              {!isReady
+                ? (translation &&
+                    (translation["selection_popup_subtitle"] as string)) ||
+                  ""
+                : t("selection_popup_subtitle")}
+            </p>
           </div>
 
           <form onSubmit={handleSubmit}>
             <div className={s.inputLine}>
               <div className={s.inputContainer}>
                 <label>
-                  {!isReady ? (translation && translation['selection_popup_name_label'] as string) || '' : t('selection_popup_name_label')}<span>*</span>
+                  {!isReady
+                    ? (translation &&
+                        (translation[
+                          "selection_popup_name_label"
+                        ] as string)) ||
+                      ""
+                    : t("selection_popup_name_label")}
+                  <span>*</span>
                   <input
                     className={clsx({
-                      [s.error]: isSubmitted && !fullName.trim(),
+                      [s.error]: errors.name,
                     })}
                     value={fullName}
                     onChange={(e) => setFullName(e.target.value)}
-                    placeholder={!isReady ? (translation && translation['selection_popup_name_placeholder'] as string) || '' : t('selection_popup_name_placeholder')}
+                    placeholder={
+                      !isReady
+                        ? (translation &&
+                            (translation[
+                              "selection_popup_name_placeholder"
+                            ] as string)) ||
+                          ""
+                        : t("selection_popup_name_placeholder")
+                    }
                     type="text"
+                    name="name"
+                    onBlur={handleBlur}
                   />
                 </label>
               </div>
 
               <div className={s.inputContainer}>
                 <label>
-                  {!isReady ? (translation && translation['selection_popup_phone_label'] as string) || '' : t('selection_popup_phone_label')}<span>*</span>
+                  {!isReady
+                    ? (translation &&
+                        (translation[
+                          "selection_popup_phone_label"
+                        ] as string)) ||
+                      ""
+                    : t("selection_popup_phone_label")}
+                  <span>*</span>
                   <PhoneNumberInput
                     className={clsx({
-                      ["error"]: isSubmitted && !phone.trim(),
+                      ["error"]: errors.phone,
                     })}
                     value={phone}
                     onChange={(val) => setPhone(val)}
+                    name="phone"
+                    onBlur={handleBlur}
                   />
                 </label>
               </div>
@@ -174,14 +281,31 @@ export const SelectionPopup = ({ onClose, translation, locale }: { onClose: () =
             <div className={s.inputLine}>
               <div className={s.inputContainer}>
                 <label>
-                  {!isReady ? (translation && translation['selection_popup_email_label'] as string) || '' : t('selection_popup_email_label')}<span>*</span>
+                  {!isReady
+                    ? (translation &&
+                        (translation[
+                          "selection_popup_email_label"
+                        ] as string)) ||
+                      ""
+                    : t("selection_popup_email_label")}
+                  <span>*</span>
                   <input
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     type="email"
-                    placeholder={!isReady ? (translation && translation['selection_popup_email_placeholder'] as string) || '' : t('selection_popup_email_placeholder')}
+                    placeholder={
+                      !isReady
+                        ? (translation &&
+                            (translation[
+                              "selection_popup_email_placeholder"
+                            ] as string)) ||
+                          ""
+                        : t("selection_popup_email_placeholder")
+                    }
+                    name="email"
+                    onBlur={handleBlur}
                     className={clsx({
-                      [s.error]: isSubmitted && !email.trim(),
+                      [s.error]: errors.email,
                     })}
                   />
                 </label>
@@ -189,14 +313,31 @@ export const SelectionPopup = ({ onClose, translation, locale }: { onClose: () =
 
               <div className={s.inputContainer}>
                 <label>
-                  {!isReady ? (translation && translation['selection_popup_location_label'] as string) || '' : t('selection_popup_location_label')}<span>*</span>
+                  {!isReady
+                    ? (translation &&
+                        (translation[
+                          "selection_popup_location_label"
+                        ] as string)) ||
+                      ""
+                    : t("selection_popup_location_label")}
+                  <span>*</span>
                   <input
                     value={location}
                     onChange={(e) => setLocation(e.target.value)}
-                    placeholder={!isReady ? (translation && translation['selection_popup_location_placeholder'] as string) || '' : t('selection_popup_location_placeholder')}
+                    placeholder={
+                      !isReady
+                        ? (translation &&
+                            (translation[
+                              "selection_popup_location_placeholder"
+                            ] as string)) ||
+                          ""
+                        : t("selection_popup_location_placeholder")
+                    }
                     type="text"
+                    name="location"
+                    onBlur={handleBlur}
                     className={clsx({
-                      [s.error]: isSubmitted && !location.trim(),
+                      [s.error]: errors.location,
                     })}
                   />
                 </label>
@@ -205,27 +346,61 @@ export const SelectionPopup = ({ onClose, translation, locale }: { onClose: () =
 
             <div className={s.employmentBlock}>
               <p>
-                {!isReady ? (translation && translation['selection_popup_employment_label'] as string) || '' : t('selection_popup_employment_label')}<span>*</span>
+                {!isReady
+                  ? (translation &&
+                      (translation[
+                        "selection_popup_employment_label"
+                      ] as string)) ||
+                    ""
+                  : t("selection_popup_employment_label")}
+                <span>*</span>
               </p>
-              <div
-                className={clsx(s.checkboxGrid, {
-                  [s.error]: isSubmitted && employmentTypes.length === 0,
-                })}
-              >
+              <div className={clsx(s.checkboxGrid)}>
                 {[
-                  !isReady ? (translation && translation['selection_popup_employment_full'] as string) || '' : t('selection_popup_employment_full'),
-                  !isReady ? (translation && translation['selection_popup_employment_part'] as string) || '' : t('selection_popup_employment_part'),
-                  !isReady ? (translation && translation['selection_popup_employment_hourly'] as string) || '' : t('selection_popup_employment_hourly'),
-                  !isReady ? (translation && translation['selection_popup_employment_accommodation'] as string) || '' : t('selection_popup_employment_accommodation'),
+                  !isReady
+                    ? (translation &&
+                        (translation[
+                          "selection_popup_employment_full"
+                        ] as string)) ||
+                      ""
+                    : t("selection_popup_employment_full"),
+                  !isReady
+                    ? (translation &&
+                        (translation[
+                          "selection_popup_employment_part"
+                        ] as string)) ||
+                      ""
+                    : t("selection_popup_employment_part"),
+                  !isReady
+                    ? (translation &&
+                        (translation[
+                          "selection_popup_employment_hourly"
+                        ] as string)) ||
+                      ""
+                    : t("selection_popup_employment_hourly"),
+                  !isReady
+                    ? (translation &&
+                        (translation[
+                          "selection_popup_employment_accommodation"
+                        ] as string)) ||
+                      ""
+                    : t("selection_popup_employment_accommodation"),
                 ].map((label: string) => {
                   const checked = employmentTypes.includes(label);
                   return (
-                    <label key={label} className={s.checkboxItem}>
+                    <label
+                      key={label}
+                      className={clsx(s.checkboxItem, {
+                        [s.error]: errors.format,
+                      })}
+                    >
                       <input
                         type="checkbox"
+                        name="employment"
                         checked={checked}
                         onChange={() => toggleType(label)}
                         className={s.hiddenCheckbox}
+                        onBlur={handleBlur}
                       />
                       <span className={s.customCheckbox}></span>
                       {label}
@@ -236,19 +411,35 @@ export const SelectionPopup = ({ onClose, translation, locale }: { onClose: () =
             </div>
 
             <button
-              // disabled={!isValid}
+              disabled={!isValid}
               typeof="submit"
               className={`${s.submitBtn} ${!isValid && s.disabled}`}
             >
-              {!isReady ? (translation && translation['selection_popup_submit'] as string) || '' : t('selection_popup_submit')}
+              {!isReady
+                ? (translation &&
+                    (translation["selection_popup_submit"] as string)) ||
+                  ""
+                : t("selection_popup_submit")}
             </button>
 
             <p className={s.note}>
-              {!isReady ? (translation && translation['selection_popup_note'] as string) || '' : t('selection_popup_note')} {" "}
+              {!isReady
+                ? (translation &&
+                    (translation["selection_popup_note"] as string)) ||
+                  ""
+                : t("selection_popup_note")}{" "}
               <Link onClick={onClose} href="/policy">
-                {!isReady ? (translation && translation['selection_popup_policy'] as string) || '' : t('selection_popup_policy')}
+                {!isReady
+                  ? (translation &&
+                      (translation["selection_popup_policy"] as string)) ||
+                    ""
+                  : t("selection_popup_policy")}
               </Link>{" "}
-              {!isReady ? (translation && translation['selection_popup_note2'] as string) || '' : t('selection_popup_note2')}
+              {!isReady
+                ? (translation &&
+                    (translation["selection_popup_note2"] as string)) ||
+                  ""
+                : t("selection_popup_note2")}
             </p>
           </form>
         </div>

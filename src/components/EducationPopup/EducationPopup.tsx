@@ -21,8 +21,40 @@ export function EducationPopup({ translation, locale, onClose }: { translation: 
   const [isSubmitted, setIsSubmitted] = useState(false);
   const { t } = useTranslation('common');
   const [isReady, setIsReady] = useState(false);
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
   const isValid = fullName.trim() && phone.trim() && email.trim();
+
+
+  const validateValue = (name: string, value: string) => {
+    let error = "";
+
+    switch (name) {
+      case "name":
+        if (!value.trim()) error = "Вкажіть ім'я";
+        break;
+      case "email":
+        if (!value.trim()) error = "Вкажіть email";
+        break;
+      case "phone":
+        if (!value) error = "Вкажіть номер телефону";
+        else if (value.length < 19) error = "Введіть валідний телефон";
+        break;
+      case "location":
+        if (!value.trim()) error = "Вкажіть вашу локацію";
+        break;
+      default:
+        break;
+    }
+
+    setErrors((prev) => ({ ...prev, [name]: error }));
+  };
+
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+    const { value, name } = e.target;
+      validateValue(name, value);
+  };
+
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -130,8 +162,10 @@ export function EducationPopup({ translation, locale, onClose }: { translation: 
                     placeholder={!isReady ? (translation && translation['education_popup_name_placeholder'] as string) || '' : t('education_popup_name_placeholder')}
                     value={fullName}
                     onChange={(e) => setFullName(e.target.value)}
+                    onBlur={handleBlur}
+                    name="name"
                     className={clsx({
-                      [s.error]: isSubmitted && !fullName.trim(),
+                      [s.error]: errors.name,
                     })}
                   />
                 </label>
@@ -144,10 +178,12 @@ export function EducationPopup({ translation, locale, onClose }: { translation: 
                   {!isReady ? (translation && translation['education_popup_phone_label'] as string) || '' : t('education_popup_phone_label')}<span>*</span>
                   <PhoneNumberInput
                     className={clsx({
-                      ["error"]: isSubmitted && !phone.trim(),
+                      ["error"]: errors.phone,
                     })}
                     value={phone}
                     onChange={(val) => setPhone(val)}
+                    onBlur={handleBlur}
+                    name="phone"
                   />
                 </label>
               </div>
@@ -162,8 +198,10 @@ export function EducationPopup({ translation, locale, onClose }: { translation: 
                     placeholder={!isReady ? (translation && translation['education_popup_email_placeholder'] as string) || '' : t('education_popup_email_placeholder')}
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
+                    name="email"
+                    onBlur={handleBlur}
                     className={clsx({
-                      [s.error]: isSubmitted && !email.trim(),
+                      [s.error]: errors.email,
                     })}
                   />
                 </label>

@@ -22,6 +22,7 @@ export const VacationForm = ({
   const [isReady, setIsReady] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [employmentTypes, setEmploymentTypes] = useState<string[]>([]);
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
   useEffect(() => {
     if (translation && locale) {
@@ -57,6 +58,68 @@ export const VacationForm = ({
       m > 0 || (m === 0 && today.getDate() >= birthDate.getDate());
 
     return age > minAge || (age === minAge && isBirthdayPassed);
+  };
+
+  const validateField = (name: string, value: string) => {
+    let error = "";
+
+    switch (name) {
+      case "full_name":
+        if (!value.trim()) error = "Вкажіть ваше ім'я";
+        break;
+
+      case "country":
+        if (!value.trim()) error = "Вкажіть ваше місце проживання";
+        break;
+
+      case "birth_date":
+        if (!value) error = "Вкажіть дату народження";
+        else if (!isValidDate(value)) error = "Некоректна дата";
+        else if (!isInPast(value)) error = "Дата не може бути в майбутньому";
+        else if (!isAtLeastAge(value, 18)) error = "Має бути 18+ років";
+        break;
+
+      case "phone":
+        if (!value) error = "Вкажіть номер телефону";
+        else if (value.length < 19) error = "Введіть валідний телефон";
+        break;
+
+      case "email":
+        if (!value) error = "Вкажіть Email";
+        break;
+
+      case "experience":
+        if (!value) error = "Вкажіть ваш досвід";
+        break;
+      case "format":
+        if (employmentTypes.length === 0) error = "Оберіть формат зайнятості";
+        break;
+      default:
+        break;
+    }
+
+    setErrors((prev) => ({ ...prev, [name]: error }));
+  };
+
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+    const { name, value, type } = e.target;
+
+    if (type === "checkbox" && name === "employment") {
+      if (employmentTypes.length === 0) {
+        setErrors((prev) => ({
+          ...prev,
+          format: "Оберіть хоча б один формат зайнятості",
+        }));
+      } else {
+        setErrors((prev) => {
+          const updated = { ...prev };
+          delete updated.format;
+          return updated;
+        });
+      }
+    } else {
+      validateField(name, value);
+    }
   };
 
   const formatFormValues = (form: HTMLFormElement) => {
@@ -100,47 +163,12 @@ export const VacationForm = ({
     const form = e.target as HTMLFormElement;
     e.preventDefault();
 
-    const errors: string[] = [];
-
-    const result = formatFormValues(form);
-
-    if (!result.full_name) {
-      errors.push("Вкажіть ваше ім'я");
-    }
-    if (!result.country) {
-      errors.push("Вкажіть ваше місце проживання");
-    }
-    if (!result.birth_date) {
-      errors.push("Вкажіть дату народження");
-    }
-
-    if (!isValidDate(result.birth_date)) {
-      errors.push("Некоректна дата народження");
-    } else if (!isInPast(result.birth_date)) {
-      errors.push("Дата народження не може бути в майбутньому");
-    } else if (!isAtLeastAge(result.birth_date, 18)) {
-      errors.push("Потрібно бути старше 18 років");
-    }
-    if (!result.phone) {
-      errors.push("Вкажіть номер телефону");
-    }
-    if (result.phone.length < 19) {
-      errors.push("Введіть валідний телефон");
-    }
-    if (!result.email) {
-      errors.push("Вкажіть Email");
-    }
-    if (!result.experience) {
-      errors.push("Вкажіть ваш досвід");
-    }
-    if (result.format.length === 0) {
-      errors.push("Оберіть формат зайнятості");
-    }
-
-    if (errors.length > 0) {
-      alert("Помилки:\n" + errors.join("\n"));
+    const hasAnyKeys = Object.keys(errors).length > 0;
+    if (hasAnyKeys) {
       return;
     }
+
+    const result = formatFormValues(form);
 
     try {
       const response = await axios.post(
@@ -159,7 +187,7 @@ export const VacationForm = ({
       const error = err as AxiosError;
       if (error.response && error.response.data) {
         const message =
-          (error.response.data as {message:string}).message ||
+          (error.response.data as { message: string }).message ||
           "Сталася помилка під час відправки форми";
         alert(message);
       } else {
@@ -235,7 +263,6 @@ export const VacationForm = ({
         </>
       ) : (
         <>
-          {" "}
           <h3 className={s.formTitle}>
             {!isReady
               ? typeof translation["vacation_form_form_title"] === "string"
@@ -245,7 +272,11 @@ export const VacationForm = ({
           </h3>
           <form className={s.form} onSubmit={handleSubmit}>
             <div className={s.inputLine}>
-              <div className={s.inputContainer}>
+              <div
+                className={`${s.inputContainer} ${
+                  errors.full_name ? s.error : ""
+                }`}
+              >
                 <label>
                   {!isReady
                     ? typeof translation["vacation_form_name_label"] ===
@@ -265,10 +296,16 @@ export const VacationForm = ({
                         : t("vacation_form_name_placeholder")
                     }
                     type="text"
+                    name="full_name"
+                    onBlur={handleBlur}
                   />
                 </label>
               </div>
-              <div className={s.inputContainer}>
+              <div
+                className={`${s.inputContainer} ${
+                  errors.country ? s.error : ""
+                }`}
+              >
                 <label>
                   {!isReady
                     ? typeof translation["vacation_form_location_label"] ===
@@ -288,10 +325,16 @@ export const VacationForm = ({
                         : t("vacation_form_location_placeholder")
                     }
                     type="text"
+                    name="country"
+                    onBlur={handleBlur}
                   />
                 </label>
               </div>
-              <div className={s.inputContainer}>
+              <div
+                className={`${s.inputContainer} ${
+                  errors.birth_date ? s.error : ""
+                }`}
+              >
                 <label>
                   {!isReady
                     ? typeof translation["vacation_form_birth_label"] ===
@@ -300,13 +343,15 @@ export const VacationForm = ({
                       : ""
                     : t("vacation_form_birth_label")}
                   <span>*</span>
-                  <input type="date" />
+                  <input type="date" name="birth_date" onBlur={handleBlur} />
                 </label>
               </div>
             </div>
 
             <div className={s.inputLine}>
-              <div className={s.inputContainer}>
+              <div
+                className={`${s.inputContainer} ${errors.phone ? s.error : ""}`}
+              >
                 <label>
                   {!isReady
                     ? typeof translation["vacation_form_phone_label"] ===
@@ -315,10 +360,16 @@ export const VacationForm = ({
                       : ""
                     : t("vacation_form_phone_label")}
                   <span>*</span>
-                  <PhoneNumberInput />
+                  <PhoneNumberInput
+                    inputClass={s.input}
+                    name="phone"
+                    onBlur={handleBlur}
+                  />
                 </label>
               </div>
-              <div className={s.inputContainer}>
+              <div
+                className={`${s.inputContainer} ${errors.email ? s.error : ""}`}
+              >
                 <label>
                   {!isReady
                     ? typeof translation["vacation_form_email_label"] ===
@@ -329,6 +380,8 @@ export const VacationForm = ({
                   <span>*</span>
                   <input
                     type="email"
+                    name="email"
+                    onBlur={handleBlur}
                     placeholder={
                       !isReady
                         ? typeof translation[
@@ -341,7 +394,11 @@ export const VacationForm = ({
                   />
                 </label>
               </div>
-              <div className={s.inputContainer}>
+              <div
+                className={`${s.inputContainer} ${
+                  errors.experience ? s.error : ""
+                }`}
+              >
                 <label>
                   {!isReady
                     ? typeof translation["vacation_form_experience_label"] ===
@@ -351,6 +408,8 @@ export const VacationForm = ({
                     : t("vacation_form_experience_label")}
                   <span>*</span>
                   <input
+                    name="experience"
+                    onBlur={handleBlur}
                     type="number"
                     placeholder={
                       !isReady
@@ -367,7 +426,9 @@ export const VacationForm = ({
               </div>
             </div>
 
-            <div className={s.employmentBlock}>
+            <div
+              className={`${s.employmentBlock} ${errors.format ? s.error : ""}`}
+            >
               <p>
                 {!isReady
                   ? typeof translation["vacation_form_employment_label"] ===
@@ -397,15 +458,16 @@ export const VacationForm = ({
               >
                 {employmentLabels.map((label, idx) => {
                   const checked = employmentTypes.includes(label);
-
                   return (
                     <SwiperSlide className={s.swiperSlide} key={idx}>
                       <label key={label} className={s.checkboxItem}>
                         <input
                           type="checkbox"
+                          name="employment"
                           checked={checked}
                           onChange={() => toggleType(label)}
                           className={s.hiddenCheckbox}
+                          onBlur={handleBlur}
                         />
                         <span className={s.customCheckbox}></span>
                         {label}
