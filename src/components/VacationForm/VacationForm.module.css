@@ -2,7 +2,7 @@
   background-color: rgba(254, 251, 250, 1);
   border-radius: 2.6vw;
   max-width: 52vw;
-  height: 39.90vw;
+  height: 39.9vw;
   margin: 0 auto;
   padding: 3.1vw;
   position: relative;
@@ -22,6 +22,21 @@
   grid-template-columns: 1fr 1fr 1fr;
   gap: 0.8vw;
   margin-bottom: 1.6vw;
+}
+
+.inputContainer.error {
+  input {
+    border: 0.05vw solid red;
+  }
+  .input {
+    border: 0.05vw solid red !important;
+  }
+}
+
+.employmentBlock.error {
+  .checkboxItem {
+    border: 0.05vw solid red;
+  }
 }
 
 .checkboxGrid {
@@ -218,7 +233,6 @@
   }
 }
 
-
 @media screen and (max-width: 1024px) {
   .formBlock {
     padding: 6.4vw;
@@ -365,15 +379,13 @@
     }
   }
 
-      .closeBtn {
-      width: 12.8vw;
-      height: 12.8vw;
+  .closeBtn {
+    width: 12.8vw;
+    height: 12.8vw;
 
-      svg {
-        width: 3.5vw;
-        height: 4.3vw;
-      }
+    svg {
+      width: 3.5vw;
+      height: 4.3vw;
     }
-
-
+  }
 }

@@ -8,10 +8,18 @@ import clsx from "clsx";
 import { PhoneNumberInput } from "../PhoneInput/PhoneInput";
 import { PASS } from "@/constants";
 import Image from "next/image";
-import { useTranslation } from 'react-i18next';
-import i18n from '@/i18n/client';
+import { useTranslation } from "react-i18next";
+import i18n from "@/i18n/client";
 
-export function EducationPopup({ translation, locale, onClose }: { translation: Record<string, unknown>, locale: string, onClose: () => void }) {
+export function EducationPopup({
+  translation,
+  locale,
+  onClose,
+}: {
+  translation: Record<string, unknown>;
+  locale: string;
+  onClose: () => void;
+}) {
   const [visible, setVisible] = useState(false);
   const popupRef = useRef<HTMLDivElement>(null);
 
@@ -19,21 +27,66 @@ export function EducationPopup({ translation, locale, onClose }: { translation: 
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const { t } = useTranslation('common');
+  const { t } = useTranslation("common");
   const [isReady, setIsReady] = useState(false);
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
   const isValid = fullName.trim() && phone.trim() && email.trim();
 
+  const validateValue = (name: string, value: string) => {
+    let error = "";
+
+    switch (name) {
+      case "full_name":
+        if (!value.trim()) error = "Вкажіть ім'я";
+        break;
+      case "email":
+        if (!value.trim()) error = "Вкажіть email";
+        break;
+      case "phone":
+        if (!value) error = "Вкажіть номер телефону";
+        else if (value.length < 19) error = "Введіть валідний телефон";
+        break;
+      case "location":
+        if (!value.trim()) error = "Вкажіть вашу локацію";
+        break;
+      default:
+        break;
+    }
+
+    setErrors((prev) => ({ ...prev, [name]: error }));
+  };
+
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+    const { value, name } = e.target;
+    validateValue(name, value);
+  };
+
+  const validateForm = (keys: string[], values: (string | string[])[]) => {
+    for (let i = 0; i < 8; i++) {
+      const value = values[i];
+      if (typeof value === "string") {
+        validateValue(keys[i], value);
+      }
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
-    if (!isValid) return;
 
     const payload = {
       full_name: fullName,
       phone,
       email,
     };
+
+    validateForm(Object.keys(payload), Object.values(payload));
+
+    const hasAnyKeys = Object.keys(errors).length > 0;
+    if (hasAnyKeys) {
+      console.log("error");
+      return;
+    }
 
     try {
       const response = await fetch(
@@ -78,7 +131,7 @@ export function EducationPopup({ translation, locale, onClose }: { translation: 
 
   useEffect(() => {
     if (translation && locale) {
-      i18n.addResourceBundle(locale, 'common', translation, true, true);
+      i18n.addResourceBundle(locale, "common", translation, true, true);
       i18n.changeLanguage(locale).then(() => setIsReady(true));
     }
   }, [translation, locale]);
@@ -102,8 +155,24 @@ export function EducationPopup({ translation, locale, onClose }: { translation: 
                 width={48}
                 height={48}
               />
-              <h3>{!isReady ? (translation && translation['education_popup_success_title'] as string) || '' : t('education_popup_success_title')}</h3>
-              <p>{!isReady ? (translation && translation['education_popup_success_text'] as string) || '' : t('education_popup_success_text')}</p>
+              <h3>
+                {!isReady
+                  ? (translation &&
+                      (translation[
+                        "education_popup_success_title"
+                      ] as string)) ||
+                    ""
+                  : t("education_popup_success_title")}
+              </h3>
+              <p>
+                {!isReady
+                  ? (translation &&
+                      (translation[
+                        "education_popup_success_text"
+                      ] as string)) ||
+                    ""
+                  : t("education_popup_success_text")}
+              </p>
             </div>
           </div>
         </div>
@@ -116,22 +185,51 @@ export function EducationPopup({ translation, locale, onClose }: { translation: 
             {closeIco}
           </div>
           <div className={s.popupTitle}>
-            <h3>{!isReady ? (translation && translation['education_popup_title'] as string) || '' : t('education_popup_title')}</h3>
-            <p>{!isReady ? (translation && translation['education_popup_subtitle'] as string) || '' : t('education_popup_subtitle')}</p>
+            <h3>
+              {!isReady
+                ? (translation &&
+                    (translation["education_popup_title"] as string)) ||
+                  ""
+                : t("education_popup_title")}
+            </h3>
+            <p>
+              {!isReady
+                ? (translation &&
+                    (translation["education_popup_subtitle"] as string)) ||
+                  ""
+                : t("education_popup_subtitle")}
+            </p>
           </div>
 
           <form onSubmit={handleSubmit}>
             <div className={s.inputLine}>
               <div className={s.inputContainer}>
                 <label>
-                  {!isReady ? (translation && translation['education_popup_name_label'] as string) || '' : t('education_popup_name_label')}<span>*</span>
+                  {!isReady
+                    ? (translation &&
+                        (translation[
+                          "education_popup_name_label"
+                        ] as string)) ||
+                      ""
+                    : t("education_popup_name_label")}
+                  <span>*</span>
                   <input
                     type="text"
-                    placeholder={!isReady ? (translation && translation['education_popup_name_placeholder'] as string) || '' : t('education_popup_name_placeholder')}
+                    placeholder={
+                      !isReady
+                        ? (translation &&
+                            (translation[
+                              "education_popup_name_placeholder"
+                            ] as string)) ||
+                          ""
+                        : t("education_popup_name_placeholder")
+                    }
                     value={fullName}
                     onChange={(e) => setFullName(e.target.value)}
+                    onBlur={handleBlur}
+                    name="full_name"
                     className={clsx({
-                      [s.error]: isSubmitted && !fullName.trim(),
+                      [s.error]: errors.full_name,
                     })}
                   />
                 </label>
@@ -141,13 +239,22 @@ export function EducationPopup({ translation, locale, onClose }: { translation: 
             <div className={s.inputLine}>
               <div className={s.inputContainer}>
                 <label>
-                  {!isReady ? (translation && translation['education_popup_phone_label'] as string) || '' : t('education_popup_phone_label')}<span>*</span>
+                  {!isReady
+                    ? (translation &&
+                        (translation[
+                          "education_popup_phone_label"
+                        ] as string)) ||
+                      ""
+                    : t("education_popup_phone_label")}
+                  <span>*</span>
                   <PhoneNumberInput
                     className={clsx({
-                      ["error"]: isSubmitted && !phone.trim(),
+                      ["error"]: errors.phone,
                     })}
                     value={phone}
                     onChange={(val) => setPhone(val)}
+                    onBlur={handleBlur}
+                    name="phone"
                   />
                 </label>
               </div>
@@ -156,14 +263,31 @@ export function EducationPopup({ translation, locale, onClose }: { translation: 
             <div className={s.inputLine}>
               <div className={s.inputContainer}>
                 <label>
-                  {!isReady ? (translation && translation['education_popup_email_label'] as string) || '' : t('education_popup_email_label')}<span>*</span>
+                  {!isReady
+                    ? (translation &&
+                        (translation[
+                          "education_popup_email_label"
+                        ] as string)) ||
+                      ""
+                    : t("education_popup_email_label")}
+                  <span>*</span>
                   <input
                     type="email"
-                    placeholder={!isReady ? (translation && translation['education_popup_email_placeholder'] as string) || '' : t('education_popup_email_placeholder')}
+                    placeholder={
+                      !isReady
+                        ? (translation &&
+                            (translation[
+                              "education_popup_email_placeholder"
+                            ] as string)) ||
+                          ""
+                        : t("education_popup_email_placeholder")
+                    }
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
+                    name="email"
+                    onBlur={handleBlur}
                     className={clsx({
-                      [s.error]: isSubmitted && !email.trim(),
+                      [s.error]: errors.email,
                     })}
                   />
                 </label>
@@ -174,15 +298,31 @@ export function EducationPopup({ translation, locale, onClose }: { translation: 
               type="submit"
               className={clsx(s.submitBtn, { [s.disabled]: !isValid })}
             >
-              {!isReady ? (translation && translation['education_popup_submit'] as string) || '' : t('education_popup_submit')}
+              {!isReady
+                ? (translation &&
+                    (translation["education_popup_submit"] as string)) ||
+                  ""
+                : t("education_popup_submit")}
             </button>
 
             <p className={s.note}>
-              {!isReady ? (translation && translation['education_popup_note'] as string) || '' : t('education_popup_note')} {" "}
+              {!isReady
+                ? (translation &&
+                    (translation["education_popup_note"] as string)) ||
+                  ""
+                : t("education_popup_note")}{" "}
               <Link onClick={onClose} href="/policy">
-                {!isReady ? (translation && translation['education_popup_policy'] as string) || '' : t('education_popup_policy')}
+                {!isReady
+                  ? (translation &&
+                      (translation["education_popup_policy"] as string)) ||
+                    ""
+                  : t("education_popup_policy")}
               </Link>{" "}
-              {!isReady ? (translation && translation['education_popup_note2'] as string) || '' : t('education_popup_note2')}
+              {!isReady
+                ? (translation &&
+                    (translation["education_popup_note2"] as string)) ||
+                  ""
+                : t("education_popup_note2")}
             </p>
           </form>
         </div>
