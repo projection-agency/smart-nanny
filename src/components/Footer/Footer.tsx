@@ -50,9 +50,15 @@ export const Footer = ({
   const footerDev = !isReady
     ? (translation && (translation["footer_dev"] as string)) || ""
     : t("footer_dev");
+  const footerDev1 = !isReady
+    ? (translation && (translation["footer_dev1"] as string)) || ""
+    : t("footer_dev1");
   const footerDevName = !isReady
     ? (translation && (translation["footer_dev_name"] as string)) || ""
     : t("footer_dev_name");
+  const footerDevName1 = !isReady
+    ? (translation && (translation["footer_dev_name1"] as string)) || ""
+    : t("footer_dev_name1");
 
   const navUrls = [
     `/${locale}/nanny-selection`,
@@ -63,7 +69,7 @@ export const Footer = ({
 
   const socialUrls = [
     "https://www.instagram.com/smartnanny.service/", // Instagram
-    "viber://add?number=+380983085847", // Viber
+    "viber://chat?number=%2B380983085847", // Viber
     "https://t.me/smartnanny_service", // Telegram
     "https://wa.me/380983085847", // WhatsApp
   ];
@@ -130,7 +136,7 @@ export const Footer = ({
           {footerTitleMain}
           <span>
             {footerTitleSpan}
-            <AnimatedLine stroke="#fff9c1"/>
+            <AnimatedLine stroke="#fff9c1" />
           </span>
         </h2>
 
@@ -178,8 +184,18 @@ export const Footer = ({
 
           <div>
             {footerDev}{" "}
-            <a className={s.dev} href="">
+            <a
+              className={s.dev}
+              href="https://www.instagram.com/before_after.agency?igsh=MTVyMTIxaTE4ZmRobA=="
+            >
               {footerDevName}
+            </a>
+            {footerDev1}
+            <a
+              className={s.dev}
+              href="https://projection-ua.webflow.io/"
+            >
+              {footerDevName1}
             </a>
           </div>
         </div>

@@ -70,66 +70,24 @@ export const VacationForm = ({
     return age > minAge || (age === minAge && isBirthdayPassed);
   };
 
-  const validateField = (name: string, value: string) => {
-    let error = "";
-
-    switch (name) {
-      case "full_name":
-        if (!value.trim()) error = "Вкажіть ваше ім'я";
-        break;
-
-      case "country":
-        if (!value.trim()) error = "Вкажіть ваше місце проживання";
-        break;
-
-      case "birth_date":
-        if (!value) error = "Вкажіть дату народження";
-        else if (!isValidDate(value)) error = "Некоректна дата";
-        else if (!isInPast(value)) error = "Дата не може бути в майбутньому";
-        else if (!isAtLeastAge(value, 18)) error = "Має бути 18+ років";
-        break;
-
-      case "phone":
-        if (!value) error = "Вкажіть номер телефону";
-        else if (value.length < 19) error = "Введіть валідний телефон";
-        break;
-
-      case "email":
-        if (!value) error = "Вкажіть Email";
-        break;
-
-      case "experience":
-        if (!value) error = "Вкажіть ваш досвід";
-        break;
-      case "format":
-        if (employmentTypes.length === 0) error = "Оберіть формат зайнятості";
-        break;
-      default:
-        break;
-    }
-
-    setErrors((prev) => ({ ...prev, [name]: error }));
-  };
-
   const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
     const { name, value, type } = e.target;
 
+    let fieldValue: string | string[] = value;
     if (type === "checkbox" && name === "employment") {
-      if (employmentTypes.length === 0) {
-        setErrors((prev) => ({
-          ...prev,
-          format: "Оберіть хоча б один формат зайнятості",
-        }));
-      } else {
-        setErrors((prev) => {
-          const updated = { ...prev };
-          delete updated.format;
-          return updated;
-        });
-      }
-    } else {
-      validateField(name, value);
+      fieldValue = employmentTypes;
     }
+
+    const error = getValidationError(
+      name === "employment" ? "format" : name,
+      fieldValue
+    );
+    setErrors((prev) => {
+      const updated = { ...prev };
+      if (error) updated[name === "employment" ? "format" : name] = error;
+      else delete updated[name === "employment" ? "format" : name];
+      return updated;
+    });
   };
 
   const formatFormValues = (form: HTMLFormElement) => {
@@ -169,40 +127,75 @@ export const VacationForm = ({
     };
   };
 
-  const validateForm = (keys: string[], values: (string | string[])[]) => {
-    for (let i = 0; i < 8; i++) {
-      const value = values[i];
-      if (typeof value === "string") {
-        validateField(keys[i], value);
-      } else {
-        if (employmentTypes.length === 0) {
-          setErrors((prev) => ({
-            ...prev,
-            format: "Оберіть хоча б один формат зайнятості",
-          }));
-        } else {
-          setErrors((prev) => {
-            const updated = { ...prev };
-            delete updated.format;
-            return updated;
-          });
-        }
-      }
+  const getValidationError = (
+    name: string,
+    value: string | string[]
+  ): string => {
+    if (name === "format" && Array.isArray(value)) {
+      if (value.length === 0) return "Оберіть хоча б один формат зайнятості";
+      return "";
     }
+
+    if (typeof value !== "string") return "";
+
+    switch (name) {
+      case "full_name":
+        if (!value.trim()) return "Вкажіть ваше ім'я";
+        break;
+      case "country":
+        if (!value.trim()) return "Вкажіть ваше місце проживання";
+        break;
+      case "birth_date":
+        if (!value) return "Вкажіть дату народження";
+        else if (!isValidDate(value)) return "Некоректна дата";
+        else if (!isInPast(value)) return "Дата не може бути в майбутньому";
+        else if (!isAtLeastAge(value, 18)) return "Має бути 18+ років";
+        break;
+      case "phone":
+        if (!value) return "Вкажіть номер телефону";
+        else if (value.length < 19) return "Введіть валідний телефон";
+        break;
+      case "email":
+        if (!value) return "Вкажіть Email";
+        break;
+      case "experience":
+        if (!value) return "Вкажіть ваш досвід";
+        break;
+    }
+
+    return "";
+  };
+
+  const validateForm = (
+    keys: string[],
+    values: (string | string[])[]
+  ): Record<string, string> => {
+    const newErrors: Record<string, string> = {};
+
+    for (let i = 0; i < keys.length; i++) {
+      const key = keys[i];
+      const value = values[i];
+      const error = getValidationError(key, value);
+      if (error) newErrors[key] = error;
+    }
+
+    return newErrors;
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    const form = e.target as HTMLFormElement;
     e.preventDefault();
 
+    const form = e.target as HTMLFormElement;
     const result = formatFormValues(form);
 
-    validateForm(Object.keys(result), Object.values(result));
+    const errorsResult = validateForm(
+      Object.keys(result),
+      Object.values(result)
+    );
+    setErrors(errorsResult); // встановлюємо всі помилки одразу
 
-    const hasAnyKeys = Object.keys(errors).length > 0;
-    if (hasAnyKeys) {
-      console.log("error")
-      return;
+    if (Object.keys(errorsResult).length > 0) {
+      return; // є помилки — не надсилаємо форму
     }
 
     try {
@@ -216,18 +209,18 @@ export const VacationForm = ({
           },
         }
       );
+
       console.log(response);
       setIsSubmitted(true);
     } catch (err) {
       const error = err as AxiosError;
       if (error.response && error.response.data) {
-        console.log(error);
+        console.log(error.response.data);
       } else {
+        console.log("Unknown error", error);
       }
-      return;
     }
   };
-
   const handleClose = () => {
     setIsSubmitted(false);
   };
@@ -304,11 +297,7 @@ export const VacationForm = ({
           </h3>
           <form className={s.form} onSubmit={handleSubmit}>
             <div className={s.inputLine}>
-              <div
-                className={`${s.inputContainer} ${
-                  errors.full_name ? s.error : ""
-                }`}
-              >
+              <div className={`${s.inputContainer} ${errors.full_name ? s.error : ""}`}>
                 <label>
                   {!isReady
                     ? typeof translation["vacation_form_name_label"] ===
