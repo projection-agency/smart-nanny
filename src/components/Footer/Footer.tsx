@@ -190,7 +190,8 @@ export const Footer = ({
             >
               {footerDevName}
             </a>
-            {footerDev1}
+            {" "}
+            {footerDev1}{" "}
             <a
               className={s.dev}
               href="https://projection-ua.webflow.io/"
