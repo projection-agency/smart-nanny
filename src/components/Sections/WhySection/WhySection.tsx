@@ -56,6 +56,8 @@ export const WhySection = ({
   const pathname = usePathname();
   const [isReady, setIsReady] = useState(false);
   const [isClient, setIsClient] = useState(false);
+  const isNannyPage = pathname === `/${locale}/nanny-selection`;
+  const titleKey = isNannyPage ? "nanny-selection-why-title" : "why_title";
 
   useEffect(() => {
     if (translation && locale) {
@@ -99,13 +101,13 @@ export const WhySection = ({
             viewport={{ once: true, amount: 0.3 }}
           >
             {!isReady ? (
-              (translation && (translation["why_title"] as string)) || ""
+              (translation && (translation[titleKey] as string)) || ""
             ) : (
               <Trans
-                i18nKey="why_title"
+                i18nKey={titleKey}
                 components={{
                   span: <span />,
-                  line: <AnimatedLine stroke="#FF91B2"/>,
+                  line: <AnimatedLine stroke="#FF91B2" />,
                 }}
               />
             )}

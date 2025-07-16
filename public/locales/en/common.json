@@ -10,6 +10,7 @@
   "home_hero_subtitle": "With us are the people you can truly trust with what matters most – your child.",
   "home_hero_btn": "Select a nanny",
   "why_title": "Why do parents <span>choose <line/> </span> Smart Nanny service?",
+  "nanny-selection-why-title": "Why do nannies <span>choose <line/> </span> Smart Nanny service?",
   "why_desc_selection": "We build cooperation on trust, clear agreements and mutual respect. We provide a transparent process, fair conditions and always stay in touch so that you feel supported..",
   "why_short": [
     {
@@ -118,7 +119,7 @@
       "description": "We’re ready for any occasion — from family and kids’ events to important conferences and celebrations. Our nannies will provide engaging activities, games, and complete safety so you can enjoy the event worry-free.",
       "tags": ["Quick Start", "Flexible Schedule"],
       "price": "from <span>350 UAH</span> / hour",
-      "buttonText": "Learn More",
+      "buttonText": "Find a Nanny",
       "theme": "yellow"
     },
     {
@@ -127,7 +128,7 @@
       "description": "A solution for parents who want to have some free time on Saturday or Sunday — for rest, errands, or just recharging.",
       "tags": ["Quick Start", "Flexible Schedule"],
       "price": "from <span>300 UAH</span> / hour",
-      "buttonText": "Learn More",
+      "buttonText": "Find a Nanny",
       "theme": "yellow"
     }
   ],
@@ -177,7 +178,7 @@
       ]
     }
   ],
-  "road_btn": "Select a nanny",
+  "road_btn": "Submit an application",
   "road_requirements": "Requirements:",
   "gallery_title": "See how our caring <span>nannies work<line/></span> ",
   "gallery_subtitle": "Get to know our nannies through genuine photos from real life. You will see people who care for children every day with love, care, and professionalism.",
@@ -221,8 +222,8 @@
   "footer_rights": "©2025 Smart Nanny. All Rights Reserved.",
   "footer_dev": "Design by:",
   "footer_dev_name": "Before/After",
-  "footer_dev1":"Developed by:",
-  "footer_dev_name1":"PROJECTION",
+  "footer_dev1": "Developed by:",
+  "footer_dev_name1": "PROJECTION",
   "education_hero_title": "<span>Professional {line}</span> nanny",
   "education_hero_subtitle": "A practical online course that helps you confidently interact with both children and parents, and build a successful career as a professional nanny.",
   "education_hero_btn": "Choose training",
