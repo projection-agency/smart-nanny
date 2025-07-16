@@ -87,7 +87,7 @@ export const VacationPage = ({
           <motion.h2
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, amount: 0.6 }}
+            viewport={{ once:true, amount: 0.6 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
           >
             {!isReady ? (
@@ -108,7 +108,7 @@ export const VacationPage = ({
           <motion.p
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, amount: 0.6 }}
+            viewport={{ once:true, amount: 0.6 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
           >
             {!isReady
@@ -123,7 +123,7 @@ export const VacationPage = ({
           className={`lg:mb-[3.7vw] ${s.vacationControllerDesktop}`}
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, amount: 0.6 }}
+          viewport={{ once:true, amount: 0.6 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
         >
           <VacationController translation={translation} locale={locale} />
@@ -134,7 +134,7 @@ export const VacationPage = ({
           onClick={() => openModal()}
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, amount: 0.6 }}
+          viewport={{ once:true, amount: 0.6 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
         >
           <Image

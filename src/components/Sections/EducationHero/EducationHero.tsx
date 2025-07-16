@@ -45,13 +45,13 @@ export const EducationHero = () => {
         className={s.content}
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: false, amount: 0.6 }}
+        viewport={{ once: true, amount: 0.6 }}
         transition={{ duration: 0.7, ease: "easeOut" }}
       >
         <motion.h1
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, amount: 0.6 }}
+          viewport={{ once: true, amount: 0.6 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
         >
           {svg}
@@ -65,7 +65,7 @@ export const EducationHero = () => {
         <motion.p
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, amount: 0.6 }}
+          viewport={{ once: true, amount: 0.6 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
         >
           {String(t("education_hero_subtitle"))}
@@ -76,7 +76,7 @@ export const EducationHero = () => {
           className={s.btn}
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, amount: 0.6 }}
+          viewport={{ once: true, amount: 0.6 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
         >
           <div className={s.first}>{<BtnSvg />}</div>
@@ -129,7 +129,7 @@ export const EducationHero = () => {
 //       initial={{ pathLength: 0 }}
 //       whileInView={{ pathLength: 1 }}
 //       transition={{ duration: 1.2, ease: "easeOut" }}
-//       viewport={{ once: false, amount: 0.5 }}
+//       viewport={{ once: true, amount: 0.5 }}
 //     />
 //   </motion.svg>
 // );

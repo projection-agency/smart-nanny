@@ -81,7 +81,7 @@ export const CourseSection = () => {
           className={s.title}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: false, amount: 0.9 }}
+          viewport={{ once: true, amount: 0.9 }}
           variants={itemVariants}
         >
           {svg}
@@ -104,7 +104,7 @@ export const CourseSection = () => {
                   key={index}
                   initial="hidden"
                   whileInView="show"
-                  viewport={{ once: false, amount: 0.5 }}
+                  viewport={{ once: true, amount: 0.5 }}
                   variants={itemVariants}
                 >
                   <svg>
@@ -154,7 +154,7 @@ export const CourseSection = () => {
 const Line = () => {
   const ref = useRef(null);
 
-  const isInView = useInView(ref, { once: false, amount: 0.5 });
+  const isInView = useInView(ref, { once: true, amount: 0.5 });
 
   return <motion.svg
     ref={ref}

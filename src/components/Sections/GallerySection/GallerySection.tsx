@@ -77,7 +77,7 @@ export const GallerySection = ({
             className={s.titleContainer}
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, amount: 0.6 }}
+            viewport={{ once: true, amount: 0.6 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
           >
             <h2>
@@ -146,7 +146,7 @@ export const GallerySection = ({
                     repeatDelay: 2,
                     repeatType: "reverse",
                   }}
-                  viewport={{ once: false, amount: 0.5 }}
+                  viewport={{ once: true, amount: 0.5 }}
                 />
               </motion.svg>
             </div>
@@ -164,7 +164,7 @@ export const GallerySection = ({
           className={s.swiperWrapper}
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, amount: 0.4 }}
+          viewport={{ once: true, amount: 0.4 }}
           transition={{ duration: 0.7, ease: "easeOut", delay: 0.2 }}
         >
           {isClient && (

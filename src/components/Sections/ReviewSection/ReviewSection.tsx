@@ -75,14 +75,14 @@ export const ReviewSection = ({
           className={s.wrapper}
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false }}
+          viewport={{ once:true }}
           transition={{ duration: 0.7, ease: "easeOut" }}
         >
           <motion.h2
             className={s.title}
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, amount: 0.6 }}
+            viewport={{ once:true, amount: 0.6 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
           >
             {!isReady ? (
@@ -102,7 +102,7 @@ export const ReviewSection = ({
             className={s.desc}
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, amount: 0.7 }}
+            viewport={{ once:true, amount: 0.7 }}
             transition={{ duration: 0.7, ease: "easeOut", delay: 0.15 }}
           >
             {t("review_desc")}
@@ -112,7 +112,7 @@ export const ReviewSection = ({
             className={s.imageContainerMobile}
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, amount: 0.7 }}
+            viewport={{ once:true, amount: 0.7 }}
             transition={{ duration: 0.7, ease: "easeOut", delay: 0.25 }}
           >
             <Image
@@ -127,7 +127,7 @@ export const ReviewSection = ({
             <motion.div
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: false, amount: 0.7 }}
+              viewport={{ once:true, amount: 0.7 }}
               transition={{ duration: 0.7, ease: "easeOut", delay: 0.35 }}
             >
               <Swiper

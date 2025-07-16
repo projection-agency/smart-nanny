@@ -45,7 +45,7 @@ export const ProgramSection = () => {
         <motion.h2
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, amount: 0.6 }}
+          viewport={{ once:true, amount: 0.6 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
         >
           {<StarsDesktop />}
@@ -55,7 +55,7 @@ export const ProgramSection = () => {
         <motion.p
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, amount: 0.6 }}
+          viewport={{ once:true, amount: 0.6 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
         >
           {t('program_subtitle')}
