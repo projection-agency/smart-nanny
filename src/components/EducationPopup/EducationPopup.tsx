@@ -132,7 +132,7 @@ export function EducationPopup({
 
     try {
       const response = await fetch(
-        "https://www.apismart.projection-learn.website/wp-json/applications/v1/training",
+        "https://api.smart-nanny.com/wp-json/applications/v1/training",
         {
           method: "POST",
           headers: {
