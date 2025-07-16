@@ -44,7 +44,7 @@ export const ProgramItem = ({
       className={`${s.item} ${isOpen && s.active} `}
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: false, amount: 0.6 }}
+      viewport={{ once: true, amount: 0.6 }}
       transition={{ duration: 0.7, ease: "easeOut" }}
     >
       <div className={s.header}>

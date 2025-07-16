@@ -5,7 +5,7 @@ import type { Transition } from "framer-motion";
 
 export const BtnSvg = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: false, amount: 0.5 });
+  const isInView = useInView(ref, { once:false, amount: 0.5 });
 
   const baseTransition:Transition = {
     duration: 1.2,

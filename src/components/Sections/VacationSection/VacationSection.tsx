@@ -78,7 +78,7 @@ export const VacationSection = ({
       className={s.section}
       // initial={{ opacity: 0, y: 40 }}
       // whileInView={{ opacity: 1, y: 0 }}
-      // viewport={{ once: false, amount: 0.6 }}
+      // viewport={{ once:true, amount: 0.6 }}
       // transition={{ duration: 0.7, ease: "easeOut" }}
     >
       <Container className={s.container}>
@@ -86,7 +86,7 @@ export const VacationSection = ({
           className={s.topBlock}
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, amount: 0.6 }}
+          viewport={{ once:true, amount: 0.6 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
         >
           <h2>
@@ -153,7 +153,7 @@ export const VacationSection = ({
                   <motion.div
                     initial={{ opacity: 0, y: 40 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: false, amount: 0.6 }}
+                    viewport={{ once:true, amount: 0.6 }}
                     transition={{ duration: 0.7, ease: "easeOut" }}
                   >
                     <VacationItem item={item} />
@@ -242,7 +242,7 @@ const buttonSvg = (
         repeat: Infinity,
         repeatDelay: 2,
       }}
-      viewport={{ once: false, amount: 0.5 }}
+      viewport={{ once:true, amount: 0.5 }}
     />
     <motion.path
       d="M1.99929 52.7969C4.83361 52.7969 7.38321 54.5937 9.997 55.5442C13.2341 56.7213 16.5236 57.8612 19.582 59.3904"
@@ -258,7 +258,7 @@ const buttonSvg = (
         repeat: Infinity,
         repeatDelay: 2,
       }}
-      viewport={{ once: false, amount: 0.5 }}
+      viewport={{ once:true, amount: 0.5 }}
     />
     <motion.path
       d="M1.99929 8.39062C4.83361 8.39062 7.38321 6.59379 9.997 5.64332C13.2341 4.46621 16.5236 3.32629 19.582 1.7971"
@@ -274,7 +274,7 @@ const buttonSvg = (
         repeat: Infinity,
         repeatDelay: 2,
       }}
-      viewport={{ once: false, amount: 0.5 }}
+      viewport={{ once:true, amount: 0.5 }}
     />
   </motion.svg>
 );

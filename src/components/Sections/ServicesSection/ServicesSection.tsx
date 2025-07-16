@@ -53,7 +53,7 @@ export const ServicesSection = ({
           className={s.title}
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, amount: 0.5 }}
+          viewport={{ once:true, amount: 0.5 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
         >
           {!isReady ? (
@@ -185,7 +185,7 @@ export const ServicesSection = ({
           className={s.title}
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, amount: 0.5 }}
+          viewport={{ once:true, amount: 0.5 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
         >
           {!isReady ? (
@@ -327,7 +327,7 @@ const accordionListItemVariants: Variants = {
 //         initial={{ strokeDashoffset: pathLength }}
 //         whileInView={{ strokeDashoffset: 0 }}
 //         transition={{ duration: 1.2, ease: "easeOut" }}
-//         viewport={{ once: false, amount: 0.5 }}
+//         viewport={{ once:true, amount: 0.5 }}
 //       />
 //     </motion.svg>
 //   );

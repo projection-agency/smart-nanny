@@ -215,7 +215,7 @@ export const BlogPage = ({
 //       initial={{ pathLength: 0 }}
 //       whileInView={{ pathLength: 1 }}
 //       transition={{ duration: 1.2, ease: "easeOut" }}
-//       viewport={{ once: false, amount: 0.5 }}
+//       viewport={{ once:true, amount: 0.5 }}
 //     />
 //   </motion.svg>
 // );

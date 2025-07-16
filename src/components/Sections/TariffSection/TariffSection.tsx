@@ -63,7 +63,7 @@ export const TariffSection = () => {
 //         initial={{ pathLength: 0 }}
 //         whileInView={{ pathLength: 1 }}
 //         transition={{ duration: 1.2, ease: "easeOut" }}
-//         viewport={{ once: false, amount: 0.5 }}
+//         viewport={{ once:true, amount: 0.5 }}
 //       />
 //     </motion.svg>
 //   )
@@ -93,7 +93,7 @@ const noName = (
         repeatType: "reverse",
         repeatDelay: 2,
       }}
-      viewport={{ once: false, amount: 0.5 }}
+      viewport={{ once:true, amount: 0.5 }}
     />
     <motion.path
       d="M91.7578 75.541C91.7578 77.1199 93.0161 78.3078 94.1044 79.3961C95.7558 81.0475 97.6631 82.5854 99.489 84.0055C100.517 84.8052 101.545 85.7824 102.883 86.0797C104.711 86.4859 106.609 87.0941 107.597 88.7406"
@@ -110,7 +110,7 @@ const noName = (
         repeatType: "reverse",
         repeatDelay: 2,
       }}
-      viewport={{ once: false, amount: 0.5 }}
+      viewport={{ once:true, amount: 0.5 }}
     />
     <motion.path
       d="M94.0195 31.416C99.4114 31.416 104.173 34.8102 109.482 34.8102"
@@ -127,7 +127,7 @@ const noName = (
         repeatType: "reverse",
         repeatDelay: 2,
       }}
-      viewport={{ once: false, amount: 0.5 }}
+      viewport={{ once:true, amount: 0.5 }}
     />
     <motion.path
       d="M91.3789 13.3139C99.3447 13.3139 106.622 11.8954 113.839 8.41123C116.628 7.06484 119.566 5.9247 122.283 4.4304C123.897 3.5423 126.057 2 127.961 2"
@@ -144,7 +144,7 @@ const noName = (
         repeatType: "reverse",
         repeatDelay: 2,
       }}
-      viewport={{ once: false, amount: 0.5 }}
+      viewport={{ once:true, amount: 0.5 }}
     />
   </motion.svg>
 );

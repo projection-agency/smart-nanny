@@ -44,7 +44,7 @@ export const EducationSection = ({
           className={s.topBlock}
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, amount: 0.6 }}
+          viewport={{ once: true, amount: 0.6 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
         >
           <div className={s.imageBlockMobile}>
@@ -67,7 +67,7 @@ export const EducationSection = ({
             className={s.contentBlock}
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, amount: 0.6 }}
+            viewport={{ once: true, amount: 0.6 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
           >
             {cornerSvg}
@@ -75,7 +75,7 @@ export const EducationSection = ({
             <motion.h2
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: false, amount: 0.6 }}
+              viewport={{ once: true, amount: 0.6 }}
               transition={{ duration: 0.7, ease: "easeOut" }}
             >
               {svg}
@@ -93,13 +93,13 @@ export const EducationSection = ({
               className={s.textBlock}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: false, amount: 0.6 }}
+              viewport={{ once: true, amount: 0.6 }}
               transition={{ duration: 0.7, ease: "easeOut" }}
             >
               <motion.p
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: false, amount: 0.6 }}
+                viewport={{ once: true, amount: 0.6 }}
                 transition={{ duration: 0.7, ease: "easeOut" }}
               >
                 {!isReady
@@ -111,7 +111,7 @@ export const EducationSection = ({
               <motion.p
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: false, amount: 0.6 }}
+                viewport={{ once: true, amount: 0.6 }}
                 transition={{ duration: 0.7, ease: "easeOut" }}
               >
                 {!isReady
@@ -126,7 +126,7 @@ export const EducationSection = ({
               <motion.button
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: false, amount: 0.6 }}
+                viewport={{ once: true, amount: 0.6 }}
                 transition={{ duration: 0.7, ease: "easeOut" }}
               >
                 {!isReady
@@ -178,7 +178,7 @@ export const EducationSection = ({
           className={s.bottomBlock}
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, amount: 0.6 }}
+          viewport={{ once: true, amount: 0.6 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
         >
           <ul>
@@ -189,7 +189,7 @@ export const EducationSection = ({
                   key={index}
                   initial={{ opacity: 0, y: 40 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: false, amount: 0.6 }}
+                  viewport={{ once: true, amount: 0.6 }}
                   transition={{ duration: 0.7, ease: "easeOut" }}
                 >
                   <span>{stat.value}</span>
@@ -221,7 +221,7 @@ export const EducationSection = ({
 //       initial={{ pathLength: 0 }}
 //       whileInView={{ pathLength: 1 }}
 //       transition={{ duration: 1.2, ease: "easeOut" }}
-//       viewport={{ once: false, amount: 0.5 }}
+//       viewport={{ once:true, amount: 0.5 }}
 //     />
 //   </motion.svg>
 // );
@@ -284,7 +284,7 @@ const cornerSvg = (
         repeatType: "reverse",
         repeatDelay: 2,
       }}
-      viewport={{ once: false, amount: 0.5 }}
+      viewport={{ once:true, amount: 0.5 }}
     />
     <motion.path
       d="M91.7578 75.1348C91.7578 76.7137 93.0161 77.9015 94.1044 78.9899C95.7558 80.6413 97.6631 82.1791 99.489 83.5993C100.517 84.399 101.545 85.3762 102.883 85.6735C104.711 86.0797 106.609 86.6879 107.597 88.3343"
@@ -301,7 +301,7 @@ const cornerSvg = (
         repeatType: "reverse",
         repeatDelay: 2,
       }}
-      viewport={{ once: false, amount: 0.5 }}
+      viewport={{ once:true, amount: 0.5 }}
     />
     <motion.path
       d="M94.0195 31.0098C99.4114 31.0098 104.173 34.4039 109.482 34.4039"
@@ -318,7 +318,7 @@ const cornerSvg = (
         repeatType: "reverse",
         repeatDelay: 2,
       }}
-      viewport={{ once: false, amount: 0.5 }}
+      viewport={{ once:true, amount: 0.5 }}
     />
     <motion.path
       d="M91.3789 12.9077C99.3447 12.9077 106.622 11.4892 113.839 8.00498C116.628 6.65859 119.566 5.51845 122.283 4.02415C123.897 3.13605 126.057 1.59375 127.961 1.59375"
@@ -335,7 +335,7 @@ const cornerSvg = (
         repeatType: "reverse",
         repeatDelay: 2,
       }}
-      viewport={{ once: false, amount: 0.5 }}
+      viewport={{ once:true, amount: 0.5 }}
     />
   </motion.svg>
 );

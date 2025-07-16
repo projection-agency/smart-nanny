@@ -75,7 +75,7 @@ export const RoadSection = ({
           <motion.h2
             initial="hidden"
             whileInView="show"
-            viewport={{ once: false, amount: 0.9 }}
+            viewport={{ once:true, amount: 0.9 }}
             variants={itemVariants}
           >
             {!isReady ? (
@@ -94,7 +94,7 @@ export const RoadSection = ({
           <motion.p
             initial="hidden"
             whileInView="show"
-            viewport={{ once: false, amount: 0.5 }}
+            viewport={{ once:true, amount: 0.5 }}
             variants={itemVariants}
           >
             {t("road_subtitle")}
@@ -128,7 +128,7 @@ export const RoadSection = ({
                   variants={itemVariants}
                   initial="hidden"
                   whileInView="show"
-                  viewport={{ once: false, amount: 0.3 }}
+                  viewport={{ once:true, amount: 0.3 }}
                 >
                   <span className={s.step}>
                     <span>{step.step}: </span> {stepBg}
@@ -159,7 +159,7 @@ export const RoadSection = ({
           variants={containerVariants}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: false, amount: 0.3 }}
+          viewport={{ once:true, amount: 0.3 }}
         >
           {steps.map((step, index) => (
             <motion.li
@@ -167,7 +167,7 @@ export const RoadSection = ({
               variants={itemVariants}
               initial="hidden"
               whileInView="show"
-              viewport={{ once: false, amount: 0.3 }}
+              viewport={{ once:true, amount: 0.3 }}
             >
               <span className={s.step}>
                 <span>{step.step}: </span> {stepBg}
@@ -195,7 +195,7 @@ export const RoadSection = ({
           className={s.btn}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: false, amount: 0.3 }}
+          viewport={{ once:true, amount: 0.3 }}
           variants={itemVariants}
         >
           <div className={s.first}>{<BtnSvg />}</div>
