@@ -90,7 +90,8 @@
 
   .text {
     margin-bottom: 1.5vw;
-    max-width: 90%;
+    padding-right: 1vw;
+    max-width: 100%;
     max-height: 8vw;
     overflow-y: scroll;
     font-family: Moderustic;
@@ -263,6 +264,7 @@
 
             .text {
               max-height: 40vw;
+              padding-right: 4vw;
               margin-bottom: 6.4vw;
               font-size: 4.3vw;
             }
