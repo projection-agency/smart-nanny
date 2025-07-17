@@ -86,7 +86,6 @@ export const SelectionPopup = ({
     }
   };
 
-
   const getValidationError = (
     name: string,
     value: string | string[]
@@ -146,7 +145,10 @@ export const SelectionPopup = ({
       format: employmentTypes,
     };
 
-    const localErrors = validateForm(Object.keys(payload), Object.values(payload));
+    const localErrors = validateForm(
+      Object.keys(payload),
+      Object.values(payload)
+    );
 
     const hasAnyKeys = Object.keys(localErrors).length > 0;
     if (hasAnyKeys) {
@@ -155,7 +157,7 @@ export const SelectionPopup = ({
 
     try {
       const response = await fetch(
-        "https://api.smart-nanny.com/wp-json/applications/v1/nanny_match",
+        "https://www.apismart.projection-learn.website/wp-json/applications/v1/nanny_match",
         {
           method: "POST",
           headers: {

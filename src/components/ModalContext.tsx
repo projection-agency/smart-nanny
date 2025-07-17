@@ -31,8 +31,12 @@ export const ModalProvider = ({
   locale: string;
 }) => {
   const [currentModal, setCurrentModal] = useState<ModalKey>(null);
-  const openModal = (key: ModalKey) => {
+  const [modalPayload, setModalPayload] = useState<string>("");
+  const openModal = (key: ModalKey, payload?: string) => {
     setCurrentModal(key);
+    if (payload) {
+      setModalPayload(payload);
+    }
   };
   const closeModal = () => {
     setCurrentModal(null);
@@ -61,6 +65,7 @@ export const ModalProvider = ({
           onClose={closeModal}
           translation={translation}
           locale={locale}
+          modalPayload={modalPayload}
         />
       )}
     </ModalContext.Provider>

@@ -53,10 +53,10 @@ export const VacationItem = ({ item }: { item: Vacation }) => {
           </div>
         </div>
       </div>
-
       <button
         onClick={() => {
-          openModal("formC");
+          console.log(item.Title)
+          openModal("formC",item.Title);
         }}
       >
         {t('vacation_respond')}

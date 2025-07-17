@@ -15,10 +15,12 @@ export function RespondPopup({
   translation,
   locale,
   onClose,
+  modalPayload,
 }: {
   translation: Record<string, unknown>;
   locale: string;
   onClose: () => void;
+  modalPayload:string
 }) {
   const [visible, setVisible] = useState(false);
   const popupRef = useRef<HTMLDivElement>(null);
@@ -114,6 +116,7 @@ export function RespondPopup({
       full_name: fullName,
       phone,
       email,
+      vacancy_name:modalPayload
     };
 
     const localErrors = validateForm(Object.keys(payload), Object.values(payload));
@@ -126,7 +129,7 @@ export function RespondPopup({
 
     try {
       const response = await fetch(
-        "https://api.smart-nanny.com/wp-json/applications/v1/training",
+        "https://api.smart-nanny.com/wp-json/applications/v1/nanny_review",
         {
           method: "POST",
           headers: {
