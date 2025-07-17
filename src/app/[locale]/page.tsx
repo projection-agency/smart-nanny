@@ -19,6 +19,13 @@ export const metadata = {
   }
 };
 
+export async function generateStaticParams() {
+  return [
+    { locale: 'ua' },
+    { locale: 'en' },
+  ];
+}
+
 export default async function Home({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   if (locale !== 'ua' && locale !== 'en') {

@@ -14,6 +14,13 @@ export const metadata = {
   description: "Ми підбираємо надійних нянь, яким можна довірити вашу дитину.",
 };
 
+export async function generateStaticParams() {
+  return [
+    { locale: 'ua' },
+    { locale: 'en' },
+  ];
+}
+
 export default async function NannySelection({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   const translationPath = path.resolve(process.cwd(), `public/locales/${locale}/common.json`);
