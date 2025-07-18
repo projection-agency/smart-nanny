@@ -32,10 +32,15 @@ export const ModalProvider = ({
 }) => {
   const [currentModal, setCurrentModal] = useState<ModalKey>(null);
   const [modalPayload, setModalPayload] = useState<string>("");
+  const [modalTariff, setModalTariff] = useState<string>("");
   const openModal = (key: ModalKey, payload?: string) => {
     setCurrentModal(key);
     if (payload) {
       setModalPayload(payload);
+    }
+
+    if (key === "formB") {
+      setModalTariff(payload || "");
     }
   };
   const closeModal = () => {
@@ -58,6 +63,7 @@ export const ModalProvider = ({
           onClose={closeModal}
           translation={translation}
           locale={locale}
+          modalTariff={modalTariff}
         />
       )}
       {currentModal === "formC" && (
