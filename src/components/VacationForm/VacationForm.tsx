@@ -200,7 +200,7 @@ export const VacationForm = ({
 
     try {
       const response = await axios.post(
-        "https://www.apismart.projection-learn.website/wp-json/applications/v1/nanny_signup",
+        "https://api.smart-nanny.com/wp-json/applications/v1/nanny_signup",
         result,
         {
           headers: {
