@@ -93,7 +93,7 @@ export const EducationTariffs = () => {
             <span>{t('tariff_price')}:</span>
             <span>{tariff.price}</span>
           </div>
-          <button onClick={() => openModal("formB")}>{tariff.buttonText}</button>
+          <button onClick={() => openModal("formB", tariff.title)}>{tariff.buttonText}</button>
         </div>
       ))}
     </div>

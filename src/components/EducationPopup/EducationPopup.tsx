@@ -15,10 +15,12 @@ export function EducationPopup({
   translation,
   locale,
   onClose,
+  modalTariff,
 }: {
   translation: Record<string, unknown>;
   locale: string;
   onClose: () => void;
+  modalTariff: string;
 }) {
   const [visible, setVisible] = useState(false);
   const popupRef = useRef<HTMLDivElement>(null);
@@ -32,6 +34,8 @@ export function EducationPopup({
   const [errors, setErrors] = useState<Record<string, string>>({});
 
   const isValid = fullName.trim() && phone.trim() && email.trim();
+
+  console.log(modalTariff);
 
   const validateValue = (name: string, value: string) => {
     let error = "";
@@ -113,10 +117,13 @@ export function EducationPopup({
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    
+
     const payload = {
       full_name: fullName,
       phone,
       email,
+      tariff_type: modalTariff,
     };
 
     const localErrors = validateForm(
