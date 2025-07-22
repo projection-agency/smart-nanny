@@ -1,19 +1,7 @@
 import type { Metadata } from 'next'
 import BlogPageItem, { BlogPost } from "@/components/BlogPageItem/BlogPageItem";
 import { API_URL } from "@/constants";
-
-export async function generateStaticParams() {
-  const locales = ['ua', 'en'];
-  const params: { locale: string; slug: string }[] = [];
-
-  for (const locale of locales) {
-    const res = await fetch(`${API_URL}v2/posts?lang=${locale}`);
-    const posts: BlogPost[] = await res.json();
-    params.push(...posts.map((post) => ({ locale, slug: post.slug })));
-  }
-
-  return params;
-}
+import { extractImageFromPost } from "@/utils/imageExtractor";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; slug: string }> }): Promise<Metadata> {
   const { locale, slug } = await params;
@@ -30,7 +18,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       }
     }
 
-    const image = post._embedded?.["wp:featuredmedia"]?.[0]?.source_url || 'https://smart-nanny.com/og-image.jpg';
+    const image = extractImageFromPost(post);
     const title = post.title.rendered.replace(/<[^>]+>/g, '');
     const description = post.excerpt.rendered.replace(/<[^>]+>/g, '').slice(0, 160);
 

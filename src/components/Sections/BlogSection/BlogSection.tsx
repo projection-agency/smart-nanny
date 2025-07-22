@@ -12,6 +12,7 @@ import { motion } from "framer-motion";
 import { useTranslation, Trans } from 'react-i18next';
 import { BtnSvg } from '@/components/BtnSvg';
 
+
 export type BlogPost = {
   id: number;
   date: string;
@@ -20,17 +21,16 @@ export type BlogPost = {
   excerpt: { rendered: string };
   featured_image_url?: string;
   categories: number[];
-  // або _embedded?: { "wp:featuredmedia": [{ source_url: string }] };
+  _embedded?: {
+    "wp:featuredmedia": { source_url: string }[];
+  };
 };
 
-type Category = {
-  id: number;
-  name: string;
-};
+
 
 export const BlogSection = ({ translation, locale }: { translation: Record<string, unknown>, locale: string }) => {
   const [posts, setPosts] = useState<BlogPost[]>();
-  const [categories, setCategories] = useState<Category[]>([]);
+
   const { t, i18n } = useTranslation('common');
   const [isReady, setIsReady] = useState(false);
   const [isClient, setIsClient] = useState(false);
@@ -54,30 +54,17 @@ export const BlogSection = ({ translation, locale }: { translation: Record<strin
       }
     };
 
-    const fetchCategories = async () => {
-      try {
-        const response = await fetch(`${API_URL}v2/categories?lang=${lang}`);
-        const data = await response.json();
-        setCategories(
-          data.filter((cat: Category) => cat.name !== (lang === 'ua' ? "Без категорії" : "Без категорії"))
-        );
-      } catch (error) {
-        console.error("Помилка при отриманні категорій:", error);
-      }
-    };
+
 
     fetchPosts();
-    fetchCategories();
   }, [i18n.language]);
 
   useEffect(() => { setIsClient(true); }, []);
 
-  const getCategoryNames = (post: BlogPost) => {
-    if (!post.categories || !categories.length) return [];
-    return categories
-      .filter((cat) => post.categories.includes(cat.id))
-      .map((cat) => cat.name);
-  };
+
+
+
+  console.log(posts);
 
   return (
     <section className={s.section}>
@@ -99,14 +86,7 @@ export const BlogSection = ({ translation, locale }: { translation: Record<strin
           {posts?.slice(0, 3).map((post: BlogPost) => (
             <BlogItem
               key={post.id}
-              info={{
-                title: post.title?.rendered,
-                date: new Date(post.date).toLocaleDateString("uk-UA"),
-                categories: getCategoryNames(post),
-                image: post.featured_image_url || "/images/blog/1.jpg",
-                description: post.excerpt?.rendered.replace(/<[^>]+>/g, ""),
-                slug: post.slug,
-              }}
+              post={post}
               locale={locale}
             />
           ))}
@@ -126,14 +106,7 @@ export const BlogSection = ({ translation, locale }: { translation: Record<strin
             {posts?.slice(0, 4).map((post: BlogPost) => (
               <SwiperSlide key={post.id} className={s.swiperSlide}>
                 <BlogItem
-                  info={{
-                    title: post.title?.rendered,
-                    date: new Date(post.date).toLocaleDateString("uk-UA"),
-                    categories: getCategoryNames(post),
-                    image: post.featured_image_url || "/images/blog/1.jpg",
-                    description: post.excerpt?.rendered.replace(/<[^>]+>/g, ""),
-                    slug: post.slug,
-                  }}
+                  post={post}
                   locale={locale}
                 />
               </SwiperSlide>

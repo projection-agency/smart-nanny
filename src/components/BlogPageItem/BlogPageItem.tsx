@@ -15,8 +15,6 @@ import { BlogItem } from "@/components/BlogItem/BlogItem";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 
-
-
 export type BlogPost = {
     id: number;
     slug: string;
@@ -134,8 +132,8 @@ const { slug, locale } = useParams<{ slug: string; locale: string }>();
     return <div className={s.notFound}>Пост не знайдено</div>;
   }
 
-  const image =
-    post._embedded?.["wp:featuredmedia"]?.[0]?.source_url ||
+  const image = post._embedded?.["wp:featuredmedia"]?.[0]?.source_url ||
+    post.featured_image_url ||
     "/images/program-item-video.jpg";
 
   const formattedDate = new Date(post.date).toLocaleDateString("uk-UA", {
@@ -163,12 +161,7 @@ const { slug, locale } = useParams<{ slug: string; locale: string }>();
     },
   ];
 
-  const getCategoryNames = (post: BlogPost) => {
-    if (!post.categories || !categories.length) return [];
-    return categories
-      .filter((cat) => post.categories.includes(cat.id))
-      .map((cat) => cat.name);
-  };
+
 
   return (
     <main>
@@ -234,20 +227,10 @@ const { slug, locale } = useParams<{ slug: string; locale: string }>();
                 }}
                 className={`${s.swiper} swiper`}
               >
-                {posts?.slice(0, 4).map((post: BlogPost) => (
+                {posts?.slice(0, 3).map((post: BlogPost) => (
                   <SwiperSlide key={post.id} className={s.swiperSlide}>
                     <BlogItem
-                      info={{
-                        title: post.title?.rendered,
-                        date: new Date(post.date).toLocaleDateString("uk-UA"),
-                        categories: getCategoryNames(post),
-                        image: post.featured_image_url || "/images/blog/1.jpg",
-                        description: post.excerpt?.rendered.replace(
-                          /<[^>]+>/g,
-                          ""
-                        ),
-                        slug: post.slug,
-                      }}
+                      post={post}
                       locale={locale}
                     />
                   </SwiperSlide>
@@ -257,17 +240,10 @@ const { slug, locale } = useParams<{ slug: string; locale: string }>();
             </>
           ) : (
             <ul className={s.viewMoreList}>
-              {posts?.slice(0, 4).map((post: BlogPost) => (
+              {posts?.slice(0, 3).map((post: BlogPost) => (
                 <BlogItem
                   key={post.id}
-                  info={{
-                    title: post.title?.rendered,
-                    date: new Date(post.date).toLocaleDateString("uk-UA"),
-                    categories: getCategoryNames(post),
-                    image: post.featured_image_url || "/images/blog/1.jpg",
-                    description: post.excerpt?.rendered.replace(/<[^>]+>/g, ""),
-                    slug: post.slug,
-                  }}
+                  post={post}
                   locale={locale}
                 />
               ))}
@@ -277,5 +253,4 @@ const { slug, locale } = useParams<{ slug: string; locale: string }>();
       </section>
     </main>
   );
-
 }
