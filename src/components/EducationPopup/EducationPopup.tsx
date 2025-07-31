@@ -10,6 +10,7 @@ import { PASS } from "@/constants";
 import Image from "next/image";
 import { useTranslation } from "react-i18next";
 import i18n from "@/i18n/client";
+import { useAnalytics } from "@/hooks/useAnalytics";
 
 export function EducationPopup({
   translation,
@@ -32,10 +33,9 @@ export function EducationPopup({
   const { t } = useTranslation("common");
   const [isReady, setIsReady] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const { trackFormSubmission } = useAnalytics();
 
   const isValid = fullName.trim() && phone.trim() && email.trim();
-
-  console.log(modalTariff);
 
   const validateValue = (name: string, value: string) => {
     let error = "";
@@ -117,8 +117,6 @@ export function EducationPopup({
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    
-
     const payload = {
       full_name: fullName,
       phone,
@@ -152,8 +150,10 @@ export function EducationPopup({
 
       if (!response.ok) throw new Error("Помилка при надсиланні форми");
       setIsSubmitted(true);
+      trackFormSubmission("education_popup", true);
     } catch (error) {
       console.error("Send error:", error);
+      trackFormSubmission("education_popup", false);
     }
   };
 

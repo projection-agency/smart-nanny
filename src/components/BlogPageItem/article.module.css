@@ -79,7 +79,9 @@
   img {
     margin-bottom: 4.1vw;
     border-radius: 1.2vw;
-    width: 100%;
+    width: 100% !important;
+    object-fit: cover;
+    max-height: 70vh;
   }
   iframe {
     margin-bottom: 4.1vw;
@@ -96,8 +98,11 @@
     margin-left: 1vw;
     border-radius: 1.2vw;
     width: 100%;
+    list-style: disc;
   }
 }
+
+
 
 .titleContainer > div {
   display: flex;
@@ -141,6 +146,9 @@
   grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 1.8vw;
 }
+
+
+
 
 @media screen and (max-width: 1024px) {
   .section {

@@ -76,11 +76,11 @@ const SidePanel = ({ isOpen, onClose, locale }) => {
         <div className={s.contacts}>
           <div>
             <p className={s.contactSubtitle}>{t("mobile_sidebar_write_us")}</p>
-            <a href="">service.smartnanny@gmail.com</a>
+            <a href="mailto:service.smartnanny@gmail.com">service.smartnanny@gmail.com</a>
           </div>
           <div>
             <p className={s.contactSubtitle}>{t("mobile_sidebar_write_us")}</p>
-            <a href="">+38 (098) 308 58 47</a>
+            <a href="tel:+380983085847">+38 (098) 308 58 47</a>
           </div>
 
           <ul className={s.socialLinks}>

@@ -50,9 +50,6 @@ export const Footer = ({
   const footerDev = !isReady
     ? (translation && (translation["footer_dev"] as string)) || ""
     : t("footer_dev");
-  const footerDev1 = !isReady
-    ? (translation && (translation["footer_dev1"] as string)) || ""
-    : t("footer_dev1");
   const footerDevName = !isReady
     ? (translation && (translation["footer_dev_name"] as string)) || ""
     : t("footer_dev_name");
@@ -190,12 +187,8 @@ export const Footer = ({
             >
               {footerDevName}
             </a>
-            {" "}
-            {footerDev1}{" "}
-            <a
-              className={s.dev}
-              href="https://projection-ua.webflow.io/"
-            >
+            {" & "}
+            <a className={s.dev} href="https://projection-ua.webflow.io/">
               {footerDevName1}
             </a>
           </div>
