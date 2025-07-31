@@ -3,11 +3,11 @@
 import { Vacation } from "@/store/vacationSlice";
 import { useModal } from "../ModalContext";
 import s from "./VacationItem.module.css";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 
 export const VacationItem = ({ item }: { item: Vacation }) => {
   const { openModal } = useModal();
-  const { t } = useTranslation('common');
+  const { t } = useTranslation("common");
 
   return (
     <li className={s.vacation}>
@@ -20,7 +20,7 @@ export const VacationItem = ({ item }: { item: Vacation }) => {
           <div className={s.block}>
             <div>
               {location}
-              <span>{t('vacation_location')}</span>
+              <span>{t("vacation_location")}</span>
             </div>
             <p>
               {item.Loc_country}, {item.Loc_city}, {item.Loc_district}
@@ -30,20 +30,20 @@ export const VacationItem = ({ item }: { item: Vacation }) => {
           <div className={s.block}>
             <div>
               {schedule}
-              <span>{t('vacation_schedule')}</span>
+              <span>{t("vacation_schedule")}</span>
             </div>
             <p>
               {item.Work_time},
               {item.Employment_type == "full"
-                ? t('employment_full_lower')
-                : t('employment_part_lower')}
+                ? t("employment_full_lower")
+                : t("employment_part_lower")}
             </p>
           </div>
 
           <div className={s.block}>
             <div>
               {desc}
-              <span>{t('vacation_desc')}</span>
+              <span>{t("vacation_desc")}</span>
             </div>
             <p>
               {item.Description.length > 200
@@ -55,11 +55,10 @@ export const VacationItem = ({ item }: { item: Vacation }) => {
       </div>
       <button
         onClick={() => {
-          console.log(item.Title)
-          openModal("formC",item.Title);
+          openModal("formC", item.Title);
         }}
       >
-        {t('vacation_respond')}
+        {t("vacation_respond")}
       </button>
     </li>
   );

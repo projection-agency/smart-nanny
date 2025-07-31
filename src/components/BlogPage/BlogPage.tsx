@@ -179,16 +179,8 @@ export const BlogPage = ({
                 <BlogItem
                   locale={locale}
                   key={post.id}
-                  info={{
-                    title: post.title?.rendered,
-                    date: new Date(post.date).toLocaleDateString("uk-UA"),
-                    categories: categories
-                      .filter((cat) => post.categories?.includes(cat.id))
-                      .map((cat) => cat.name),
-                    image: post.featured_image_url || "/images/blog/1.jpg",
-                    description: post.excerpt?.rendered.replace(/<[^>]+>/g, ""),
-                    slug: post.slug,
-                  }}
+                  post={post}
+                  categories={categories}
                 />
               ))}
           </ul>

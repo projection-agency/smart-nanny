@@ -1,7 +1,7 @@
 "use client";
 
-import '@/i18n/client';
-import i18n from '@/i18n/client';
+import "@/i18n/client";
+import i18n from "@/i18n/client";
 
 import React, { useState, useEffect } from "react";
 import s from "./Header.module.css";
@@ -11,16 +11,24 @@ import Link from "next/link";
 import { LanguageSwitcher } from "../LanguageSwitcher/LanguageSwitcher";
 import { useModal } from "../ModalContext";
 import SidePanel from "../SidePanel/SidePanel";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
+import { useAnalytics } from "@/hooks/useAnalytics";
 
-export const Header = ({ translation, locale }: { translation: unknown, locale: string }) => {
+export const Header = ({
+  translation,
+  locale,
+}: {
+  translation: unknown;
+  locale: string;
+}) => {
   const [sidePanelIsOpen, setSidePanelIsOpen] = useState(false);
   const { openModal } = useModal();
-  const { t } = useTranslation('common');
+  const { t } = useTranslation("common");
+  const { trackButtonClick } = useAnalytics();
 
   useEffect(() => {
     if (translation && locale) {
-      i18n.addResourceBundle(locale, 'common', translation, true, true);
+      i18n.addResourceBundle(locale, "common", translation, true, true);
       i18n.changeLanguage(locale);
     }
   }, [translation, locale]);
@@ -28,11 +36,12 @@ export const Header = ({ translation, locale }: { translation: unknown, locale: 
   const getHref = (path: string) => `/${locale}${path === "/" ? "" : path}`;
 
   const openSidePanel = () => {
-    setSidePanelIsOpen(true)
+    setSidePanelIsOpen(true);
+    trackButtonClick("mobile_menu", "header");
   };
 
-    const closeSidePanel = () => {
-    setSidePanelIsOpen(false)
+  const closeSidePanel = () => {
+    setSidePanelIsOpen(false);
   };
 
   return (
@@ -40,7 +49,9 @@ export const Header = ({ translation, locale }: { translation: unknown, locale: 
       <Container className="flex justify-between">
         <button
           className={s.mobileMenuBtn}
-          onClick={()=>{openSidePanel()}}
+          onClick={() => {
+            openSidePanel();
+          }}
         >
           <Image
             src="/icons/mobile-menu-icon.svg"
@@ -73,7 +84,9 @@ export const Header = ({ translation, locale }: { translation: unknown, locale: 
                 <Link href={getHref("/education")}>{t("education")}</Link>
               </li>
               <li>
-                <Link href={getHref("/nanny-selection")}>{t("become_nanny")}</Link>
+                <Link href={getHref("/nanny-selection")}>
+                  {t("become_nanny")}
+                </Link>
               </li>
               <li>
                 <Link href={getHref("/vacation")}>{t("vacancies")}</Link>
@@ -88,7 +101,13 @@ export const Header = ({ translation, locale }: { translation: unknown, locale: 
         <div className={s.headerRightBlock}>
           <LanguageSwitcher />
 
-          <div onClick={() => openModal("formA")} className={s.call}>
+          <div
+            onClick={() => {
+              openModal("formA");
+              trackButtonClick("order_call", "header");
+            }}
+            className={s.call}
+          >
             <span className={s.hiddenOnMobile}>{t("order_call")}</span>
 
             <div className={s.callIconMobileCont}>
@@ -128,9 +147,12 @@ export const Header = ({ translation, locale }: { translation: unknown, locale: 
             </div>
           </div>
         </div>
-        <SidePanel isOpen={sidePanelIsOpen} onClose={closeSidePanel} locale={locale}/>
+        <SidePanel
+          isOpen={sidePanelIsOpen}
+          onClose={closeSidePanel}
+          locale={locale}
+        />
       </Container>
-
     </header>
   );
 };

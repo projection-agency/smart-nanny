@@ -14,7 +14,7 @@
     img {
       object-fit: cover;
       width: 100%;
-      height: 100%;
+      height: 16.66vw;
     }
   }
 
@@ -75,6 +75,14 @@
 @media screen and (max-width: 1024px) {
   .item {
     flex-direction: column;
+
+    .imageContainer {
+      img {
+        object-fit: cover;
+        width: 100%;
+        height: 74vw;
+      }
+    }
 
     .content > div {
       column-gap: 3.2vw;

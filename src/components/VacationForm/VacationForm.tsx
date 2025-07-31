@@ -10,6 +10,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import axios, { AxiosError } from "axios";
 import Image from "next/image";
 import { closeIco } from "../ModalContext";
+import { useAnalytics } from "@/hooks/useAnalytics";
 
 const defaultValues = {
   full_name: "",
@@ -33,6 +34,7 @@ export const VacationForm = ({
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [employmentTypes, setEmploymentTypes] = useState<string[]>([]);
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const { trackFormSubmission } = useAnalytics();
 
   useEffect(() => {
     if (translation && locale) {
@@ -212,6 +214,7 @@ export const VacationForm = ({
 
       console.log(response);
       setIsSubmitted(true);
+      trackFormSubmission("vacation_form", true);
     } catch (err) {
       const error = err as AxiosError;
       if (error.response && error.response.data) {
@@ -219,6 +222,7 @@ export const VacationForm = ({
       } else {
         console.log("Unknown error", error);
       }
+      trackFormSubmission("vacation_form", false);
     }
   };
   const handleClose = () => {
@@ -297,7 +301,11 @@ export const VacationForm = ({
           </h3>
           <form className={s.form} onSubmit={handleSubmit}>
             <div className={s.inputLine}>
-              <div className={`${s.inputContainer} ${errors.full_name ? s.error : ""}`}>
+              <div
+                className={`${s.inputContainer} ${
+                  errors.full_name ? s.error : ""
+                }`}
+              >
                 <label>
                   {!isReady
                     ? typeof translation["vacation_form_name_label"] ===
